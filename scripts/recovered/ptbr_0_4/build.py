@@ -51,7 +51,7 @@ text_end=cursor
 # No code or BSS space is borrowed.
 preview=Image.new('RGB',(26*32,80),(35,40,48));draw=ImageDraw.Draw(preview)
 for i,(ch,slot) in enumerate(zip(accents,slots)):
- base,mark=unicodedata.normalize('NFD',char)
+ base,mark=unicodedata.normalize('NFD',ch)
  ptr=lut[cm[base][0]]-0x82000000
  raw=b[ptr:ptr+64]
  vals=[]
