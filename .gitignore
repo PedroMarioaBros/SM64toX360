@@ -1,0 +1,27 @@
+# Binários e dumps do jogo
+*.xex
+*.bin
+*.elf
+*.raw
+*.rom
+*.z64
+*.n64
+*.v64
+
+# Pacotes/artefatos gerados
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tar.xz
+
+# Diretórios históricos de trabalho com material derivado
+inspect/
+binarios/
+pacotes/
+RECUPERADOS_NAO_PUBLICAR/
+
+# Python
+__pycache__/
+*.pyc

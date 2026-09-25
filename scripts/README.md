@@ -1,39 +1,20 @@
 # Scripts
 
 O checkpoint real de 17/09/2026 foi novamente materializado em 25/09/2026 e o
-manifesto interno passou em **56/56 hashes SHA-256**. Assim, a existência dos
-scripts abaixo está comprovada por bytes, não apenas pelo histórico.
+manifesto interno passou em **56/56 hashes SHA-256**.
 
-## Pipeline PT-BR 0.4
+## Publicados no repositório
 
-Dentro de `projeto_0.4/projeto/ptbr-work/`:
+Os **14 scripts recuperados** foram migrados para `scripts/recovered/` e auditados
+por Git blob SHA contra os bytes do checkpoint original.
 
-- `analyze.py` — análise de diálogos/charmap e localização de estruturas.
-- `build.py` — aplicação das alterações PT-BR sobre a imagem mapeada.
-- `check_rebase.py` — preservação das alterações da base corrigida.
-- `controls_probe.py` — teste isolado PowerPC do mapeador via Unicorn.
-- `pack.py` — reconstrução/repack XEX da revisão 0.4.
-- `regression_menu.py` — harness PowerPC de regressão dos menus.
-- `stackstrings.py` — localização de textos montados na pilha.
-- `staticrefs.py` — levantamento de referências estáticas.
-- `verify.py` — verificação estática, hashes XEX e round-trip.
+Consulte `scripts/recovered/README.md` para a estrutura, dependências e limites de
+publicação.
 
-Também existe `projeto_0.4/projeto/reconstruir.py`, que recompõe a tradução a
-partir da base corrigida esperada e de uma ferramenta XEX compatível.
+## Política
 
-## Engenharia reversa
+Não são publicados automaticamente XEXs, ROMs, ZIPs do jogo, dumps, imagens
+mapeadas, `text.raw`, `text.elf` ou outros conteúdos binários/derivados do jogo.
 
-Dentro de `engenharia_reversa/`:
-
-- `extract_basic_xex.py`
-- `scan_refs.py`
-- `scan_addr_refs.py`
-- `branch_refs.py`
-
-## Política de publicação
-
-Os scripts são código próprio/auxiliar e podem ser revisados individualmente para
-migração ao GitHub. Entradas necessárias a eles que sejam binários, dumps, imagens
-mapeadas ou conteúdo derivado do jogo permanecem fora do repositório público.
-
-Esta pasta não deve receber placeholders nem versões reescritas “de memória”.
+Não criar placeholders nem reescrever scripts “de memória” quando o original não
+estiver recuperado.
