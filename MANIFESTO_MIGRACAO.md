@@ -18,18 +18,31 @@ Auditoria realizada em 25/09/2026. O pacote de migração foi validado com SHA-2
 - pacote PT-BR 0.4 — SHA-256 `d31bdd7d8396bbeeea2805dd9cdb3f7bfbfee106bf1fc2380b19bc76e33e2b78`.
 - checkpoint completo de 17/09/2026 — SHA-256 `265a6cdfba9e4dfaded578462a1388d4b97a1246643fd72d5ed8cdd4913e6368`.
 
-Esses binários/pacotes foram preservados na camada de revisão, mas não publicados automaticamente neste repositório público.
+Na retomada de 25/09/2026, o checkpoint de 17/09 foi novamente materializado:
+**80.704.194 bytes**, com **56/56 entradas do manifesto interno verificadas**.
+O conteúdo inclui scripts, projeto 0.4, disassemblies, `text.raw`, `text.elf` e
+imagens mapeadas. Materiais binários/derivados continuam preservados fora do
+repositório público.
 
-## Builds 60 FPS localizadas por metadado
+## Builds 60 FPS
 
-Existem entradas reais para v0.5, v0.6, v0.7, v0.8, v0.9 e v0.10 (XEX + ZIP). Seus bytes não puderam ser materializados durante a auditoria. Não foram recriados placeholders.
+Existem entradas reais para v0.5, v0.6, v0.7, v0.8, v0.9 e v0.10 (XEX + ZIP).
+Seus XEX/ZIP específicos continuam sem byte stream materializável nesta retomada.
 
-A última versão com teste de hardware localizado é v0.9 RC1. A última versão produzida é v0.10 RC2, ainda sem teste posterior localizado.
+O arquivo real `V09_FINAL60_RC1_PROGRESS.md` está legível e preserva detalhes
+técnicos da v0.9, porém isso não substitui o XEX/ZIP original.
+
+A última versão com teste de hardware localizado é v0.9 RC1. A última versão
+produzida é v0.10 RC2, ainda sem teste posterior localizado.
 
 ## Material de outro projeto
 
-Foram encontrados vários pacotes `SMB360_XEX_TESTE_*`. Eles pertencem à cadeia experimental do Super Mario Bros. NES e **não são versões do SM64**. Não foram migrados para este repositório.
+Foram encontrados vários pacotes `SMB360_XEX_TESTE_*`. Eles pertencem à cadeia
+experimental do Super Mario Bros. NES e **não são versões do SM64**. Não foram
+migrados para este repositório.
 
 ## Política
 
-Nenhum XEX, ROM, ZIP com binário/arte proprietária, dump ou imagem mapeada é publicado automaticamente. O repositório público contém documentação própria e registros técnicos apropriados para continuidade do projeto.
+Nenhum XEX, ROM, ZIP com binário/arte proprietária, dump ou imagem mapeada é
+publicado automaticamente. O repositório público contém documentação própria,
+scripts revisados e registros técnicos apropriados para continuidade do projeto.
