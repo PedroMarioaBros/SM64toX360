@@ -1,43 +1,78 @@
 # PONTO_DE_RETOMADA
 
-## Última versão comprovadamente produzida
+## Última versão produzida e recuperada
 
-**SM64_PTBR_XBOX360_v0.10_NATIVE60_RC2**. Existem entradas reais na Biblioteca para o XEX (14.983.168 bytes) e o ZIP de teste (14.990.594 bytes), criadas em 19/09/2026. O histórico registra SHA-256 do XEX `f9e0102099949ba1a276ffd09a1ccf004aa25c58ddc58dd25e67965b1cbd82b7` e do ZIP `c3d67872da96a3f3646a6f62a10fadd0b9195220bf20e8817f913486ca5a3455`.
+**SM64_PTBR_XBOX360_v0.10_NATIVE60_RC2**.
 
-**Limitação forense:** na auditoria os bytes raw desses dois Project files não puderam ser materializados. Os hashes são históricos, não recomputados.
+O XEX e o ZIP originais foram recuperados em bytes — a limitação forense anterior
+foi superada.
 
-## Última versão comprovadamente testada
+- XEX: 14.983.168 bytes  
+  SHA-256 `f9e0102099949ba1a276ffd09a1ccf004aa25c58ddc58dd25e67965b1cbd82b7`
+- ZIP: 14.990.594 bytes  
+  SHA-256 `c3d67872da96a3f3646a6f62a10fadd0b9195220bf20e8817f913486ca5a3455`
+- mapped:  
+  SHA-256 `b87b33f3664aaefe3d7163d998f0535a666f13437b9f4d91f556bad49512426b`
 
-**v0.9 NATIVE60 FINAL60 RC1**. O histórico contém feedback de teste no Xbox 360: moedas, animação inicial do Mario e `APERTE START` ainda acelerados; sobreposição/tremulação ao andar/virar rápido; bolas/Bob-ombs acelerados; casco Koopa quase parado/lento embora o salto estivesse rápido.
+O ZIP original também preservou `v010_rc2_report.json` e
+`V010_NATIVE60_RC2_PROGRESS.md`.
 
-## Versão seguinte produzida e ainda aguardando teste
+## Reconstrução independente
 
-**v0.10 NATIVE60 RC2**. Não foi localizado feedback posterior de execução dessa versão no console.
+A RC2 foi reconstruída a partir da v0.9 recuperada, usando somente os patches
+documentados e a extensão PPC real de 348 bytes. O XEX produzido ficou
+**byte a byte idêntico** ao XEX original acima. O round-trip XEX → mapped também
+foi exato.
 
-## O que ela pretendia corrigir
+A v0.9, v0.8 e v0.7 também foram reconstruídas com a mesma identidade byte a byte.
 
-Segundo o registro de entrega, a RC2 corrigia a identificação errada entre `update_shell_speed()` e `update_walking_speed()` e adicionava/ajustava retiming para casco, caminhada, Bob-ombs, bolas da montanha, moedas, abertura/Mario/logo, `APERTE START`, demo e timers. A questão de overlay visual em movimentos rápidos não estava comprovadamente resolvida.
+## Última versão com feedback de hardware localizado
 
-## Arquivos correspondentes
+**v0.9 NATIVE60 FINAL60 RC1**.
 
-- `SM64_PTBR_XBOX360_v0.10_NATIVE60_RC2.xex`
-- `SM64_PTBR_XBOX360_v0.10_NATIVE60_RC2_PARA_TESTE.zip`
+Problemas registrados no Xbox:
+- moedas e outros estados visuais acelerados;
+- Mario da abertura e APERTE START acelerados;
+- bolas/Bob-ombs acelerados;
+- casco Koopa quase parado/lento;
+- sobreposição/tremulação ocasional do Mario ao andar/virar rápido.
 
-Eles foram localizados na Biblioteca, mas não recuperados em bytes para o pacote de migração. Não existe placeholder nem XEX recriado com esses nomes.
+## O que a v0.10 corrigiu no binário
 
-## O que testar no Xbox 360 quando o arquivo original voltar a ficar acessível
+O report original comprova:
+- correção do erro `update_shell_speed` vs `update_walking_speed`;
+- retiming real da caminhada;
+- retiming de `object_step`;
+- moedas;
+- Bob-ombs;
+- abertura/Goddard;
+- logo/TM;
+- APERTE START;
+- idle demo.
 
-1. boot, menu e carregamento de save existente;
-2. velocidade normal de Mario andando/correndo/pulando;
-3. moedas e `APERTE START` em cadência normal;
-4. abertura/logo/demo;
-5. Bob-ombs e bolas da montanha;
-6. casco Koopa como “skate”, sem lentidão extrema;
-7. áudio e timers;
-8. câmera em giro rápido e possível overlay/ghosting;
-9. canhão, saves e correções PT-BR/menu sem regressão;
-10. estabilidade prolongada em hardware real.
+A RC2 **não afirma** resolver o ghosting/sobreposição ocasional; isso ficou como
+item de observação.
 
-## Próximo passo
+## Próximo teste de hardware
 
-Se RC2 corrigir a cadência sem regressões, registrar resultados e congelar a engenharia 60 FPS como referência para a opção futura do **Modo Xbox 360**. Se falhar, comparar especificamente com RC1 e corrigir somente subsistemas reproduzidos no teste. Em ambos os casos, a direção atual mantém **30 FPS como base padrão**; 60 FPS passa a ser opção do Modo Xbox 360.
+Testar a v0.10 original/reconstruída e verificar:
+
+1. boot, menu e save existente;
+2. caminhada/corrida/saltos em velocidade normal;
+3. moedas;
+4. APERTE START;
+5. abertura/logo/demo;
+6. Bob-ombs e bolas da montanha;
+7. casco Koopa;
+8. áudio e timers;
+9. câmera/giro rápido e possível ghosting;
+10. cannon fix, saves, PT-BR e menus sem regressão.
+
+## Direção depois desse teste
+
+A base padrão do projeto continua em **30 FPS**. A cadeia Native60 recuperada é
+a referência técnica para a futura opção 60 FPS do **Modo Xbox 360**.
+
+O próximo desenvolvimento maior (Modo Xbox/câmera moderna) só deve avançar sobre
+uma base validada no console, para não misturar bugs de timing com mudanças de
+jogabilidade.

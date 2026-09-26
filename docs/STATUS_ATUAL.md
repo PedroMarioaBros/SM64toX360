@@ -1,62 +1,61 @@
 # Status atual
 
-## Comprovado por bytes recuperados
+## Base recuperada e reconstruível
 
-- `sm64corrigido.xex`: base corrigida, SHA-256 `6c94702a7096dcc5e048e0eaeefd2d939ccfc6502d241458c805d4c97f67f7c8`.
-- `sm64-ptbr-teste.xex`: versão 0.4, SHA-256 `376a1aca746419e29ae64f34802293ba8e97535ae95cee98184e600fea1c3e83`.
-- pacote 0.3 e pacote 0.4.
-- checkpoint completo de 17/09/2026.
-- quatro fotos dos menus usadas no diagnóstico visual.
+- `sm64corrigido.xex`: SHA-256
+  `6c94702a7096dcc5e048e0eaeefd2d939ccfc6502d241458c805d4c97f67f7c8`.
+- PT-BR v0.4: SHA-256
+  `376a1aca746419e29ae64f34802293ba8e97535ae95cee98184e600fea1c3e83`.
+- checkpoint completo de 17/09: **80.704.194 bytes**, 56/56 hashes internos válidos.
+- pipeline `pack.py + XexTool` restaurado: a v0.4 foi reconstruída com XEX
+  **bit a bit idêntico** ao original.
 
-### Checkpoint de 17/09 recuperado novamente
+## Linha Native60 totalmente recuperada
 
-Na continuação da auditoria em 25/09/2026, o arquivo real
-`SM64_PTBR_XBOX360_CHECKPOINT_COMPLETO_2026-09-17.zip` foi novamente materializado
-em bytes.
+Os XEXs e ZIPs originais de **v0.5, v0.6, v0.7, v0.8, v0.9 e v0.10** foram
+materializados em bytes. A limitação anterior de “metadado sem raw” deixou de
+existir para essa linha.
 
-- tamanho: **80.704.194 bytes**
-- SHA-256 recomputado: `265a6cdfba9e4dfaded578462a1388d4b97a1246643fd72d5ed8cdd4913e6368`
-- manifesto interno: **56/56 arquivos verificados por SHA-256**
+Também foram recuperados dos ZIPs os relatórios/checkpoints técnicos originais.
 
-O checkpoint contém, entre outros itens, os XEX de referência 0.4/base corrigida,
-imagens mapeadas, `text.raw`, `text.elf`, disassemblies, scripts reais de
-extração/build/repack/verificação e o projeto técnico da 0.4. Esses materiais
-permanecem fora do repositório público quando incluem binário ou conteúdo derivado
-do jogo.
+### Reconstruções exatas comprovadas
 
-## Linha 60 FPS
+- v0.7 → XEX `51d898f1d027aff2ee28f16ea43ce89672c73c0bf2212c7b3bda015ba3389382`
+- v0.8 → XEX `ff5c185bc6a78c38b80b14c6923bc6d94f2ff733c6e1c8f0a3855dc6c11583f6`
+- v0.9 → XEX `7009c42c7962090d045d9e547037f1ff7c88f4992633903718afc41d00bfd856`
+- v0.10 → XEX `f9e0102099949ba1a276ffd09a1ccf004aa25c58ddc58dd25e67965b1cbd82b7`
 
-As v0.5, v0.6, v0.7, v0.8, v0.9 e v0.10 possuem entradas XEX e ZIP reais na
-Biblioteca. Os byte streams desses XEX/ZIP específicos continuam indisponíveis para
-materialização nesta retomada.
+Cada um desses XEXs reconstruídos ficou **byte a byte idêntico** ao original
+recuperado. O round-trip XEX → mapped também foi exato.
 
-O documento real `V09_FINAL60_RC1_PROGRESS.md` foi recuperado em texto e registra
-a engenharia da v0.9, inclusive hashes, code cave e retiming. Isso não equivale a
-ter recuperado o XEX v0.9.
+## Estado de teste em hardware
 
-## Estado de teste
-
-- 0.3: teste de save/load e “Salvar e sair” confirmado no histórico e citado no LEIA-ME da 0.4.
-- 0.4: documentação posterior registra relato do usuário de que funcionou no Xbox.
-- v0.7: teste de hardware registrou loop completo ~60 Hz, porém jogo/menu/áudio ~2x.
-- v0.9: última versão 60 FPS com feedback de hardware encontrado.
-- v0.10: última versão produzida; teste posterior não encontrado.
+- 0.3: save/load e “Salvar e sair” confirmados no histórico.
+- 0.4: funcionalidade no Xbox registrada.
+- v0.5: o pacote recuperado registra teste bem-sucedido em hardware.
+- v0.7: hardware confirmou loop ~60 Hz extremamente fluido, porém lógica/menu/áudio ~2x.
+- v0.9: último feedback de hardware localizado; ainda havia subsistemas acelerados,
+  casco lento e sobreposição/tremulação ocasional.
+- v0.10: bytes originais recuperados e engenharia comprovada, mas **não foi
+  localizado teste posterior da RC2 no console**.
 
 ## Toolchain aberta para Xbox 360
 
-O repositório auxiliar `PedroMarioaBros/OpenXeChain-X360-Builder` concluiu com
-sucesso o run #20. Clang/LLVM, xecorelib, Newlib, compiler-rt e SynthXEX foram
-compilados; o smoke gerou um `hello.xex` real com magic `XEX2`.
-O `hello.xex` tem SHA-256
-`b5a74eb8781411d03ec7ee16d4c54736a68b890f0dd0bf4545121d097faaf7a5`.
-A toolchain empacotada tem SHA-256
-`c71a1a4586a2eb1741c632b164ad74e90532cdb7bf0851774544998b35312d37`.
-O run #21 continua como validação adicional usando a receita completa do driver
-CrossXbox360.
+O run #20 de `PedroMarioaBros/OpenXeChain-X360-Builder` comprovou build completo
+do OpenXeChain e geração de um `hello.xex` com magic `XEX2`.
 
-## Pendências imediatas
+- `hello.xex`: `b5a74eb8781411d03ec7ee16d4c54736a68b890f0dd0bf4545121d097faaf7a5`
+- toolchain: `c71a1a4586a2eb1741c632b164ad74e90532cdb7bf0851774544998b35312d37`
 
-1. Concluir a prova de geração XEX2 da toolchain OpenXeChain.
-2. Preservar a base canônica em 30 FPS e tratar 60 FPS como opção futura do **Modo Xbox 360**.
-3. Recuperar/testar a v0.10 RC2 caso o byte stream original volte a ficar acessível.
-4. Não publicar XEXs/ZIPs/dumps/imagens mapeadas no GitHub público sem revisão de direitos.
+A toolchain foi preservada em Release permanente. O XexTool oficial Linux também
+foi recuperado/verificado e o repack da família SM64 voltou a funcionar localmente.
+
+## Próximas etapas
+
+1. Testar a **v0.10 RC2 original** em Xbox 360 real, comparando especificamente
+   os problemas observados na RC1.
+2. Registrar esse resultado como novo checkpoint de hardware.
+3. Preservar **30 FPS como base canônica** e usar a engenharia Native60 como
+   referência da futura opção 60 FPS do **Modo Xbox 360**.
+4. Continuar o Modo Xbox 360/câmera moderna somente sobre uma base de hardware
+   estável, sem perder PT-BR, saves, cannon fix ou controles.
