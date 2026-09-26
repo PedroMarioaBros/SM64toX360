@@ -44,10 +44,15 @@ ter recuperado o XEX v0.9.
 
 ## Toolchain aberta para Xbox 360
 
-O repositório auxiliar `PedroMarioaBros/OpenXeChain-X360-Builder` já comprovou
-em GitHub Actions a compilação completa do OpenXeChain (Clang/LLVM, xecorelib,
-Newlib, compiler-rt e SynthXEX). A validação final de geração de um XEX smoke
-`XEX2` está sendo executada nos runs #20/#21.
+O repositório auxiliar `PedroMarioaBros/OpenXeChain-X360-Builder` concluiu com
+sucesso o run #20. Clang/LLVM, xecorelib, Newlib, compiler-rt e SynthXEX foram
+compilados; o smoke gerou um `hello.xex` real com magic `XEX2`.
+O `hello.xex` tem SHA-256
+`b5a74eb8781411d03ec7ee16d4c54736a68b890f0dd0bf4545121d097faaf7a5`.
+A toolchain empacotada tem SHA-256
+`c71a1a4586a2eb1741c632b164ad74e90532cdb7bf0851774544998b35312d37`.
+O run #21 continua como validação adicional usando a receita completa do driver
+CrossXbox360.
 
 ## Pendências imediatas
 
