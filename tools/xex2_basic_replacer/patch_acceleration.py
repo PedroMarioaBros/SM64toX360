@@ -66,8 +66,7 @@ assemble.write_text(a.replace(old, new, 1))
 
 r = rebuild.read_text()
 start = r.index("	pub fn is_supported(&self) -> bool {")
-end = r.index("
-	/// Produce the", start)
+end = r.index("\n\t/// Produce the", start)
 replacement = """	pub fn is_supported(&self) -> bool {
 		// Basic compression is supported by the SM64toX360 extension using a
 		// deterministic single literal block. Delta/XEXP remains unsupported.
