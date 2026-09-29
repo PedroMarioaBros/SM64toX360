@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "image_base": "0x82000000",
+  "phase": "planning_until_capacity_report_is_run_on_v04",
+  "requirements": [
+    {
+      "name": "startup_selector_code",
+      "type": "executable",
+      "alignment": 4,
+      "status": "size_pending"
+    },
+    {
+      "name": "startup_selector_strings",
+      "type": "readonly_data",
+      "alignment": 8,
+      "status": "small"
+    },
+    {
+      "name": "pt_br_dialog_pool",
+      "type": "readonly_data",
+      "alignment": 8,
+      "status": "generated_when_v04_available"
+    },
+    {
+      "name": "es_dialog_pool",
+      "type": "readonly_data",
+      "alignment": 8,
+      "status": "generator_ready"
+    },
+    {
+      "name": "en_dialog_pool",
+      "type": "readonly_data",
+      "alignment": 8,
+      "status": "generator_ready"
+    },
+    {
+      "name": "dialog_pointer_tables",
+      "type": "readonly_data",
+      "alignment": 16,
+      "status": "generator_pending"
+    },
+    {
+      "name": "pt_br_voice_samples",
+      "type": "audio_samples",
+      "alignment": 16,
+      "status": "source_bytes_pending"
+    },
+    {
+      "name": "es_voice_samples",
+      "type": "audio_samples",
+      "alignment": 16,
+      "status": "source_bytes_pending"
+    },
+    {
+      "name": "en_voice_samples",
+      "type": "audio_samples",
+      "alignment": 16,
+      "status": "already_in_base"
+    }
+  ],
+  "non_negotiable": [
+    "Do not overwrite runtime BSS just because it is zero in the mapped image.",
+    "Do not move PT-BR v0.4 glyph slots.",
+    "Do not alter save format.",
+    "Do not mix Native60 patches into this branch.",
+    "Every allocated range must be recorded with start/end/hash in the final build report."
+  ]
+}
