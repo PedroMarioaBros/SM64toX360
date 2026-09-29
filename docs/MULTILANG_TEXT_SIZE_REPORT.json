@@ -1,28 +1,28 @@
 {
-  "schema": 1,
-  "source": "real recovered v0.4/checkpoint + pinned Spanish source",
+  "schema": 2,
+  "source": "real recovered v0.4 + pinned EN/ES sources after importer fixes",
   "dialogs": {
     "pt_br": {
       "count": 170,
       "pool_bytes": 26044,
       "sha256": "0b913e5c728f3991c8885df8b4b262b9f68de54cce5b485e46fa101765a84c9a"
     },
-    "en": {
-      "count": 170,
-      "pool_bytes": 33955,
-      "sha256": "b3c807d352381f5db555dcbb50fa3df858b671d66c43fd308ac4f375ccecba34"
-    },
     "es": {
       "count": 170,
-      "pool_bytes": 39213,
-      "sha256": "ccfa6613b31cc845559d82a6e31996642e95efc1ed36e92f38eda289ad51938e"
+      "pool_bytes": 39189,
+      "sha256": "fd8bebe9d2aa1f2a930962a93466552483f8be05e620d0ed1252cc5d311295de"
+    },
+    "en": {
+      "count": 170,
+      "pool_bytes": 33931,
+      "sha256": "2e9e50557b9e339d561d507e3f40db675cca79ffcbaebf0048ba3e93d2e05735"
     }
   },
-  "combined_dialog_pool_bytes": 99212,
-  "additional_bytes_vs_pt_only": 73168,
+  "combined_dialog_pool_bytes": 99164,
   "n64_control_tokens_remaining": {
     "pt_br": 0,
-    "en": 0,
-    "es": 0
-  }
+    "es": 0,
+    "en": 0
+  },
+  "note": "Schema 2 supersedes the earlier intermediate report. EN/ES were regenerated after fixing whitespace parsing and project-root/subprocess issues."
 }
