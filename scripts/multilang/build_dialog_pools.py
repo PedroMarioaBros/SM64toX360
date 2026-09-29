@@ -33,7 +33,12 @@ GLYPHS = json.loads(
 
 def load_charmap():
     cm = {}
-    for line in (UPSTREAM / "charmap.txt").read_text(encoding="utf-8").splitlines():
+    charmap_path = UPSTREAM / "charmap.txt"
+    source = subprocess.check_output(
+        ["cpp", "-P", "-DVERSION_US", str(charmap_path)],
+        text=True, encoding="utf-8"
+    )
+    for line in source.splitlines():
         m = re.match(r"('(?:\\.|[^'])*')\s*=\s*(.*)", line)
         if not m:
             continue
