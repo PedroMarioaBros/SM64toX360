@@ -34,7 +34,11 @@ SLOTS = list(range(0x60, 0x6F)) + list(range(0x70, 0x80))
 
 def load_reverse_charmap(path: Path):
     reverse = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
+    source = subprocess.check_output(
+        ["cpp", "-P", "-DVERSION_US", str(path)],
+        text=True, encoding="utf-8"
+    )
+    for line in source.splitlines():
         m = re.match(r"('(?:\\.|[^'])*')\s*=\s*(.*)", line)
         if not m:
             continue
