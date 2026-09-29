@@ -1,0 +1,23 @@
+{
+  "source_sha256": "6381bf1333bf1985474af00c139f33f9cdbad71a371c3231db0d861b72cfac2c",
+  "output_sha256": "5b4ec5d2f79ecc1cbe23b5d01b7657e4b7ac619937584ea09e2ec26443e2cdf1",
+  "source_bytes": 16449536,
+  "output_bytes": 16449536,
+  "pool_initial_free": 720,
+  "pool_used": 448,
+  "pool_remaining": 272,
+  "slots": {
+    "ñ": "0x42",
+    "Ñ": "0x43",
+    "¡": "0x44",
+    "¿": "0x45"
+  },
+  "widths": {
+    "ñ": 5,
+    "Ñ": 8,
+    "¡": 5,
+    "¿": 7
+  },
+  "unexpected_changed_bytes": 0,
+  "validation": "PASS on canonical v0.4 mapped image; no bytes changed outside font LUT/menu LUT/width table/recovered free pool"
+}
