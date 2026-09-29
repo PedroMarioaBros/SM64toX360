@@ -1,0 +1,35 @@
+name: Build xex2ool Host Tool
+
+on:
+  push:
+    paths:
+      - .github/workflows/build-xex2ool-host.yml
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch acceleration
+        run: |
+          git clone https://github.com/landaire/acceleration.git acceleration
+          git -C acceleration checkout 0e7258713d6b1487a741ce8e64d08f079e4bf495
+          git -C acceleration rev-parse HEAD | tee XEX2OOL_COMMIT.txt
+
+      - name: Build xex2ool
+        run: |
+          cargo build --manifest-path acceleration/Cargo.toml -p xex2ool --release
+          acceleration/target/release/xex2ool --help > xex2ool-help.txt
+          file acceleration/target/release/xex2ool
+          sha256sum acceleration/target/release/xex2ool | tee xex2ool-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xex2ool-linux-host
+          path: |
+            acceleration/target/release/xex2ool
+            XEX2OOL_COMMIT.txt
+            xex2ool-sha256.txt
+            xex2ool-help.txt
+          if-no-files-found: error
+          retention-days: 7
