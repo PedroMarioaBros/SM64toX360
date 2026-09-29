@@ -1,0 +1,29 @@
+{
+  "project": "SM64toX360",
+  "branch": "feature/multilang-dub-30fps",
+  "base_framerate": 30,
+  "languages": [
+    {
+      "id": "pt_br",
+      "display_name": "Português",
+      "text_status": "implemented_in_current_game",
+      "xbox360_control_localization": "implemented_in_current_game",
+      "voice_status": "pending_integration"
+    },
+    {
+      "id": "es",
+      "display_name": "Español",
+      "text_status": "pending_integration",
+      "xbox360_control_localization": "pending_integration",
+      "voice_status": "pending_integration"
+    },
+    {
+      "id": "en",
+      "display_name": "English",
+      "text_status": "use_original",
+      "xbox360_control_localization": "retain_xbox360_port_context",
+      "voice_status": "use_original"
+    }
+  ],
+  "edition_credit": "PeterKleizoon - PMCN Studios"
+}
