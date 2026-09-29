@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "_localization_sources"
 
 SOURCES = {
+    "sm64_upstream": "https://github.com/n64decomp/sm64.git",
     "ptbr_bmatsantos": "https://github.com/bMatSantos/sm64-ptbr.git",
     "es_reonu": "https://github.com/Reonu/ultrasm64-spanish.git",
 }
