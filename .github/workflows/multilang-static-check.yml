@@ -1,0 +1,47 @@
+name: Multilang Static Check
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+  workflow_dispatch:
+
+jobs:
+  validate-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python syntax
+        run: python3 -m py_compile scripts/multilang/*.py scripts/fetch_localization_sources.py
+
+      - name: Fetch pinned localization sources
+        run: python3 scripts/fetch_localization_sources.py
+
+      - name: Import English and Spanish dialogs
+        run: python3 scripts/multilang/import_text_sources.py
+
+      - name: Localize controller text for Xbox 360
+        run: |
+          python3 scripts/multilang/localize_controller_texts.py en
+          python3 scripts/multilang/localize_controller_texts.py es
+
+      - name: Verify 170 dialogs and no N64 button tokens
+        run: |
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          legacy = re.compile(r"\[(?:A|B|Z|R|C(?:\^|\||>|<)?)\]")
+          for lang in ("en", "es"):
+              p = Path("_localization_build") / lang / "dialogs_xbox360.json"
+              rows = json.loads(p.read_text(encoding="utf-8"))
+              ids = [row["id"] for row in rows]
+              assert ids == list(range(170)), (lang, len(rows), ids[:5], ids[-5:])
+              leftovers = [
+                  (row["id"], legacy.findall(row["text"]))
+                  for row in rows if legacy.search(row["text"])
+              ]
+              assert not leftovers, (lang, leftovers)
+              print(lang, "PASS", len(rows), "dialogs")
+          PY
