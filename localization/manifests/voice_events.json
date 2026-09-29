@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "design": "language_selectable_stock_sm64_voice_events",
+  "rule": "Keep the original SM64 voice-event semantics. Each language supplies a sample for the same canonical event where a localized recording exists; otherwise the build must explicitly declare fallback policy.",
+  "banks": {
+    "mario_08": [
+      "00_mario_jump_hoo",
+      "01_mario_jump_wah",
+      "02_mario_yah",
+      "03_mario_haha",
+      "04_mario_yahoo",
+      "05_mario_uh",
+      "06_mario_hrmm",
+      "07_mario_wah2",
+      "08_mario_whoa",
+      "09_mario_eeuh",
+      "0A_mario_attacked",
+      "0B_mario_ooof",
+      "0C_mario_here_we_go",
+      "0D_mario_yawning",
+      "0E_mario_snoring1",
+      "0F_mario_snoring2",
+      "10_mario_doh",
+      "11_mario_game_over",
+      "12_mario_hello",
+      "13_mario_press_start_to_play",
+      "14_mario_twirl_bounce",
+      "15_mario_snoring3",
+      "16_mario_so_longa_bowser",
+      "17_mario_ima_tired",
+      "18_mario_waha",
+      "19_mario_yippee",
+      "1A_mario_lets_a_go"
+    ],
+    "mario_peach_0A": [
+      "00_mario_waaaooow",
+      "01_mario_hoohoo",
+      "02_mario_panting",
+      "03_mario_dying",
+      "04_mario_on_fire",
+      "05_mario_uh2",
+      "06_mario_coughing",
+      "07_mario_its_a_me_mario",
+      "08_mario_punch_yah",
+      "09_mario_punch_hoo",
+      "0A_mario_mama_mia",
+      "0B_mario_okey_dokey",
+      "0C_mario_drowning",
+      "0D_mario_thank_you_playing_my_game",
+      "0E_peach_dear_mario",
+      "0F_peach_mario",
+      "10_peach_power_of_the_stars",
+      "11_peach_thanks_to_you",
+      "12_peach_thank_you_mario",
+      "13_peach_something_special",
+      "14_peach_bake_a_cake",
+      "15_peach_for_mario",
+      "16_peach_mario2"
+    ]
+  },
+  "languages": {
+    "en": {
+      "source": "original_game",
+      "status": "available_in_base",
+      "policy": "use_original_samples"
+    },
+    "pt_br": {
+      "source": "PT-BR dubbing project / patch to be recovered",
+      "status": "sample_bytes_pending_recovery",
+      "known_credits": {
+        "mario": "BMatSantos",
+        "peach": "Vihh_Art",
+        "audio_editing": "Kosmus"
+      },
+      "policy": "no_silent_fallback_for_spoken_lines_without_explicit_manifest_entry"
+    },
+    "es": {
+      "source": "Habla Mario 64 v3 or verified equivalent package",
+      "status": "sample_bytes_pending_recovery",
+      "known_credits": {
+        "mario": "Madnyle",
+        "peach": "Jess"
+      },
+      "policy": "no_silent_fallback_for_spoken_lines_without_explicit_manifest_entry"
+    }
+  }
+}
