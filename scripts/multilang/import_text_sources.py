@@ -31,8 +31,21 @@ DIALOG_RE = re.compile(
     re.S,
 )
 
+def preprocess_us(path: Path):
+    proc = subprocess.run(
+        ["cpp", "-P", "-DVERSION_US", str(path)],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        encoding="utf-8",
+    )
+    return proc.stdout
+
 def parse_dialogs(path: Path):
-    source = path.read_text(encoding="utf-8")
+    # A fonte usa macros condicionais (PLASTERED, SCRAM, GIVE_UP etc.).
+    # Pré-processar como VERSION_US garante os mesmos 170 diálogos da build US.
+    source = preprocess_us(path)
     rows = []
     for m in DIALOG_RE.finditer(source):
         pieces = re.findall(r'"(?:\\.|[^"\\])*"', m.group(6))
