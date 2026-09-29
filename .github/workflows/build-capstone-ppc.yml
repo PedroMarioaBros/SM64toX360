@@ -1,0 +1,36 @@
+name: Build Capstone PowerPC Tool
+
+on:
+  push:
+    paths:
+      - .github/workflows/build-capstone-ppc.yml
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch pinned Capstone
+        run: |
+          git clone https://github.com/capstone-engine/capstone.git capstone
+          git -C capstone checkout a4ea4a9ea65a2ce5ed9675d23bbc07e32b15d945
+
+      - name: Build cstool
+        run: |
+          cmake -S capstone -B capstone/build -DCMAKE_BUILD_TYPE=Release -DCAPSTONE_BUILD_CSTOOL=ON
+          cmake --build capstone/build -j2
+          find capstone/build -type f -name cstool -print
+          C=$(find capstone/build -type f -name cstool | head -1)
+          "$C" --help > cstool-help.txt 2>&1 || true
+          sha256sum "$C" | tee cstool-sha256.txt
+          cp "$C" ./cstool
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capstone-cstool-linux
+          path: |
+            cstool
+            cstool-help.txt
+            cstool-sha256.txt
+          if-no-files-found: error
+          retention-days: 7
