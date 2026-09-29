@@ -20,9 +20,10 @@ from pathlib import Path
 import ast
 import json
 import re
+import subprocess
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SOURCES = ROOT / "_localization_sources"
 OUT = ROOT / "_localization_build"
 
