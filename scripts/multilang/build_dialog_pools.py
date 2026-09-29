@@ -23,6 +23,7 @@ import ast
 import hashlib
 import json
 import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = ROOT / "_localization_build"
