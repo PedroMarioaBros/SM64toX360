@@ -28,7 +28,7 @@ SOURCES = ROOT / "_localization_sources"
 OUT = ROOT / "_localization_build"
 
 DIALOG_RE = re.compile(
-    r'DEFINE_DIALOG\(DIALOG_(\d+),\s*([^,]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*_\(((?:"(?:\\.|[^"\\])*"\s*)+)\)\)',
+    r'DEFINE_DIALOG\(DIALOG_(\d+)\s*,\s*([^,]+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*_\(((?:"(?:\\.|[^"\\])*"\s*)+)\)\)',
     re.S,
 )
 
