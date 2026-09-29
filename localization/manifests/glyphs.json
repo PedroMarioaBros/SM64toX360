@@ -5,7 +5,8 @@
     "PT-BR v0.4 slot assignments are ABI-like compatibility data and must not move.",
     "Spanish reuses PT-BR glyphs for shared accented letters.",
     "Only ñ, Ñ, ¡ and ¿ require new slots beyond the recovered PT-BR set.",
-    "candidate_slot entries MUST be checked against the actual mapped v0.4 LUT/width table before patching; build aborts if occupied."
+    "candidate_slot entries MUST be checked against the actual mapped v0.4 LUT/width table before patching; build aborts if occupied.",
+    "Slots 0x40/0x41 are intentionally excluded because the US/EU menu charmap uses them as the two-part Mario face glyph."
   ],
   "ptbr_v04_fixed": {
     "á": "0x60",
@@ -37,24 +38,24 @@
   },
   "spanish_extra_candidates": {
     "ñ": {
-      "candidate_slot": "0x40",
+      "candidate_slot": "0x42",
       "derive_from": "n",
       "mark": "tilde"
     },
     "Ñ": {
-      "candidate_slot": "0x41",
+      "candidate_slot": "0x43",
       "derive_from": "N",
       "mark": "tilde"
     },
     "¡": {
-      "candidate_slot": "0x42",
+      "candidate_slot": "0x44",
       "derive_from": "!",
-      "transform": "vertical_flip"
+      "transform": "spanish_inverted_punctuation"
     },
     "¿": {
-      "candidate_slot": "0x43",
+      "candidate_slot": "0x45",
       "derive_from": "?",
-      "transform": "vertical_flip"
+      "transform": "spanish_inverted_punctuation"
     }
   },
   "source_reference": {
