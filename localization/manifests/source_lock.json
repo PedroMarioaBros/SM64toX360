@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "sources": {
+    "sm64_upstream": {
+      "repository": "n64decomp/sm64",
+      "commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+      "purpose": "English original text/source reference"
+    },
+    "es_reonu": {
+      "repository": "Reonu/ultrasm64-spanish",
+      "commit": "b720e8328c4ead21e3eac5dfceb21edba38ed79b",
+      "purpose": "Spanish text/source reference"
+    },
+    "ptbr_bmatsantos": {
+      "repository": "bMatSantos/sm64-ptbr",
+      "commit": "be7920d79192df4b8130a0f63c76d3db5adf6b6d",
+      "translation_commit": "f9847b145e8e9d15156613f90b8cb77835481064",
+      "purpose": "PT-BR dubbing/source study only; not canonical project text"
+    }
+  }
+}
