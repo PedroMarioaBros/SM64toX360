@@ -57,12 +57,17 @@ BUTTON_LABEL = {
 # Frases conhecidas onde uma substituição literal ficaria artificial.
 PHRASES = {
     "en": {
+        "Control Stick": "left stick",
+        "control stick": "left stick",
         "the [C] Buttons": "the right stick",
         "[C] Buttons": "right-stick controls",
         "the [C] buttons": "the right-stick controls",
         "[C] buttons": "right-stick controls",
     },
     "es": {
+        "Palanca de Control": "stick izquierdo",
+        "palanca de control": "stick izquierdo",
+        "Control Stick": "stick izquierdo",
         "los botones [C]": "los controles del stick derecho",
         "cuatro botones de\ncámara, también llamados\nbotones [C]":
             "controles de cámara del\nstick derecho",
@@ -70,7 +75,7 @@ PHRASES = {
     },
 }
 
-LEGACY_RE = re.compile(r"\[(?:B|Z|R|C(?:\^|\||>|<)?)\]")
+LEGACY_RE = re.compile(r"\[(?:A|B|Z|R|C(?:\^|\||>|<)?)\]")
 
 def convert(text, lang):
     for old, new in PHRASES.get(lang, {}).items():
