@@ -9,6 +9,11 @@ jobs:
   bundle:
     runs-on: ubuntu-latest
     steps:
+      - name: Fetch pinned English source
+        run: |
+          git clone https://github.com/n64decomp/sm64.git en
+          git -C en checkout 9921382a68bb0c865e5e45eb594d9c64db59b1af
+
       - name: Fetch pinned Spanish source
         run: |
           git clone https://github.com/Reonu/ultrasm64-spanish.git es
@@ -21,9 +26,16 @@ jobs:
 
       - name: Assemble minimal source bundle
         run: |
-          mkdir -p bundle/es/text/us bundle/es/textures/segment2 bundle/es/levels/menu bundle/ptbr
+          mkdir -p bundle/en/text/us bundle/en/include bundle/es/text/us bundle/es/include bundle/es/textures/segment2 bundle/es/levels/menu bundle/ptbr
+          cp en/text/us/dialogs.h bundle/en/text/us/
+          cp en/text/us/courses.h bundle/en/text/us/
+          cp en/include/text_strings.h.in bundle/en/include/
+          cp en/include/text_menu_strings.h.in bundle/en/include/ || true
+          cp en/charmap.txt bundle/en/
           cp es/text/us/dialogs.h bundle/es/text/us/
           cp es/text/us/courses.h bundle/es/text/us/
+          cp es/include/text_strings.h.in bundle/es/include/
+          cp es/include/text_menu_strings.h.in bundle/es/include/ || true
           cp es/charmap.txt bundle/es/
           cp es/textures/segment2/custom_font_graphics_* bundle/es/textures/segment2/ || true
           cp es/levels/menu/custom_main_menu_seg7_us_* bundle/es/levels/menu/ || true
