@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "strategy": "preserve_ptbr_v04_slots_and_add_spanish_only_glyphs",
+  "notes": [
+    "PT-BR v0.4 slot assignments are ABI-like compatibility data and must not move.",
+    "Spanish reuses PT-BR glyphs for shared accented letters.",
+    "Only ñ, Ñ, ¡ and ¿ require new slots beyond the recovered PT-BR set.",
+    "candidate_slot entries MUST be checked against the actual mapped v0.4 LUT/width table before patching; build aborts if occupied."
+  ],
+  "ptbr_v04_fixed": {
+    "á": "0x60",
+    "à": "0x61",
+    "â": "0x62",
+    "ã": "0x63",
+    "é": "0x64",
+    "ê": "0x65",
+    "í": "0x66",
+    "ó": "0x67",
+    "ô": "0x68",
+    "õ": "0x69",
+    "ú": "0x6A",
+    "ü": "0x6B",
+    "ç": "0x6C",
+    "Á": "0x6D",
+    "À": "0x6E",
+    "Â": "0x70",
+    "Ã": "0x71",
+    "É": "0x72",
+    "Ê": "0x73",
+    "Í": "0x74",
+    "Ó": "0x75",
+    "Ô": "0x76",
+    "Õ": "0x77",
+    "Ú": "0x78",
+    "Ü": "0x79",
+    "Ç": "0x7A"
+  },
+  "spanish_extra_candidates": {
+    "ñ": {
+      "candidate_slot": "0x40",
+      "derive_from": "n",
+      "mark": "tilde"
+    },
+    "Ñ": {
+      "candidate_slot": "0x41",
+      "derive_from": "N",
+      "mark": "tilde"
+    },
+    "¡": {
+      "candidate_slot": "0x42",
+      "derive_from": "!",
+      "transform": "vertical_flip"
+    },
+    "¿": {
+      "candidate_slot": "0x43",
+      "derive_from": "?",
+      "transform": "vertical_flip"
+    }
+  },
+  "source_reference": {
+    "repository": "Reonu/ultrasm64-spanish",
+    "commit": "b720e8328c4ead21e3eac5dfceb21edba38ed79b",
+    "original_spanish_slots": {
+      "ñ": "0x4A",
+      "Ñ": "0x4B",
+      "ü": "0x4C",
+      "Ü": "0x4D",
+      "¡": "0x4E",
+      "¿": "0x4F"
+    },
+    "note": "Reference slots are NOT copied because our PT-BR v0.4 already has its own established slot map."
+  }
+}
