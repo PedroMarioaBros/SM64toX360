@@ -20,8 +20,8 @@
     {
       "id": "en",
       "display_name": "English",
-      "text_status": "use_original",
-      "xbox360_control_localization": "retain_xbox360_port_context",
+      "text_status": "use_original_english_with_xbox360_control_localization",
+      "xbox360_control_localization": "required",
       "voice_status": "use_original"
     }
   ],
