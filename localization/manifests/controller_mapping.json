@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "notes": [
+    "Semantic N64-to-Xbox 360 mapping verified from the recovered Xbox 360 executable.",
+    "Text conversion must preserve sentence grammar; these are canonical action labels, not blind substitutions."
+  ],
+  "n64_to_xbox360": {
+    "[A]": {
+      "xbox": "A",
+      "action": "jump/confirm/swim/cannon"
+    },
+    "[B]": {
+      "xbox": "X",
+      "action": "attack/talk/read/pick-up/throw"
+    },
+    "[Z]": {
+      "xbox": "LT/LB",
+      "action": "crouch/ground-pound/jump modifier"
+    },
+    "[R]": {
+      "xbox": "RB/RT",
+      "action": "camera mode"
+    },
+    "[C]^": {
+      "xbox": "RIGHT_STICK_UP",
+      "action": "camera up/look"
+    },
+    "[C]|": {
+      "xbox": "RIGHT_STICK_DOWN",
+      "action": "camera down/far"
+    },
+    "[C]>": {
+      "xbox": "RIGHT_STICK_RIGHT",
+      "action": "camera right"
+    },
+    "[C]<": {
+      "xbox": "RIGHT_STICK_LEFT",
+      "action": "camera left"
+    },
+    "[C]": {
+      "xbox": "RIGHT_STICK",
+      "action": "camera controls"
+    }
+  },
+  "affected_dialog_ids": [
+    0,
+    8,
+    15,
+    30,
+    32,
+    33,
+    34,
+    35,
+    36,
+    42,
+    43,
+    44,
+    45,
+    46,
+    49,
+    50,
+    51,
+    52,
+    54,
+    60,
+    64,
+    65,
+    66,
+    74,
+    78,
+    94,
+    95,
+    105,
+    131,
+    159,
+    160,
+    163,
+    167
+  ],
+  "language_labels": {
+    "pt_br": {
+      "RIGHT_STICK": "analógico direito",
+      "RIGHT_STICK_UP": "analógico direito para cima",
+      "RIGHT_STICK_DOWN": "analógico direito para baixo",
+      "RIGHT_STICK_RIGHT": "analógico direito para a direita",
+      "RIGHT_STICK_LEFT": "analógico direito para a esquerda"
+    },
+    "es": {
+      "RIGHT_STICK": "stick derecho",
+      "RIGHT_STICK_UP": "stick derecho hacia arriba",
+      "RIGHT_STICK_DOWN": "stick derecho hacia abajo",
+      "RIGHT_STICK_RIGHT": "stick derecho hacia la derecha",
+      "RIGHT_STICK_LEFT": "stick derecho hacia la izquierda"
+    },
+    "en": {
+      "RIGHT_STICK": "right stick",
+      "RIGHT_STICK_UP": "right stick up",
+      "RIGHT_STICK_DOWN": "right stick down",
+      "RIGHT_STICK_RIGHT": "right stick right",
+      "RIGHT_STICK_LEFT": "right stick left"
+    }
+  }
+}
