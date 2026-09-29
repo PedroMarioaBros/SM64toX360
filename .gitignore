@@ -25,3 +25,6 @@ RECUPERADOS_NAO_PUBLICAR/
 # Python
 __pycache__/
 *.pyc
+
+# Fontes externas baixadas apenas para análise local
+_localization_sources/
