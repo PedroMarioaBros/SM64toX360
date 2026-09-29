@@ -1,0 +1,40 @@
+name: Prepare Multilang Source Bundle
+
+on:
+  push:
+    paths:
+      - .github/workflows/fetch-multilang-sources.yml
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch pinned Spanish source
+        run: |
+          git clone https://github.com/Reonu/ultrasm64-spanish.git es
+          git -C es checkout b720e8328c4ead21e3eac5dfceb21edba38ed79b
+
+      - name: Fetch pinned PT-BR reference
+        run: |
+          git clone https://github.com/bMatSantos/sm64-ptbr.git ptbr
+          git -C ptbr checkout be7920d79192df4b8130a0f63c76d3db5adf6b6d
+
+      - name: Assemble minimal source bundle
+        run: |
+          mkdir -p bundle/es/text/us bundle/es/textures/segment2 bundle/es/levels/menu bundle/ptbr
+          cp es/text/us/dialogs.h bundle/es/text/us/
+          cp es/text/us/courses.h bundle/es/text/us/
+          cp es/charmap.txt bundle/es/
+          cp es/textures/segment2/custom_font_graphics_* bundle/es/textures/segment2/ || true
+          cp es/levels/menu/custom_main_menu_seg7_us_* bundle/es/levels/menu/ || true
+          cp ptbr/README.md bundle/ptbr/
+          cp ptbr/sound/sound_banks/08_mario.json bundle/ptbr/
+          cp ptbr/sound/sound_banks/0A_mario_peach.json bundle/ptbr/
+          printf '%s\n'             'es=b720e8328c4ead21e3eac5dfceb21edba38ed79b'             'ptbr=be7920d79192df4b8130a0f63c76d3db5adf6b6d'             > bundle/SOURCE_COMMITS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-multilang-source-bundle
+          path: bundle
+          if-no-files-found: error
+          retention-days: 7
