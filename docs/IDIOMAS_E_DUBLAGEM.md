@@ -27,7 +27,7 @@ A seleção define, em conjunto:
 1. textos;
 2. nomes de fases/estrelas;
 3. menus;
-4. placas e instruções de controle;
+4. placas e instruções de controle localizadas para Xbox 360 em todos os idiomas;
 5. vozes/falas;
 6. créditos específicos da localização usada.
 
@@ -68,9 +68,12 @@ A publicação do Habla Mario 64 v3 credita, entre outros:
 Manter:
 - textos originais em inglês;
 - vozes originais em inglês;
-- comportamento original do port.
+- comportamento original do port;
+- **localização das instruções, placas e referências de comandos para os controles do Xbox 360**.
 
-Não traduzir nem reinterpretar o conteúdo inglês.
+Ou seja: o conteúdo textual permanece em inglês, mas qualquer referência aos botões/comandos do Nintendo 64 deve ser adaptada para o mapeamento real do Xbox 360 usado por esta edição, exatamente como já ocorre no PT-BR e como será feito no espanhol.
+
+Não retraduzir o conteúdo inglês fora dessas adaptações de controle/interface.
 
 ## Regras de integração
 
