@@ -1,0 +1,36 @@
+name: Build SynthXEX Host Tool
+
+on:
+  push:
+    paths:
+      - .github/workflows/build-synthxex-host.yml
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch pinned SynthXEX
+        run: |
+          git clone https://github.com/OpenXeChain/SynthXEX.git SynthXEX
+          git -C SynthXEX checkout main
+          git -C SynthXEX rev-parse HEAD | tee SYNTHXEX_COMMIT.txt
+
+      - name: Build
+        run: |
+          cmake -S SynthXEX -B SynthXEX/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build SynthXEX/build -j2
+          ./SynthXEX/build/synthxex --help > synthxex-help.txt 2>&1 || true
+          file SynthXEX/build/synthxex
+          sha256sum SynthXEX/build/synthxex | tee synthxex-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthxex-linux-host
+          path: |
+            SynthXEX/build/synthxex
+            SYNTHXEX_COMMIT.txt
+            synthxex-sha256.txt
+            synthxex-help.txt
+          if-no-files-found: error
+          retention-days: 7
