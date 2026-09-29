@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "base_xex_sha256": "376a1aca746419e29ae64f34802293ba8e97535ae95cee98184e600fea1c3e83",
+  "base_pe_sha256": "6381bf1333bf1985474af00c139f33f9cdbad71a371c3231db0d861b72cfac2c",
+  "no_op_roundtrip": {
+    "rebuilt_xex_sha256": "218073a5ad3fd1eb8a7f9a3f3cd91837a612c0b5060924c31b46c64d0e768b8e",
+    "reextracted_pe_sha256": "6381bf1333bf1985474af00c139f33f9cdbad71a371c3231db0d861b72cfac2c",
+    "pe_byte_identical": true,
+    "entry_point": "0x8239e3b8",
+    "imports": {
+      "xam_xex": 5,
+      "xboxkrnl_exe": 126,
+      "total": 131
+    }
+  },
+  "expansion_probe": {
+    "section": ".mlang",
+    "rva": "0x01040000",
+    "probe_size": "0x00010000",
+    "image_size": "0x01050000",
+    "input_pe_sha256": "e4e47455abc66c6f22255d867eca97d108cdfcea4c82db7128f7e20312fd4372",
+    "reextracted_pe_sha256": "e4e47455abc66c6f22255d867eca97d108cdfcea4c82db7128f7e20312fd4372",
+    "pe_byte_identical": true
+  },
+  "stage1_real_data": {
+    "section_size": "0x00040000",
+    "image_size": "0x01080000",
+    "pe_sha256": "61cf986082c0729bb9012bf92864aa3bea87d730ae6ba9364d58cd599cfc6d32",
+    "rebuilt_xex_sha256": "c3b4b8eb39e7660b6aaeb881efb148799b47cb4915b6c800c406695617ea01c8",
+    "reextracted_pe_sha256": "61cf986082c0729bb9012bf92864aa3bea87d730ae6ba9364d58cd599cfc6d32",
+    "pe_byte_identical": true,
+    "mlang_used_bytes": 107595,
+    "mlang_free_bytes": 154549
+  },
+  "status": "PASS_STATIC_ROUNDTRIP",
+  "caveat": "Hardware execution of the expanded image has not yet been tested; this report proves deterministic XEX rebuild/extraction integrity."
+}
