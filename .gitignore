@@ -28,3 +28,6 @@ __pycache__/
 
 # Fontes externas baixadas apenas para análise local
 _localization_sources/
+
+# Saídas geradas da pipeline multilíngue
+_localization_build/
