@@ -19,12 +19,16 @@ import re
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = ROOT / "_localization_build"
 SOURCES = ROOT / "_localization_sources"
-LEGACY = re.compile(r"\[(?:B|Z|R|C(?:\^|\||>|<)?)\]")
+LEGACY = re.compile(r"\[(?:A|B|Z|R|C(?:\^|\||>|<)?)\]")
 
 def load_supported_chars():
     chars = set()
     path = SOURCES / "sm64_upstream/charmap.txt"
-    for line in path.read_text(encoding="utf-8").splitlines():
+    source = subprocess.check_output(
+        ["cpp", "-P", "-DVERSION_US", str(path)],
+        text=True, encoding="utf-8"
+    )
+    for line in source.splitlines():
         m = re.match(r"('(?:\\.|[^'])*')\s*=", line)
         if m:
             try:
