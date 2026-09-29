@@ -8,7 +8,7 @@ Design choice for SM64toX360:
 """
 from pathlib import Path
 
-root = Path(__file__).resolve().parents[3] / "acceleration"
+root = Path(__file__).resolve().parents[2] / "acceleration"
 compress = root / "crates/xex2/src/compress.rs"
 assemble = root / "crates/xex2/src/assemble.rs"
 rebuild = root / "crates/xex2/src/rebuild.rs"
