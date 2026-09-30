@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "source_xex_sha256": "376a1aca746419e29ae64f34802293ba8e97535ae95cee98184e600fea1c3e83",
+  "source_pe_sha256": "6381bf1333bf1985474af00c139f33f9cdbad71a371c3231db0d861b72cfac2c",
+  "source_pe_bytes": 16449536,
+  "expanded_pe_sha256": "2c09fa3a1c1fb1a8790a9155cafae305a6a2f27db92e461a5144747a570f870b",
+  "expanded_pe_bytes": 17022976,
+  "rebuilt_xex_sha256": "9cbeab8487a286ecc4c3fc784ffc7f5643b5f61d07930e335036e372e64fd4cf",
+  "rebuilt_xex_bytes": 17031168,
+  "extracted_roundtrip_pe_sha256": "2c09fa3a1c1fb1a8790a9155cafae305a6a2f27db92e461a5144747a570f870b",
+  "roundtrip_byte_identical": true,
+  "xex_page_descriptor_count": 260,
+  "xex_page_count_sum": 260,
+  "verified_mapped_bytes": 17039360,
+  "lang_section": {
+    "rva": "0x01000000",
+    "capacity_bytes": 245760,
+    "end": "0x0103C000"
+  },
+  "note": "Synthetic canary payload only. This report validates expansion/rebuild mechanics; it is not a playable multilingual build."
+}
