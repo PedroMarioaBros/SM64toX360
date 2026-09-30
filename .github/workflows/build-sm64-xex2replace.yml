@@ -1,0 +1,40 @@
+name: Build SM64 xex2replace
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - tools/xex2_basic_replacer/**
+      - .github/workflows/build-sm64-xex2replace.yml
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch pinned acceleration
+        run: |
+          git clone https://github.com/landaire/acceleration.git acceleration
+          git -C acceleration checkout 0e7258713d6b1487a741ce8e64d08f079e4bf495
+
+      - name: Apply SM64 Basic-compression extension
+        run: python3 tools/xex2_basic_replacer/patch_acceleration.py
+
+      - name: Build xex2replace
+        run: |
+          cargo build --manifest-path tools/xex2_basic_replacer/Cargo.toml --release
+          ./tools/xex2_basic_replacer/target/release/xex2replace 2>&1 | tee xex2replace-help.txt || true
+          sha256sum tools/xex2_basic_replacer/target/release/xex2replace | tee xex2replace-sha256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-xex2replace-linux-host
+          path: |
+            tools/xex2_basic_replacer/target/release/xex2replace
+            xex2replace-help.txt
+            xex2replace-sha256.txt
+          if-no-files-found: error
+          retention-days: 7
