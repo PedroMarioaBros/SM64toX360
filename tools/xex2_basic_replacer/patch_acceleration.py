@@ -62,7 +62,30 @@ new = """		TargetCompression::Basic => {
 """
 if old not in a:
     raise SystemExit("assemble.rs Basic arm not found")
-assemble.write_text(a.replace(old, new, 1))
+a = a.replace(old, new, 1)
+
+descriptor_old = """	let template = existing_descriptor_template(source, xex);
+	let page_descriptors::GeneratedDescriptors { descriptors, image_hash } =
+		page_descriptors::generate(&pe, page_size, template.as_deref());"""
+descriptor_new = """	let mut template = existing_descriptor_template(source, xex);
+	// SM64toX360 may append verified pages for the multilingual data section.
+	// Preserve the source descriptor flags and extend the chain page-by-page.
+	if let Some(ref mut slots) = template {
+		let covered: u32 = slots.iter().map(|s| s.page_count).sum();
+		let needed = pe.len().div_ceil(page_size as usize) as u32;
+		if needed > covered {
+			let flags = slots.last().map(|s| s.flags).unwrap_or(1);
+			for _ in covered..needed {
+				slots.push(page_descriptors::DescriptorSlot { page_count: 1, flags });
+			}
+		}
+	}
+	let page_descriptors::GeneratedDescriptors { descriptors, image_hash } =
+		page_descriptors::generate(&pe, page_size, template.as_deref());"""
+if descriptor_old not in a:
+    raise SystemExit("assemble.rs descriptor block not found")
+a = a.replace(descriptor_old, descriptor_new, 1)
+assemble.write_text(a)
 
 r = rebuild.read_text()
 start = r.index("	pub fn is_supported(&self) -> bool {")
