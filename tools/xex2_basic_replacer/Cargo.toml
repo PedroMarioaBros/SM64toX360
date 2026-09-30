@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1"
-xex2 = { path = "__ACCELERATION_XEX2_PATH__" }
+xex2 = { path = "../../acceleration/crates/xex2" }
