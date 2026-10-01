@@ -28,12 +28,13 @@ jobs:
           cargo build --manifest-path tools/xex2_basic_replacer/Cargo.toml --release
           ./tools/xex2_basic_replacer/target/release/xex2replace 2>&1 | tee xex2replace-help.txt || true
           sha256sum tools/xex2_basic_replacer/target/release/xex2replace | tee xex2replace-sha256.txt
+          cp tools/xex2_basic_replacer/target/release/xex2replace ./xex2replace
 
       - uses: actions/upload-artifact@v4
         with:
           name: sm64-xex2replace-linux-host
           path: |
-            tools/xex2_basic_replacer/target/release/xex2replace
+            xex2replace
             xex2replace-help.txt
             xex2replace-sha256.txt
           if-no-files-found: error
