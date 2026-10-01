@@ -1,0 +1,35 @@
+{
+  "base_sha256": "6381bf1333bf1985474af00c139f33f9cdbad71a371c3231db0d861b72cfac2c",
+  "output_pe_sha256": "5ca8f67837683c1f261b3c4a9cecb6a425253a85b89260d3a32d1bb90ebd92f5",
+  "output_xex_sha256": "15ae4c7c7049c1455973cdd64d1616e61ab47484bae47344eb53da3cb8877de6",
+  "pe_bytes": 16449536,
+  "section": {
+    "name": ".lang",
+    "rva": "0x1040000",
+    "raw": "0xE6E000",
+    "bytes": 131072,
+    "used_bytes": 101304,
+    "free_bytes": 29768
+  },
+  "languages": {
+    "pt_br": {
+      "dialogs": 170,
+      "pool_bytes": 26044,
+      "sha256": "0b913e5c728f3991c8885df8b4b262b9f68de54cce5b485e46fa101765a84c9a"
+    },
+    "es": {
+      "dialogs": 170,
+      "pool_bytes": 39173,
+      "sha256": "361bce11e893615be1bdcca5699dd863db84fdd31091f1763f6f2f3059d35685"
+    },
+    "en": {
+      "dialogs": 170,
+      "pool_bytes": 33955,
+      "sha256": "819dba9fa68d2db08edc27f2ce05532bdfc734dd1a3a24754ab51abff3479f29"
+    }
+  },
+  "pt_br_validation": "170/170 encoded dialogs byte-identical to canonical v0.4 text bytes",
+  "legacy_n64_control_tokens_remaining": 0,
+  "xex_roundtrip": "PASS: extracted PE is byte-for-byte identical to injected PE",
+  "note": "This XEX contains multilingual dialog data but does not yet include the startup language selector/runtime activation hook."
+}
