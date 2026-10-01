@@ -1,0 +1,27 @@
+{
+  "source_multilang_pe_sha256": "edca3284a2bda7164962b96355bbbc4f41a5f3fb35b97247b961e8ef99b1c5d0",
+  "activation_routine": {
+    "va": "0x823BC800",
+    "file_offset": "0x3BC800",
+    "bytes": 88,
+    "sha256": "9c42684f928dcd562883936708b30e7516561c7d847852fbcf408b81ba82e440",
+    "cave_was_zero": true
+  },
+  "output_pe": {
+    "bytes": 17170432,
+    "sha256": "d9b14f4a538636c44f7c7da0a3173b56649ee7c5732355e9984d57d42ade782b"
+  },
+  "output_xex": {
+    "sha256": "df319723cfefca9b5550b2bba8d513808a16332571bf2108afb59b8e5812da2a",
+    "image_size": "0x01060000",
+    "entry_point": "0x8239E3B8",
+    "compression": "Basic",
+    "encryption": "Normal",
+    "imports": [
+      "xam.xex",
+      "xboxkrnl.exe"
+    ]
+  },
+  "roundtrip": "PASS: xex2ool-extracted PE is byte-for-byte identical to injected PE",
+  "hardware_status": "not ready for hardware test: startup selector/hook still missing"
+}
