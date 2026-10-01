@@ -34,7 +34,7 @@ import struct
 
 IMAGE_BASE = 0x82000000
 LANG_RVA = 0x1040000
-LANG_RAW = 0xE6E000
+LANG_RAW = LANG_RVA
 LANG_SIZE = 0x20000
 LANGUAGES = ("pt_br", "es", "en")
 DIALOG_COUNT = 170
@@ -52,6 +52,11 @@ def main() -> None:
 
     original = args.base_pe.read_bytes()
     data = bytearray(original)
+    required_size = LANG_RVA + LANG_SIZE
+    if len(data) > required_size:
+        raise RuntimeError("base PE is larger than planned multilingual image")
+    if len(data) < required_size:
+        data.extend(b"\0" * (required_size - len(data)))
 
     payload = bytearray(LANG_SIZE)
     payload[0:8] = b"SM64LANG"
@@ -59,7 +64,7 @@ def main() -> None:
 
     ptr_table_off: dict[str, int] = {}
     pool_off: dict[str, int] = {}
-    cursor = 0x40
+    cursor = 0x100
 
     for lang in LANGUAGES:
         cursor = align(cursor, 16)
@@ -102,10 +107,10 @@ def main() -> None:
         pool = (args.dialogs_dir / lang / "dialogs.bin").read_bytes()
         payload[0x80 + n * 32:0x80 + (n + 1) * 32] = hashlib.sha256(pool).digest()
 
-    # The canonical v0.4 has physical bytes after the last raw section that
-    # are not referenced by any PE section. They must still be zero here.
+    # .lang lives beyond the canonical v0.4 image, outside its existing
+    # runtime data/BSS. The newly appended range must be zero before use.
     if any(data[LANG_RAW:LANG_RAW + LANG_SIZE]):
-        raise RuntimeError("expected physical .lang storage is not empty")
+        raise RuntimeError("new .lang range is not empty")
 
     pe = struct.unpack_from("<I", data, 0x3C)[0]
     section_count = struct.unpack_from("<H", data, pe + 6)[0]
