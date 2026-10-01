@@ -1,0 +1,42 @@
+{
+  "workflow_run_id": 36823622570,
+  "workflow_conclusion": "success",
+  "routine_va": "0x823BC800",
+  "routine_file_offset": "0x3BC800",
+  "bytes": 88,
+  "sha256": "9c42684f928dcd562883936708b30e7516561c7d847852fbcf408b81ba82e440",
+  "abi": {
+    "r3": "0=pt_br, 1=es, other=en",
+    "clobbers": [
+      "r3",
+      "r4",
+      "r5",
+      "r6",
+      "r7",
+      "CTR",
+      "CR0"
+    ]
+  },
+  "source_tables": {
+    "pt_br": "0x83040100",
+    "es": "0x830403B0",
+    "en": "0x83040660"
+  },
+  "destination": {
+    "dialog_records": "0x829E7CD8",
+    "count": 170,
+    "stride": 16,
+    "field_written": "first 32-bit text pointer only"
+  },
+  "emulation": {
+    "engine": "Unicorn PPC32 big-endian",
+    "cases": [
+      "pt_br",
+      "es",
+      "en",
+      "undefined->en"
+    ],
+    "result": "PASS",
+    "invariant": "remaining 12 bytes of every 16-byte dialog record unchanged"
+  }
+}
