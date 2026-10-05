@@ -36,7 +36,7 @@ def run(state, selection=0, timer=0, buttons=0):
     uc=Uc(UC_ARCH_PPC, UC_MODE_32|UC_MODE_BIG_ENDIAN)
     for base,size in [
         (0x81000000,0x20000),(0x82090000,0x70000),(0x820CE000,0x10000),
-        (0x82140000,0x10000),(0x823B0000,0x20000),(0x83040000,0x20000),
+        (0x82140000,0x10000),(0x823B0000,0x20000),(0x82E50000,0x10000),(0x83040000,0x20000),
         (0x84000000,0x20000)
     ]:
         try: uc.mem_map(base,size)
