@@ -18,4 +18,18 @@ jobs:
       - run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
       - name: Emulate PT ES EN pointer activation
         working-directory: scripts/multilang
-        run: python3 test_language_activation.py
+        run: |
+          python3 test_language_activation.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from language_activation import build
+          Path("../../language_activation.bin").write_bytes(build())
+          PY
+          sha256sum ../../language_activation.bin
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-language-activation-tested
+          path: language_activation.bin
+          if-no-files-found: error
+          retention-days: 7
