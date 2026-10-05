@@ -22,6 +22,7 @@ import ast
 import json
 import re
 import struct
+import subprocess
 import sys
 
 BASE = 0x82000000
@@ -55,7 +56,7 @@ def load_reverse_charmap(path: Path):
 
     reverse[0xFE] = "\n"
     # Tokens compressed by SM64's text format.
-    reverse[0xD0] = "  "
+    reverse[0xD0] = "/"
     reverse[0xD1] = "the"
     reverse[0xD2] = "you"
     return reverse
@@ -92,8 +93,8 @@ def main():
         rec = DIALOG_TABLE + dialog_id * 16
         if rec + 16 > len(image):
             raise RuntimeError("dialog table outside mapped image")
-        lines = image[rec + 2]
-        ptr = struct.unpack_from(">I", image, rec + 8)[0]
+        lines = image[rec + 8]
+        ptr = struct.unpack_from(">I", image, rec)[0]
         off = ptr - BASE
         if not (0 <= off < len(image)):
             raise RuntimeError(
