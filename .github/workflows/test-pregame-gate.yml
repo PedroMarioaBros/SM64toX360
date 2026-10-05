@@ -21,3 +21,16 @@ jobs:
         run: |
           python3 pregame_gate.py
           python3 test_pregame_gate.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from pregame_gate import build
+          Path("../../pregame_gate.bin").write_bytes(build())
+          PY
+          sha256sum ../../pregame_gate.bin
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-pregame-gate-tested
+          path: pregame_gate.bin
+          if-no-files-found: error
+          retention-days: 7
