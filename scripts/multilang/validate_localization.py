@@ -16,6 +16,7 @@ import ast
 import json
 import re
 import subprocess
+import argparse
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = ROOT / "_localization_build"
@@ -47,18 +48,21 @@ def load_supported_chars():
     chars.add("\n")
     return chars
 
-def final_path(lang):
+def final_path(lang, layout=False):
     if lang == "pt_br":
         return BUILD / lang / "dialogs.json"
-    return BUILD / lang / "dialogs_xbox360.json"
+    return BUILD / lang / ("dialogs_layout.json" if layout else "dialogs_xbox360.json")
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--layout", action="store_true")
+    args = parser.parse_args()
     supported = load_supported_chars()
     reports = {}
     canonical_ids = list(range(170))
 
     for lang in ("pt_br", "es", "en"):
-        path = final_path(lang)
+        path = final_path(lang, args.layout)
         rows = json.loads(path.read_text(encoding="utf-8"))
         ids = [r["id"] for r in rows]
         if ids != canonical_ids:
