@@ -175,7 +175,7 @@ def main() -> None:
     struct.pack_into(
         "<IIIIIIHHI", data, new_header + 8,
         LANG_SIZE, LANG_RVA, LANG_SIZE, LANG_RAW,
-        0, 0, 0, 0, 0x40000040,
+        0, 0, 0, 0, 0xC0000040,  # initialized read/write data: gate updates state
     )
     struct.pack_into("<H", data, pe + 6, section_count + 1)
 
