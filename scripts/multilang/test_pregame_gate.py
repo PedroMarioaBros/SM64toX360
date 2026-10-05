@@ -73,7 +73,7 @@ def run(state, selection=0, timer=0, buttons=0):
         uc.reg_write(pc.UC_PPC_REG_PC,uc.reg_read(LR))
 
     uc.hook_add(UC_HOOK_CODE,hook)
-    uc.reg_write(SP,STACK+0x1F000)
+    uc.reg_write(SP,STACK+0xF000)
     uc.reg_write(R3,LEVEL_PTR)
     uc.reg_write(LR,STOP)
     uc.emu_start(GATE_VA,STOP+4,count=5000)
