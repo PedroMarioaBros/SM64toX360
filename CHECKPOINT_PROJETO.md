@@ -7,7 +7,7 @@ Branch de desenvolvimento: feature/multilang-dub-30fps.
 2. Consultar os arquivos técnicos na branch de desenvolvimento; main é também entrada para descoberta.
 3. Ler docs/PREGAME_GATE_STATIC_INTEGRATION_2026_10_05.json e os scripts citados abaixo.
 4. Conferir a revisão remota e diferenças locais. Não repetir recuperação ou testes já comprovados sem motivo.
-5. Resolver a pendência EN/ES abaixo. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
+5. Próxima ação: registrar o teste real do pacote SELECTOR_TEST1 no Xbox 360. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
 
 ## Objetivo e decisões permanentes
 Edição única baseada na v0.4 funcional de 30 FPS, com seleção Português / Español / English antes de qualquer tela normal.
@@ -19,9 +19,10 @@ Não misturar Native60, não substituir PT-BR pela tradução pública BMatSanto
 Nenhum teste estático ou em Unicorn equivale a funcionamento comprovado no Xbox.
 
 ## Onde estamos
-STATUS: STATIC_ANALYSIS_ONLY. hardware_release: false.
-Seletor integrado em XEX de análise. Ainda não aprovado para entrega ao console.
-Bloqueio atual: pools EN/ES reproduzem byte a byte as fontes fixadas e os scripts atuais, mas os hashes históricos ainda não foram reproduzidos. Auditoria parcial concluída; ver docs/POOL_REPRODUCIBILITY_2026_10_05.json na branch ativa.
+STATUS: FIRST_HARDWARE_TEST_CANDIDATE. hardware_verified: false.
+Novo candidato SELECTOR_TEST1 reconstruído, validado e disponibilizado para primeiro teste no console.
+Os hashes históricos EN/ES seguem sem reprodução; essa pendência de rastreabilidade não foi declarada resolvida. O novo candidato foi validado independentemente com fontes fixadas, layout, ponteiros, preservação PT e round-trip.
+Próximo requisito funcional: teste real do seletor pelo Pedro; corrigir eventual falha antes de integrar vozes.
 Menus/cursos/estrelas completos e dublagens PT/ES ainda pendentes.
 Não usar percentuais aproximados de conversa como evidência de conclusão.
 
@@ -43,7 +44,7 @@ Não usar percentuais aproximados de conversa como evidência de conclusão.
 - [x] Gate sem placeholders; créditos ~45 frames, A adianta; seletor D-pad e A; depois delegação ao script original.
 - [ ] Confirmar comportamento real do render, controles, áudio e saves no Xbox 360.
 
-## Divergência que o próximo agente deve investigar
+## Divergência histórica preservada (não é o pool do novo candidato)
 | Pool | Esperado no checkpoint | Atual no relatório |
 | --- | --- | --- |
 | EN bytes | 33955 | 33955 |
@@ -78,11 +79,11 @@ Se bytes antigos não estiverem disponíveis, declarar a limitação e validar a
 ## Checklist restante, em ordem
 - [x] Validar reprodução exata das fontes fixadas EN/ES, conversão e pools atuais.
 - [x] Identificar mudanças da normalização de câmera: EN IDs 8, 30, 34, 35, 36; ES nenhuma.
-- [ ] Recuperar produtor/bytes dos pools históricos ou concluir validação independente documentada; os hashes antigos ainda não foram reproduzidos.
-- [ ] Regenerar .lang e XEX após eventual correção.
-- [ ] Revalidar 510 ponteiros, preservação PT, gate, permissões e regiões alteradas.
-- [ ] Repetir round-trip e registrar hashes completos e comandos reproduzíveis.
-- [ ] Disponibilizar candidato de teste somente depois de resolver bloqueio e passar validações.
+- [x] Concluir validação independente documentada do novo candidato; hashes históricos NÃO reproduzidos.
+- [x] Regenerar .lang e XEX com layout EN/ES validado.
+- [x] Revalidar 510 ponteiros, preservação PT, gate e regiões alteradas; permissões mantidas da integração validada.
+- [x] Repetir round-trip e registrar hashes completos e comandos reproduzíveis.
+- [x] Disponibilizar SELECTOR_TEST1 após validação independente; hardware ainda não verificado.
 - [ ] Teste Pedro no Xbox: boot → créditos → cada idioma → primeira tela/menu → diálogos → save existente/novo → salvar/sair; registrar feedback real.
 - [ ] Corrigir regressões e completar menus, cursos, estrelas, avisos e controles PT/ES/EN.
 - [ ] Integrar e testar vozes PT-BR.
@@ -126,3 +127,23 @@ Se não houver acesso de escrita, dizer claramente que o registro remoto NÃO fo
 - Nenhum XEX novo gerado/liberado neste bloco.
 - Próxima ação concreta: localizar bytes/produtor do pool histórico da integração f5cebc7/58583ba (artefatos e logs), comparar os registros por diálogo. Não repetir checagem das revisões ou a comparação do conversor já documentadas. Se bytes não forem recuperáveis, registrar isso e validar independentemente codificação, controles, paginação e largura antes de considerar candidato.
 - Observação a verificar na validação independente: ativação troca somente ponteiro e mantém metadados de paginação v0.4; EN/ES trazem metadados de linhas distintos. Não afirmar erro de runtime sem teste, mas verificar respostas/páginas finais e limites de largura.
+
+## Estado mais recente — 05/10/2026, SELECTOR_TEST1 entregue
+Este bloco substitui as próximas ações antigas de auditoria como direção operacional. Não repetir busca indefinida pelos hashes antigos.
+- Pacote: SM64_30FPS_MULTILANG_SELECTOR_TEST1.zip, 17184968 bytes.
+- ZIP SHA-256: cc603c78bf89439b1bfb3b641c442e08c968bfa309791ddcd890c18613ce7fb3.
+- default.xex SHA-256: 075f2ef231c583d7229ecd713f0c330e11ce65434dd1f5d415b73fcc544c1ee6, 17182720 bytes.
+- PE SHA-256: 3138395a5f640790256cc9d2b5dac8d4b77529bfd1fe7e57bac39d922064494f.
+- Arquivo persistente: libfile_d7b188878d2481919620f4b020550e05; nome do pacote acima. Não confundir com binário final/estável.
+- PT pool inalterado: 0b913e5c728f3991c8885df8b4b262b9f68de54cce5b485e46fa101765a84c9a.
+- ES layout pool: bdccca4c514fdb0bd1c2e9aeeee29dbec92ff82dd0b6b6d63ee48e6320213744, 39189 bytes.
+- EN layout pool: f5d42834190af1a4e60d5e423302b2e2e6858843b20f6752db6513110d596054, 33963 bytes.
+- Corrigido extrator linesPerBox: membro de ponteiro em 0x9E7CD8; campo linhas em ponteiro-8, não +8. Conferiu 170/170 com construtor recuperado. A conclusão anterior sobre EN divergir da paginação v0.4 vinha da leitura errada; ES tem layout próprio ajustado para paginação mantida no executável.
+- Preferência ASCII no decode evita aliases JP; PT continua byte-idêntico.
+- Layout EN/ES: zero linhas acima de 125; palavras/pontuação preservadas, quebras e espaçadores D0 ajustados; dez escolhas por idioma alinhadas.
+- Validações PASS: validate_localization.py --layout; test_language_activation.py; test_pregame_gate.py; integração 510 ponteiros; PT 170 byte-idênticos; zero diferenças fora da .lang versus integração anterior; round-trip novo XEX byte-idêntico ao PE.
+- Scripts novos: layout_dialogs.py, integrate_gate.py. build_dialog_pools.py e validate_localization.py agora aceitam --layout.
+- Relatórios completos e reprodução: docs/SELECTOR_TEST1_2026_10_05.md, docs/SELECTOR_TEST1_INTEGRATION_2026_10_05.json e docs/DIALOG_LAYOUT_VALIDATION_2026_10_05.json na branch ativa.
+- Pesquisa de títulos SM64 não localizou arquivo multilíngue histórico preservado. Consulta de workflow f5cebc7 retornou vazia, porém é limitada a PR pelo conector; não prova inexistência de workflows push. Rastreabilidade antiga segue aberta; não afirmar resolução.
+- Próxima ação: Pedro testa créditos/seletor, cada idioma (reiniciando executável entre escolhas), primeiro diálogo, glifos ES, saves e salvar/sair. Registrar resultados reais antes de alterar status hardware_verified.
+- Se travar: identificar tela exata, idioma e evidência; corrigir regressão. Se passar: completar menus/cursos/estrelas, depois vozes PT/ES. Menus atuais podem continuar em PT-BR; vozes novas não integradas; Native60 fora desta etapa.
