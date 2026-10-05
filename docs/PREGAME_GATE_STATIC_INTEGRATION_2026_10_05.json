@@ -1,0 +1,70 @@
+{
+  "base_sha256": "5b4ec5d2f79ecc1cbe23b5d01b7657e4b7ac619937584ea09e2ec26443e2cdf1",
+  "output_sha256": "cb51ed1ce820f080069ccaaa512e0ecf4bf5ed93b12f0c75545582eafdaac4ae",
+  "pe_bytes": 17170432,
+  "section_rva": "0x1040000",
+  "section_raw": "0x1040000",
+  "section_size": 131072,
+  "used_bytes": 101702,
+  "free_bytes": 29370,
+  "size_of_image": "0x1060000",
+  "pointer_tables": {
+    "pt_br": "0x100",
+    "es": "0x3b0",
+    "en": "0x660"
+  },
+  "pools": {
+    "pt_br": {
+      "offset": "0x908",
+      "bytes": 26044,
+      "sha256": "0b913e5c728f3991c8885df8b4b262b9f68de54cce5b485e46fa101765a84c9a"
+    },
+    "es": {
+      "offset": "0x6ec8",
+      "bytes": 39189,
+      "sha256": "fd8bebe9d2aa1f2a930962a93466552483f8be05e620d0ed1252cc5d311295de"
+    },
+    "en": {
+      "offset": "0x107e0",
+      "bytes": 33955,
+      "sha256": "b3c807d352381f5db555dcbb50fa3df858b671d66c43fd308ac4f375ccecba34"
+    }
+  },
+  "selector": {
+    "state_offset": "0x14",
+    "selection_offset": "0x18",
+    "timer_offset": "0x1c",
+    "text_pointer_base": "0x40",
+    "text_count": 12
+  },
+  "pointers_validated": 510,
+  "ptbr_dialogs_byte_identical": 170,
+  "original_image_changed_bytes": 1027,
+  "unexpected_changed_bytes": 0,
+  "hook_old": "0x4bfc8321",
+  "hook_new": "0x482ef7d9",
+  "gate_sha256": "27005f5c6ed015e7bbc75263a125ccc21c2eab099a0a65411141fb3b999be3aa",
+  "integration_pe_sha256": "315498a8ca65cbff54d83b9654b9c6fe7fe2efa4f66ae7aee2dfeecddab04769",
+  "workflow_run": 37271932321,
+  "status": "STATIC_ANALYSIS_ONLY",
+  "hardware_release": false,
+  "blocker": "EN/ES pools differ from checkpoint hashes; not approved for user hardware test",
+  "xex_sha256": "1792f578ea46d9fafe2676fdd2f97994c4057524edb11eb5b2d913acae7de5e9",
+  "roundtrip_pe_byte_identical": true,
+  "unicorn_version": "2.1.4",
+  "date": "2026-10-05",
+  "checkpoint_pool_discrepancies": {
+    "en": {
+      "expected_sha256": "819dba9fa68d2db08edc27f2ce05532bdfc734dd1a3a24754ab51abff3479f29",
+      "actual_sha256": "b3c807d352381f5db555dcbb50fa3df858b671d66c43fd308ac4f375ccecba34",
+      "expected_bytes": 33955,
+      "actual_bytes": 33955
+    },
+    "es": {
+      "expected_sha256": "361bce11e893615be1bdcca5699dd863db84fdd31091f1763f6f2f3059d35685",
+      "actual_sha256": "fd8bebe9d2aa1f2a930962a93466552483f8be05e620d0ed1252cc5d311295de",
+      "expected_bytes": 39173,
+      "actual_bytes": 39189
+    }
+  }
+}
