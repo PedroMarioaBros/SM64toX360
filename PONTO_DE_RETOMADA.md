@@ -3,10 +3,12 @@ A etapa ativa é **PT-BR / Español / English sobre a v0.4 de 30 FPS**.
 Branch: **feature/multilang-dub-30fps**.
 
 Leia [CHECKPOINT_PROJETO.md](CHECKPOINT_PROJETO.md) e [AGENTS.md](AGENTS.md).
-Eles contêm objetivo, estado, evidências, histórico, pendências, checklist e procedimento obrigatório de atualização por sessão.
+Eles contêm estado, evidências, histórico, checklist e atualização obrigatória por sessão.
 
-**Próxima ação:** investigar a divergência dos pools EN/ES. O XEX integrado é de análise estática; ainda não aprovado para teste no console.
+**Estado atual:** SELECTOR_TEST1 disponibilizado como candidato ao primeiro teste no Xbox. Ainda não validado no console.
+**Próxima ação:** registrar teste real do Pedro (créditos, seletor, três idiomas, diálogos e saves); corrigir falhas ou prosseguir para interface completa conforme resultado.
 
-[Código e checkpoint na branch ativa](https://github.com/PedroMarioaBros/SM64toX360/tree/feature/multilang-dub-30fps).
+[Código e relatório de teste na branch ativa](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/SELECTOR_TEST1_2026_10_05.md).
 
-O registro anterior de Native60 foi preservado em [histórico](docs/HISTORICO_RETOMADA_NATIVE60_2026_10_05.md). Ele não determina a próxima tarefa desta etapa.
+Hashes históricos divergentes não foram reproduzidos; o candidato atual recebeu validação independente. Não repetir investigação já documentada como se o novo candidato não existisse.
+[Histórico Native60 preservado](docs/HISTORICO_RETOMADA_NATIVE60_2026_10_05.md); ele não determina a próxima tarefa desta etapa.
