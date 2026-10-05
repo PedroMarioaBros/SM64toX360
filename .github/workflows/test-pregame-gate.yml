@@ -1,0 +1,23 @@
+name: Test Pregame Language Gate
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/pregame_gate.py
+      - scripts/multilang/test_pregame_gate.py
+      - .github/workflows/test-pregame-gate.yml
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Emulate credits and language selector gate
+        working-directory: scripts/multilang
+        run: |
+          python3 pregame_gate.py
+          python3 test_pregame_gate.py
