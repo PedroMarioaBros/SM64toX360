@@ -102,9 +102,10 @@ def main():
     c=run(1,2,0,0x0400)
     assert c["selection"]==0
 
-    c=run(1,1,0,0x8000)
-    assert c["state"]==2 and c["activation"]==[1] and "original" not in c["calls"]
-    assert c["r3"]==LEVEL_PTR
+    for selection in range(3):
+        c=run(1,selection,0,0x8000)
+        assert c["state"]==2 and c["activation"]==[selection] and "original" not in c["calls"]
+        assert c["r3"]==LEVEL_PTR
 
     c=run(2,2,0,0)
     assert c["calls"]==["original"] and c["r3"]==0xDEADBEEF
