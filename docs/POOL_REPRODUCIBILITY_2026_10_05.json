@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "date": "2026-10-05",
+  "historical_converter_ref": "f5cebc7",
+  "scope": "source/pool reproducibility; NOT Xbox or visual validation",
+  "languages": {
+    "en": {
+      "source_commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+      "source_file_sha256": "6e0e6b7597301a0a8dc55f86333eb86cb7371882d46e404f1e8882125903e9a7",
+      "source_import_identical": true,
+      "controller_conversion_identical": true,
+      "pool_regeneration_byte_identical": true,
+      "dialogs": 170,
+      "current_bytes": 33955,
+      "current_sha256": "b3c807d352381f5db555dcbb50fa3df858b671d66c43fd308ac4f375ccecba34",
+      "checkpoint_expected_sha256": "819dba9fa68d2db08edc27f2ce05532bdfc734dd1a3a24754ab51abff3479f29",
+      "matches_checkpoint": false,
+      "pre_camera_normalization_bytes": 33931,
+      "pre_camera_normalization_sha256": "2e9e50557b9e339d561d507e3f40db675cca79ffcbaebf0048ba3e93d2e05735",
+      "camera_normalization_changes": [
+        {
+          "id": 8,
+          "previous_length": 219,
+          "current_length": 221,
+          "previous_sha256": "39ec0c832371a72166bc33ec13045ad867a7a921f605cb6c24637a8ec110a62f",
+          "current_sha256": "43f58aad1e259a932a9e0e5f66c0daf563d89d8ed0b19283bba5a09f1a56a073"
+        },
+        {
+          "id": 30,
+          "previous_length": 478,
+          "current_length": 491,
+          "previous_sha256": "9dfb8d2df2ac7a77217ce504aea1cf12763f212467a3194bcfa804075a4f457b",
+          "current_sha256": "d4ffd68c5aefa9b320f653157b367c1a71463505e40a7ede7d24ab234cee952e"
+        },
+        {
+          "id": 34,
+          "previous_length": 629,
+          "current_length": 631,
+          "previous_sha256": "b2f735c134686c8a6a129b7e8564cd31d2cbc353a7384263a652baa9e4bf035a",
+          "current_sha256": "15e9872fbbb608d0948d137c27b3aa439b02f79f031f996ee873548e65cfdaaa"
+        },
+        {
+          "id": 35,
+          "previous_length": 458,
+          "current_length": 469,
+          "previous_sha256": "c38b4fb2707e5fa141d993420fc2ca510be638ea5585bf36fa3ffd95b5348d43",
+          "current_sha256": "2d752cddc2f42f3ee694ca9b51eca84b7b777247d9c631365315d32418b2c748"
+        },
+        {
+          "id": 36,
+          "previous_length": 293,
+          "current_length": 295,
+          "previous_sha256": "91ed5d1c643593f382b7522488a4c654f5c88add5a9fcf8c00792ee4aa7c7eab",
+          "current_sha256": "8380991696dd2221d4a8e4da55c2d43e298c4e8e48eb8e93a1043138b10e450a"
+        }
+      ]
+    },
+    "es": {
+      "source_commit": "b720e8328c4ead21e3eac5dfceb21edba38ed79b",
+      "source_file_sha256": "4a51fa7c7d0d8438d18818c43f89f3a959c7925246a2681d32954480b947a3ee",
+      "source_import_identical": true,
+      "controller_conversion_identical": true,
+      "pool_regeneration_byte_identical": true,
+      "dialogs": 170,
+      "current_bytes": 39189,
+      "current_sha256": "fd8bebe9d2aa1f2a930962a93466552483f8be05e620d0ed1252cc5d311295de",
+      "checkpoint_expected_sha256": "361bce11e893615be1bdcca5699dd863db84fdd31091f1763f6f2f3059d35685",
+      "matches_checkpoint": false,
+      "pre_camera_normalization_bytes": 39189,
+      "pre_camera_normalization_sha256": "fd8bebe9d2aa1f2a930962a93466552483f8be05e620d0ed1252cc5d311295de",
+      "camera_normalization_changes": []
+    }
+  },
+  "checkpoint_hash_discrepancy_resolved": false,
+  "conclusion": "Current EN/ES pools reproduce pinned sources and current conversion exactly. Camera normalization explains five EN dialog changes and 33931→33955 bytes, but does not reproduce the checkpoint hashes. ES has no camera-normalization changes. Original checkpoint pools/producer remain needed to establish historical byte differences.",
+  "validation_status": "PASS: 170 dialogs per language, no legacy control tokens, no unsupported characters",
+  "gate_test": "PASS: credits, navigation, PT/ES/EN confirmation, original script delegation"
+}
