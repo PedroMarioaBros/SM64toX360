@@ -77,7 +77,16 @@ PHRASES = {
 
 LEGACY_RE = re.compile(r"\[(?:A|B|Z|R|C(?:\^|\||>|<)?)\]")
 
+ALT_CAMERA_TOKENS = {
+    "[C]▲": "[C]^",
+    "[C]▼": "[C]|",
+    "[C]▶": "[C]>",
+    "[C]◀": "[C]<",
+}
+
 def convert(text, lang):
+    for old, new in ALT_CAMERA_TOKENS.items():
+        text = text.replace(old, new)
     for old, new in PHRASES.get(lang, {}).items():
         text = text.replace(old, new)
     for token in TOKENS:
