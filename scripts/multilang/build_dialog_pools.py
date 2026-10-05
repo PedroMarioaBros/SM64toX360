@@ -24,6 +24,7 @@ import hashlib
 import json
 import re
 import subprocess
+import argparse
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = ROOT / "_localization_build"
@@ -89,6 +90,9 @@ def encoder(cm):
     return encode
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--layout", action="store_true", help="Use width-validated EN/ES dialogs_layout.json")
+    args = parser.parse_args()
     cm = load_charmap()
     encode = encoder(cm)
     summary = {}
@@ -98,6 +102,9 @@ def main():
         "es": BUILD / "es/dialogs_xbox360.json",
         "en": BUILD / "en/dialogs_xbox360.json",
     }
+    if args.layout:
+        for lang in ("es", "en"):
+            inputs[lang] = BUILD / lang / "dialogs_layout.json"
 
     for lang, source in inputs.items():
         rows = json.loads(source.read_text(encoding="utf-8"))
