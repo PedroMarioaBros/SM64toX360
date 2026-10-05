@@ -49,7 +49,11 @@ def load_reverse_charmap(path: Path):
         except Exception:
             continue
         if len(raw) == 1:
-            reverse[raw[0]] = char
+            # JP full-width aliases share byte slots with US ASCII. Keep the
+            # ASCII spelling when both exist; this changes no encoded bytes.
+            old = reverse.get(raw[0])
+            if old is None or char.isascii() or not old.isascii():
+                reverse[raw[0]] = char
 
     for ch, slot in zip(ACCENTS, SLOTS):
         reverse[slot] = ch
@@ -93,7 +97,9 @@ def main():
         rec = DIALOG_TABLE + dialog_id * 16
         if rec + 16 > len(image):
             raise RuntimeError("dialog table outside mapped image")
-        lines = image[rec + 8]
+        # DIALOG_TABLE points to the text member (+12) of each 16-byte
+        # DialogEntry. linesPerBox is at entry+4, thus pointer-8, not +8.
+        lines = image[rec - 8]
         ptr = struct.unpack_from(">I", image, rec)[0]
         off = ptr - BASE
         if not (0 <= off < len(image)):
