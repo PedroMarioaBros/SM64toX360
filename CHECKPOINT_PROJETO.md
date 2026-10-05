@@ -21,7 +21,7 @@ Nenhum teste estático ou em Unicorn equivale a funcionamento comprovado no Xbox
 ## Onde estamos
 STATUS: STATIC_ANALYSIS_ONLY. hardware_release: false.
 Seletor integrado em XEX de análise. Ainda não aprovado para entrega ao console.
-Bloqueio atual: pools EN/ES regenerados divergem dos hashes anteriores; causa ainda não explicada.
+Bloqueio atual: pools EN/ES reproduzem byte a byte as fontes fixadas e os scripts atuais, mas os hashes históricos ainda não foram reproduzidos. Auditoria parcial concluída; ver docs/POOL_REPRODUCIBILITY_2026_10_05.json na branch ativa.
 Menus/cursos/estrelas completos e dublagens PT/ES ainda pendentes.
 Não usar percentuais aproximados de conversa como evidência de conclusão.
 
@@ -76,7 +76,9 @@ Se bytes antigos não estiverem disponíveis, declarar a limitação e validar a
 - Unicorn utilizado: 2.1.4.
 
 ## Checklist restante, em ordem
-- [ ] Explicar/validar divergência EN/ES por diálogo com evidência.
+- [x] Validar reprodução exata das fontes fixadas EN/ES, conversão e pools atuais.
+- [x] Identificar mudanças da normalização de câmera: EN IDs 8, 30, 34, 35, 36; ES nenhuma.
+- [ ] Recuperar produtor/bytes dos pools históricos ou concluir validação independente documentada; os hashes antigos ainda não foram reproduzidos.
 - [ ] Regenerar .lang e XEX após eventual correção.
 - [ ] Revalidar 510 ponteiros, preservação PT, gate, permissões e regiões alteradas.
 - [ ] Repetir round-trip e registrar hashes completos e comandos reproduzíveis.
@@ -111,3 +113,16 @@ Antes de terminar: salvar estado exato, resultados, comandos/workflows/hashes, a
 Acrescentar histórico datado sem apagar evidências anteriores. Se houver interrupção, o último bloco salvo deve permitir retomada.
 Manter a entrada de main apontando para a branch ativa; se atualizar cópias, manter conteúdo sincronizado.
 Se não houver acesso de escrita, dizer claramente que o registro remoto NÃO foi atualizado.
+
+## Último bloco concluído — 05/10/2026, auditoria de reprodução
+- Código: scripts/multilang/audit_pool_reproducibility.py (novo); validate_localization.py (import subprocess corrigido).
+- Relatório: docs/POOL_REPRODUCIBILITY_2026_10_05.json na branch feature/multilang-dub-30fps.
+- Fontes EN e ES: revisões fixadas confirmadas e arquivos usados sem alterações locais.
+- 340 diálogos importados e convertidos iguais às fontes/scripts; pools atuais reproduzidos byte a byte.
+- Conversor histórico f5cebc7 + fontes atuais: EN 33931 bytes, SHA-256 2e9e50557b9e339d561d507e3f40db675cca79ffcbaebf0048ba3e93d2e05735.
+- Normalização posterior das setas explica mudanças EN nos IDs 8,30,34,35,36 e aumento para 33955 bytes. Não explica hash histórico 819dba…; ES continua 39189 bytes sem mudança de câmera.
+- Comandos executados: python3 scripts/multilang/audit_pool_reproducibility.py; python3 scripts/multilang/validate_localization.py; python3 scripts/multilang/test_pregame_gate.py. Todos PASS em seus escopos; divergência histórica UNRESOLVED.
+- Não confundir manifesto de vozes validado com integração de dublagens: integração continua pendente.
+- Nenhum XEX novo gerado/liberado neste bloco.
+- Próxima ação concreta: localizar bytes/produtor do pool histórico da integração f5cebc7/58583ba (artefatos e logs), comparar os registros por diálogo. Não repetir checagem das revisões ou a comparação do conversor já documentadas. Se bytes não forem recuperáveis, registrar isso e validar independentemente codificação, controles, paginação e largura antes de considerar candidato.
+- Observação a verificar na validação independente: ativação troca somente ponteiro e mantém metadados de paginação v0.4; EN/ES trazem metadados de linhas distintos. Não afirmar erro de runtime sem teste, mas verificar respostas/páginas finais e limites de largura.
