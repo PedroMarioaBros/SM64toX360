@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-05",
+  "status": "STATIC_INTEGRATION_PASS",
+  "hardware_verified": false,
+  "reference_pe_sha256": "315498a8ca65cbff54d83b9654b9c6fe7fe2efa4f66ae7aee2dfeecddab04769",
+  "output_pe_sha256": "3138395a5f640790256cc9d2b5dac8d4b77529bfd1fe7e57bac39d922064494f",
+  "pools": {
+    "pt_br": {
+      "bytes": 26044,
+      "sha256": "0b913e5c728f3991c8885df8b4b262b9f68de54cce5b485e46fa101765a84c9a"
+    },
+    "es": {
+      "bytes": 39189,
+      "sha256": "bdccca4c514fdb0bd1c2e9aeeee29dbec92ff82dd0b6b6d63ee48e6320213744"
+    },
+    "en": {
+      "bytes": 33963,
+      "sha256": "f5d42834190af1a4e60d5e423302b2e2e6858843b20f6752db6513110d596054"
+    }
+  },
+  "pointers_validated": 510,
+  "unexpected_changes_outside_lang": 0,
+  "hook_old": "0x4bfc8321",
+  "hook_new": "0x482ef7d9",
+  "gate_sha256": "27005f5c6ed015e7bbc75263a125ccc21c2eab099a0a65411141fb3b999be3aa",
+  "note": "Layout successor; same gate, activation, glyphs and PT-BR as validated reference.",
+  "xex_sha256": "075f2ef231c583d7229ecd713f0c330e11ce65434dd1f5d415b73fcc544c1ee6",
+  "xex_bytes": 17182720,
+  "roundtrip_pe_byte_identical": true,
+  "release_class": "FIRST_HARDWARE_TEST_CANDIDATE",
+  "historical_pool_hashes_reproduced": false,
+  "historical_note": "Old pools not recovered; this successor is independently validated against pinned source imports, content preservation, v0.4 geometry, pool pointers and XEX roundtrip. Historical hash discrepancy remains traceability item, not asserted solved.",
+  "ptbr_original_dialogs_byte_identical": 170,
+  "canonical_lines_metadata_verified": 170
+}
