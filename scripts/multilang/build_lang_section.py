@@ -14,15 +14,18 @@ Layout inside .lang (big-endian metadata for PowerPC runtime):
   0x08  version
   0x0C  language count
   0x10  dialog count
-  0x14  flags
-  0x18  PT-BR pointer-table offset
-  0x1C  ES pointer-table offset
-  0x20  EN pointer-table offset
-  0x24  PT-BR pool offset
-  0x28  ES pool offset
-  0x2C  EN pool offset
-  0x30  used bytes
-  0x80  SHA-256 fingerprints for PT-BR / ES / EN pools
+  0x14  selector state (0=credits, 1=language, 2=done)
+  0x18  selected language (0=PT-BR, 1=ES, 2=EN)
+  0x1C  credits timer
+  0x20  PT-BR pointer-table offset
+  0x24  ES pointer-table offset
+  0x28  EN pointer-table offset
+  0x2C  PT-BR pool offset
+  0x30  ES pool offset
+  0x34  EN pool offset
+  0x38  used bytes
+  0x40..0x6C selector/credits text pointers
+  0x100 PT-BR pointer table (fixed for runtime ABI)
 """
 
 from __future__ import annotations
@@ -60,7 +63,10 @@ def main() -> None:
 
     payload = bytearray(LANG_SIZE)
     payload[0:8] = b"SM64LANG"
-    struct.pack_into(">IIII", payload, 0x08, 1, len(LANGUAGES), DIALOG_COUNT, 0)
+    # Version 2 introduces pregame selector state without moving the validated
+    # pointer tables at 0x100/0x3B0/0x660.
+    struct.pack_into(">III", payload, 0x08, 2, len(LANGUAGES), DIALOG_COUNT)
+    struct.pack_into(">III", payload, 0x14, 0, 0, 0)
 
     ptr_table_off: dict[str, int] = {}
     pool_off: dict[str, int] = {}
@@ -98,14 +104,58 @@ def main() -> None:
             struct.pack_into(">I", payload, ptr_table_off[lang] + row["id"] * 4, va)
 
     struct.pack_into(
-        ">IIIIIII", payload, 0x18,
+        ">IIIIIII", payload, 0x20,
         ptr_table_off["pt_br"], ptr_table_off["es"], ptr_table_off["en"],
         pool_off["pt_br"], pool_off["es"], pool_off["en"], cursor,
     )
 
-    for n, lang in enumerate(LANGUAGES):
-        pool = (args.dialogs_dir / lang / "dialogs.bin").read_bytes()
-        payload[0x80 + n * 32:0x80 + (n + 1) * 32] = hashlib.sha256(pool).digest()
+    # Pregame strings use only the stock US charmap plus glyph slots already
+    # installed and validated by this project (ê=0x65, ñ=0x42).
+    special = {" ": 0x9E, "-": 0x9F, "/": 0xD0, ":": 0xE6, ">": 0x53,
+               "ê": 0x65, "ñ": 0x42}
+    def enc_selector(text: str) -> bytes:
+        out = bytearray()
+        for ch in text:
+            if "0" <= ch <= "9":
+                out.append(ord(ch) - ord("0"))
+            elif "A" <= ch <= "Z":
+                out.append(ord(ch) - ord("A") + 0x0A)
+            elif "a" <= ch <= "z":
+                out.append(ord(ch) - ord("a") + 0x24)
+            elif ch in special:
+                out.append(special[ch])
+            else:
+                raise RuntimeError(f"unsupported selector char: {ch!r}")
+        out.append(0xFF)
+        return bytes(out)
+
+    selector_texts = [
+        "SUPER MARIO 64",
+        "NINTENDO 1996",
+        "XBOX 360 PORT: CONFUSIONRS",
+        "LOCALIZACAO PT-BR",
+        "EDICAO MULTILINGUE",
+        "PeterKleizoon - PMCN Studios",
+        "IDIOMA / LANGUAGE",
+        "Português",
+        "Español",
+        "English",
+        "A - OK",
+        ">",
+    ]
+    selector_ptrs = []
+    for text in selector_texts:
+        cursor = align(cursor, 4)
+        raw = enc_selector(text)
+        if cursor + len(raw) > LANG_SIZE:
+            raise RuntimeError(".lang overflow while adding selector strings")
+        payload[cursor:cursor + len(raw)] = raw
+        selector_ptrs.append(IMAGE_BASE + LANG_RVA + cursor)
+        cursor += len(raw)
+
+    for i, va in enumerate(selector_ptrs):
+        struct.pack_into(">I", payload, 0x40 + i * 4, va)
+    struct.pack_into(">I", payload, 0x38, cursor)
 
     # .lang lives beyond the canonical v0.4 image, outside its existing
     # runtime data/BSS. The newly appended range must be zero before use.
@@ -147,6 +197,13 @@ def main() -> None:
         "size_of_image": hex(size_of_image),
         "pointer_tables": {k: hex(v) for k, v in ptr_table_off.items()},
         "pools": pool_meta,
+        "selector": {
+            "state_offset": "0x14",
+            "selection_offset": "0x18",
+            "timer_offset": "0x1c",
+            "text_pointer_base": "0x40",
+            "text_count": 12,
+        },
     }
     if args.report:
         args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
