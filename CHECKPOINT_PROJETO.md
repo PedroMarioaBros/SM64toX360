@@ -342,3 +342,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Novo pacote SM64_DIAGNOSTICO_VISUAL_TEXTO_CONHECIDO.zip, Library libfile_b5feeed62fd081919728fe097e389d1a, XEX6f10b64bc82235d04a0469c9a58324f5fd9b6ac276a93d429ac317d292bd2dd1, PE71eaaf63519a8580d7b4ad6b7013f04ae7897ebc52cc51584e1d4afc303903f6, ZIP7715c09db480156e2290822af781e0d4b3d42b14210f9f2cd173a308654ad74e.
 - Usa o ponteiro de texto .lang+0x40 já aprovado no console, desenhado nas cinco posições da tela de seleção, sem ativar idioma nem depender dos textos PT/ES/EN. Após ~300 chamadas retorna ao script original. Round-trip exato; base TEST3/pulos/câmera/alpha preservados. Hardware pendente.
 - Se texto conhecido aparecer: problema anterior está nos ponteiros/strings específicos do seletor. Se não aparecer: investigar hook/estado/render da tela. Não afirmar causa antes do resultado.
+
+
+## 07/10/2026 — nova direção aprovada: seletor na tela pós-créditos
+- Pedro autorizou abandonar as tentativas de entrada antes da tela de crédito e não usar mais o hook pré-créditos como caminho do seletor.
+- Fluxo desejado: créditos universais intactos → tela atualmente equivalente a “Aperte Start” → mostrar Português / Español / English → D-pad seleciona → A confirma e executa o fluxo normal de Start/seleção de arquivo já aprovado.
+- Objetivo técnico: adaptar a rotina original da tela “Aperte Start”, aproveitando sua renderização e controles existentes, em vez de criar uma tela pré-jogo independente. A confirmação deve chamar a ativação dos 170 ponteiros antes de entrar no fluxo do jogo.
+- Nenhum executável foi gerado neste bloco. Próxima ação: localizar/mapear com evidência o endereço da rotina de título no XEX, validar seu contrato de retorno e só então construir candidato sobre a base TEST3/CREDITS_MENU_CORRIGIDO. Preservar 30FPS, PT, pulos/câmera, menu e saves.
