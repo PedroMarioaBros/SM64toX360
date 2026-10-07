@@ -291,3 +291,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Sem evidência de que créditos/seletor chegaram a aparecer; não atribuir falha a idioma ou save. Salvamento nativo dos registradores não resolveu sozinho. PASS CPU não representou GPU/hardware.
 - Comparação imediata: TEXTO_90 aprovado desenha uma string e volta automaticamente; gate completo desenha seis strings de créditos, lê controller e muda estado. Pointer global823C8990 contém82E47BB8 na imagem; hipótese de global nulo não sustentada por bytes iniciais, porém estado runtime ainda depende do console.
 - Próxima ação: diagnóstico limitado das seis strings de créditos com retorno automático em90quadros, sem controller/seletor/ativação, para separar carga/textos da lógica interativa. Não repetir TEXTO_90 aprovado nem afirmar causa exata.
+
+
+## 07/10/2026 — CREDITS_90 entregue para isolar seis linhas
+- SM64_DIAGNOSTICO_CREDITOS_90_QUADROS.zip, libfile_bbaee491069881918905f72222d15590.
+- XEX3d1d320befda19be5f3baa02c710b34d36624052a5d8e56c8c3bb5b0e64f0e72; ZIPdf62560e3b6fdacb74a8294c885b5faf156532f926c4a1b6bd3ed487ba9ac9d2; PEde0a93b1eabf2fe2f1e057721594bacb088dc7253385a02d42827a3d76db3592.
+- credits_probe_gate.py deriva do TEXTO_90 aprovado, substitui string única por seis strings/posições de créditos do gate. Timer90 retorna automaticamente ao original. Não lê controller, não muda estado de seleção e não ativa idioma. Gate244bytes, std/ld; pulos/câmera/30FPS/pools preservados.
+- CPU real render/texto sob pool/task sintéticos PASS0/89/90; roundtrip exato; só hookCD128/cave3BC900244bytes mudam contra TEST3. docs/CREDITS_PROBE_2026_10_07.json. Não é GPU/hardware; sem causa histórica comprovada.
+- Reprodução: credits_probe_gate.install(direct-jumps3.pe); xex2replace v0.4 credits-probe.pe credits-probe.xex basic; xex2ool basefile credits-probe.xex -o credits-probe-roundtrip.pe; test_render_probe.py credits-probe.pe0/89/90.
+- Próxima ação: Pedro testa sem botões, registra se créditos apareceram e se jogo abriu após~3s; aguardar10s se preto. Se passar, foco restante em lógica estado/controller e telas do seletor; se falhar, investigar seis strings/carga gráfica e limites reais do pool. Não afirmar causalidade definitiva por um único resultado. SELECTOR_TEST2 reprovado; não repetir como se aprovado.
