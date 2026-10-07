@@ -10,3 +10,6 @@ Próximo teste entregue: SM64_DIAGNOSTICO_VISUAL_TEXTO_CONHECIDO.zip, libfile_b5
 Não declarar seletor aprovado. Interface completa/dublagens pendentes; Native60 fora desta etapa.
 
 [Checkpoint canônico](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
+
+
+Nova direção aprovada por Pedro: remover o caminho pré-créditos. Mapear a rotina original pós-créditos/Press Start e inserir ali Português/Español/English; D-pad navega e A confirma, chamando ativação antes do fluxo normal. Nenhum XEX novo ainda.
