@@ -19,10 +19,10 @@ Não misturar Native60, não substituir PT-BR pela tradução pública BMatSanto
 Nenhum teste estático ou em Unicorn equivale a funcionamento comprovado no Xbox.
 
 ## Onde estamos
-STATUS: FIRST_HARDWARE_TEST_CANDIDATE. hardware_verified: false.
+STATUS: HARDWARE_BOOT_FAILURE_DIAGNOSTIC. hardware_verified: false.
 Novo candidato SELECTOR_TEST1 reconstruído, validado e disponibilizado para primeiro teste no console.
 Os hashes históricos EN/ES seguem sem reprodução; essa pendência de rastreabilidade não foi declarada resolvida. O novo candidato foi validado independentemente com fontes fixadas, layout, ponteiros, preservação PT e round-trip.
-Próximo requisito funcional: teste real do seletor pelo Pedro; corrigir eventual falha antes de integrar vozes.
+Teste real de 06/10: SELECTOR_TEST1 ficou em tela preta; não abriu o jogo e não houve crash aparente. O seletor não foi alcançado. Próximo requisito: isolar expansão XEX versus gate.
 Menus/cursos/estrelas completos e dublagens PT/ES ainda pendentes.
 Não usar percentuais aproximados de conversa como evidência de conclusão.
 
@@ -84,7 +84,10 @@ Se bytes antigos não estiverem disponíveis, declarar a limitação e validar a
 - [x] Revalidar 510 ponteiros, preservação PT, gate e regiões alteradas; permissões mantidas da integração validada.
 - [x] Repetir round-trip e registrar hashes completos e comandos reproduzíveis.
 - [x] Disponibilizar SELECTOR_TEST1 após validação independente; hardware ainda não verificado.
-- [ ] Teste Pedro no Xbox: boot → créditos → cada idioma → primeira tela/menu → diálogos → save existente/novo → salvar/sair; registrar feedback real.
+- [x] Teste Pedro no Xbox: SELECTOR_TEST1 falhou no boot com tela preta, sem crash aparente.
+- [ ] Testar diagnóstico NOHOOK: expansão .lang sem hook.
+- [ ] Se NOHOOK abrir, testar PASSTHROUGH: hook presente, desvio imediato ao original.
+- [ ] Corrigir causa do boot e só então repetir seletor.
 - [ ] Corrigir regressões e completar menus, cursos, estrelas, avisos e controles PT/ES/EN.
 - [ ] Integrar e testar vozes PT-BR.
 - [ ] Integrar e testar vozes ES; preservar EN original.
@@ -147,3 +150,15 @@ Este bloco substitui as próximas ações antigas de auditoria como direção op
 - Pesquisa de títulos SM64 não localizou arquivo multilíngue histórico preservado. Consulta de workflow f5cebc7 retornou vazia, porém é limitada a PR pelo conector; não prova inexistência de workflows push. Rastreabilidade antiga segue aberta; não afirmar resolução.
 - Próxima ação: Pedro testa créditos/seletor, cada idioma (reiniciando executável entre escolhas), primeiro diálogo, glifos ES, saves e salvar/sair. Registrar resultados reais antes de alterar status hardware_verified.
 - Se travar: identificar tela exata, idioma e evidência; corrigir regressão. Se passar: completar menus/cursos/estrelas, depois vozes PT/ES. Menus atuais podem continuar em PT-BR; vozes novas não integradas; Native60 fora desta etapa.
+
+
+## Estado mais recente — 06/10/2026, falha de boot no console
+- Resultado informado pelo Pedro: ao executar SELECTOR_TEST1, tela preta permanente; o jogo não abre e não houve crash do console.
+- Não há evidência de que o gate, créditos ou seletor tenham sido executados. Não classificar como falha de tradução.
+- XEX testado: SHA-256 075f2ef231c583d7229ecd713f0c330e11ce65434dd1f5d415b73fcc544c1ee6.
+- Diagnóstico criado: NOHOOK, seção .lang expandida sem hook; ZIP SHA-256 4cb98f47a87695c7bba7688a062840fe23f1570b141cd2267d7763b345d6bcce; default.xex SHA-256 594c45a5310cdbec90f8a330f8a522faae3d132b412c31337c44d17fa1eb3600; Library ref libfile_d114b41e61f881919eedca1b4a946f36.
+- Diagnóstico criado: PASSTHROUGH, hook presente mas desviado para level_script_execute original; ZIP SHA-256 a4163ccc3d19657288318a027baebcaf82806cd9b2d87dd45e274155f02f9500; default.xex SHA-256 de7202497da5f283109a78fd562a405528649370599e5f28541b8de06449d9b2; Library ref libfile_c9fb7e29925c819184cc82997ac6b0fd.
+- Se NOHOOK falhar: provável problema de reconstrução/expansão XEX, descritores de página, assinatura ou seção PE; não continuar depurando gate.
+- Se NOHOOK abrir e PASSTHROUGH abrir: reconstrução/hook básico validam; gate/renderização é causa provável. Se PASSTHROUGH falhar e NOHOOK abrir: patch da instrução/hook é causa provável.
+- Não entregar novo seletor até um diagnóstico abrir no console.
+- Próxima sessão deve ler este bloco e não repetir o primeiro candidato.
