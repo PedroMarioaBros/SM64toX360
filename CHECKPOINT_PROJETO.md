@@ -378,3 +378,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Erro de estratégia: este diagnóstico ainda usava o hook pré-créditos/level_script_execute. Ele foi criado apenas como investigação, mas contrariou a arquitetura pós-créditos já aprovada e não deveria ter sido entregue como próximo passo do produto.
 - Linha de probes pré-créditos encerrada: SELECTOR_TEST2, NAVEGATION_PROBE, VISUAL_PROBE e PERSISTENT_SELECTOR_PROBE não serão usados como base de implementação.
 - Próxima ação correta: localizar e alterar a rotina original da tela pós-créditos/Press Start. Nenhum novo probe pré-créditos deve ser gerado.
+
+
+## 07/10/2026 — TITLE_SELECTOR_TEST1 gerado no fluxo Press Start original
+- Mapeamento estático encontrou a rotina original pós-créditos em VA 0x820D5F48: lê estado da introdução, desenha a tela, lê controller, retorna código que leva ao file select. O hook pré-créditos 0x820CD128 permaneceu original e intocado.
+- Candidato SM64_30FPS_SELECTOR_POST_CREDITOS_TEST1.zip, Library libfile_4fd70c0f6b908191bcb92c1594d2b698. XEX ff03bdf4444330c8759f53b832a9e8f39d9329bbc4b66e83a212d3d10775344c; ZIP 91c75fb09f976fe2b5f77342d71396c54196cc9d222782771189b83603bd3d48; PE 9e0ec3d7dfd0c54b7f6741ee7f30340d2d88511ec597d8c1ccb48771f36f5946.
+- Patch: entrada 0x820D5F48 desvia para cave 0x823BC900 (252 bytes); desenha três ponteiros .lang (ES/PT/EN atuais), D-pad muda seleção, A chama ativação 170 ponteiros em 0x823BC800 e retorna código 100 para file select. Créditos personalizados ainda não integrados neste TEST1.
+- Build/roundtrip PASS; .lang/PT/pulos/câmera e hook pré-créditos preservados byte a byte. Hardware pendente; não afirmar funcionamento antes do teste Xbox.
+- Próxima ação: Pedro testa créditos universais, tela seletor pós-créditos, D-pad/A, menu/save. Se funcionar, integrar painel de créditos personalizados multilíngues antes do file select; se falhar, localizar tela/retorno no fluxo original.
