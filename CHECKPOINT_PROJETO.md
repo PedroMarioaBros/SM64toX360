@@ -236,3 +236,16 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Build round-trip exato e regiões PASS; fonte direct_jumps.py/test_direct_jumps.py atualizada e relatório DIRECT_JUMPS_TEST3_BUILD_2026_10_07.json publicado.
 - Próxima ação concreta: Pedro testa TEST3 (B/Y pulos, Y sem giro, analógico somente câmera em todas direções, A-A-A/X/save). Registrar resultado antes de aprovar atalhos. Não pedir repetir TEST1/TEST2.
 - Base continua30FPS/PT preservado; seletor continua desativado e sua tela preta NÃO corrigida. Após validar pulos, retomar gate/render. Interface completa/dublagens seguem pendentes.
+
+
+## Estado atual — 07/10/2026, TEST3 aprovado; diagnóstico de render entregue
+- Feedback Pedro: “Agora sim, funcionou perfeitamente”. Aprovados no console os pulos A/B/Y e a separação da câmera no TEST3. Não inferir áudio/vozes/saves completos desse feedback.
+- Preservar código e binário TEST3 SHA b90ae1d1be953c1f817e9c64286c67da855778ac7c671098a3cd8495d8b6afd9. Não voltar a bits da câmera nem repetir esses diagnósticos.
+- A execução do TEST3 demonstra acesso de leitura/escrita à .lang pelos comandos; isso reduz a hipótese de seção inacessível para a tela preta do seletor.
+- Probe CPU antigo com setup de pool e task gráfica sintéticos completou um quadro de gate/texto (62653 instruções). Isso supera o bloqueio artificial em 0x820CE6D8 registrado antes; NÃO é GPU/hardware nem prova causa resolvida.
+- Novo diagnóstico RENDER_90: preserva todos os bytes de TEST3 exceto hook 0x820CD128 e gate 0x823BC900 (108 bytes). Salva/restaura r30/r31 completos via std/ld. Executa init_rcp/render_game/end_master_display_list/alloc_display_list por90quadros sem texto/ortho/ativação; depois delega ao script original automaticamente. Não é seletor final.
+- CPU PASS timers0→1 e89→90 com rotinas reais de renderização sob memória sintética; timer90 delega original (original stubado no teste). PPC64/floor/ceil modelados em Unicorn32; sem validação GPU. Scripts render_probe_gate.py/test_render_probe.py publicados.
+- Pacote SM64_DIAGNOSTICO_RENDER_90_QUADROS.zip, Library libfile_7d57c3979440819192ee4d9ac242c23b.
+- XEX SHA-256 8a40b7bcddb0136072fa8fb0d8bb6435338498bcc66ab49501bcb25215c3df4e; ZIP738ea4f9e82865ca6d5f6e828572a56fe36558d126ef61400b973409cedb706a; PE5bc063d3f58fdca42aebc055541c3566ffea51f5973cf775778c521e50597f05.
+- Round-trip exato e regiões PASS; direct jumps TEST3 preservados. Relatório docs/RENDER_PROBE_2026_10_07.json.
+- Próxima ação: Pedro executa diagnóstico em pasta separada e espera cerca3s sem botões. Registrar se jogo abre automaticamente ou permanece preto. Se abrir: investigar ortho/fontes/textos/estado específico do gate original. Se falhar: investigar render básico no contexto inicial e ABI; não afirmar causa sem evidência. Seletor ainda NÃO corrigido. Base30FPS; dublagens/interface completas pendentes.
