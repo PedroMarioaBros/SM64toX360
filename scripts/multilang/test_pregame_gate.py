@@ -62,6 +62,12 @@ def run(state, selection=0, timer=0, buttons=0):
     def hook(uc,address,size,user):
         if address==STOP:
             uc.emu_stop(); return
+        w=int.from_bytes(uc.mem_read(address,4),'big');op=w>>26;rt=(w>>21)&31;ra=(w>>16)&31;ds=w&0xfffc;ds=ds-0x10000 if ds&0x8000 else ds
+        if op in (58,62) and w&3==0:
+            addr=(uc.reg_read(pc.UC_PPC_REG_0+ra)+ds)&0xffffffff
+            if op==62:uc.mem_write(addr,struct.pack('>Q',uc.reg_read(pc.UC_PPC_REG_0+rt)))
+            else:uc.reg_write(pc.UC_PPC_REG_0+rt,int.from_bytes(uc.mem_read(addr,8),'big')&0xffffffff)
+            uc.reg_write(pc.UC_PPC_REG_PC,address+4);return
         if address not in EXTERNALS:
             return
         kind=EXTERNALS[address]
@@ -73,10 +79,15 @@ def run(state, selection=0, timer=0, buttons=0):
         uc.reg_write(pc.UC_PPC_REG_PC,uc.reg_read(LR))
 
     uc.hook_add(UC_HOOK_CODE,hook)
+    uc.reg_write(pc.UC_PPC_REG_30,0x12345678)
+    uc.reg_write(pc.UC_PPC_REG_31,0x87654321)
     uc.reg_write(SP,STACK+0xF000)
     uc.reg_write(R3,LEVEL_PTR)
     uc.reg_write(LR,STOP)
     uc.emu_start(GATE_VA,STOP+4,count=5000)
+    assert uc.reg_read(SP)==STACK+0xF000
+    assert uc.reg_read(pc.UC_PPC_REG_30)==0x12345678
+    assert uc.reg_read(pc.UC_PPC_REG_31)==0x87654321
     return {
         "state":get32(uc,LANG_BASE+0x14),
         "selection":get32(uc,LANG_BASE+0x18),
