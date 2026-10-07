@@ -1,0 +1,12 @@
+{
+  "package": "SM64_TESTE_PULOS_ABY_30FPS_TEST2.zip",
+  "zip_sha256": "92dbc6b7a3ae43c3385c5d3992364359fa846f6ff8478c4ae40d99f4ea614be6",
+  "xex_sha256": "ecc6e500680dbf87e47dfae7b44c538cf9eeb8b10e7dad17bf26ff92358b5ebc",
+  "pe_sha256": "362460c4d94db7408225453cc728d236131d6ba233c37940e523b95c0511f3a2",
+  "roundtrip_exact": true,
+  "region_audit": "PASS",
+  "hardware_verified": false,
+  "failure_fix": "0x820CCC10 removes old private bits 0xC0; B=0x01 Y=0x02 survive real filter",
+  "selector": "disabled; unresolved",
+  "fps": 30
+}
