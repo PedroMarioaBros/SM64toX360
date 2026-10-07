@@ -1,0 +1,61 @@
+{
+  "status": "CPU/build PASS; Xbox pending",
+  "gate_bytes": 244,
+  "regions": [
+    [
+      839976,
+      839980
+    ],
+    [
+      3918080,
+      3918324
+    ]
+  ],
+  "roundtrip_exact": true,
+  "hashes": {
+    "pe": "de0a93b1eabf2fe2f1e057721594bacb088dc7253385a02d42827a3d76db3592",
+    "xex": "3d1d320befda19be5f3baa02c710b34d36624052a5d8e56c8c3bb5b0e64f0e72",
+    "zip": "df62560e3b6fdacb74a8294c885b5faf156532f926c4a1b6bd3ed487ba9ac9d2"
+  },
+  "cpu": [
+    {
+      "status": "PASS",
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 62638,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "calls_count": {
+        "0x820ce7b0": 1,
+        "0x820fb8a0": 125,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "timer_in": 89,
+      "timer_out": 90,
+      "instructions": 62638,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "calls_count": {
+        "0x820ce7b0": 1,
+        "0x820fb8a0": 125,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "timer_in": 90,
+      "timer_out": 90,
+      "instructions": 23,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "calls_count": {
+        "original": 1
+      }
+    }
+  ],
+  "purpose": "isolate six credit strings versus interaction; bounded90frames without controller/activation",
+  "scope": "CPU with synthetic graphics setup; no GPU validation",
+  "previous": "SELECTOR_TEST2 failed black screen; TEXT90 approved"
+}
