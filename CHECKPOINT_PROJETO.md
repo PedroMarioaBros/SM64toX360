@@ -444,3 +444,9 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - CRC do patch validado. ROM fonte exigida: 8.388.608 bytes, CRC32 3CE60709; alvo 9.090.352 bytes, CRC32 AACB4011. Leia-me indica Super Mario 64 (U) [!].z64.
 - Análise de proveniência reconstruiu 1.718.881 bytes sem fonte; 7.371.471 bytes permanecem dependentes da fonte. Dados parciais NÃO são ROM funcional; nenhum banco de voz identificado/decodificado, nenhum XEX gerado.
 - Código: scripts/multilang/analyze_bps_partial.py; relatório docs/PTBR_BPS_ANALYSIS_2026_10_07.json. Próxima ação: obter do usuário ROM compatível ou já patchada, validar CRC, aplicar BPS e extrair bancos de áudio. Preservar tradução própria e não publicar ROM/áudio no repositório público. Crawling vertical segue pendente.
+
+
+## 07/10/2026 — busca alternativa por vozes PT-BR
+- Pedro informou não possuir ROM e autorizou nova busca. Consultados site do autor bmatsantos.github.io, repositorio BMatSantos/sm64-ptbr, Romhack Plaza e buscas por samples/audio/releases.
+- Nenhum pacote de vozes separadas foi localizado nesta busca. README do autor exige ROM previa para extracao; site distribui patches. Acesso web direto a releases falhou, portanto ausencia de release nao foi comprovada.
+- Proxima alternativa tecnica: localizar tabelas/bancos do patch e testar cobertura byte a byte das amostras, independentemente da cobertura da ROM inteira. Os 7.371.471 bytes desconhecidos da ROM total NAO provam que as vozes sejam irrecuperaveis. Ainda nao ha vozes decodificadas nem XEX novo.
