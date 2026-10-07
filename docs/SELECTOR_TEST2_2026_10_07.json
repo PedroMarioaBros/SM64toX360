@@ -1,0 +1,204 @@
+{
+  "status": "BUILD/CPU PASS; Xbox pending",
+  "base": "TEST3 jumps and camera hardware approved",
+  "pe_sha256": "1a083e79f9cc0b7e3b1aec4c9097308cce71105bab6bf3d6be4370b9f0db46cb",
+  "xex_sha256": "5b64a0d248fca3201d4a512dd118b7191f4cf5f115dc9b2cf272414ec36a89f2",
+  "zip_sha256": "d7a44fa6fd4ca98380cedde261fb1dfa6f6e384db8a09fa3b6dca6802e70ed55",
+  "regions": [
+    [
+      839976,
+      839980
+    ],
+    [
+      3917824,
+      3917912
+    ],
+    [
+      3918080,
+      3918676
+    ]
+  ],
+  "roundtrip_exact": true,
+  "lang_section_byte_identical": true,
+  "cpu_cases": [
+    {
+      "status": "PASS",
+      "state_in": 0,
+      "state_out": 0,
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 62653,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 125,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 0,
+      "state_out": 1,
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 44,
+      "timer_out": 0,
+      "instructions": 62659,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 125,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 0,
+      "state_out": 1,
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 32768,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 62656,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 125,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 1,
+      "selection_in": 0,
+      "selection_out": 2,
+      "buttons": 2048,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 28425,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 1,
+      "selection_in": 2,
+      "selection_out": 0,
+      "buttons": 1024,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 28430,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 1,
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 28424,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 2,
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 32768,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 29291,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 2,
+      "selection_in": 1,
+      "selection_out": 1,
+      "buttons": 32768,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 29295,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 1,
+      "state_out": 2,
+      "selection_in": 2,
+      "selection_out": 2,
+      "buttons": 32768,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 29296,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x82099498": 1,
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "state_in": 2,
+      "state_out": 2,
+      "selection_in": 2,
+      "selection_out": 2,
+      "buttons": 0,
+      "timer_in": 0,
+      "timer_out": 0,
+      "instructions": 19,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "original": 1
+      }
+    }
+  ],
+  "scope": "actual CPU render, ortho, text, activation; synthetic graphics memory; PPC64/floor/ceil modeled; original interpreter stubbed; no GPU proof",
+  "remaining": "full menus/courses/stars, PT/ES voices, console selector validation"
+}
