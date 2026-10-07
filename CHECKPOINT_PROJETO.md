@@ -435,3 +435,9 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Não apagar automaticamente nem distribuir no jogo; pode ser removido manualmente sem afetar save. Evitar BACK+START nos testes de produto ou remover o diagnóstico em uma futura build.
 - Relatório: `docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md`. Nenhum XEX gerado nesta análise.
 - Próxima ação permanece: cross-reference local com fluxo de registradores para wall-crawl e busca de pacote de amostras de dublagem; não reutilizar probes de seletor descartados.
+
+
+## 07/10/2026 — primeiro wall-crawl restrito a paredes verticais
+- Decisão operacional: começar somente com parede vertical. Analógico esquerdo move na parede, botão de agachar mantém aderência, soltar faz cair; analógico direito/câmera e A/B/Y permanecem intocados.
+- Inclinações, tetos e transições só serão avaliados após estabilidade. Critérios incluem menu/save e retorno de estrela sem regressão.
+- Especificação publicada em docs/WALL_CRAWL_WALL_ONLY_SCOPE_2026_10_07.md. Nenhum XEX alterado; 665 candidatos anteriores continuam apenas inventário. Próxima ação: fluxo de registradores/chamadas de colisão + harness estático.
