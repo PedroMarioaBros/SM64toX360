@@ -9,3 +9,7 @@ Detalhes e histórico no checkpoint da branch ativa: https://github.com/PedroMar
 
 
 Atualização: PASSTHROUGH2 corrigido, reconstruído e verificado; disponível para teste do Pedro. Próxima ação atual: registrar se PASSTHROUGH2 abre diretamente o jogo ou apresenta tela preta. Hashes e recuperação no último bloco do checkpoint. Não testar PASSTHROUGH antigo.
+
+
+### Bloco atual — 07/10/2026, análise gate e pulos
+PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foco gate/render e atalhos de salto A/B/Y autorizados. Relatório técnico: docs/GATE_AND_DIRECT_JUMPS_2026_10_07.md na branch feature/multilang-dub-30fps. Contém endereços confirmados, limites do probe de render real, mapper e set_mario_action, verificações faltantes e próximos passos concretos. Seletor ainda não corrigido; pulos ainda não implementados. Nenhum novo XEX entregue neste bloco. Próximo: completar inicialização gráfica do probe e localizar ponto seguro de consumo dos atalhos de salto; não repetir testes de boot já aprovados.
