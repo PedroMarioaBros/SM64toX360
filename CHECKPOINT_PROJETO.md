@@ -273,3 +273,14 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Render básico e diagnóstico com ortho/texto agora passaram no Xbox. Não repetir esses diagnósticos. A causa exata do SELECTOR_TEST1 histórico não foi demonstrada; std/ld e render reduzido diferem do gate antigo.
 - Próxima ação: preparar candidato de seletor completo PT/ES/EN sobre base TEST3, mantendo ABI com r30/r31 completos; validar créditos, D-pad/A, ativação e retorno ao jogo, preservação dos pulos/câmera/PT, round-trip e regiões alteradas. Disponibilizar novo candidato para teste real; seletor completo ainda NÃO aprovado. Interface completa e vozes PT/ES continuam pendentes.
 - Esta atualização registra resultado de hardware; nenhum novo executável foi gerado neste bloco.
+
+
+## 07/10/2026 — SELECTOR_TEST2 entregue (seletor completo; conteúdo ainda parcial)
+- Pacote SM64_30FPS_MULTILANG_SELECTOR_TEST2.zip, persistente libfile_eb394821aec481919e5f5a54aa980f39.
+- XEX SHA2565b64a0d248fca3201d4a512dd118b7191f4cf5f115dc9b2cf272414ec36a89f2; ZIPd7a44fa6fd4ca98380cedde261fb1dfa6f6e384db8a09fa3b6dca6802e70ed55; PE1a083e79f9cc0b7e3b1aec4c9097308cce71105bab6bf3d6be4370b9f0db46cb.
+- Base direct-jumps3.pe TEST3 aprovada. Mudanças somente hookCD128, ativação3BC800(88bytes), gate3BC900(596bytes). .lang/PT/pools/patches pulos e câmera byte-idênticos à base. Gate usa std/ld r30/r31 offsets80/88, evitando truncamento nativo. Causa histórica exata da tela preta não demonstrada; este é candidato para hardware.
+- Créditos45quadros (~1,5s), A adianta; D-pad cima/baixo navega PT/ES/EN, A ativa170ponteiros e estado2 retorna ao script original. Não há timeout que escolha idioma automaticamente.
+- PASS local: test_pregame_gate.py (externals stubados), test_language_activation.py; test_selector_native_render.py dez casos com render/ortho/print/ativação reais e pool/task sintéticos, original interpreter stubado. Preserva SP/r30/r31 no teste de estados; confirma170ponteiros por idioma no teste integrado. Não é prova GPU/console.
+- Roundtrip XEX→PE exato e regiões permitidas conferidas. Relatório docs/SELECTOR_TEST2_2026_10_07.json, código e harness publicados e verificados.
+- Reprodução: instalar pregame_gate.build em3BC900 e language_activation.build em3BC800 de direct-jumps3.pe (caves vazias), patchCD128=482EF7D9; xex2replace basev0.4 selector-test2.pe selector-test2.xex basic; xex2ool basefile selector-test2.xex -o selector-test2-roundtrip.pe; comparar bytes.
+- Próxima ação: Pedro testa créditos/seletor, navegação/A, PT primeiro e continuidade save, depois reinicia executável para ES/EN e confere diálogo/placa. Registrar tela exata em caso de falha. Não repetir diagnósticos aprovados. Menus/cursos/estrelas completos e vozes PT/ES continuam pendentes; não declarar edição final.
