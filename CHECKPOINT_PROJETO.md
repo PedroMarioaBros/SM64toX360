@@ -386,3 +386,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Patch: entrada 0x820D5F48 desvia para cave 0x823BC900 (252 bytes); desenha três ponteiros .lang (ES/PT/EN atuais), D-pad muda seleção, A chama ativação 170 ponteiros em 0x823BC800 e retorna código 100 para file select. Créditos personalizados ainda não integrados neste TEST1.
 - Build/roundtrip PASS; .lang/PT/pulos/câmera e hook pré-créditos preservados byte a byte. Hardware pendente; não afirmar funcionamento antes do teste Xbox.
 - Próxima ação: Pedro testa créditos universais, tela seletor pós-créditos, D-pad/A, menu/save. Se funcionar, integrar painel de créditos personalizados multilíngues antes do file select; se falhar, localizar tela/retorno no fluxo original.
+
+
+## 07/10/2026 — TITLE_SELECTOR_TEST1 reprovado no Xbox (07/10, 04:10 BRT)
+- Feedback Pedro: nenhuma mudança visível na tela de créditos/Press Start; fluxo original entrou no menu e no jogo. Após obter uma estrela e retornar ao castelo, antes das opções de salvar, o jogo travou e exigiu reset do console.
+- TITLE_SELECTOR_TEST1 NÃO aprovado e retirado da linha de testes. O patch em 0x820D5F48 não demonstrou ser a rotina correta de Press Start; não reutilizar esse endereço como se estivesse validado. A regressão tardia indica corrupção/contrato incompatível, mesmo com boot inicial normal.
+- Não atribuir a causa exata sem análise adicional. Preservar como evidência: sem seletor, crash após retorno de estrela. Não pedir repetição do mesmo pacote.
+- Próxima ação: voltar ao XEX original TEST3/CREDITS_MENU_CORRIGIDO como base; localizar a verdadeira função de título por cross-reference de `lvl_intro_update`/`intro_regular` e validar contrato de retorno antes de qualquer novo patch. Nenhum novo executável até essa confirmação.
