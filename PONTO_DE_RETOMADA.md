@@ -1,10 +1,12 @@
 # Ponto de retomada — leia primeiro
 Branch ativa feature/multilang-dub-30fps; base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md. Atualize após resultados/antes de encerrar; publique e verifique.
 
-07/10/2026: diagnóstico CRÉDITOS_MENU_CORRIGIDO aprovado no Xbox: jogo abriu, textos/informações do menu reapareceram, save carregou normalmente. Preservação alpha por quadro aprovada; não repetir esse teste. Último pacote SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip, libfile_ec3a76d126b88191a9f71e15d00fdf8b. Hashes/reprodução no checkpoint.
+Aprovados no Xbox: pulos TEST3/câmera, NOHOOK/PASSTHROUGH2, RENDER90, TEXTO90 e CREDITS_MENU_CORRIGIDO (menu/textos e save). Preserve tudo.
 
-Pulos TEST3/câmera e diagnósticos de boot preservados. SELECTOR_TEST2 permanece reprovado: tela preta sem crash. Não atribuir sua falha à regressão alpha, que tinha outro caminho.
+SELECTOR_TEST2 reprovado: tela preta sem crash. Não repetir. Correção alpha do menu foi validada, mas não explica o seletor completo.
 
-Próxima ação: isolar lógica estado/controller/tela seletor sobre render/alpha aprovado; diagnóstico limitado com retorno automático ao jogo. Separar navegação/A de ativação de170ponteiros e registrar evidências. Não declarar seletor corrigido sem hardware. Interface completa/dublagens pendentes; Native60 fora desta etapa.
+Próximo teste: SM64_DIAGNOSTICO_NAVEGACAO_IDIOMAS.zip, libfile_cada55ab9c508191ab463180bb545587. Deve mostrar Português/Español/English, responder ao direcional e A, e abrir automaticamente após ~10s. Não ativa idioma; continua PT. Hardware pendente. Hashes/reprodução no último bloco do checkpoint.
+
+Após o retorno: se tela/controle passarem, integrar ativação em etapa separada; se falhar, localizar exatamente tela, controle ou retorno. Não declarar seletor final sem teste real. Interface completa/dublagens pendentes; Native60 fora desta etapa.
 
 [Checkpoint canônico](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
