@@ -188,3 +188,11 @@ Este bloco substitui as próximas ações antigas de auditoria como direção op
 - Hook BL em 0x820CD128 confirmado para 0x823BC900; branch na cave confirmado para original 0x82095448. Round-trip XEX → PE byte-idêntico, 17170432 bytes.
 - Reprodução: passthrough.pe anterior com somente hook 0xCD128 substituído por 482EF7D9; xex2replace base-v0.4 passthrough2.pe passthrough2.xex basic; xex2ool basefile passthrough2.xex -o passthrough2-roundtrip.pe; comparação exata e destinos de branch verificados.
 - Próxima ação atual: Pedro testa PASSTHROUGH2 em pasta separada. Deve abrir jogo diretamente sem seletor; registrar abriu/tela preta. Se abrir, investigar gate/render; se falhar, investigar execução do hook/cave. Não repetir NOHOOK. Seletor continua não validado.
+
+
+## 07/10/2026 — PASSTHROUGH2 abriu; pedido de pulos A/B/Y
+- Pedro confirmou PASSTHROUGH2 abriu o jogo no Xbox. Desvio para cave e retorno imediato ao original passaram no boot; seletor permanece sem validação.
+- Próxima investigação: gate, acesso ao estado .lang e chamadas reais de renderização. Harness anterior simula essas chamadas; não prova seu funcionamento.
+- Ajuste solicitado e autorizado para próxima versão de teste: A mantém pulo normal e sequência original de três pulos; B aciona diretamente segundo pulo mesmo parado, sem A anterior; Y aciona diretamente terceiro pulo mesmo parado, sem dois pulos anteriores. Preservar movimento/altura/animação desses saltos. Remover conflito existente de Y com sombras/FPS se presente; base segue 30 FPS. Ainda NÃO implementado.
+- Mapper confirmado no código recuperado: função 0x82165998; A Xbox → bit 0x8000 SM64; X → ataque 0x4000; B não mapeado; Y alterna skip_decals. Não confundir B físico Xbox com B do N64 (X Xbox).
+- Sessão iniciada: análise real do binário com Capstone. Chamadas init_rcp/render_game/ortho/print_fade conferidas em seus endereços; causa da tela preta ainda não determinada. Não declarar correção baseada apenas no boot dos diagnósticos.
