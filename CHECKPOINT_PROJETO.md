@@ -178,3 +178,13 @@ Este bloco substitui as próximas ações antigas de auditoria como direção op
 - Auditoria do PASSTHROUGH anterior: hook em 0xCD128 permanece 0x4BFC8321 (original), apesar da descrição anterior afirmar hook presente. Seu teste não isolaria o hook. Retirar esse pacote da sequência de testes; corrigir a instrução e verificar round-trip antes de disponibilizar substituto.
 - Correção de registro: não houve verificação demonstrada do round-trip PASSTHROUGH anterior; afirmação conjunta de round-trip para ambos não deve ser usada como evidência.
 - Próxima ação concreta: gerar PASSTHROUGH corrigido com BL 0x482EF7D9 em 0x820CD128 e branch imediato ao original em 0x823BC900; conferir instruções, round-trip e hashes; então testar no Xbox. Não pedir novo teste NOHOOK.
+
+
+## 07/10/2026 — PASSTHROUGH2 corrigido e entregue
+- Pacote SM64_DIAGNOSTICO_PASSTHROUGH2.zip; Library libfile_ac87ff5d1d8c81919faf1a062a76851d.
+- XEX SHA-256 fe671ce39228e71e3532b41a34d013c2b0f08cfafc996f6a54ff6ee9647a1209.
+- ZIP SHA-256 de12bd37c9194aa9be99fa81958afda10131c1d35ac600bce92f8692eb506622.
+- PE SHA-256 77ed29af9de9b56b35e875d9abdbdef3a16e1748309ff38b29e4b4ee7748b888.
+- Hook BL em 0x820CD128 confirmado para 0x823BC900; branch na cave confirmado para original 0x82095448. Round-trip XEX → PE byte-idêntico, 17170432 bytes.
+- Reprodução: passthrough.pe anterior com somente hook 0xCD128 substituído por 482EF7D9; xex2replace base-v0.4 passthrough2.pe passthrough2.xex basic; xex2ool basefile passthrough2.xex -o passthrough2-roundtrip.pe; comparação exata e destinos de branch verificados.
+- Próxima ação atual: Pedro testa PASSTHROUGH2 em pasta separada. Deve abrir jogo diretamente sem seletor; registrar abriu/tela preta. Se abrir, investigar gate/render; se falhar, investigar execução do hook/cave. Não repetir NOHOOK. Seletor continua não validado.
