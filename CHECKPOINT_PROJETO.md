@@ -255,3 +255,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Feedback: “Sim, funcionou perfeitamente. Tá tudo ok. Podemos prosseguir.” RENDER_90 XEX8a40b7bcddb0136072fa8fb0d8bb6435338498bcc66ab49501bcb25215c3df4e abriu o jogo no console.
 - Validado o diagnóstico de render básico com retorno automático ao jogo, junto aos pulos TEST3 preservados. Não valida ainda texto, seleção/ativação de idioma ou dublagem.
 - Próxima ação autorizada: acrescentar ortho e um texto ao diagnóstico de90quadros; manter retorno automático para evitar dependência dos comandos do seletor. Preservar ABI com r30/r31 completos. Resultado pode isolar esse caminho, não identificar sozinho a causa histórica.
+
+
+## 07/10/2026 — diagnóstico TEXTO_90 entregue após aprovação RENDER_90
+- Pacote SM64_DIAGNOSTICO_TEXTO_90_QUADROS.zip; referência persistente libfile_8f86562b31648191b882466459d31f2e.
+- XEX SHA2563bba6aba7358b09d9561a76d86db08987200dde085df7107e441841487c360eb; ZIPe0436a8c56b56a86df71629c1c37f05df50a75b1c4c86d0a055d527db81935f0; PE533ba3e426ca2a154342580cb8ebbbda82319e1e4dff87d8210b689ee0108363.
+- Gate164bytes, r30/r31 std/ld, mesmo render básico aprovado com ortho + print_generic_string_fade para texto .lang+40 (SUPER MARIO 64). Timer90 retorna automaticamente ao script original e restaura fade. Sem seletor/ativação.
+- CPU rotinas reais com memória sintética PASS timers0,89,90; roundtrip exato; só hookCD128/cave3BC900 alterados contra TEST3. Não prova GPU/hardware. docs/TEXT_PROBE_2026_10_07.json e scripts/multilang/text_probe_gate.py publicados.
+- Reprodução: text_probe_gate.install(direct-jumps3.pe), xex2replace v0.4 text-probe.pe text-probe.xex basic; xex2ool basefile text-probe.xex -o text-probe-roundtrip.pe; test_render_probe.py text-probe.pe para0/89/90.
+- Próxima ação: Pedro testa sem botões; registrar separadamente se apareceu SUPER MARIO 64 e se jogo abriu após~3s. Se ambos passarem, preparar seletor completo com ABI preservada e proteção contra bloqueio; se não, investigar ortho/font/estado gráfico. Não repetir RENDER_90 ou pulos aprovados. Interface completa/vozes pendentes.
