@@ -1,0 +1,3 @@
+# Levantamento estático — crawling em superfícies — 07/10/2026
+
+A fonte recuperada confirmou `act_standing_against_wall()`, `push_or_sidle_wall()`, `act_crawling()` e `WallCollisionData/find_wall_collisions()` como os pontos lógicos da mecânica. A implementação desejada exige uma ação de aderência separada, normal de superfície recalculada e vetor do analógico projetado no plano tangente, incluindo paredes, inclinações e teto. Os IDs de ação encontrados na fonte não são endereços XEX. O mapeamento de endereços/ABI ainda está pendente; nenhum XEX foi alterado ou liberado.
