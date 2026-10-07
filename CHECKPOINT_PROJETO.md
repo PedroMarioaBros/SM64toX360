@@ -328,3 +328,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - CPU/build PASS em casos sem botão, timer299/300, cima/baixo, seleção e A; round-trip exato; somente hookCD128 e cave3BC900 permitidos. Relatório docs/NAVIGATION_PROBE_2026_10_07.json; código e harness publicados.
 - Hardware pendente. Informar se tela apareceu, se marcador respondeu, se A abriu e se o jogo abriu sozinho após ~10s. Se falhar, registrar tela exata; não atribuir causa sem evidência.
 - Este teste não é edição multilíngue final: selecionar Español/English não troca diálogos. SELECTOR_TEST2 segue reprovado por tela preta; CREDITS_MENU_CORRIGIDO segue aprovado.
+
+
+## 07/10/2026 — NAVEGATION_PROBE sem seletor visível no Xbox (06:10 UTC)
+- Feedback real Pedro: executável ficou preto por alguns segundos, depois entrou nos créditos iniciais originais e na tela de apertar Start; nenhuma tela Português/Español/English apareceu.
+- NAVEGATION_PROBE não aprovado como teste de tela/navegação. O boot/retorno ao jogo ocorreu, mas não há evidência de que a tela de idiomas tenha sido renderizada ou que D-pad/A tenham sido exercitados.
+- Não atribuir ainda a falha a texto, controle ou ativação. O diagnóstico local desenhava escolhas, mas o resultado de hardware mostra que esse caminho não ficou visível antes do script original. Investigar ordem do hook/estado e diferença entre tela de créditos original e gate limitado.
+- Próxima ação: criar instrumentação/diagnóstico ainda mais isolado, com marcador visual mínimo e estado persistente, ou revisar a chamada do hook para garantir que a rotina permaneça antes do script original. Preservar CREDITS_MENU_CORRIGIDO, pulos/câmera/30FPS/PT; não repetir NAVEGATION_PROBE sem mudança técnica.
