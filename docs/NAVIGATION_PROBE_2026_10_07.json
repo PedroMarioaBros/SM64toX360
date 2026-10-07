@@ -1,0 +1,151 @@
+{
+  "status": "CPU/build PASS; hardware pending",
+  "gate_bytes": 424,
+  "regions": [
+    [
+      839976,
+      839980
+    ],
+    [
+      3918080,
+      3918504
+    ]
+  ],
+  "roundtrip_exact": true,
+  "cpu": [
+    {
+      "status": "PASS",
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 28431,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 299,
+      "timer_out": 300,
+      "instructions": 28431,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 0,
+      "selection_out": 0,
+      "buttons": 0,
+      "timer_in": 300,
+      "timer_out": 300,
+      "instructions": 19,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "original": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 0,
+      "selection_out": 2,
+      "buttons": 2048,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 28432,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 2,
+      "selection_out": 0,
+      "buttons": 1024,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 28437,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 1,
+      "selection_out": 2,
+      "buttons": 1024,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 28435,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 1,
+      "selection_out": 0,
+      "buttons": 2048,
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 28433,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "selection_in": 2,
+      "selection_out": 2,
+      "buttons": 32768,
+      "timer_in": 0,
+      "timer_out": 300,
+      "instructions": 28435,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820fb8a0": 56,
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820ce780": 1
+      }
+    }
+  ],
+  "menu_alpha_preserved": true,
+  "dialog_records_unchanged": true,
+  "hashes": {
+    "pe": "10c303127aefc0505dd19731115f1879b0bfe2bae2490999f471ec0ddec9199e",
+    "xex": "0cabc1d2f258796ea2474a75901e07d0cc8f9a478c50bde118796f2bea368b64",
+    "zip": "0501670b4ca27c2a009fb67b58906a6c30c613b0aac3c98a5ab04b6fcdcaaff3"
+  },
+  "expected": "language screen, Dpad navigation, A opens game or automatic after300frames (~10s); no activation, remains PT",
+  "scope": "actual CPU render/text with synthetic pool/task, original interpreter stubbed; no GPU/hardware proof"
+}
