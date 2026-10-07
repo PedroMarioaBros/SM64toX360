@@ -1,0 +1,5154 @@
+Warning: truncated output (original token count: 54300)
+Total output lines: 9319
+
+{
+  "status": "PASS",
+  "image_base": "0x82000000",
+  "text_va": "0x82090000",
+  "candidate_count": 665,
+  "candidates": [
+    {
+      "start": "0x8209f710",
+      "end": "0x8209f7c0",
+      "instruction_count": 13,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a06b0",
+      "end": "0x820a07a0",
+      "instruction_count": 37,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a0e18",
+      "end": "0x820a1060",
+      "instruction_count": 25,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a1230",
+      "end": "0x820a12c8",
+      "instruction_count": 19,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a1d88",
+      "end": "0x820a1e20",
+      "instruction_count": 35,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a2520",
+      "end": "0x820a2650",
+      "instruction_count": 76,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a3130",
+      "end": "0x820a32e0",
+      "instruction_count": 77,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a33a0",
+      "end": "0x820a3418",
+      "instruction_count": 15,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a35d8",
+      "end": "0x820a36e0",
+      "instruction_count": 27,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a7838",
+      "end": "0x820a78a8",
+      "instruction_count": 28,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a7ce0",
+      "end": "0x820a7e68",
+      "instruction_count": 81,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a8038",
+      "end": "0x820a80a0",
+      "instruction_count": 26,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820a9188",
+      "end": "0x820a9238",
+      "instruction_count": 44,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820aa360",
+      "end": "0x820aa3d8",
+      "instruction_count": 30,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ab360",
+      "end": "0x820ab3e0",
+      "instruction_count": 32,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ab448",
+      "end": "0x820ab580",
+      "instruction_count": 78,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 8,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820aba68",
+      "end": "0x820abb50",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820abd20",
+      "end": "0x820abf18",
+      "instruction_count": 126,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ac8d0",
+      "end": "0x820ac990",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820acf98",
+      "end": "0x820ad1f0",
+      "instruction_count": 129,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820adbd0",
+      "end": "0x820add68",
+      "instruction_count": 102,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ade28",
+      "end": "0x820ade78",
+      "instruction_count": 20,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820aea10",
+      "end": "0x820aec30",
+      "instruction_count": 57,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820af0b8",
+      "end": "0x820af1b8",
+      "instruction_count": 51,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820af9e0",
+      "end": "0x820afb40",
+      "instruction_count": 63,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b0b00",
+      "end": "0x820b0c00",
+      "instruction_count": 64,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b1070",
+      "end": "0x820b1228",
+      "instruction_count": 110,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 7,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b12f0",
+      "end": "0x820b1428",
+      "instruction_count": 75,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b16a0",
+      "end": "0x820b17d8",
+      "instruction_count": 37,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b1878",
+      "end": "0x820b18b0",
+      "instruction_count": 14,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b2460",
+      "end": "0x820b25d8",
+      "instruction_count": 73,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b26b8",
+      "end": "0x820b2928",
+      "instruction_count": 29,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b3820",
+      "end": "0x820b3998",
+      "instruction_count": 94,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b3d98",
+      "end": "0x820b3f60",
+      "instruction_count": 114,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b44e8",
+      "end": "0x820b45f0",
+      "instruction_count": 66,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b4b00",
+      "end": "0x820b4d90",
+      "instruction_count": 164,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 7,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b5680",
+      "end": "0x820b5708",
+      "instruction_count": 34,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b5e38",
+      "end": "0x820b6448",
+      "instruction_count": 175,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b6d48",
+      "end": "0x820b6e18",
+      "instruction_count": 23,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b8ad0",
+      "end": "0x820b8b88",
+      "instruction_count": 29,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b92d8",
+      "end": "0x820b9390",
+      "instruction_count": 17,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b97e8",
+      "end": "0x820b9888",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b98f8",
+      "end": "0x820b9968",
+      "instruction_count": 28,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820b9ac8",
+      "end": "0x820b9b98",
+      "instruction_count": 35,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ba880",
+      "end": "0x820ba928",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bb638",
+      "end": "0x820bb6c0",
+      "instruction_count": 34,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bb918",
+      "end": "0x820bbb10",
+      "instruction_count": 126,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bbce8",
+      "end": "0x820bbe20",
+      "instruction_count": 78,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bbf70",
+      "end": "0x820bbff0",
+      "instruction_count": 32,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bc420",
+      "end": "0x820bc4e0",
+      "instruction_count": 48,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820be7f0",
+      "end": "0x820be910",
+      "instruction_count": 72,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bea60",
+      "end": "0x820bede8",
+      "instruction_count": 93,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bf498",
+      "end": "0x820bf718",
+      "instruction_count": 160,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820bf888",
+      "end": "0x820bfd08",
+      "instruction_count": 51,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c04f0",
+      "end": "0x820c0898",
+      "instruction_count": 95,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c18f0",
+      "end": "0x820c1bc0",
+      "instruction_count": 85,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 6,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c1df0",
+      "end": "0x820c22e0",
+      "instruction_count": 191,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c3198",
+      "end": "0x820c3310",
+      "instruction_count": 33,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c3678",
+      "end": "0x820c3720",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c3af0",
+      "end": "0x820c3b80",
+      "instruction_count": 36,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c4180",
+      "end": "0x820c42c0",
+      "instruction_count": 80,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c49d8",
+      "end": "0x820c4b30",
+      "instruction_count": 86,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c5088",
+      "end": "0x820c5158",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c55f0",
+      "end": "0x820c5718",
+      "instruction_count": 74,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c5e90",
+      "end": "0x820c6188",
+      "instruction_count": 57,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820c7cf8",
+      "end": "0x820c7f70",
+      "instruction_count": 47,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ca490",
+      "end": "0x820ca5c0",
+      "instruction_count": 76,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820cd6e0",
+      "end": "0x820cd868",
+      "instruction_count": 98,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820cdaa0",
+      "end": "0x820cdc38",
+      "instruction_count": 102,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820cdf28",
+      "end": "0x820ce2d0",
+      "instruction_count": 234,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 12,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ce4a8",
+      "end": "0x820ce640",
+      "instruction_count": 102,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 2
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ce898",
+      "end": "0x820ce930",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ced68",
+      "end": "0x820cef38",
+      "instruction_count": 71,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d0470",
+      "end": "0x820d0568",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d0668",
+      "end": "0x820d0750",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d1e68",
+      "end": "0x820d1fd0",
+      "instruction_count": 33,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d4788",
+      "end": "0x820d4ad0",
+      "instruction_count": 127,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 5,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d61f8",
+      "end": "0x820d6630",
+      "instruction_count": 270,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 15,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d69e8",
+      "end": "0x820d6a88",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d71c8",
+      "end": "0x820d72e0",
+      "instruction_count": 53,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d7400",
+      "end": "0x820d75d8",
+      "instruction_count": 91,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d77a8",
+      "end": "0x820d78c8",
+      "instruction_count": 72,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d7e10",
+      "end": "0x820d7ea8",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d9568",
+      "end": "0x820d9680",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d97c8",
+      "end": "0x820d98c0",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d9948",
+      "end": "0x820d9a50",
+      "instruction_count": 66,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d9bf0",
+      "end": "0x820d9c70",
+      "instruction_count": 32,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820d9d18",
+      "end": "0x820d9d68",
+      "instruction_count": 20,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820da028",
+      "end": "0x820da140",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820da740",
+      "end": "0x820da7c0",
+      "instruction_count": 32,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820dab30",
+      "end": "0x820dad20",
+      "instruction_count": 57,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820db198",
+      "end": "0x820db340",
+      "instruction_count": 106,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820db518",
+      "end": "0x820db6e0",
+      "instruction_count": 51,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820dba90",
+      "end": "0x820dbbe0",
+      "instruction_count": 84,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820dbed8",
+      "end": "0x820dc070",
+      "instruction_count": 59,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ddc50",
+      "end": "0x820de110",
+      "instruction_count": 145,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820df420",
+      "end": "0x820df658",
+      "instruction_count": 142,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820dfbb8",
+      "end": "0x820dfd38",
+      "instruction_count": 96,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820dff30",
+      "end": "0x820e0120",
+      "instruction_count": 83,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e1a68",
+      "end": "0x820e1b58",
+      "instruction_count": 60,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e26b8",
+      "end": "0x820e27b8",
+      "instruction_count": 23,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e33f8",
+      "end": "0x820e3628",
+      "instruction_count": 140,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e3b28",
+      "end": "0x820e3f38",
+      "instruction_count": 260,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e40a0",
+      "end": "0x820e4308",
+      "instruction_count": 154,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e54f8",
+      "end": "0x820e5680",
+      "instruction_count": 98,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e6430",
+      "end": "0x820e6540",
+      "instruction_count": 68,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e6770",
+      "end": "0x820e6aa8",
+      "instruction_count": 73,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e79c8",
+      "end": "0x820e7b58",
+      "instruction_count": 100,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e81c8",
+      "end": "0x820e82b8",
+      "instruction_count": 60,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e8ed8",
+      "end": "0x820e9000",
+      "instruction_count": 74,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e94e8",
+      "end": "0x820e9590",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820e9638",
+      "end": "0x820e9728",
+      "instruction_count": 33,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ea828",
+      "end": "0x820ea928",
+      "instruction_count": 64,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820eb298",
+      "end": "0x820eb380",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820eb590",
+      "end": "0x820eb7a0",
+      "instruction_count": 132,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 6,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820edd58",
+      "end": "0x820ede70",
+      "instruction_count": 31,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ee060",
+      "end": "0x820ee198",
+      "instruction_count": 13,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ee6d8",
+      "end": "0x820ee7d0",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820eed50",
+      "end": "0x820eeed8",
+      "instruction_count": 98,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ef0b0",
+      "end": "0x820ef2e8",
+      "instruction_count": 142,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ef628",
+      "end": "0x820ef818",
+      "instruction_count": 124,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 2,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f0330",
+      "end": "0x820f03e0",
+      "instruction_count": 44,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f05d8",
+      "end": "0x820f0680",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f0738",
+      "end": "0x820f0830",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f0938",
+      "end": "0x820f0ea0",
+      "instruction_count": 35,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f1370",
+      "end": "0x820f14b8",
+      "instruction_count": 82,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f1790",
+      "end": "0x820f18a8",
+      "instruction_count": 67,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f1c58",
+      "end": "0x820f1cf8",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f1db8",
+      "end": "0x820f1f68",
+      "instruction_count": 108,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 5,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f22a8",
+      "end": "0x820f2508",
+      "instruction_count": 152,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f2728",
+      "end": "0x820f28f0",
+      "instruction_count": 67,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f2a68",
+      "end": "0x820f2c48",
+      "instruction_count": 120,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f2d18",
+      "end": "0x820f2e38",
+      "instruction_count": 72,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f35e8",
+      "end": "0x820f36c0",
+      "instruction_count": 54,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f3bc8",
+      "end": "0x820f3cb8",
+      "instruction_count": 60,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f5480",
+      "end": "0x820f55b8",
+      "instruction_count": 78,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 6,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f7310",
+      "end": "0x820f73b8",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 4,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f84f8",
+      "end": "0x820f8628",
+      "instruction_count": 76,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f8bd8",
+      "end": "0x820f9058",
+      "instruction_count": 177,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f9628",
+      "end": "0x820f9820",
+      "instruction_count": 126,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 3,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820f9e78",
+      "end": "0x820f9fb8",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fa150",
+      "end": "0x820fa328",
+      "instruction_count": 118,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fa3f0",
+      "end": "0x820fa758",
+      "instruction_count": 218,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 1,
+        "0x60": 10,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fa7d0",
+      "end": "0x820faa38",
+      "instruction_count": 154,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fab50",
+      "end": "0x820faf50",
+      "instruction_count": 83,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 3,
+        "0x60": 6,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fc648",
+      "end": "0x820fc748",
+      "instruction_count": 64,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fc8e0",
+      "end": "0x820fc9b0",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fca80",
+      "end": "0x820fcb48",
+      "instruction_count": 50,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820fcc10",
+      "end": "0x820fce68",
+      "instruction_count": 150,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ff638",
+      "end": "0x820ff6d0",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ff7b0",
+      "end": "0x820ff8e8",
+      "instruction_count": 29,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ffb88",
+      "end": "0x820ffc10",
+      "instruction_count": 19,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x820ffc80",
+      "end": "0x820fff90",
+      "instruction_count": 107,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82100b30",
+      "end": "0x82100dc8",
+      "instruction_count": 15,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82101238",
+      "end": "0x82101338",
+      "instruction_count": 47,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82101fa8",
+      "end": "0x82102120",
+      "instruction_count": 94,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 8,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102470",
+      "end": "0x82102540",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x821025e8",
+      "end": "0x82102640",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102830",
+      "end": "0x82102950",
+      "instruction_count": 35,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102a18",
+      "end": "0x82102a70",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102b98",
+      "end": "0x82102c08",
+      "instruction_count": 19,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102da0",
+      "end": "0x82102e50",
+      "instruction_count": 44,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82102ed8",
+      "end": "0x82102f98",
+      "instruction_count": 48,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82103080",
+      "end": "0x82103198",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 6,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82103938",
+      "end": "0x82103a08",
+      "instruction_count": 49,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82103d50",
+      "end": "0x82103e48",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82103fa0",
+      "end": "0x82104048",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82104158",
+      "end": "0x821042e0",
+      "instruction_count": 98,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 7,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82104cc8",
+      "end": "0x82104e88",
+      "instruction_count": 112,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82105558",
+      "end": "0x82105620",
+      "instruction_count": 50,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82105780",
+      "end": "0x82105888",
+      "instruction_count": 66,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82105a40",
+      "end": "0x82105b28",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82105c30",
+      "end": "0x82105da8",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82106258",
+      "end": "0x82106390",
+      "instruction_count": 67,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82106438",
+      "end": "0x82106558",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82107458",
+      "end": "0x82107540",
+      "instruction_count": 23,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x821077d0",
+      "end": "0x82107930",
+      "instruction_count": 53,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82107de0",
+      "end": "0x82107f30",
+      "instruction_count": 41,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82108000",
+      "end": "0x821080a8",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82108718",
+      "end": "0x82108800",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82108ee8",
+      "end": "0x82108f18",
+      "instruction_count": 12,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82109520",
+      "end": "0x82109670",
+      "instruction_count": 84,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82109a38",
+      "end": "0x82109c18",
+      "instruction_count": 73,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8210a168",
+      "end": "0x8210a2d0",
+      "instruction_count": 90,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x…24300 tokens truncated…8,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 1,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82262ac0",
+      "end": "0x822632b8",
+      "instruction_count": 510,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82264090",
+      "end": "0x82264150",
+      "instruction_count": 48,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82264a08",
+      "end": "0x82264a98",
+      "instruction_count": 36,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82265050",
+      "end": "0x82265168",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82266788",
+      "end": "0x82266de0",
+      "instruction_count": 406,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 10,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822684d0",
+      "end": "0x82268738",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82272c80",
+      "end": "0x82272d50",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82276f48",
+      "end": "0x82277700",
+      "instruction_count": 203,
+      "mariostate_offset_mentions": {
+        "0x20": 6,
+        "0x24": 6,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822784f8",
+      "end": "0x82278618",
+      "instruction_count": 72,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82278958",
+      "end": "0x822790d8",
+      "instruction_count": 480,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 7,
+        "0x60": 2,
+        "0x64": 2,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227cd60",
+      "end": "0x8227cf38",
+      "instruction_count": 118,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 4,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227deb8",
+      "end": "0x8227df90",
+      "instruction_count": 54,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227e068",
+      "end": "0x8227e140",
+      "instruction_count": 54,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227e338",
+      "end": "0x8227e730",
+      "instruction_count": 254,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 2,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227f0a0",
+      "end": "0x8227f2b0",
+      "instruction_count": 132,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8227f490",
+      "end": "0x8227f888",
+      "instruction_count": 151,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82288008",
+      "end": "0x82288100",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82288230",
+      "end": "0x822885d8",
+      "instruction_count": 234,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822896a0",
+      "end": "0x82289750",
+      "instruction_count": 44,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8228a1c0",
+      "end": "0x8228a290",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8228c6f0",
+      "end": "0x8228ca70",
+      "instruction_count": 224,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8228dd90",
+      "end": "0x8228e408",
+      "instruction_count": 414,
+      "mariostate_offset_mentions": {
+        "0x20": 5,
+        "0x24": 1,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82290180",
+      "end": "0x82290418",
+      "instruction_count": 166,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 10,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82290990",
+      "end": "0x82290c18",
+      "instruction_count": 162,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 2,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82290ed8",
+      "end": "0x82291490",
+      "instruction_count": 366,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 5,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82291a90",
+      "end": "0x82291f38",
+      "instruction_count": 149,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82292740",
+      "end": "0x82292ba0",
+      "instruction_count": 280,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 5,
+        "0x68": 4,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82292da8",
+      "end": "0x82294140",
+      "instruction_count": 1254,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 9,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 5,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822943c8",
+      "end": "0x82294a68",
+      "instruction_count": 424,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8229bd80",
+      "end": "0x8229c018",
+      "instruction_count": 166,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 6,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822a2658",
+      "end": "0x822a2770",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822a58a8",
+      "end": "0x822a7710",
+      "instruction_count": 1946,
+      "mariostate_offset_mentions": {
+        "0x20": 10,
+        "0x24": 4,
+        "0x60": 0,
+        "0x64": 4,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822a8910",
+      "end": "0x822a8dc0",
+      "instruction_count": 300,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822ac1c8",
+      "end": "0x822ac4c0",
+      "instruction_count": 190,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822acf28",
+      "end": "0x822ad018",
+      "instruction_count": 60,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b2ed0",
+      "end": "0x822b3228",
+      "instruction_count": 214,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b35b0",
+      "end": "0x822b5020",
+      "instruction_count": 1692,
+      "mariostate_offset_mentions": {
+        "0x20": 8,
+        "0x24": 16,
+        "0x60": 12,
+        "0x64": 1,
+        "0x68": 6,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b62a0",
+      "end": "0x822b64e0",
+      "instruction_count": 144,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b6790",
+      "end": "0x822b6980",
+      "instruction_count": 124,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b7920",
+      "end": "0x822b7b30",
+      "instruction_count": 132,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 1,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822b7e98",
+      "end": "0x822b8358",
+      "instruction_count": 304,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822c7b00",
+      "end": "0x822c7fa0",
+      "instruction_count": 296,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 4,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822cc0a8",
+      "end": "0x822d2da0",
+      "instruction_count": 1331,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 13,
+        "0x60": 14,
+        "0x64": 15,
+        "0x68": 6,
+        "0x9c": 3
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822d3028",
+      "end": "0x822d3dd0",
+      "instruction_count": 874,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 15,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822d77b0",
+      "end": "0x822d7c30",
+      "instruction_count": 288,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 5,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822d85a0",
+      "end": "0x822d86e8",
+      "instruction_count": 82,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822d9d20",
+      "end": "0x822d9e30",
+      "instruction_count": 13,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822da080",
+      "end": "0x822da168",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e2898",
+      "end": "0x822e29a8",
+      "instruction_count": 68,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 3,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e2ad8",
+      "end": "0x822e2d20",
+      "instruction_count": 146,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 5,
+        "0x64": 5,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e2e80",
+      "end": "0x822e2f40",
+      "instruction_count": 48,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 3,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e3080",
+      "end": "0x822e3118",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e31c8",
+      "end": "0x822e34b0",
+      "instruction_count": 165,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 3,
+        "0x68": 4,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822e4280",
+      "end": "0x822e4608",
+      "instruction_count": 201,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822f6750",
+      "end": "0x822f6c80",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822f7e60",
+      "end": "0x822f7ef8",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822f83d0",
+      "end": "0x822f8568",
+      "instruction_count": 102,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822f8700",
+      "end": "0x822f8878",
+      "instruction_count": 94,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822fccf8",
+      "end": "0x822fd0c8",
+      "instruction_count": 244,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 4,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x822fead0",
+      "end": "0x822fef50",
+      "instruction_count": 288,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82300a68",
+      "end": "0x82300c68",
+      "instruction_count": 128,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 3,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82301310",
+      "end": "0x823015a8",
+      "instruction_count": 166,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823017c8",
+      "end": "0x823019c8",
+      "instruction_count": 128,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82301e88",
+      "end": "0x82302108",
+      "instruction_count": 160,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82302608",
+      "end": "0x82302a48",
+      "instruction_count": 272,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 2,
+        "0x60": 3,
+        "0x64": 2,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82302ce8",
+      "end": "0x82302e18",
+      "instruction_count": 76,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823030d0",
+      "end": "0x82303a88",
+      "instruction_count": 622,
+      "mariostate_offset_mentions": {
+        "0x20": 7,
+        "0x24": 7,
+        "0x60": 2,
+        "0x64": 2,
+        "0x68": 4,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82307f40",
+      "end": "0x82308058",
+      "instruction_count": 57,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8230ad10",
+      "end": "0x8230ba20",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82312f58",
+      "end": "0x82313140",
+      "instruction_count": 122,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82315300",
+      "end": "0x82315400",
+      "instruction_count": 64,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82315cc8",
+      "end": "0x82315d80",
+      "instruction_count": 46,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82316558",
+      "end": "0x82316848",
+      "instruction_count": 188,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82317758",
+      "end": "0x82317978",
+      "instruction_count": 136,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82319230",
+      "end": "0x82319418",
+      "instruction_count": 122,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823198f8",
+      "end": "0x82319b78",
+      "instruction_count": 160,
+      "mariostate_offset_mentions": {
+        "0x20": 7,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8231ab40",
+      "end": "0x8231b038",
+      "instruction_count": 311,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 2,
+        "0x60": 15,
+        "0x64": 2,
+        "0x68": 5,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8231ddb0",
+      "end": "0x8231ded0",
+      "instruction_count": 72,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8231f4f0",
+      "end": "0x8231f590",
+      "instruction_count": 27,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82320178",
+      "end": "0x82320218",
+      "instruction_count": 35,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 3,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82322bc0",
+      "end": "0x82322d10",
+      "instruction_count": 84,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82322f00",
+      "end": "0x823234a0",
+      "instruction_count": 360,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82323c10",
+      "end": "0x82323f28",
+      "instruction_count": 198,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 9,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82324120",
+      "end": "0x82324340",
+      "instruction_count": 136,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82325280",
+      "end": "0x823256f8",
+      "instruction_count": 283,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82325b78",
+      "end": "0x82325c08",
+      "instruction_count": 36,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82325cb0",
+      "end": "0x82325d98",
+      "instruction_count": 58,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82326310",
+      "end": "0x82326410",
+      "instruction_count": 64,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82329388",
+      "end": "0x823295a0",
+      "instruction_count": 134,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8232ac98",
+      "end": "0x8232add0",
+      "instruction_count": 78,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82331590",
+      "end": "0x82331608",
+      "instruction_count": 30,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82331a80",
+      "end": "0x82331d48",
+      "instruction_count": 178,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82333920",
+      "end": "0x823339b8",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82333a30",
+      "end": "0x823340a0",
+      "instruction_count": 363,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 2
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823347a0",
+      "end": "0x823348e0",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 5,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82335c00",
+      "end": "0x82336900",
+      "instruction_count": 832,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82339810",
+      "end": "0x82339b18",
+      "instruction_count": 194,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 6,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8233b1c8",
+      "end": "0x8233b300",
+      "instruction_count": 78,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8233c690",
+      "end": "0x8233cd58",
+      "instruction_count": 379,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 5,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8233f448",
+      "end": "0x8233fa78",
+      "instruction_count": 396,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 4,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8233fc68",
+      "end": "0x8233fcf0",
+      "instruction_count": 34,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8233ffe0",
+      "end": "0x823400a0",
+      "instruction_count": 48,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82340508",
+      "end": "0x82340610",
+      "instruction_count": 55,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823418a0",
+      "end": "0x82341aa8",
+      "instruction_count": 130,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82342970",
+      "end": "0x82342ad0",
+      "instruction_count": 88,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823439d0",
+      "end": "0x82343a30",
+      "instruction_count": 24,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82345238",
+      "end": "0x823455e0",
+      "instruction_count": 234,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82345aa0",
+      "end": "0x82345b58",
+      "instruction_count": 46,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82345ea8",
+      "end": "0x82345f48",
+      "instruction_count": 21,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82351d00",
+      "end": "0x82351f90",
+      "instruction_count": 117,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 8,
+        "0x64": 6,
+        "0x68": 4,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82352620",
+      "end": "0x82352708",
+      "instruction_count": 13,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82353bf0",
+      "end": "0x82353c98",
+      "instruction_count": 42,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82354cd0",
+      "end": "0x82354d70",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82355220",
+      "end": "0x823552c8",
+      "instruction_count": 31,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82355b28",
+      "end": "0x82355ca0",
+      "instruction_count": 94,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 4,
+        "0x60": 7,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82357210",
+      "end": "0x823572a0",
+      "instruction_count": 36,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82357fc8",
+      "end": "0x82358170",
+      "instruction_count": 97,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82358558",
+      "end": "0x823585f0",
+      "instruction_count": 38,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8235c6b8",
+      "end": "0x8235c8b0",
+      "instruction_count": 126,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8235dd98",
+      "end": "0x8235e370",
+      "instruction_count": 374,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 3
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8235e680",
+      "end": "0x8235e7e8",
+      "instruction_count": 90,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8235edf8",
+      "end": "0x8235ee50",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8235f138",
+      "end": "0x8235f190",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82361530",
+      "end": "0x823616c0",
+      "instruction_count": 100,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823619e8",
+      "end": "0x82361b70",
+      "instruction_count": 98,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82364030",
+      "end": "0x82364148",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 5
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82366e90",
+      "end": "0x82367130",
+      "instruction_count": 37,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82367370",
+      "end": "0x823674d0",
+      "instruction_count": 88,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 3,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8236a768",
+      "end": "0x8236a948",
+      "instruction_count": 117,
+      "mariostate_offset_mentions": {
+        "0x20": 6,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8236ca38",
+      "end": "0x8236caf0",
+      "instruction_count": 46,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8236d268",
+      "end": "0x8236d330",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823707f0",
+      "end": "0x82370890",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 2,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82371768",
+      "end": "0x823717c8",
+      "instruction_count": 24,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82371830",
+      "end": "0x82371910",
+      "instruction_count": 56,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82372110",
+      "end": "0x823721e8",
+      "instruction_count": 54,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82374440",
+      "end": "0x82374498",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82374f50",
+      "end": "0x82375420",
+      "instruction_count": 237,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 4,
+        "0x68": 2,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82375908",
+      "end": "0x82375c78",
+      "instruction_count": 199,
+      "mariostate_offset_mentions": {
+        "0x20": 3,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 4,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82376110",
+      "end": "0x823763f8",
+      "instruction_count": 79,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82379310",
+      "end": "0x82379a10",
+      "instruction_count": 153,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 4,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8237a970",
+      "end": "0x8237ae60",
+      "instruction_count": 316,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 3,
+        "0x60": 4,
+        "0x64": 1,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8237bb00",
+      "end": "0x8237bfe8",
+      "instruction_count": 314,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8237c2a0",
+      "end": "0x8237c9d8",
+      "instruction_count": 369,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8237cfd8",
+      "end": "0x8237d7b0",
+      "instruction_count": 502,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 2,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 4,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82384930",
+      "end": "0x82384fd0",
+      "instruction_count": 131,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823859b0",
+      "end": "0x82385cf0",
+      "instruction_count": 208,
+      "mariostate_offset_mentions": {
+        "0x20": 5,
+        "0x24": 3,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82386358",
+      "end": "0x82386588",
+      "instruction_count": 140,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8238e298",
+      "end": "0x8238e338",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82390a38",
+      "end": "0x82390d78",
+      "instruction_count": 81,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82391760",
+      "end": "0x82391b08",
+      "instruction_count": 65,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82391d28",
+      "end": "0x82391f20",
+      "instruction_count": 126,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823928b0",
+      "end": "0x82392928",
+      "instruction_count": 30,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82392f60",
+      "end": "0x82393038",
+      "instruction_count": 54,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82393578",
+      "end": "0x823937c0",
+      "instruction_count": 146,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 1,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82393810",
+      "end": "0x82393928",
+      "instruction_count": 70,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823944c8",
+      "end": "0x823945c0",
+      "instruction_count": 62,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x82395068",
+      "end": "0x823954e8",
+      "instruction_count": 161,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8239b878",
+      "end": "0x8239bde0",
+      "instruction_count": 85,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 4,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8239c398",
+      "end": "0x8239c7d0",
+      "instruction_count": 270,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 2,
+        "0x60": 4,
+        "0x64": 2,
+        "0x68": 2,
+        "0x9c": 1
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8239ece8",
+      "end": "0x8239ee48",
+      "instruction_count": 88,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 1,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x8239f048",
+      "end": "0x8239f1b8",
+      "instruction_count": 92,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a1890",
+      "end": "0x823a18f8",
+      "instruction_count": 26,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a3808",
+      "end": "0x823a3dc4",
+      "instruction_count": 37,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 1,
+        "0x60": 1,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a3dd8",
+      "end": "0x823a4658",
+      "instruction_count": 85,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a7450",
+      "end": "0x823a74a8",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a7650",
+      "end": "0x823a7be0",
+      "instruction_count": 356,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a8d20",
+      "end": "0x823a8e68",
+      "instruction_count": 82,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a8e98",
+      "end": "0x823a8f60",
+      "instruction_count": 50,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823a9e48",
+      "end": "0x823aa3a0",
+      "instruction_count": 342,
+      "mariostate_offset_mentions": {
+        "0x20": 4,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 0,
+        "0x68": 3,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823aa7a0",
+      "end": "0x823aa9a8",
+      "instruction_count": 7,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ab4a0",
+      "end": "0x823ab708",
+      "instruction_count": 17,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ad680",
+      "end": "0x823ad7f0",
+      "instruction_count": 92,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ad868",
+      "end": "0x823adab8",
+      "instruction_count": 148,
+      "mariostate_offset_mentions": {
+        "0x20": 2,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ae170",
+      "end": "0x823ae240",
+      "instruction_count": 52,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ae460",
+      "end": "0x823ae500",
+      "instruction_count": 40,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ae540",
+      "end": "0x823ae7c8",
+      "instruction_count": 65,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 4,
+        "0x64": 0,
+        "0x68": 2,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823ae9c8",
+      "end": "0x823aea38",
+      "instruction_count": 28,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 1,
+        "0x64": 0,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823b31d8",
+      "end": "0x823b3268",
+      "instruction_count": 36,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 3,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823b4158",
+      "end": "0x823b4238",
+      "instruction_count": 56,
+      "mariostate_offset_mentions": {
+        "0x20": 1,
+        "0x24": 0,
+        "0x60": 0,
+        "0x64": 2,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823b4ff0",
+      "end": "0x823b5048",
+      "instruction_count": 22,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823b5358",
+      "end": "0x823b5570",
+      "instruction_count": 134,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 2,
+        "0x60": 5,
+        "0x64": 1,
+        "0x68": 1,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823b8580",
+      "end": "0x823b88f8",
+      "instruction_count": 103,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 0,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    },
+    {
+      "start": "0x823bb2c8",
+      "end": "0x823bb3c0",
+      "instruction_count": 43,
+      "mariostate_offset_mentions": {
+        "0x20": 0,
+        "0x24": 0,
+        "0x60": 2,
+        "0x64": 2,
+        "0x68": 0,
+        "0x9c": 0
+      },
+      "note": "candidate only; verify source fingerprint and ABI"
+    }
+  ]
+}
+
