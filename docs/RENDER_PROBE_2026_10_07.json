@@ -1,0 +1,14 @@
+{
+  "package": "SM64_DIAGNOSTICO_RENDER_90_QUADROS.zip",
+  "zip_sha256": "738ea4f9e82865ca6d5f6e828572a56fe36558d126ef61400b973409cedb706a",
+  "xex_sha256": "8a40b7bcddb0136072fa8fb0d8bb6435338498bcc66ab49501bcb25215c3df4e",
+  "pe_sha256": "5bc063d3f58fdca42aebc055541c3566ffea51f5973cf775778c521e50597f05",
+  "gate_bytes": 108,
+  "gate_sha256": "9fa6838eccce8c2b7ceca3c1a8d119d0063718f9879db452608f860dc8bff00d",
+  "roundtrip_exact": true,
+  "region_audit": "only gate cave and original level script hook",
+  "jump_test3_unchanged": true,
+  "hardware_verified": false,
+  "expected": "90 blank render frames then original script automatically",
+  "purpose": "separate basic init/render/end/alloc execution from text and activation; no selector claim"
+}
