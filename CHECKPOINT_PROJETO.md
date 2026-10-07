@@ -364,3 +364,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - A fonte recuperada confirma que o fluxo normal é `intro_regular` → `print_intro_text` → botão START → retorno 100 (file select) e `run_level_id_or_demo`; esse caminho deve ser preservado.
 - O XEX não possui símbolos de função utilizáveis no ELF recuperado; o endereço da rotina precisa ser localizado por análise de código/cross-references antes de patch. Nenhum executável novo foi gerado.
 - Próxima ação: mapear o ponto de chamada de `intro_regular`/`lvl_intro_update`, criar uma rotina de teste mínima no fluxo Press Start e só depois integrar ativação/ créditos multilíngues.
+
+
+## 07/10/2026 — PERSISTENT_SELECTOR_PROBE entregue
+- Os probes anteriores chegaram ao fluxo original sem mostrar a tela de idiomas. Nova versão remove o avanço automático: a rotina permanece na tela de teste até A; só então marca retorno ao script original na chamada seguinte.
+- Pacote SM64_DIAGNOSTICO_SELETOR_PERSISTENTE.zip, Library libfile_588051e22f588191abf752efb8a63241. XEX1c53eeeb489bf64551143f0c03e2cdcf3fd68ee7a2c5413d87192c8aaf2c08b0; ZIP0b78d2695d880d0145e5ca0b4aa6994926a74bf07217cd658a75dee37aaa3ac4; PE828fe915dcab20ef13d95732746c03ae07a6ef93cf71080c931da9b36f02a5e3.
+- Roundtrip exato, base TEST3/pulos/câmera/menu/save/alpha preservados. Hardware pendente. O diagnóstico não ativa idioma; objetivo é comprovar se a tela customizada permanece visível quando o temporizador não pode encerrá-la.
+- Se a tela aparecer: pressionar A entra no jogo; se não aparecer: pressionar A após10s confirma retorno e mantém a falha na renderização/hook. Não repetir probes temporizados.
