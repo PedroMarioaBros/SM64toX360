@@ -1,12 +1,12 @@
 # Ponto de retomada — leia primeiro
-Branch ativa: feature/multilang-dub-30fps, base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md. Atualize após resultados e antes de encerrar; publique e verifique.
+Branch ativa feature/multilang-dub-30fps; base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md. Atualize após resultados/antes de encerrar; publique e verifique.
 
-NOHOOK/PASSTHROUGH2/pulos TEST3/câmera/RENDER90/TEXTO90 aprovados no Xbox; TEXTO90 incluiu gameplay e save existente. Preserve TEST3.
+Pulos TEST3/câmera e boot diagnósticos preservados. SELECTOR_TEST2 reprovado: tela preta sem crash. CREDITS90 abriu jogo/save, mas menu sem texto: regressão não proposital, resultado parcial.
 
-07/10/2026: SELECTOR_TEST2 falhou: tela preta, jogo não abriu, sem crash aparente. Salvamento nativo r30/r31 não resolveu sozinho. Não declarar seletor aprovado.
+Erro identificado: diagnóstico zerava alpha de menu em cada quadro de delegação. Correção guarda/restaura alpha por quadro dos créditos e não altera no caminho original. Não prova causa da tela preta do seletor.
 
-Próximo teste entregue: SM64_DIAGNOSTICO_CREDITOS_90_QUADROS.zip, libfile_bbaee491069881918905f72222d15590. Mostra seis linhas dos créditos por90quadros e retorna jogo automaticamente; sem leitura de botões/estado de seleção/ativação. CPU/build PASS, hardware pendente. Hashes/reprodução no último checkpoint.
+Próximo teste: SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip, libfile_ec3a76d126b88191a9f71e15d00fdf8b. CPU/build PASS; hardware pendente. Esperar~3s sem botões; registrar textos menu e carregamento save. Hashes/reprodução no último checkpoint.
 
-Próxima ação: registrar créditos visíveis e jogo abriu (~3s, esperar10s se preto). Se passar, investigar lógica estado/controller/tela seletor; se falhar, investigar seis strings/carga gráfica/pool real. Não repetir testes aprovados nem inventar causa. Interface completa e dublagens pendentes; Native60 fora desta etapa.
+Após menu aprovado, retomar lógica estado/controller e tela seletor com alpha preservada. Não repetir diagnósticos aprovados nem declarar seletor corrigido. Interface completa/dublagens pendentes; Native60 fora desta etapa.
 
 [Checkpoint canônico](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
