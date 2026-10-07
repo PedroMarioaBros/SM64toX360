@@ -42,3 +42,8 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Foram consultados repositórios e fontes públicas de porting/decompilação. `sirdankz/MKart360` confirma um fluxo público de build Xbox 360, mas é Mario Kart 64 e não fornece símbolos do nosso jogo. `TheGag96/sm64-port`/branch `extended_moveset` confirma as rotinas lógicas de parede/crawling, mas não contém crawling aderido nem mapa PowerPC/XEX compatível. `sm64-port/sm64-port` e doxygen fornecem nomes/relacionamentos, não endereços transferíveis. `ClementDreptin/XexUtils` é ferramenta geral, sem símbolos específicos.
 - Nenhum mapa de símbolos, ELF/PDB, build reproduzível ou XEX público correspondente ao port/base v0.4 foi localizado. Relatório: `docs/EXTERNAL_SYMBOL_SEARCH_2026_10_07.md`.
 - Não aplicar endereços externos por semelhança. Próxima ação: procurar commits/logs/branches específicos do port e continuar cross-reference local com fluxo de registradores.
+
+## 07/10/2026 — sm64_dump.txt identificado
+- Dump gráfico de diagnóstico, não save/asset. SHA-256 93350c14d91f5908aa00bfe753e01ca79a20e4f0ba65492d5b9ddc7a52c1b703; 1.178.555 bytes; 2.027 chamadas gfx_sp_tri1.
+- Origem confirmada: BACK+START solicita o dump na compilação de diagnóstico. Relatório: docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md.
+- Não incluir no pacote; pode ser removido manualmente sem afetar save. Próxima ação: wall-crawl/dublagem, sem repetir probes descartados.
