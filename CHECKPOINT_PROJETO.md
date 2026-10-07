@@ -7,7 +7,7 @@ Branch de desenvolvimento: feature/multilang-dub-30fps.
 2. Consultar os arquivos técnicos na branch de desenvolvimento; main é também entrada para descoberta.
 3. Ler docs/PREGAME_GATE_STATIC_INTEGRATION_2026_10_05.json e os scripts citados abaixo.
 4. Conferir a revisão remota e diferenças locais. Não repetir recuperação ou testes já comprovados sem motivo.
-5. Próxima ação: corrigir e validar o diagnóstico PASSTHROUGH antes de testar o caminho do hook no Xbox 360. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
+5. Próxima ação: diagnóstico limitado de texto/ortho sobre RENDER_90 aprovado; preservar pulos TEST3. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
 
 ## Objetivo e decisões permanentes
 Edição única baseada na v0.4 funcional de 30 FPS, com seleção Português / Español / English antes de qualquer tela normal.
@@ -19,7 +19,7 @@ Não misturar Native60, não substituir PT-BR pela tradução pública BMatSanto
 Nenhum teste estático ou em Unicorn equivale a funcionamento comprovado no Xbox.
 
 ## Onde estamos
-STATUS: HARDWARE_BOOT_FAILURE_DIAGNOSTIC. hardware_verified: false.
+STATUS: RENDER_90 aprovado no console; seletor completo ainda pendente.
 Novo candidato SELECTOR_TEST1 reconstruído, validado e disponibilizado para primeiro teste no console.
 Os hashes históricos EN/ES seguem sem reprodução; essa pendência de rastreabilidade não foi declarada resolvida. O novo candidato foi validado independentemente com fontes fixadas, layout, ponteiros, preservação PT e round-trip.
 Teste real de 06/10: SELECTOR_TEST1 ficou em tela preta; não abriu o jogo e não houve crash aparente. O seletor não foi alcançado. Próximo requisito: isolar expansão XEX versus gate.
@@ -86,7 +86,7 @@ Se bytes antigos não estiverem disponíveis, declarar a limitação e validar a
 - [x] Disponibilizar SELECTOR_TEST1 após validação independente; hardware ainda não verificado.
 - [x] Teste Pedro no Xbox: SELECTOR_TEST1 falhou no boot com tela preta, sem crash aparente.
 - [x] NOHOOK abriu o jogo no Xbox, confirmado pelo Pedro em 07/10/2026.
-- [ ] Se NOHOOK abrir, testar PASSTHROUGH: hook presente, desvio imediato ao original.
+- [x] PASSTHROUGH2 corrigido abriu no console.
 - [ ] Corrigir causa do boot e só então repetir seletor.
 - [ ] Corrigir regressões e completar menus, cursos, estrelas, avisos e controles PT/ES/EN.
 - [ ] Integrar e testar vozes PT-BR.
@@ -249,3 +249,9 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - XEX SHA-256 8a40b7bcddb0136072fa8fb0d8bb6435338498bcc66ab49501bcb25215c3df4e; ZIP738ea4f9e82865ca6d5f6e828572a56fe36558d126ef61400b973409cedb706a; PE5bc063d3f58fdca42aebc055541c3566ffea51f5973cf775778c521e50597f05.
 - Round-trip exato e regiões PASS; direct jumps TEST3 preservados. Relatório docs/RENDER_PROBE_2026_10_07.json.
 - Próxima ação: Pedro executa diagnóstico em pasta separada e espera cerca3s sem botões. Registrar se jogo abre automaticamente ou permanece preto. Se abrir: investigar ortho/fontes/textos/estado específico do gate original. Se falhar: investigar render básico no contexto inicial e ABI; não afirmar causa sem evidência. Seletor ainda NÃO corrigido. Base30FPS; dublagens/interface completas pendentes.
+
+
+## 07/10/2026 — RENDER_90 aprovado pelo Pedro (05:06 UTC)
+- Feedback: “Sim, funcionou perfeitamente. Tá tudo ok. Podemos prosseguir.” RENDER_90 XEX8a40b7bcddb0136072fa8fb0d8bb6435338498bcc66ab49501bcb25215c3df4e abriu o jogo no console.
+- Validado o diagnóstico de render básico com retorno automático ao jogo, junto aos pulos TEST3 preservados. Não valida ainda texto, seleção/ativação de idioma ou dublagem.
+- Próxima ação autorizada: acrescentar ortho e um texto ao diagnóstico de90quadros; manter retorno automático para evitar dependência dos comandos do seletor. Preservar ABI com r30/r31 completos. Resultado pode isolar esse caminho, não identificar sozinho a causa histórica.
