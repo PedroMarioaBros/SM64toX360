@@ -357,3 +357,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Removido como direção: qualquer seletor antes dos créditos. SELECTOR_TEST2/NAVEGATION/VISUAL probes não são base de produto; diagnósticos históricos preservados apenas como evidência.
 - Documento técnico: docs/POST_CREDITS_LANGUAGE_FLOW_2026_10_07.md. Nenhum executável novo neste bloco.
 - Próxima ação: mapear intro_regular/lvl_intro_update no XEX e implementar em fases: tela/confirmar, ativação, créditos personalizados, retorno ao file select.
+
+
+## 07/10/2026 — início do mapeamento da rotina Press Start
+- A arquitetura pós-créditos foi aprovada e documentada em docs/POST_CREDITS_LANGUAGE_FLOW_2026_10_07.md.
+- A fonte recuperada confirma que o fluxo normal é `intro_regular` → `print_intro_text` → botão START → retorno 100 (file select) e `run_level_id_or_demo`; esse caminho deve ser preservado.
+- O XEX não possui símbolos de função utilizáveis no ELF recuperado; o endereço da rotina precisa ser localizado por análise de código/cross-references antes de patch. Nenhum executável novo foi gerado.
+- Próxima ação: mapear o ponto de chamada de `intro_regular`/`lvl_intro_update`, criar uma rotina de teste mínima no fluxo Press Start e só depois integrar ativação/ créditos multilíngues.
