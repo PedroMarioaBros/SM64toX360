@@ -427,3 +427,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Foram consultados repositórios e fontes públicas de porting/decompilação. `sirdankz/MKart360` confirma um fluxo público de build Xbox 360, mas é Mario Kart 64 e não fornece símbolos do nosso jogo. `TheGag96/sm64-port`/branch `extended_moveset` confirma as rotinas lógicas de parede/crawling, mas não contém crawling aderido nem mapa PowerPC/XEX compatível. `sm64-port/sm64-port` e doxygen fornecem nomes/relacionamentos, não endereços transferíveis. `ClementDreptin/XexUtils` é ferramenta geral, sem símbolos específicos.
 - Nenhum mapa de símbolos, ELF/PDB, build reproduzível ou XEX público correspondente ao port/base v0.4 foi localizado. Relatório: `docs/EXTERNAL_SYMBOL_SEARCH_2026_10_07.md`.
 - Não aplicar endereços externos por semelhança. Próxima ação: procurar commits/logs/branches específicos do port e continuar cross-reference local com fluxo de registradores.
+
+## 07/10/2026 — sm64_dump.txt identificado
+- Arquivo encontrado por Pedro na pasta do jogo: dump de diagnóstico gráfico, não save/asset. SHA-256 `93350c14d91f5908aa00bfe753e01ca79a20e4f0ba65492d5b9ddc7a52c1b703`, tamanho 1.178.555 bytes.
+- Evidências: cabeçalho `SM64 360 FRAME DUMP`, backbuffer 1280x720, 2.027 chamadas `gfx_sp_tri1`, encerramento `END (2027 gfx_sp_tri1 calls dumped; uncapped)`.
+- Causa confirmada: a compilação de diagnóstico contém a combinação `BACK + START` para solicitar dump; isso está documentado em `docs/CONTROLES_XBOX360.md` e coberto por `controls_probe.py`. O arquivo pode aparecer após o flush no fechamento/retorno ao dashboard.
+- Não apagar automaticamente nem distribuir no jogo; pode ser removido manualmente sem afetar save. Evitar BACK+START nos testes de produto ou remover o diagnóstico em uma futura build.
+- Relatório: `docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md`. Nenhum XEX gerado nesta análise.
+- Próxima ação permanece: cross-reference local com fluxo de registradores para wall-crawl e busca de pacote de amostras de dublagem; não reutilizar probes de seletor descartados.
