@@ -414,3 +414,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Execução na base `_localization_build/direct-jumps3.pe`: PASS, 665 candidatos amplos; relatório `docs/WALL_CRAWL_CANDIDATE_SCAN_2026_10_07.json`, SHA-256 `8a2a810554639f4d19af6c07856ae3e1d55db59ba6e3ff84a841f0d4d50b04cd`.
 - Resultado não identifica ainda a rotina correta: o filtro por offsets de estado é amplo e não deve ser usado para patch. Nenhum XEX foi alterado.
 - Próxima ação: refinar por sequência de acesso a `wall/floor/controller`, chamadas de colisão/passo e comparação de fingerprints da fonte; confirmar endereço e ABI antes de qualquer protótipo.
+
+
+## 07/10/2026 — filtro refinado do PE sem candidato seguro
+- O segundo filtro tentou combinar acesso a `m->wall`, campos de ação, posição e chamadas de função. Resultado: PASS técnico, zero candidatos seguros.
+- Interpretação: os acessos do compilador usam registradores intermediários e o padrão simples por registrador não é suficiente para identificar `push_or_sidle_wall`/crawling. Isso evita um patch baseado em falso positivo.
+- Arquivos publicados: `scripts/multilang/refine_wall_candidates.py` e `docs/WALL_CRAWL_REFINED_SCAN_2026_10_07.json`; SHA-256 do relatório: `d73507ab2f037ef67cbf7e416133323b7657d5c12d43ecb88ecb962ddd10c9d4`.
+- Próxima ação: usar análise de fluxo de registradores/cross-reference de chamadas, ou localizar artefato de símbolos/mapa compatível, antes de qualquer XEX. Nenhum executável foi gerado.
