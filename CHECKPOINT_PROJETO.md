@@ -310,3 +310,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Pacote SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip, libfile_ec3a76d126b88191a9f71e15d00fdf8b. XEX6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0; ZIPd21cd5e1223250a529921c0aca78215023527220949118923c1cce4ec124e107; PEbb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56.
 - Reprodução: credits_restore_gate.install(direct-jumps3.pe), xex2replace v0.4 credits-restore.pe credits-restore.xex basic, xex2ool basefile credits-restore.xex -o credits-restore-roundtrip.pe, test_credits_restore.py para0/89/90.
 - Próxima ação: Pedro testa menu com textos e carregamento save após~3s sem botões. Se passar, retomar separação lógica estado/controller/tela seletor com alpha preservada por quadro. SELECTOR_TEST2 ainda reprovado/tela preta sem causa exata. Menus multilíngues completos/dublagens pendentes.
+
+
+## 07/10/2026 — menu restaurado aprovado no Xbox (05:52 UTC)
+- Feedback real Pedro: “Testei e o jogo abriu normalmente e funcionou. O menu voltou a aparecer, as informações carregou o save e funcionou normal.”
+- Aprovado SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip, XEX6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0, libfile_ec3a76d126b88191a9f71e15d00fdf8b.
+- Confirmados boot, retorno dos textos/informações do menu e carregamento/continuidade do save. Correção de preservação alpha validada no console. Não inferir teste de novo salvamento, salvar/sair, três idiomas ou vozes.
+- Próximo trabalho: isolar lógica estado/controller/tela de seleção do gate completo, reaproveitando render de créditos com restauração alpha aprovado. Diagnóstico limitado deve retornar automaticamente ao jogo para não confundir ausência de seleção com travamento; validar resposta direcional/A separadamente da ativação170ponteiros. Não repetir teste de menu/boot já aprovado.
+- SELECTOR_TEST2 continua reprovado por tela preta; causa exata não demonstrada. Preservar pulos/câmera TEST3/30FPS/PT. Interface multilíngue completa e dublagens seguem pendentes.
+- Este bloco registra aprovação; nenhum novo executável gerado.
