@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "hardware_verified": false,
+  "checks": [
+    "mapper 0x0",
+    "mapper 0x1000",
+    "mapper 0x4000",
+    "mapper 0x2000",
+    "mapper 0x8000",
+    "mapper 0xa000",
+    "mapper 0x1",
+    "mapper 0x9000",
+    {
+      "ground": "0xc400201",
+      "button": "0x1",
+      "action": "0x3000881",
+      "vertical_velocity": 52.0
+    },
+    {
+      "ground": "0xc400201",
+      "button": "0x2",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0xc400201",
+      "button": "0x3",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0x4000440",
+      "button": "0x1",
+      "action": "0x3000881",
+      "vertical_velocity": 52.0
+    },
+    {
+      "ground": "0x4000440",
+      "button": "0x2",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0x4000440",
+      "button": "0x3",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0xc000231",
+      "button": "0x1",
+      "action": "0x3000881",
+      "vertical_velocity": 52.0
+    },
+    {
+      "ground": "0xc000231",
+      "button": "0x2",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0xc000231",
+      "button": "0x3",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0x4000470",
+      "button": "0x1",
+      "action": "0x3000881",
+      "vertical_velocity": 52.0
+    },
+    {
+      "ground": "0x4000470",
+      "button": "0x2",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    {
+      "ground": "0x4000470",
+      "button": "0x3",
+      "action": "0x1000882",
+      "vertical_velocity": 69.0
+    },
+    "blocked 0x3000880",
+    "blocked 0x3000881",
+    "blocked 0x1000882",
+    "blocked 0x380022c0",
+    "blocked 0xc000227",
+    "blocked 0x1904"
+  ],
+  "scope": "actual mapper and native action setup; graphics not exercised"
+}
