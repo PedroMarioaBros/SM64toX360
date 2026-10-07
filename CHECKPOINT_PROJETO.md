@@ -335,3 +335,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - NAVEGATION_PROBE não aprovado como teste de tela/navegação. O boot/retorno ao jogo ocorreu, mas não há evidência de que a tela de idiomas tenha sido renderizada ou que D-pad/A tenham sido exercitados.
 - Não atribuir ainda a falha a texto, controle ou ativação. O diagnóstico local desenhava escolhas, mas o resultado de hardware mostra que esse caminho não ficou visível antes do script original. Investigar ordem do hook/estado e diferença entre tela de créditos original e gate limitado.
 - Próxima ação: criar instrumentação/diagnóstico ainda mais isolado, com marcador visual mínimo e estado persistente, ou revisar a chamada do hook para garantir que a rotina permaneça antes do script original. Preservar CREDITS_MENU_CORRIGIDO, pulos/câmera/30FPS/PT; não repetir NAVEGATION_PROBE sem mudança técnica.
+
+
+## 07/10/2026 — VISUAL_PROBE entregue após seletor invisível (06:11 UTC)
+- NAVEGATION_PROBE mostrou boot, créditos originais e Press Start, mas nenhuma tela de idiomas; não validou D-pad/A. Não repetir sem mudança.
+- Novo pacote SM64_DIAGNOSTICO_VISUAL_TEXTO_CONHECIDO.zip, Library libfile_b5feeed62fd081919728fe097e389d1a, XEX6f10b64bc82235d04a0469c9a58324f5fd9b6ac276a93d429ac317d292bd2dd1, PE71eaaf63519a8580d7b4ad6b7013f04ae7897ebc52cc51584e1d4afc303903f6, ZIP7715c09db480156e2290822af781e0d4b3d42b14210f9f2cd173a308654ad74e.
+- Usa o ponteiro de texto .lang+0x40 já aprovado no console, desenhado nas cinco posições da tela de seleção, sem ativar idioma nem depender dos textos PT/ES/EN. Após ~300 chamadas retorna ao script original. Round-trip exato; base TEST3/pulos/câmera/alpha preservados. Hardware pendente.
+- Se texto conhecido aparecer: problema anterior está nos ponteiros/strings específicos do seletor. Se não aparecer: investigar hook/estado/render da tela. Não afirmar causa antes do resultado.
