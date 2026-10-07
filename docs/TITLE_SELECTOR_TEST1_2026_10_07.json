@@ -1,0 +1,28 @@
+{
+  "status": "BUILD PASS; hardware pending",
+  "title_hook": "0x820D5F48 -> 0x823BC900",
+  "precredit_hook_unchanged": true,
+  "activation": "170 pointers at 0x823BC800",
+  "regions": [
+    [
+      876360,
+      876364
+    ],
+    [
+      3917824,
+      3917912
+    ],
+    [
+      3918080,
+      3918336
+    ]
+  ],
+  "roundtrip_exact": true,
+  "lang_section_preserved": true,
+  "hashes": {
+    "pe": "9e0ec3d7dfd0c54b7f6741ee7f30340d2d88511ec597d8c1ccb48771f36f5946",
+    "xex": "ff03bdf4444330c8759f53b832a9e8f39d9329bbc4b66e83a212d3d10775344c",
+    "zip": "91c75fb09f976fe2b5f77342d71396c54196cc9d222782771189b83603bd3d48"
+  },
+  "scope": "static build/roundtrip; hardware pending"
+}
