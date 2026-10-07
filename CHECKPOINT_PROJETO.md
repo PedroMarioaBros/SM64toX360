@@ -284,3 +284,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Roundtrip XEX→PE exato e regiões permitidas conferidas. Relatório docs/SELECTOR_TEST2_2026_10_07.json, código e harness publicados e verificados.
 - Reprodução: instalar pregame_gate.build em3BC900 e language_activation.build em3BC800 de direct-jumps3.pe (caves vazias), patchCD128=482EF7D9; xex2replace basev0.4 selector-test2.pe selector-test2.xex basic; xex2ool basefile selector-test2.xex -o selector-test2-roundtrip.pe; comparar bytes.
 - Próxima ação: Pedro testa créditos/seletor, navegação/A, PT primeiro e continuidade save, depois reinicia executável para ES/EN e confere diálogo/placa. Registrar tela exata em caso de falha. Não repetir diagnósticos aprovados. Menus/cursos/estrelas completos e vozes PT/ES continuam pendentes; não declarar edição final.
+
+
+## 07/10/2026 — SELECTOR_TEST2 falhou no Xbox (05:39 UTC)
+- Pedro informou: executou, tela preta, não abriu o jogo, sem crash aparente do console. XEX5b64a0d248fca3201d4a512dd118b7191f4cf5f115dc9b2cf272414ec36a89f2 NÃO aprovado.
+- Sem evidência de que créditos/seletor chegaram a aparecer; não atribuir falha a idioma ou save. Salvamento nativo dos registradores não resolveu sozinho. PASS CPU não representou GPU/hardware.
+- Comparação imediata: TEXTO_90 aprovado desenha uma string e volta automaticamente; gate completo desenha seis strings de créditos, lê controller e muda estado. Pointer global823C8990 contém82E47BB8 na imagem; hipótese de global nulo não sustentada por bytes iniciais, porém estado runtime ainda depende do console.
+- Próxima ação: diagnóstico limitado das seis strings de créditos com retorno automático em90quadros, sem controller/seletor/ativação, para separar carga/textos da lógica interativa. Não repetir TEXTO_90 aprovado nem afirmar causa exata.
