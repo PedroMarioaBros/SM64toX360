@@ -37,3 +37,15 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Round-trip exato, auditoria de regiões PASS; só hooks/caves previstos mudaram. FPS30/PT/pools preservados. Código e novos relatórios DIRECT_JUMPS_TEST2_BUILD_2026_10_07.json e DIRECT_JUMPS_TEST2_CPU_2026_10_07.json publicados na branch ativa.
 - Próxima ação: Pedro testa TEST2 B/Y parado e correndo, A-A-A e X; registrar resultado. Se falhar, rastrear cadeia completa e considerar observabilidade; não repetir TEST1 nem declarar novo PASS de hardware com CPU.
 - Seletor segue desativado neste candidato e não corrigido. Retomar diagnóstico gate/render após tratar atalhos; dublagens/interface completas ainda pendentes.
+
+
+## Estado atual — 07/10/2026, TEST2 pulos funcionaram com conflito de câmera; TEST3 entregue
+- Feedback Pedro: B/Y funcionaram, mas Y girava câmera e posições do analógico direito acionavam os mesmos pulos. TEST2 NÃO aprovado integralmente.
+- Causa confirmada: bits 0x01/0x02 usados no TEST2 são C-right/C-left reais gerados pelo analógico direito em mapper 0x82165BD0/0x82165BBC. Corrigir registro anterior que tratava esses bits como privados. TEST1 bits0x40/80 também não são solução pois filtro os apaga.
+- TEST3 não injeta bits de salto em OSContPad/Controller. Mantém mapper de câmera original byte-idêntico. Registra comandos físicos Xbox B0x2000/Y0x8000 separadamente em .lang+0x80 buttonDown e +0x84 buttonPressed (current & ~previous), campos vazios confirmados na base .lang gravável. Gameplay lê somente esses campos. Y não alterna sombras.
+- Teste local ampliado PASS: mapper→filtro real, native set_mario_action, nove direções/diagonais do analógico, B/Y simultâneos com câmera, segurados sem nova borda, câmera sem shortcut. Resultados em docs/DIRECT_JUMPS_TEST3_CPU_2026_10_07.json. Não é validação Xbox.
+- Pacote SM64_TESTE_PULOS_ABY_30FPS_TEST3.zip, Library libfile_71ef2099121c8191ba90c902355eee3c.
+- XEX SHA-256 b90ae1d1be953c1f817e9c64286c67da855778ac7c671098a3cd8495d8b6afd9; ZIP180142fdeea0a8d60c313ff051e97a3e6066a1c789ceccd6c05af23303686d23; PEa1bc5c6db7e32d4214c2d1329874f68dee058c91063b67bbacde7ae197a48f6c.
+- Build round-trip exato e regiões PASS; fonte direct_jumps.py/test_direct_jumps.py atualizada e relatório DIRECT_JUMPS_TEST3_BUILD_2026_10_07.json publicado.
+- Próxima ação concreta: Pedro testa TEST3 (B/Y pulos, Y sem giro, analógico somente câmera em todas direções, A-A-A/X/save). Registrar resultado antes de aprovar atalhos. Não pedir repetir TEST1/TEST2.
+- Base continua30FPS/PT preservado; seletor continua desativado e sua tela preta NÃO corrigida. Após validar pulos, retomar gate/render. Interface completa/dublagens seguem pendentes.
