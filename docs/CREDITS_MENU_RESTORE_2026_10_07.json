@@ -1,0 +1,66 @@
+{
+  "status": "CPU/build PASS; hardware pending",
+  "cause": "previous probe clears menu alpha every original frame; no runtime menu fade can persist",
+  "fix": "save original two alpha bytes on stack before credits and restore each credit frame; original path does not write alpha",
+  "cpu_alpha_seed": [
+    113,
+    41
+  ],
+  "cpu_alpha_preserved": true,
+  "cpu": [
+    {
+      "status": "PASS",
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 62647,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820fb8a0": 125,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "timer_in": 89,
+      "timer_out": 90,
+      "instructions": 62647,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "0x820ce7b0": 1,
+        "0x82099498": 1,
+        "0x820fb8a0": 125,
+        "0x820ce780": 1
+      }
+    },
+    {
+      "status": "PASS",
+      "timer_in": 90,
+      "timer_out": 90,
+      "instructions": 19,
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation",
+      "call_counts": {
+        "original": 1
+      }
+    }
+  ],
+  "roundtrip_exact": true,
+  "regions": [
+    [
+      839976,
+      839980
+    ],
+    [
+      3918080,
+      3918344
+    ]
+  ],
+  "hashes": {
+    "pe": "bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56",
+    "xex": "6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0",
+    "zip": "d21cd5e1223250a529921c0aca78215023527220949118923c1cce4ec124e107"
+  },
+  "hardware_previous": "opened game and save; menu missing all text, not intentional; partial failure",
+  "scope": "native CPU render with synthetic graphics memory; no GPU validation; selector black screen unresolved"
+}
