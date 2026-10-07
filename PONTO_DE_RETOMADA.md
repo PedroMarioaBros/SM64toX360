@@ -6,3 +6,6 @@ Leia CHECKPOINT_PROJETO.md e AGENTS.md antes de trabalhar. Atualize e verifique 
 Estado em 07/10/2026: SELECTOR_TEST1 apresentou tela preta; NOHOOK abriu o jogo no Xbox, confirmado pelo Pedro. Seletor ainda não validado.
 Próxima ação: corrigir PASSTHROUGH, pois o pacote anterior manteve o hook original e não isola o desvio. Verificar BL 0x482EF7D9 em 0x820CD128, branch imediato ao original na cave, round-trip e hashes; disponibilizar diagnóstico corrigido e registrar teste no Xbox. Não repetir NOHOOK.
 Detalhes e histórico no checkpoint da branch ativa: https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md
+
+
+Atualização: PASSTHROUGH2 corrigido, reconstruído e verificado; disponível para teste do Pedro. Próxima ação atual: registrar se PASSTHROUGH2 abre diretamente o jogo ou apresenta tela preta. Hashes e recuperação no último bloco do checkpoint. Não testar PASSTHROUGH antigo.
