@@ -1,12 +1,10 @@
 # Ponto de retomada — leia primeiro
 Branch ativa feature/multilang-dub-30fps; base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md.
 
-Aprovados Xbox: pulos TEST3/câmera, RENDER90, TEXTO90, CREDITS_MENU_CORRIGIDO com menu/save. Preserve.
+Aprovados Xbox: pulos TEST3/câmera, RENDER90, TEXTO90, CREDITS_MENU_CORRIGIDO com menu/save.
 
-SELECTOR_TEST2 e NAVEGATION_PROBE não mostraram seletor. NAVEGATION_PROBE chegou aos créditos originais e Press Start; controle não validado.
+Nova direção aprovada: créditos universais → tela equivalente a Press Start com Português/Español/English → A confirma idioma → créditos personalizados multilíngues em painel/pop-up → A continua para menu normal de saves. Remover caminho pré-créditos; não repetir probes antigos.
 
-Próximo teste entregue: SM64_DIAGNOSTICO_VISUAL_TEXTO_CONHECIDO.zip, libfile_b5feeed62fd081919728fe097e389d1a. Mostra texto já comprovado em cinco posições por ~10s e abre depois. Se aparecer, investigar ponteiros específicos; se não, hook/render. Hardware pendente.
+Próxima ação: mapear intro_regular/lvl_intro_update no XEX e implementar em fases. Nenhum executável novo desta arquitetura ainda.
 
-Não declarar seletor aprovado. Interface completa/dublagens pendentes; Native60 fora desta etapa.
-
-[Checkpoint canônico](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
+[Checkpoint](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
