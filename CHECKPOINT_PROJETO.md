@@ -432,3 +432,7 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Dump gráfico de diagnóstico, não save/asset. SHA-256 93350c14d91f5908aa00bfe753e01ca79a20e4f0ba65492d5b9ddc7a52c1b703; 1.178.555 bytes; 2.027 chamadas gfx_sp_tri1.
 - BACK+START solicita o dump na compilação de diagnóstico; relatório docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md. Não incluir no pacote; pode ser removido sem afetar save.
 - Próxima ação: wall-crawl/dublagem; não repetir probes descartados.
+
+
+## 07/10/2026 — primeiro wall-crawl restrito a paredes verticais
+- Parede vertical primeiro; inclinações/tetos depois de estabilidade. Nenhum XEX alterado. Especificação: docs/WALL_CRAWL_WALL_ONLY_SCOPE_2026_10_07.md. Próxima ação: fluxo de registradores/chamadas de colisão + harness estático.
