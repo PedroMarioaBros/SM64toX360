@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate direct grounded double/triple jump shortcuts, leaving Xbox A unchanged.
-Private controller bits 0x01/0x02 carry Xbox B/Y; only the gameplay hook consumes them.
+Physical Xbox B/Y down/pressed live in .lang+0x80/+0x84; camera bits remain original.
 """
 from pregame_gate import Asm
 import struct
@@ -17,11 +17,12 @@ def sth(a,rs,d,ra):a.emit(0xb0000000|(rs<<21)|(ra<<16)|(d&65535))
 def jump(a,target):a.emit(0x48000000|((target-a.pc())&0x03fffffc))
 def mapper():
  a=Asm(MAPPER_CAVE)
- # Replace the entire old Y-shadow toggle. r6=current XInput bits; preserve r10
- # (address of previous XInput bits) and r7 for the original write at 0x165A80.
- for mask,private,name in [(0x2000,0x01,'b'),(0x8000,0x02,'y')]:
-  a.andi(9,6,mask);a.cmpwi(9,0);a.branch(name+'_done','beq')
-  a.lhz(11,0,30);ori(a,11,11,private);sth(a,11,0,30);a.label(name+'_done')
+ # Physical shortcuts are stored outside the original camera/controller bits.
+ # r8 is previous XInput state; r6 is current. Preserve r10/r7 for the original tail.
+ a.lis(11,0x8304)
+ a.andi(9,6,0xa000);a.stw(9,0x80,11)
+ a.emit(0x7c000078|(6<<21)|(9<<16)|(8<<11)) # andc r9,r6,r8
+ a.andi(9,9,0xa000);a.stw(9,0x84,11)
  jump(a,0x82165A7C)
  return a.resolve()
 def gameplay():
@@ -29,17 +30,17 @@ def gameplay():
  a.mflr();a.emit(0x9421ff80);a.stw(0,0x78,1);a.stw(11,0x70,1)
  a.lwz(8,0x9c,11);a.cmpwi(8,0);a.branch('exit','beq')
  # Hold B sustains the native double-jump height, without faking A in menus.
- a.lhz(9,0x10,8);a.andi(9,9,0x01);a.cmpwi(9,0);a.branch('press','beq')
+ a.lis(9,0x8304);a.lwz(9,0x80,9);a.andi(9,9,0x2000);a.cmpwi(9,0);a.branch('press','beq')
  a.lwz(10,0xc,11);a.lis(9,0x300);ori(a,9,9,0x881)
  a.emit(0x7c000000|(10<<16)|(9<<11));a.branch('press','bne') # cmpw r10,r9
  a.lhz(9,2,11);ori(a,9,9,0x80);sth(a,9,2,11)
- a.label('press');a.lhz(9,0x12,8);a.andi(9,9,0x03);a.cmpwi(9,0);a.branch('exit','beq')
+ a.label('press');a.lis(9,0x8304);a.lwz(9,0x84,9);a.andi(9,9,0xa000);a.cmpwi(9,0);a.branch('exit','beq')
  a.lhz(10,2,11);a.andi(10,10,0x654);a.cmpwi(10,0);a.branch('exit','bne') # off floor/first person/squished/water/stomp
  a.lwz(10,0x7c,11);a.cmpwi(10,0);a.branch('exit','bne') # holding object
  a.lwz(10,0xc,11);a.andi(10,10,0x1ff)
  for ident in GROUND_IDS:a.cmpwi(10,ident);a.branch('launch','beq')
  a.branch('exit')
- a.label('launch');a.andi(10,9,0x02);a.cmpwi(10,0);a.branch('double','beq')
+ a.label('launch');a.andi(10,9,0x8000);a.cmpwi(10,0);a.branch('double','beq')
  a.lis(4,0x100);ori(a,4,4,0x882);a.branch('call')
  a.label('double');a.lhz(10,2,11);ori(a,10,10,0x80);sth(a,10,2,11)
  a.lis(4,0x300);ori(a,4,4,0x881)
