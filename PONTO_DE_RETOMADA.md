@@ -8,3 +8,6 @@ Nova direção aprovada: créditos universais → tela equivalente a Press Start
 Próxima ação: mapear intro_regular/lvl_intro_update no XEX e implementar em fases. Nenhum executável novo desta arquitetura ainda.
 
 [Checkpoint](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md)
+
+
+Mapeamento iniciado: fonte confirma intro_regular → START → file select, mas XEX/ELF não tem símbolos úteis. Nenhum binário novo. Próxima ação é localizar cross-reference da rotina Press Start antes de patch.
