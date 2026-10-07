@@ -7,7 +7,7 @@ Branch de desenvolvimento: feature/multilang-dub-30fps.
 2. Consultar os arquivos técnicos na branch de desenvolvimento; main é também entrada para descoberta.
 3. Ler docs/PREGAME_GATE_STATIC_INTEGRATION_2026_10_05.json e os scripts citados abaixo.
 4. Conferir a revisão remota e diferenças locais. Não repetir recuperação ou testes já comprovados sem motivo.
-5. Próxima ação: diagnóstico limitado de texto/ortho sobre RENDER_90 aprovado; preservar pulos TEST3. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
+5. Próxima ação: preparar seletor completo sobre render/texto aprovados; preservar pulos TEST3. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
 
 ## Objetivo e decisões permanentes
 Edição única baseada na v0.4 funcional de 30 FPS, com seleção Português / Español / English antes de qualquer tela normal.
@@ -19,7 +19,7 @@ Não misturar Native60, não substituir PT-BR pela tradução pública BMatSanto
 Nenhum teste estático ou em Unicorn equivale a funcionamento comprovado no Xbox.
 
 ## Onde estamos
-STATUS: RENDER_90 aprovado no console; seletor completo ainda pendente.
+STATUS: RENDER_90 e TEXTO_90 aprovados no console, incluindo jogo e continuidade de save existente; seletor completo ainda pendente.
 Novo candidato SELECTOR_TEST1 reconstruído, validado e disponibilizado para primeiro teste no console.
 Os hashes históricos EN/ES seguem sem reprodução; essa pendência de rastreabilidade não foi declarada resolvida. O novo candidato foi validado independentemente com fontes fixadas, layout, ponteiros, preservação PT e round-trip.
 Teste real de 06/10: SELECTOR_TEST1 ficou em tela preta; não abriu o jogo e não houve crash aparente. O seletor não foi alcançado. Próximo requisito: isolar expansão XEX versus gate.
@@ -264,3 +264,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - CPU rotinas reais com memória sintética PASS timers0,89,90; roundtrip exato; só hookCD128/cave3BC900 alterados contra TEST3. Não prova GPU/hardware. docs/TEXT_PROBE_2026_10_07.json e scripts/multilang/text_probe_gate.py publicados.
 - Reprodução: text_probe_gate.install(direct-jumps3.pe), xex2replace v0.4 text-probe.pe text-probe.xex basic; xex2ool basefile text-probe.xex -o text-probe-roundtrip.pe; test_render_probe.py text-probe.pe para0/89/90.
 - Próxima ação: Pedro testa sem botões; registrar separadamente se apareceu SUPER MARIO 64 e se jogo abriu após~3s. Se ambos passarem, preparar seletor completo com ABI preservada e proteção contra bloqueio; se não, investigar ortho/font/estado gráfico. Não repetir RENDER_90 ou pulos aprovados. Interface completa/vozes pendentes.
+
+
+## 07/10/2026 — TEXTO_90 aprovado no console (05:20 UTC)
+- Feedback real Pedro: “Também funcionou perfeitamente. O jogo abriu, eu joguei e inclusive dei continuidade num save.”
+- Pacote testado SM64_DIAGNOSTICO_TEXTO_90_QUADROS.zip, XEX SHA2563bba6aba7358b09d9561a76d86db08987200dde085df7107e441841487c360eb.
+- Diagnóstico aprovado pelo usuário; confirmou explicitamente abertura do jogo, gameplay e carregamento/continuidade de save existente. Não inferir novo salvamento, salvar/sair, dublagem ou três idiomas desse resultado. Não houve relato separado sobre duração/aparência do texto.
+- Render básico e diagnóstico com ortho/texto agora passaram no Xbox. Não repetir esses diagnósticos. A causa exata do SELECTOR_TEST1 histórico não foi demonstrada; std/ld e render reduzido diferem do gate antigo.
+- Próxima ação: preparar candidato de seletor completo PT/ES/EN sobre base TEST3, mantendo ABI com r30/r31 completos; validar créditos, D-pad/A, ativação e retorno ao jogo, preservação dos pulos/câmera/PT, round-trip e regiões alteradas. Disponibilizar novo candidato para teste real; seletor completo ainda NÃO aprovado. Interface completa e vozes PT/ES continuam pendentes.
+- Esta atualização registra resultado de hardware; nenhum novo executável foi gerado neste bloco.
