@@ -89,8 +89,8 @@ def build() -> bytes:
     a.mflr()
     a.emit(0x9421FF60)  # stwu r1,-0xA0(r1)
     a.stw(0, 0x98, 1)
-    a.stw(30, 0x90, 1)
-    a.stw(31, 0x94, 1)
+    a.emit(0xFBC10080)  # std r30,0x80(r1), preserve native64 register
+    a.emit(0xFBE10088)  # std r31,0x88(r1)
     a.mr(31, 3)         # preserve levelCommandAddr
     a.lis(30, 0x8304)   # .lang base
 
@@ -226,8 +226,8 @@ def build() -> bytes:
     a.call(ORIG_LEVEL_SCRIPT_EXECUTE)
 
     a.label("epilogue")
-    a.lwz(30, 0x90, 1)
-    a.lwz(31, 0x94, 1)
+    a.emit(0xEBC10080)  # ld r30,0x80(r1)
+    a.emit(0xEBE10088)  # ld r31,0x88(r1)
     a.lwz(0, 0x98, 1)
     a.emit(0x382100A0)  # addi r1,r1,0xA0
     a.mtlr()
