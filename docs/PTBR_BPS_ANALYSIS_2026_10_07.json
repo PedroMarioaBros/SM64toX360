@@ -1,0 +1,335 @@
+{
+  "zip_sha256": "6e85270ff7d694e0e14ce3f99e5e29cc290c480066602542104a72cee0aa07d1",
+  "patch_sha256": "1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2",
+  "patch_crc_valid": true,
+  "source_size": 8388608,
+  "target_size": 9090352,
+  "source_crc32": "0x3ce60709",
+  "target_crc32": "0xaacb4011",
+  "actions": [
+    895,
+    16095,
+    30117,
+    21843
+  ],
+  "known_bytes_without_source": 1718881,
+  "unknown_bytes": 7371471,
+  "known_runs_over_4k": [
+    {
+      "start": "0x10edd4",
+      "end": "0x111c5c",
+      "bytes": 11912
+    },
+    {
+      "start": "0x60c040",
+      "end": "0x60d9e8",
+      "bytes": 6568
+    },
+    {
+      "start": "0x60d9f0",
+      "end": "0x60f5cd",
+      "bytes": 7133
+    },
+    {
+      "start": "0x60f5e0",
+      "end": "0x613af7",
+      "bytes": 17687
+    },
+    {
+      "start": "0x61448b",
+      "end": "0x6170ec",
+      "bytes": 11361
+    },
+    {
+      "start": "0x6170f1",
+      "end": "0x61ace1",
+      "bytes": 15344
+    },
+    {
+      "start": "0x61b610",
+      "end": "0x61e66f",
+      "bytes": 12383
+    },
+    {
+      "start": "0x61e680",
+      "end": "0x623fb2",
+      "bytes": 22834
+    },
+    {
+      "start": "0x623fc0",
+      "end": "0x62a439",
+      "bytes": 25721
+    },
+    {
+      "start": "0x62a440",
+      "end": "0x6312dc",
+      "bytes": 28316
+    },
+    {
+      "start": "0x6312f0",
+      "end": "0x6357cb",
+      "bytes": 17627
+    },
+    {
+      "start": "0x6357d1",
+      "end": "0x63bb94",
+      "bytes": 25539
+    },
+    {
+      "start": "0x63bc10",
+      "end": "0x645fe8",
+      "bytes": 41944
+    },
+    {
+      "start": "0x645fee",
+      "end": "0x654601",
+      "bytes": 58899
+    },
+    {
+      "start": "0x654610",
+      "end": "0x65aaf5",
+      "bytes": 25829
+    },
+    {
+      "start": "0x65ab00",
+      "end": "0x662ca0",
+      "bytes": 33184
+    },
+    {
+      "start": "0x662cb0",
+      "end": "0x669b28",
+      "bytes": 28280
+    },
+    {
+      "start": "0x669b30",
+      "end": "0x66f6b8",
+      "bytes": 23432
+    },
+    {
+      "start": "0x66f6c0",
+      "end": "0x676ff9",
+      "bytes": 31033
+    },
+    {
+      "start": "0x676fff",
+      "end": "0x682e8a",
+      "bytes": 48779
+    },
+    {
+      "start": "0x682e90",
+      "end": "0x68625b",
+      "bytes": 13259
+    },
+    {
+      "start": "0x686261",
+      "end": "0x690c8c",
+      "bytes": 43563
+    },
+    {
+      "start": "0x690c90",
+      "end": "0x695216",
+      "bytes": 17798
+    },
+    {
+      "start": "0x69521c",
+      "end": "0x69ab50",
+      "bytes": 22836
+    },
+    {
+      "start": "0x69ab60",
+      "end": "0x6a30c1",
+      "bytes": 34145
+    },
+    {
+      "start": "0x6a30d0",
+      "end": "0x6aa1cb",
+      "bytes": 28923
+    },
+    {
+      "start": "0x6aa1d1",
+      "end": "0x6ab611",
+      "bytes": 5184
+    },
+    {
+      "start": "0x6ab617",
+      "end": "0x6adaba",
+      "bytes": 9379
+    },
+    {
+      "start": "0x6adac0",
+      "end": "0x6b25e5",
+      "bytes": 19237
+    },
+    {
+      "start": "0x6b25f1",
+      "end": "0x6b9827",
+      "bytes": 29238
+    },
+    {
+      "start": "0x6b9830",
+      "end": "0x6bec70",
+      "bytes": 21568
+    },
+    {
+      "start": "0x6ca5c4",
+      "end": "0x6d9f4d",
+      "bytes": 63881
+    },
+    {
+      "start": "0x6dacf0",
+      "end": "0x6dfbce",
+      "bytes": 20190
+    },
+    {
+      "start": "0x6dfbe0",
+      "end": "0x6e2464",
+      "bytes": 10372
+    },
+    {
+      "start": "0x6e2469",
+      "end": "0x6e393d",
+      "bytes": 5332
+    },
+    {
+      "start": "0x6e3943",
+      "end": "0x6f857f",
+      "bytes": 85052
+    },
+    {
+      "start": "0x6f8585",
+      "end": "0x6fcdca",
+      "bytes": 18501
+    },
+    {
+      "start": "0x6fcdd0",
+      "end": "0x6feb90",
+      "bytes": 7616
+    },
+    {
+      "start": "0x6feba0",
+      "end": "0x700993",
+      "bytes": 7667
+    },
+    {
+      "start": "0x7022af",
+      "end": "0x7065ad",
+      "bytes": 17150
+    },
+    {
+      "start": "0x7065b2",
+      "end": "0x70ef6f",
+      "bytes": 35261
+    },
+    {
+      "start": "0x70ef80",
+      "end": "0x7112d4",
+      "bytes": 9044
+    },
+    {
+      "start": "0x7112e0",
+      "end": "0x716706",
+      "bytes": 21542
+    },
+    {
+      "start": "0x716710",
+      "end": "0x718542",
+      "bytes": 7730
+    },
+    {
+      "start": "0x718742",
+      "end": "0x71c781",
+      "bytes": 16447
+    },
+    {
+      "start": "0x71c790",
+      "end": "0x72222e",
+      "bytes": 23198
+    },
+    {
+      "start": "0x722240",
+      "end": "0x726f02",
+      "bytes": 19650
+    },
+    {
+      "start": "0x727834",
+      "end": "0x728e15",
+      "bytes": 5601
+    },
+    {
+      "start": "0x728e1a",
+      "end": "0x72c335",
+      "bytes": 13595
+    },
+    {
+      "start": "0x72c33e",
+      "end": "0x72efb1",
+      "bytes": 11379
+    },
+    {
+      "start": "0x72efb8",
+      "end": "0x73ad06",
+      "bytes": 48462
+    },
+    {
+      "start": "0x73b44c",
+      "end": "0x74d8fc",
+      "bytes": 74928
+    },
+    {
+      "start": "0x74d902",
+      "end": "0x7574ca",
+      "bytes": 39880
+    },
+    {
+      "start": "0x7574d0",
+      "end": "0x75a420",
+      "bytes": 12112
+    },
+    {
+      "start": "0x75a430",
+      "end": "0x75d608",
+      "bytes": 12760
+    },
+    {
+      "start": "0x75d610",
+      "end": "0x769b48",
+      "bytes": 50488
+    },
+    {
+      "start": "0x769b50",
+      "end": "0x76efff",
+      "bytes": 21679
+    },
+    {
+      "start": "0x76f010",
+      "end": "0x7740c7",
+      "bytes": 20663
+    },
+    {
+      "start": "0x7740d0",
+      "end": "0x7762b5",
+      "bytes": 8677
+    },
+    {
+      "start": "0x7762bb",
+      "end": "0x77c50a",
+      "bytes": 25167
+    },
+    {
+      "start": "0x77c50f",
+      "end": "0x78e553",
+      "bytes": 73796
+    },
+    {
+      "start": "0x78e560",
+      "end": "0x791ade",
+      "bytes": 13694
+    },
+    {
+      "start": "0x791af0",
+      "end": "0x794970",
+      "bytes": 11904
+    }
+  ],
+  "limits": "Sparse bytes are not a playable ROM; no voice bank identified or decoded."
+}
