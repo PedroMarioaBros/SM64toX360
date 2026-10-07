@@ -436,3 +436,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 
 ## 07/10/2026 — primeiro wall-crawl restrito a paredes verticais
 - Parede vertical primeiro; inclinações/tetos depois de estabilidade. Nenhum XEX alterado. Especificação: docs/WALL_CRAWL_WALL_ONLY_SCOPE_2026_10_07.md. Próxima ação: fluxo de registradores/chamadas de colisão + harness estático.
+
+
+## 07/10/2026 — pacote real de dublagem PT-BR recebido e BPS analisado
+- Pedro forneceu SM64-PTBR-1.0-BMatSantos-Kosmus.zip (Library libfile_9e016d73140c8191990bad65594a864c) e https://www.romhacking.net.br/index.php?topic=1629.0. ZIP SHA256 6e85270ff7d694e0e14ce3f99e5e29cc290c480066602542104a72cee0aa07d1; patch SHA256 1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2.
+- ZIP contém BPS, capa e dois leia-me; nenhuma amostra WAV/AIFF separada. Página confirma dublagem Mario/BMatSantos e Peach/Vihh_Art, edição Kosmus.
+- CRC do patch validado. ROM fonte exigida: 8.388.608 bytes, CRC32 3CE60709; alvo 9.090.352 bytes, CRC32 AACB4011. Leia-me indica Super Mario 64 (U) [!].z64.
+- Análise de proveniência reconstruiu 1.718.881 bytes sem fonte; 7.371.471 bytes permanecem dependentes da fonte. Dados parciais NÃO são ROM funcional; nenhum banco de voz identificado/decodificado, nenhum XEX gerado.
+- Código: scripts/multilang/analyze_bps_partial.py; relatório docs/PTBR_BPS_ANALYSIS_2026_10_07.json. Próxima ação: obter do usuário ROM compatível ou já patchada, validar CRC, aplicar BPS e extrair bancos de áudio. Preservar tradução própria e não publicar ROM/áudio no repositório público. Crawling vertical segue pendente.
