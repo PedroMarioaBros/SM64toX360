@@ -349,3 +349,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Fluxo desejado: créditos universais intactos → tela atualmente equivalente a “Aperte Start” → mostrar Português / Español / English → D-pad seleciona → A confirma e executa o fluxo normal de Start/seleção de arquivo já aprovado.
 - Objetivo técnico: adaptar a rotina original da tela “Aperte Start”, aproveitando sua renderização e controles existentes, em vez de criar uma tela pré-jogo independente. A confirmação deve chamar a ativação dos 170 ponteiros antes de entrar no fluxo do jogo.
 - Nenhum executável foi gerado neste bloco. Próxima ação: localizar/mapear com evidência o endereço da rotina de título no XEX, validar seu contrato de retorno e só então construir candidato sobre a base TEST3/CREDITS_MENU_CORRIGIDO. Preservar 30FPS, PT, pulos/câmera, menu e saves.
+
+
+## 07/10/2026 — fluxo pós-créditos aprovado para implementação
+- Pedro aprovou: créditos universais → tela pós-créditos equivalente a Press Start com Português/Español/English → A confirma idioma → painel/pop-up de créditos personalizados já traduzido → A continua para menu normal de saves.
+- A seleção deve ativar os 170 ponteiros antes do menu, preservando save, menu, pulos A/B/Y, câmera, PT e 30FPS. O painel de créditos deve creditar Nintendo/jogo original, port Xbox 360, localização/tradução/dublagens e PeterKleizoon — PMCN Studios.
+- Removido como direção: qualquer seletor antes dos créditos. SELECTOR_TEST2/NAVEGATION/VISUAL probes não são base de produto; diagnósticos históricos preservados apenas como evidência.
+- Documento técnico: docs/POST_CREDITS_LANGUAGE_FLOW_2026_10_07.md. Nenhum executável novo neste bloco.
+- Próxima ação: mapear intro_regular/lvl_intro_update no XEX e implementar em fases: tela/confirmar, ativação, créditos personalizados, retorno ao file select.
