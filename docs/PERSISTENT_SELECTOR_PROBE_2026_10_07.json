@@ -1,0 +1,8 @@
+{
+  "status": "build/roundtrip PASS; hardware pending",
+  "pe_sha256": "828fe915dcab20ef13d95732746c03ae07a6ef93cf71080c931da9b36f02a5e3",
+  "xex_sha256": "1c53eeeb489bf64551143f0c03e2cdcf3fd68ee7a2c5413d87192c8aaf2c08b0",
+  "zip_sha256": "0b78d2695d880d0145e5ca0b4aa6994926a74bf07217cd658a75dee37aaa3ac4",
+  "roundtrip_exact": true,
+  "behavior": "persistent screen until A; no timeout"
+}
