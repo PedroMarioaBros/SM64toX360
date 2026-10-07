@@ -371,3 +371,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Pacote SM64_DIAGNOSTICO_SELETOR_PERSISTENTE.zip, Library libfile_588051e22f588191abf752efb8a63241. XEX1c53eeeb489bf64551143f0c03e2cdcf3fd68ee7a2c5413d87192c8aaf2c08b0; ZIP0b78d2695d880d0145e5ca0b4aa6994926a74bf07217cd658a75dee37aaa3ac4; PE828fe915dcab20ef13d95732746c03ae07a6ef93cf71080c931da9b36f02a5e3.
 - Roundtrip exato, base TEST3/pulos/câmera/menu/save/alpha preservados. Hardware pendente. O diagnóstico não ativa idioma; objetivo é comprovar se a tela customizada permanece visível quando o temporizador não pode encerrá-la.
 - Se a tela aparecer: pressionar A entra no jogo; se não aparecer: pressionar A após10s confirma retorno e mantém a falha na renderização/hook. Não repetir probes temporizados.
+
+
+## 07/10/2026 — PERSISTENT_SELECTOR_PROBE reprovado e linha encerrada
+- Feedback Pedro: pacote ficou somente em tela preta, sem crash e sem resposta observável.
+- Erro de estratégia: este diagnóstico ainda usava o hook pré-créditos/level_script_execute. Ele foi criado apenas como investigação, mas contrariou a arquitetura pós-créditos já aprovada e não deveria ter sido entregue como próximo passo do produto.
+- Linha de probes pré-créditos encerrada: SELECTOR_TEST2, NAVEGATION_PROBE, VISUAL_PROBE e PERSISTENT_SELECTOR_PROBE não serão usados como base de implementação.
+- Próxima ação correta: localizar e alterar a rotina original da tela pós-créditos/Press Start. Nenhum novo probe pré-créditos deve ser gerado.
