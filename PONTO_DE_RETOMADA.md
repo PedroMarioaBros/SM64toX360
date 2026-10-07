@@ -1,14 +1,8 @@
 # Ponto de retomada — leia primeiro
-A etapa ativa é **PT-BR / Español / English sobre a v0.4 de 30 FPS**.
-Branch: **feature/multilang-dub-30fps**.
+Etapa ativa: PT-BR / Español / English sobre v0.4 de 30 FPS.
+Branch: feature/multilang-dub-30fps.
+Leia CHECKPOINT_PROJETO.md e AGENTS.md antes de trabalhar. Atualize e verifique o registro remoto antes de encerrar cada sessão.
 
-Leia [CHECKPOINT_PROJETO.md](CHECKPOINT_PROJETO.md) e [AGENTS.md](AGENTS.md).
-Eles contêm estado, evidências, histórico, checklist e atualização obrigatória por sessão.
-
-**Estado atual:** SELECTOR_TEST1 disponibilizado como candidato ao primeiro teste no Xbox. Ainda não validado no console.
-**Próxima ação:** registrar teste real do Pedro (créditos, seletor, três idiomas, diálogos e saves); corrigir falhas ou prosseguir para interface completa conforme resultado.
-
-[Código e relatório de teste na branch ativa](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/SELECTOR_TEST1_2026_10_05.md).
-
-Hashes históricos divergentes não foram reproduzidos; o candidato atual recebeu validação independente. Não repetir investigação já documentada como se o novo candidato não existisse.
-[Histórico Native60 preservado](docs/HISTORICO_RETOMADA_NATIVE60_2026_10_05.md); ele não determina a próxima tarefa desta etapa.
+Estado em 07/10/2026: SELECTOR_TEST1 apresentou tela preta; NOHOOK abriu o jogo no Xbox, confirmado pelo Pedro. Seletor ainda não validado.
+Próxima ação: corrigir PASSTHROUGH, pois o pacote anterior manteve o hook original e não isola o desvio. Verificar BL 0x482EF7D9 em 0x820CD128, branch imediato ao original na cave, round-trip e hashes; disponibilizar diagnóstico corrigido e registrar teste no Xbox. Não repetir NOHOOK.
+Detalhes e histórico no checkpoint da branch ativa: https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/CHECKPOINT_PROJETO.md
