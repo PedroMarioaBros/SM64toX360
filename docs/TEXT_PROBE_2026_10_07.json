@@ -1,0 +1,96 @@
+{
+  "status": "PASS build/CPU only; Xbox pending",
+  "base": "direct-jumps TEST3 hardware approved",
+  "render90": "Pedro hardware approved 2026-10-07",
+  "regions": [
+    [
+      839976,
+      839980
+    ],
+    [
+      3918080,
+      3918244
+    ]
+  ],
+  "roundtrip_exact": true,
+  "gate_bytes": 164,
+  "sha256": {
+    "pe": "533ba3e426ca2a154342580cb8ebbbda82319e1e4dff87d8210b689ee0108363",
+    "xex": "3bba6aba7358b09d9561a76d86db08987200dde085df7107e441841487c360eb",
+    "zip": "e0436a8c56b56a86df71629c1c37f05df50a75b1c4c86d0a055d527db81935f0"
+  },
+  "cpu": [
+    {
+      "status": "PASS",
+      "timer_in": 0,
+      "timer_out": 1,
+      "instructions": 9120,
+      "calls": [
+        "0x820ce780",
+        "0x82099498",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820ce7b0",
+        "0x820fb8a0"
+      ],
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation"
+    },
+    {
+      "status": "PASS",
+      "timer_in": 89,
+      "timer_out": 90,
+      "instructions": 9120,
+      "calls": [
+        "0x820ce780",
+        "0x82099498",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820fb8a0",
+        "0x820ce7b0",
+        "0x820fb8a0"
+      ],
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation"
+    },
+    {
+      "status": "PASS",
+      "timer_in": 90,
+      "timer_out": 90,
+      "instructions": 23,
+      "calls": [
+        "original"
+      ],
+      "scope": "actual rendering CPU code with synthetic pool/task, PPC64 instructions and floor/ceil modeled, original interpreter stubbed; no GPU/Xbox validation"
+    }
+  ],
+  "expected": "SUPER MARIO 64 for90frames then original game automatically",
+  "scope": "adds ortho and one encoded string, no language activation; no GPU validation"
+}
