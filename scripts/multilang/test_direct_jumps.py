@@ -38,6 +38,10 @@ def mapper_case(buttons):
  u.hook_add(UC_HOOK_CODE,external);u.emu_start(0x821659ac,0x82165c78,count=10000)
  assert u.reg_read(p.UC_PPC_REG_PC)==0x82165c78
  assert get(u,BASE+0xf6ca24)==1,'Y changed shadows'
+ # Real filter used between mapper and Controller buttonPressed computation.
+ put(u,0x82e47bd0,pad);put(u,0x82e47c2c,0);u.reg_write(p.UC_PPC_REG_LR,STOP)
+ u.emu_start(0x820ccbf8,STOP,count=1000)
+ assert u.reg_read(p.UC_PPC_REG_PC)==STOP
  return get(u,pad,2)
 def game_case(action,pressed=0,down=0,input_bits=0,held=0):
  u=machine();put(u,MARIO+0xc,action);put(u,MARIO+0x9c,CTRL);put(u,MARIO+2,input_bits,2);put(u,MARIO+0x7c,held)
@@ -50,17 +54,17 @@ def game_case(action,pressed=0,down=0,input_bits=0,held=0):
  assert u.reg_read(R(10))==get(u,MARIO+0xc)
  return get(u,MARIO+0xc),get(u,MARIO+2,2),struct.unpack('>f',u.mem_read(MARIO+0x4c,4))[0]
 checks=[]
-for physical,expected in [(0,0),(0x1000,0x8000),(0x4000,0x4000),(0x2000,0x40),(0x8000,0x80),(0xa000,0xc0),(1,0x800),(0x9000,0x8080)]:
+for physical,expected in [(0,0),(0x1000,0x8000),(0x4000,0x4000),(0x2000,0x01),(0x8000,0x02),(0xa000,0x03),(1,0x800),(0x9000,0x8002)]:
  assert mapper_case(physical)==expected,(hex(physical),hex(mapper_case(physical)));checks.append('mapper '+hex(physical))
 for ground in (0x0c400201,0x04000440,0x0c000231,0x04000470):
- for bit,expected in [(0x40,DOUBLE),(0x80,TRIPLE),(0xc0,TRIPLE)]:
+ for bit,expected in [(0x01,DOUBLE),(0x02,TRIPLE),(0x03,TRIPLE)]:
   out=game_case(ground,bit,bit);assert out[0]==expected,(hex(ground),out);assert out[2]>0;checks.append({'ground':hex(ground),'button':hex(bit),'action':hex(out[0]),'vertical_velocity':out[2]})
  assert game_case(ground)[0]==ground,'A/default changed'
 for blocked in (0x03000880,0x03000881,0x01000882,0x380022c0,0x0c000227,0x00001904):
- assert game_case(blocked,0x40,0x40)[0]==blocked;checks.append('blocked '+hex(blocked))
-for flags in (4,0x10,0x40,0x200,0x400):assert game_case(0x0c400201,0x40,0x40,flags)[0]==0x0c400201
-assert game_case(0x0c400201,0x40,0x40,held=1)[0]==0x0c400201
-assert game_case(DOUBLE,down=0x40)[1]&0x80
+ assert game_case(blocked,0x01,0x01)[0]==blocked;checks.append('blocked '+hex(blocked))
+for flags in (4,0x10,0x40,0x200,0x400):assert game_case(0x0c400201,0x01,0x01,flags)[0]==0x0c400201
+assert game_case(0x0c400201,0x01,0x01,held=1)[0]==0x0c400201
+assert game_case(DOUBLE,down=0x01)[1]&0x80
 assert not game_case(DOUBLE,down=0)[1]&0x80
 report={'status':'PASS','hardware_verified':False,'checks':checks,'scope':'actual mapper and native action setup; graphics not exercised'}
 print(json.dumps(report,indent=2))
