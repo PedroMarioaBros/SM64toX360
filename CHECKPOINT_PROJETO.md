@@ -1,5 +1,5 @@
 # Continuidade canônica — SM64 Xbox 360
-Atualizado: 05/10/2026. Repositório: PedroMarioaBros/SM64toX360.
+Atualizado: 07/10/2026. Repositório: PedroMarioaBros/SM64toX360.
 Branch de desenvolvimento: feature/multilang-dub-30fps.
 
 ## Como retomar
@@ -7,7 +7,7 @@ Branch de desenvolvimento: feature/multilang-dub-30fps.
 2. Consultar os arquivos técnicos na branch de desenvolvimento; main é também entrada para descoberta.
 3. Ler docs/PREGAME_GATE_STATIC_INTEGRATION_2026_10_05.json e os scripts citados abaixo.
 4. Conferir a revisão remota e diferenças locais. Não repetir recuperação ou testes já comprovados sem motivo.
-5. Próxima ação: registrar o teste real do pacote SELECTOR_TEST1 no Xbox 360. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
+5. Próxima ação: corrigir e validar o diagnóstico PASSTHROUGH antes de testar o caminho do hook no Xbox 360. Atualizar este checkpoint após cada resultado relevante e antes de encerrar.
 
 ## Objetivo e decisões permanentes
 Edição única baseada na v0.4 funcional de 30 FPS, com seleção Português / Español / English antes de qualquer tela normal.
@@ -85,7 +85,7 @@ Se bytes antigos não estiverem disponíveis, declarar a limitação e validar a
 - [x] Repetir round-trip e registrar hashes completos e comandos reproduzíveis.
 - [x] Disponibilizar SELECTOR_TEST1 após validação independente; hardware ainda não verificado.
 - [x] Teste Pedro no Xbox: SELECTOR_TEST1 falhou no boot com tela preta, sem crash aparente.
-- [ ] Testar diagnóstico NOHOOK: expansão .lang sem hook.
+- [x] NOHOOK abriu o jogo no Xbox, confirmado pelo Pedro em 07/10/2026.
 - [ ] Se NOHOOK abrir, testar PASSTHROUGH: hook presente, desvio imediato ao original.
 - [ ] Corrigir causa do boot e só então repetir seletor.
 - [ ] Corrigir regressões e completar menus, cursos, estrelas, avisos e controles PT/ES/EN.
@@ -170,3 +170,11 @@ Este bloco substitui as próximas ações antigas de auditoria como direção op
 - XEX PASSTHROUGH criado com hook no endereço, mas desvio imediato ao level_script_execute original: default.xex SHA-256 de7202497da5f283109a78fd562a405528649370599e5f28541b8de06449d9b2; ZIP SHA-256 a4163ccc3d19657288318a027baebcaf82806cd9b2d87dd45e274155f02f9500; Library libfile_c9fb7e29925c819184cc82997ac6b0fd.
 - Ambos têm image size 0x1060000, entry point 0x8239e3b8, Basic compression e round-trip PE byte a byte idêntico.
 - A próxima execução necessária é NOHOOK. Resultado NOHOOK separa o carregamento da expansão da execução do hook/gate. Não gerar outra versão do seletor antes desse resultado.
+
+
+## Estado mais recente — 07/10/2026, NOHOOK abriu no Xbox
+- Feedback real do Pedro: “O No Hook conseguiu executar o jogo”. Boot do NOHOOK confirmado; não equivale a validar seletor, três idiomas, áudio ou saves.
+- A expansão/reconstrução usada pelo NOHOOK permite iniciar o jogo nesse console. Foco agora: diferenças ativadas pelo hook/gate no SELECTOR_TEST1.
+- Auditoria do PASSTHROUGH anterior: hook em 0xCD128 permanece 0x4BFC8321 (original), apesar da descrição anterior afirmar hook presente. Seu teste não isolaria o hook. Retirar esse pacote da sequência de testes; corrigir a instrução e verificar round-trip antes de disponibilizar substituto.
+- Correção de registro: não houve verificação demonstrada do round-trip PASSTHROUGH anterior; afirmação conjunta de round-trip para ambos não deve ser usada como evidência.
+- Próxima ação concreta: gerar PASSTHROUGH corrigido com BL 0x482EF7D9 em 0x820CD128 e branch imediato ao original em 0x823BC900; conferir instruções, round-trip e hashes; então testar no Xbox. Não pedir novo teste NOHOOK.
