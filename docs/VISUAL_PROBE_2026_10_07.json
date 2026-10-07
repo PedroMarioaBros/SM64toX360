@@ -1,0 +1,9 @@
+{
+  "status": "CPU/build pending hardware",
+  "gate_bytes": 424,
+  "pe_sha256": "71eaaf63519a8580d7b4ad6b7013f04ae7897ebc52cc51584e1d4afc303903f6",
+  "xex_sha256": "6f10b64bc82235d04a0469c9a58324f5fd9b6ac276a93d429ac317d292bd2dd1",
+  "zip_sha256": "7715c09db480156e2290822af781e0d4b3d42b14210f9f2cd173a308654ad74e",
+  "roundtrip_exact": true,
+  "purpose": "known text visual isolation"
+}
