@@ -42,3 +42,10 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Foram consultados repositórios e fontes públicas de porting/decompilação. `sirdankz/MKart360` confirma um fluxo público de build Xbox 360, mas é Mario Kart 64 e não fornece símbolos do nosso jogo. `TheGag96/sm64-port`/branch `extended_moveset` confirma as rotinas lógicas de parede/crawling, mas não contém crawling aderido nem mapa PowerPC/XEX compatível. `sm64-port/sm64-port` e doxygen fornecem nomes/relacionamentos, não endereços transferíveis. `ClementDreptin/XexUtils` é ferramenta geral, sem símbolos específicos.
 - Nenhum mapa de símbolos, ELF/PDB, build reproduzível ou XEX público correspondente ao port/base v0.4 foi localizado. Relatório: `docs/EXTERNAL_SYMBOL_SEARCH_2026_10_07.md`.
 - Não aplicar endereços externos por semelhança. Próxima ação: procurar commits/logs/branches específicos do port e continuar cross-reference local com fluxo de registradores.
+
+## 07/10/2026 — arquivo sm64_dump.txt explicado
+- Pedro encontrou `sm64_dump.txt` na pasta do jogo após desligar/fechar o console.
+- O arquivo é um dump de diagnóstico gráfico da compilação de teste, não save nem asset do jogo. Cabeçalho: `SM64 360 FRAME DUMP`; tamanho observado 1.178.555 bytes; SHA-256 `93350c14d91f5908aa00bfe753e01ca79a20e4f0ba65492d5b9ddc7a52c1b703`; final: 2.027 chamadas `gfx_sp_tri1`.
+- A origem está documentada em `docs/CONTROLES_XBOX360.md` e confirmada por `scripts/recovered/ptbr_0_4/controls_probe.py`: BACK+START solicita o dump gráfico. A compilação de diagnóstico pode gravá-lo após o flush no fechamento/retorno ao dashboard.
+- Não incluir esse arquivo no pacote do jogo. Pode ser apagado manualmente sem afetar save/instalação. Para testes de produto, evitar BACK+START ou usar build sem diagnóstico. Relatório: `docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md`.
+- Nenhum XEX foi gerado nesta análise. Próxima ação do projeto continua sendo cross-reference local da mecânica de wall-crawl e localização de amostras reais de dublagem; não retomar probes de seletor descartados.
