@@ -47,3 +47,8 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Dump gráfico de diagnóstico, não save/asset. SHA-256 93350c14d91f5908aa00bfe753e01ca79a20e4f0ba65492d5b9ddc7a52c1b703; 1.178.555 bytes; 2.027 chamadas gfx_sp_tri1.
 - Origem confirmada: BACK+START solicita o dump na compilação de diagnóstico. Relatório: docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md.
 - Não incluir no pacote; pode ser removido manualmente sem afetar save. Próxima ação: wall-crawl/dublagem, sem repetir probes descartados.
+
+
+## 07/10/2026 — wall-crawl vertical como primeiro escopo
+- Protótipo restrito a paredes verticais; botão de agachar mantém aderência, analógico esquerdo move, soltar faz cair; câmera/A-B-Y preservados.
+- Especificação: docs/WALL_CRAWL_WALL_ONLY_SCOPE_2026_10_07.md. Nenhum XEX alterado; próxima ação é cross-reference e harness estático.
