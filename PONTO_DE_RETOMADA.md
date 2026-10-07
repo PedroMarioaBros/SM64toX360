@@ -49,3 +49,10 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - A origem está documentada em `docs/CONTROLES_XBOX360.md` e confirmada por `scripts/recovered/ptbr_0_4/controls_probe.py`: BACK+START solicita o dump gráfico. A compilação de diagnóstico pode gravá-lo após o flush no fechamento/retorno ao dashboard.
 - Não incluir esse arquivo no pacote do jogo. Pode ser apagado manualmente sem afetar save/instalação. Para testes de produto, evitar BACK+START ou usar build sem diagnóstico. Relatório: `docs/SM64_DUMP_DIAGNOSTICO_2026_10_07.md`.
 - Nenhum XEX foi gerado nesta análise. Próxima ação do projeto continua sendo cross-reference local da mecânica de wall-crawl e localização de amostras reais de dublagem; não retomar probes de seletor descartados.
+
+
+## 07/10/2026 — escopo aprovado para o primeiro wall-crawl
+- Após avaliar a dificuldade de qualquer superfície, o primeiro protótipo foi restringido a paredes verticais. Tetos, inclinações e transições ficam para depois de um teste estável.
+- Contrato: mãos na parede + botão de engatinhar pressionado ativa aderência; analógico esquerdo sobe/desce/lateral; analógico direito continua somente câmera; soltar faz cair; contato inclinado rejeitado e física original preservada.
+- Critérios incluem boot, menu/save, retorno após estrela, ausência de salto pelo analógico direito e queda normal ao soltar.
+- Especificação publicada em docs/WALL_CRAWL_WALL_ONLY_SCOPE_2026_10_07.md. Nenhum XEX foi alterado. A próxima ação é cross-reference por fluxo de registradores/chamadas de colisão e harness estático; não entregar patch baseado nos 665 candidatos amplos.
