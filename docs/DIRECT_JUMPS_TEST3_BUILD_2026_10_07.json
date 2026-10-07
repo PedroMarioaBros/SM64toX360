@@ -1,0 +1,12 @@
+{
+  "package": "SM64_TESTE_PULOS_ABY_30FPS_TEST3.zip",
+  "xex_sha256": "b90ae1d1be953c1f817e9c64286c67da855778ac7c671098a3cd8495d8b6afd9",
+  "zip_sha256": "180142fdeea0a8d60c313ff051e97a3e6066a1c789ceccd6c05af23303686d23",
+  "pe_sha256": "a1bc5c6db7e32d4214c2d1329874f68dee058c91063b67bbacde7ae197a48f6c",
+  "roundtrip_exact": true,
+  "region_audit": "PASS",
+  "hardware_verified": false,
+  "fix": "Original controller/camera bits untouched. Separate physical B/Y state .lang+0x80 down, +0x84 pressed. Previous bits 1/2 collided with right-stick C-right/C-left.",
+  "selector": "unresolved; disabled",
+  "fps": 30
+}
