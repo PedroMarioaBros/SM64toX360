@@ -319,3 +319,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Próximo trabalho: isolar lógica estado/controller/tela de seleção do gate completo, reaproveitando render de créditos com restauração alpha aprovado. Diagnóstico limitado deve retornar automaticamente ao jogo para não confundir ausência de seleção com travamento; validar resposta direcional/A separadamente da ativação170ponteiros. Não repetir teste de menu/boot já aprovado.
 - SELECTOR_TEST2 continua reprovado por tela preta; causa exata não demonstrada. Preservar pulos/câmera TEST3/30FPS/PT. Interface multilíngue completa e dublagens seguem pendentes.
 - Este bloco registra aprovação; nenhum novo executável gerado.
+
+
+## 07/10/2026 — NAVEGATION_PROBE entregue para separar tela/controle (06:02 UTC)
+- Pacote SM64_DIAGNOSTICO_NAVEGACAO_IDIOMAS.zip, Library libfile_cada55ab9c508191ab463180bb545587.
+- XEX SHA-256 0cabc1d2f258796ea2474a75901e07d0cc8f9a478c50bde118796f2bea368b64; ZIP 0501670b4ca27c2a009fb67b58906a6c30c613b0aac3c98a5ab04b6fcdcaaff3; PE 10c303127aefc0505dd19731115f1879b0bfe2bae2490999f471ec0ddec9199e.
+- Gate424 bytes deriva do render/texto com alpha restaurada aprovada. Desenha Português/Español/English, marcador, lê D-pad e A, mas NÃO chama ativação nem altera os 170 registros; permanece PT e retorna automaticamente após300 frames (~10s) ou A. Pulos/câmera/30FPS/PT preservados.
+- CPU/build PASS em casos sem botão, timer299/300, cima/baixo, seleção e A; round-trip exato; somente hookCD128 e cave3BC900 permitidos. Relatório docs/NAVIGATION_PROBE_2026_10_07.json; código e harness publicados.
+- Hardware pendente. Informar se tela apareceu, se marcador respondeu, se A abriu e se o jogo abriu sozinho após ~10s. Se falhar, registrar tela exata; não atribuir causa sem evidência.
+- Este teste não é edição multilíngue final: selecionar Español/English não troca diálogos. SELECTOR_TEST2 segue reprovado por tela preta; CREDITS_MENU_CORRIGIDO segue aprovado.
