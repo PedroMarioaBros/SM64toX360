@@ -455,3 +455,10 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Pedro informou não possuir ROM e autorizou nova busca. Consultados site do autor bmatsantos.github.io, repositorio BMatSantos/sm64-ptbr, Romhack Plaza e buscas por samples/audio/releases.
 - Nenhum pacote de vozes separadas foi localizado nesta busca. README do autor exige ROM previa para extracao; site distribui patches. Acesso web direto a releases falhou, portanto ausencia de release nao foi comprovada.
 - Proxima alternativa tecnica: localizar tabelas/bancos do patch e testar cobertura byte a byte das amostras, independentemente da cobertura da ROM inteira. Os 7.371.471 bytes desconhecidos da ROM total NAO provam que as vozes sejam irrecuperaveis. Ainda nao ha vozes decodificadas nem XEX novo.
+
+
+## 08/10/2026 — avanço: localização do áudio no BPS
+- Rastreamento executado: CTL original 0x57B720 → alvo 0x57F8D0; TBL original 0x593560 → alvo 0x597710. Não aplicar offsets originais ao alvo traduzido.
+- CTL de 97.856 bytes: 3.348 conhecidos diretamente pelo patch, 94.508 dependem da fonte. Primeiro bloco de 512 bytes inteiramente desconhecido. Ainda sem banco completo ou voz decodificada; nenhum XEX alterado.
+- Código scripts/multilang/map_bps_audio_anchors.py; relatório docs/PTBR_AUDIO_OFFSETS_2026_10_08.md na branch ativa.
+- Pedro não possui ROM. Próxima ação: comparar tabelas e amostras originais do XEX base do projeto com dependências do patch, completando somente bytes com correspondência comprovada; alternativa é pacote de vozes dos autores. Não inventar bytes nem declarar áudio completo usando saída esparsa. Crawling vertical segue pendente.
