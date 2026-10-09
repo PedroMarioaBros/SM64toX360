@@ -464,3 +464,9 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - **Próximo passo:** investigar layout e metadados dos soundbanks internos do XEX, procurando correspondências estruturalmente verificáveis com CTL/TBL; não preencher lacunas com bytes presumidos. Não há voz extraída ou XEX novo. Base 30 FPS preservada. Ver checkpoint da branch ativa para detalhes.
 
 - Validação GitHub Actions confirmada em 09/10/2026: [Audit BPS-XEX provenance tests — run 37888054012](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37888054012), conclusão **success**; logs registram 4 testes PASS. Isso valida o parser e testes sintéticos, não uma extração de voz ou boot no Xbox.
+
+
+## 09/10/2026 — continuidade VADPCM na branch ativa
+- **NOVA trilha validada:** patch BPS contém quadros VADPCM (62/71 trechos longos com 100% de headers em uma fase de 9 bytes), e PE Xbox 360 contém codebooks VADPCM completos e quadros de áudio compatíveis (452 candidatos de livro). Nenhuma das 43 janelas parciais de coeficientes do patch corresponde exatamente às candidatas Xbox. Não há áudio dublado extraído.
+- Código, testes e evidências estão em `feature/multilang-dub-30fps`: [relatório 09/10](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/PTBR_VADPCM_STRUCTURAL_AUDIT_2026_10_09.md). Workflows de testes: [scanner PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958461771), [XEX PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958879757).
+- Próxima ação: localizar referências reais e associar samples/codebooks aos IDs das vozes do Mario/Peach; sem XEX especulativo, sem alterar 30 FPS, saves ou tradução canônica.
