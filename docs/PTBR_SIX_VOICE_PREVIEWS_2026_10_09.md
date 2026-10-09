@@ -15,7 +15,7 @@ Depois das quatro WAVs exportadas com descritor, sample, codebook e cabeçalho d
 
 As duas prévias novas usam 100% dos bytes dos samples comprimidos e dos codebooks que as descrevem. A saída PCM em Python foi comparada byte a byte com uma implementação independente em C — **idêntica nas duas**. As amostras comprimidas das duas prévias são **diferentes** das amostras originais do XEX nos mesmos slots, confirmado por SHA-256.
 
-**Não confundir** duração de todos os quadros com duração exata usada pelo jogo: o loop header está parcialmente desconhecido. Nenhum byte foi inventado, interpolado ou removido no meio do sample. O final do stream pode incluir amostras de preenchimento, no máximo um quadro (16 amostras) além do último ponto de reprodução definido pelo jogo.
+**Não confundir** duração de todos os quadros com duração exata usada pelo jogo: o loop header está parcialmente desconhecido. Nenhum byte foi inventado, interpolado ou removido no meio do sample. O final do stream pode incluir quadros ou amostras além do ponto de reprodução definido pelo jogo; sem o cabeçalho de loop não é possível estabelecer esse limite com certeza.
 
 ## Artefatos privados
 
