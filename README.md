@@ -1,5 +1,14 @@
 # SM64toX360 — migração canônica do projeto
 
+## 🧭 Situação atual e ponto de entrada
+
+**[LEIA AQUI — STATUS PARA PEDRO](docs/STATUS_PARA_PEDRO.md)** · [Painel central PMCN Xbox 360](https://github.com/PedroMarioaBros/OpenXeChain-X360-Builder/blob/main/docs/PAINEL_PMCN_XBOX360.md)
+
+**Desenvolvimento ativo:** `feature/multilang-dub-30fps`. A base PT-BR 30 FPS é referência funcional; **a seleção Português/Español/English e as dublagens NÃO foram concluídas**. Os workflows verdes atuais verificam scripts, bancos de áudio e utilitários: não provam uma edição multilíngue jogável no console. Para continuar tecnicamente, use `PONTO_DE_RETOMADA.md` e `AGENTS.md` **na branch ativa**.
+
+---
+
+
 Este repositório é a fonte canônica do projeto **Super Mario 64 para Xbox 360 / SM64toX360**.
 
 A auditoria de 25/09/2026 separa rigorosamente quatro classes de evidência:
