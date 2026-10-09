@@ -1,0 +1,20 @@
+name: VADPCM partial forensic tests
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/scan_vadpcm_partial.py
+      - scripts/multilang/test_vadpcm_partial.py
+      - scripts/multilang/audit_bps_xex_overlap.py
+      - .github/workflows/test-vadpcm-partial.yml
+  workflow_dispatch:
+
+jobs:
+  test-vadpcm-fragments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate frame heuristics and incomplete coefficients
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_vadpcm_partial.py' -v
