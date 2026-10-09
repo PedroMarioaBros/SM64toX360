@@ -1,5 +1,5 @@
 # Continuidade canônica — SM64 Xbox 360
-Atualizado: 07/10/2026. Repositório: PedroMarioaBros/SM64toX360.
+Atualizado: 09/10/2026. Repositório: PedroMarioaBros/SM64toX360.
 Branch de desenvolvimento: feature/multilang-dub-30fps.
 
 ## Como retomar
@@ -483,3 +483,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - `scripts/multilang/inspect_xex_sound_layout.py` identifica 452 **candidatos** de codebooks completos no PE (alinhamento, cabeçalho e coeficientes); comparação mascarada de 43 janelas do patch contra 452 candidatos do XEX: **0 matches**. Formatos compatíveis, porém a tabela de dublagem ainda depende de bytes ausentes. Não declarar voz extraída/decodificada.
 - Relatório verificável: `docs/PTBR_VADPCM_STRUCTURAL_AUDIT_2026_10_09.md`. Novos scripts, dois conjuntos de testes e dois workflows publicados na branch ativa. CI: [scanner, 5 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958461771) e [XEX, 4 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958879757).
 - Próxima ação: resolver **referências/pointers reais e IDs de voz dos bancos 08/0A do XEX**, e confrontar estruturas de sample, codebook, loop e tuning com patch; sem suposições nem substituições de áudio. Nenhum XEX novo, nenhum teste em console, base 30 FPS intacta.
+
+## 09/10/2026 — organização PMCN Xbox 360 (somente documentação)
+
+- A pedido do proprietário, criado [resumo simples](docs/STATUS_PARA_PEDRO.md) para explicar progresso, versões e próxima ação sem depender de histórico de chats. README em `main` e nesta branch apontam para a branch ativa e para o [painel central de desenvolvimento Xbox 360](https://github.com/PedroMarioaBros/OpenXeChain-X360-Builder/blob/main/docs/PAINEL_PMCN_XBOX360.md).
+- Separados explicitamente: **toolchain OpenXeChain na nuvem** (compila código), **ferramentas de reconstrução XEX e testes estáticos de SM64**, **executável PT-BR aprovado pelo proprietário** e **produto multilíngue ainda não entregue**.
+- Nenhum código, patch, asset, XEX, ROM, dublagem ou save do SM64 foi alterado. Sem novo teste ou lançamento para Xbox. A seleção trilíngue, extração de vozes e crawling continuam pendentes, e a linha 30 FPS é preservada.
+- A próxima tarefa técnica segue a mesma: mapear com evidências reais IDs de voz → samples → codebooks/metadados dos bancos Xbox 08/0A, sem produzir voz falsa; separadamente, resolver o seletor pela rotina Press Start correta sem reutilizar hooks rejeitados.
+- Um **GitHub Actions verde não equivale a jogo funcional**. O fluxo de compilação atual do SM64 no GitHub cobre utilitários e auditorias, não entrega automatizada de XEX multilíngue final.
