@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-09",
+  "status": "GAPS_TRACED_NO_EXTRA_VOICE_DECODED",
+  "assets": {
+    "bps_sha256": "1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2",
+    "xex_pe_sha256": "bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56",
+    "original_rom_crc32_verified": false
+  },
+  "before_tail_recovery": {
+    "target_known_bytes": 3361841,
+    "ctl_unknown_bytes": 905,
+    "tbl_unknown_bytes": 316
+  },
+  "after_tail_recovery": {
+    "target_known_bytes": 3361921,
+    "target_total_bytes": 9090352,
+    "ctl_known_bytes": 97015,
+    "ctl_total_bytes": 97856,
+    "ctl_unknown_bytes": 841,
+    "ctl_unknown_runs": 63,
+    "tbl_known_bytes": 2216388,
+    "tbl_total_bytes": 2216704,
+    "tbl_unknown_bytes": 316,
+    "tbl_unknown_runs": 34,
+    "remaining_source_dependencies_outside_recovered_audio": 1157,
+    "port_ctl_padding_confirmed_zero_bytes": 64,
+    "port_tbl_padding_confirmed_zero_bytes": 16
+  },
+  "voice_banks": {
+    "08": {
+      "ctl_unknown": 405,
+      "ctl_gap_runs": 30,
+      "tbl_unknown": 207,
+      "tbl_gap_runs": 22
+    },
+    "0A": {
+      "ctl_unknown": 436,
+      "ctl_gap_runs": 33,
+      "tbl_unknown": 109,
+      "tbl_gap_runs": 12
+    }
+  },
+  "audio_preview_comparisons": {
+    "description": "Compressed sample SHA-256 for each of four complete PTBR BPS samples compared to same physical slot in original port XEX. All four unequal; proof of difference, NOT proof of language or audio quality.",
+    "comparisons": [
+      {
+        "bank": "08",
+        "slot": "04",
+        "event": "Mario Yahoo",
+        "bps_sample_sha256": "788e367a13dc3453529ec3377cf435caf03f61ae2f51252bbe7212437c8890dd",
+        "xex_original_sample_sha256": "8c8cf433bfc36b17cfc6ba5c9653d03519e28220385e8676531ae33b48e1d615",
+        "identical": false
+      },
+      {
+        "bank": "08",
+        "slot": "06",
+        "event": "Mario Hrmm",
+        "bps_sample_sha256": "3a055f3b24aaf1acd8f198df54f6f1b2604a5c8d03140c28a3aa4312ae6d6146",
+        "xex_original_sample_sha256": "58a583601e4915c27e8c1e849f4bebdef66c0d51a5741e1f4006931f5986bcdd",
+        "identical": false
+      },
+      {
+        "bank": "0A",
+        "slot": "02",
+        "event": "Mario Panting",
+        "bps_sample_sha256": "f04a69f7a9c3e9062593b82d09e966f12905e7665c5ee6e1bbc1174ca8287487",
+        "xex_original_sample_sha256": "8a007baf1c88d89f7fd4a0136107894c105b3b98610771a2786380dcbf22f612",
+        "identical": false
+      },
+      {
+        "bank": "0A",
+        "slot": "09",
+        "event": "Mario Punch Yah",
+        "bps_sample_sha256": "b17a72cd28f3331c31253432cc905e54d543bd8ffd995a5a4eb906e73032c096",
+        "xex_original_sample_sha256": "da091188357c12359dff46c8b93a24b4d3649745dc4ba6c84a95832c1697841b",
+        "identical": false
+      }
+    ]
+  },
+  "full_local_trace_sha256": "2e105bd72f31ad26eef36ed2221c03b7fb6d45545c60f73caaeb7f4db58f1fa2",
+  "reproducible_command": "python3 scripts/multilang/trace_audio_dependency_gaps.py PATCH.zip XEX.zip --report audio_gap_report.json",
+  "validated_ci": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37967913594",
+  "warnings": [
+    "BPS source ROM CRC32 was not verified from a full ROM. XEX source regions are a conditional substitution.",
+    "All 1157 remaining unknown target bytes depend on N64 ROM source positions outside the recovered XEX audio ranges.",
+    "Do not invent, zero-pad or interpolate missing CTL, sample or book data.",
+    "No new WAV and no new XEX in this stage."
+  ]
+}
