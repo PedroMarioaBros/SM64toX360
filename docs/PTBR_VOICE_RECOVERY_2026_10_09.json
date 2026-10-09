@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-09",
+  "status": "FOUR_CONDITIONAL_PTBR_PREVIEWS_DECODED_NO_ROM_CRC_PROOF",
+  "source": {
+    "patch_zip_sha256": "6e85270ff7d694e0e14ce3f99e5e29cc290c480066602542104a72cee0aa07d1",
+    "bps_sha256": "1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2",
+    "xex_sha256": "6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0",
+    "mapped_pe_sha256": "bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56",
+    "source_crc_proven": false
+  },
+  "xex_original_banks": {
+    "ctl_file_offset": "0xA27B90",
+    "ctl_runtime_va": "0x82A3AB90",
+    "tbl_file_offset": "0xA3F9D0",
+    "tbl_runtime_va": "0x82A529D0",
+    "ctl_index_entries": 38,
+    "tbl_index_entries": 38,
+    "bank_08": {
+      "instrument_slots": 27,
+      "active": 27
+    },
+    "bank_0A": {
+      "instrument_slots": 24,
+      "active": 23,
+      "null_physical_slot": 3
+    },
+    "total_active_original": 50
+  },
+  "bps_partial": {
+    "source_audio_bytes_from_xex": 2314480,
+    "known_target_bytes_with_xex": 3361841,
+    "known_target_bytes_patch_only": 1718881,
+    "newly_recovered_target_bytes": 1642960,
+    "ctl_target": {
+      "start": "0x57F8D0",
+      "end": "0x597710",
+      "total": 97856,
+      "known": 96951,
+      "unknown": 905
+    },
+    "tbl_target_candidate": {
+      "start": "0x597710",
+      "length": 2216704,
+      "known": 2216388,
+      "unknown": 316
+    },
+    "bank08_tbl_bytes": 732208,
+    "bank0a_tbl_bytes": 831920,
+    "notes": "BPS target banks 08 and 0A larger than original XEX banks; no target ROM CRC verification"
+  },
+  "candidate_audio": [
+    {
+      "bank": "08",
+      "physical_slot": "04",
+      "event": "mario_yahoo",
+      "sample_bytes": 20862,
+      "sample_rate": 48000,
+      "pcm_samples": 37088,
+      "decoded_duration_s": 0.772667,
+      "decoded_sample_sha256": "788e367a13dc3453529ec3377cf435caf03f61ae2f51252bbe7212437c8890dd",
+      "wav_sha256": "2993634246fab4bdb0be40560cdb55623a3cf10f6ebaf116d60dc4a2ab8fad2b"
+    },
+    {
+      "bank": "08",
+      "physical_slot": "06",
+      "event": "mario_hrmm",
+      "sample_bytes": 13420,
+      "sample_rate": 48000,
+      "pcm_samples": 23856,
+      "decoded_duration_s": 0.497,
+      "decoded_sample_sha256": "5e1e97adc744a7df18152fa0e9b2fea118295c526b081c3e49c6a9707054109f",
+      "wav_sha256": "88435c4b4f41d1beb5cdaf6cab3b6fd8afeb3cd92b9a27d5fae80f5e27b6f71d"
+    },
+    {
+      "bank": "0A",
+      "physical_slot": "02",
+      "event": "mario_panting",
+      "sample_bytes": 15328,
+      "sample_rate": 48000,
+      "pcm_samples": 27248,
+      "decoded_duration_s": 0.567667,
+      "decoded_sample_sha256": "f04a69f7a9c3e9062593b82d09e966f12905e7665c5ee6e1bbc1174ca8287487",
+      "wav_sha256": "9799d80d8220683482520ddb16c26ee30c23612218ee8194b41b05f4ca379831"
+    },
+    {
+      "bank": "0A",
+      "physical_slot": "09",
+      "event": "mario_punch_yah",
+      "sample_bytes": 9046,
+      "sample_rate": 48000,
+      "pcm_samples": 16080,
+      "decoded_duration_s": 0.335,
+      "decoded_sample_sha256": "b17a72cd28f3331c31253432cc905e54d543bd8ffd995a5a4eb906e73032c096",
+      "wav_sha256": "2955ae1f4c6efd9dda52c29d951b9d9a9d969a9cdfb7336043cef9ea09815faa"
+    }
+  ],
+  "validation": {
+    "python_decoder_vs_independent_c_decoder": "byte-identical PCM for four complete candidate events",
+    "ci_synthetic_tests": "6 passed",
+    "ci_url": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37966469573",
+    "user_audio_listening_pending": true,
+    "console_test_pending": true
+  },
+  "warnings": [
+    "Audio/ROM from XEX assumed only for given CTL/TBL source intervals; original BPS source CRC32 3ce60709 not verified by available XEX assets.",
+    "No files with unknown sample, descriptor, book or loop bytes were exported.",
+    "Previews are not finished PT-BR dubbed port; no new XEX compiled.",
+    "Do not commit ROM, XEX, raw voice samples or WAVs to this public GitHub repository."
+  ],
+  "user_preview_zip_sha256": "fca8f45be1faa5dec5aeea81200f5e5beb36c32e91b3e2931a2945dd1a30011d"
+}
