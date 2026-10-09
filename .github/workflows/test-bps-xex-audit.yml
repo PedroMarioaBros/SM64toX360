@@ -1,0 +1,19 @@
+name: Audit BPS-XEX provenance tests
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/audit_bps_xex_overlap.py
+      - scripts/multilang/test_audit_bps_xex_overlap.py
+      - .github/workflows/test-bps-xex-audit.yml
+  workflow_dispatch:
+
+jobs:
+  test-bps-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test provenance without ROM or XEX
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_audit_bps_xex_overlap.py' -v
