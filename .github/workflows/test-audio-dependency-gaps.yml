@@ -1,0 +1,20 @@
+name: Audit BPS audio dependency gaps
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/trace_audio_dependency_gaps.py
+      - scripts/multilang/test_trace_audio_dependency_gaps.py
+      - scripts/multilang/reconstruct_ptbr_audio_from_xex.py
+      - .github/workflows/test-audio-dependency-gaps.yml
+  workflow_dispatch:
+
+jobs:
+  test-dependency-trace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate every BPS copy action and byte provenance
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_trace_audio_dependency_gaps.py' -v
