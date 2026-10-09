@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-09",
+  "status": "SIX_EXPERIMENTAL_AUDIO_PREVIEWS_FOUR_FULL_METADATA_TWO_FRAME_ONLY",
+  "source_rom_crc32_verified": false,
+  "voice_identification_audition_confirmed": false,
+  "four_complete_metadata": {
+    "events": [
+      "08/04 Mario Yahoo",
+      "08/06 Mario Hrmm",
+      "0A/02 Mario Panting",
+      "0A/09 Mario Punch Yah"
+    ],
+    "stored_privately": "/Xbox360 - SM64 PTBR/SM64_PTBR_4_PREVIAS_EXPERIMENTAIS_2026-10-09.zip",
+    "library_file_id": "libfile_e46daa6cc8788191ba06e1cf87af923c",
+    "report": "docs/PTBR_VOICE_RECOVERY_2026_10_09.json"
+  },
+  "two_all_frames_without_loop": {
+    "status": "ALL_COMPRESSED_FRAMES_AND_CODEBOOK_BYTES_COMPLETE_BUT_LOOP_HEADER_INCOMPLETE",
+    "events": [
+      {
+        "bank": "08",
+        "slot": "16",
+        "event": "Mario So Longa Bowser",
+        "frames": 3794,
+        "adpcm_bytes": 34146,
+        "pcm_samples": 60704,
+        "hz": 48000,
+        "full_frames_duration_seconds": 1.2646666666666666,
+        "compressed_sha256": "4a8d8b52028aa1d6b358a979e02949f728f138bb6c94082a030c27aaae64b9c4",
+        "wav_sha256": "16d1d5b07af776f6d61f47566865516d263bca0db702401b9b3e264873d3df8f",
+        "original_xex_sample_sha256": "a7e55e76fb5a5209aee8bc9aa94f94d4c765680ef39f9477fd9055f34cd57b9d",
+        "same_as_original_xex": false,
+        "decoder_python_vs_c_identical": true
+      },
+      {
+        "bank": "0A",
+        "slot": "04",
+        "event": "Mario Dying",
+        "frames": 5438,
+        "adpcm_bytes": 48942,
+        "pcm_samples": 87008,
+        "hz": 48000,
+        "full_frames_duration_seconds": 1.8126666666666666,
+        "compressed_sha256": "5aaa900442a484901608ea9094b275cc8744218d2f04b763b3c6fa79f79cb1bf",
+        "wav_sha256": "5374582271f24cf29c9d893a4f09c521b3e5b91b20d7c71239958d195b3fc986",
+        "original_xex_sample_sha256": "c7e210c451557cf78a97be922d4590c3ce8f754a0c4a0aaf59b1bdaf2a114ad4",
+        "same_as_original_xex": false,
+        "decoder_python_vs_c_identical": true
+      }
+    ],
+    "zip_sha256": "afae5732449c0490a85337c876eda90e4974636e8054e5c7c5afd465ebd333ff",
+    "private_library_path": "/Xbox360 - SM64 PTBR/SM64_PTBR_2_PREVIAS_SEM_LOOP_2026-10-09.zip",
+    "private_library_file_id": "libfile_e50f6a2851808191a361137a33acc5cc",
+    "no_audio_content_published_to_public_github": true
+  },
+  "tests": {
+    "new_no_loop_tests": 5,
+    "workflow_includes_six_existing_reconstruction_tests": 6,
+    "observed_total_tests": 11,
+    "conclusion": "success",
+    "github_actions_run": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37968449638"
+  },
+  "limitation": "No-loop diagnostic frame duration is not verified to be exactly gameplay duration. WAV playback has to be evaluated by listening; original ROM CRC remains unverified. No new console XEX."
+}
