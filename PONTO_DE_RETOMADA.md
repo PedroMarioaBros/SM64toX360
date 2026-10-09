@@ -79,4 +79,14 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Regiões: CTL 3.348 conhecidos / 94.508 desconhecidos; prefixo TBL 96 conhecidos / 477.392 desconhecidos; região TBL candidata 1.563.468 conhecidos / 44.516 desconhecidos, sem fixar limite real do banco.
 - Varredura byte-exata no PE: 853 probes de 16 bytes, 853 de 32 bytes e 800 de 64 bytes; 0 hits para as três janelas. Probes amostrados; fragmentos conhecidos são do **alvo patchado**, portanto ausência de hits não invalida presença das amostras originais no XEX.
 - Evidências: `docs/PTBR_XEX_AUDIO_AUDIT_2026_10_09.md` e `.json`. Próxima ação: estudar formato/bancos de áudio internos do PE e metadados CTL/ADPCM para confrontar estruturas com provas, não transplantar bytes adivinhados. Alternativa: samples autênticos dos autores.
-- Ainda **nenhum arquivo de voz decodificada**, **nenhum XEX novo**, crawling vertical pendente e base 30 FPS preservada. 
+- Ainda **nenhum arquivo de voz decodificada**, **nenhum XEX novo**, crawling vertical pendente e base 30 FPS preservada.
+
+
+## 09/10/2026 — NOVO: VADPCM identificado no patch e no Xbox 360
+- Analisados binários reais recuperados. `scripts/multilang/scan_vadpcm_partial.py` encontrou 71 runs conhecidos >=512 bytes na região exploratória do TBL; **62/71 com 100% de headers VADPCM plausíveis** a cada 9 bytes em alguma fase, **63/71 >=95%**; 147.609 quadros inteiramente conhecidos somados nos 62 trechos. Isto NÃO identifica 147.609 vozes nem garante fronteira de amostra.
+- Primeiro fragmento 0x60C040..0x60D9E8 contém **729 quadros inteiros** com padrão de header coerente. Dados estão comprimidos e a decodificação requer codebook/metadados vinculados.
+- 43 candidatos a janelas de coeficientes CTL (27 com 62/64 bytes e 16 com 63/64 bytes). Nenhum dos 43 completo, não preencher desconhecidos.
+- Foi inspecionado PE de XEX SHA-256 `bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56`: no offset 0xA27D20 há assinatura de livro VADPCM order2/predictors2 e 64 bytes de coeficientes. No offset 0xA3FB10 há 64/64 headers VADPCM, com 562/576 bytes não nulos e 159 valores distintos.
+- `scripts/multilang/inspect_xex_sound_layout.py` identifica 452 **candidatos** de codebooks completos no PE (alinhamento, cabeçalho e coeficientes); comparação mascarada de 43 janelas do patch contra 452 candidatos do XEX: **0 matches**. Formatos compatíveis, porém a tabela de dublagem ainda depende de bytes ausentes. Não declarar voz extraída/decodificada.
+- Relatório verificável: `docs/PTBR_VADPCM_STRUCTURAL_AUDIT_2026_10_09.md`. Novos scripts, dois conjuntos de testes e dois workflows publicados na branch ativa. CI: [scanner, 5 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958461771) e [XEX, 4 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958879757).
+- Próxima ação: resolver **referências/pointers reais e IDs de voz dos bancos 08/0A do XEX**, e confrontar estruturas de sample, codebook, loop e tuning com patch; sem suposições nem substituições de áudio. Nenhum XEX novo, nenhum teste em console, base 30 FPS intacta.
