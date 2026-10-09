@@ -1,0 +1,70 @@
+{
+  "status": "FORENSIC_ONLY_NO_AUDIO_EXTRACTED",
+  "patch": {
+    "filename": "SuperMario64 PTBR 1.0 [BMatSantos, Kosmus].bps",
+    "archive_sha256": "6e85270ff7d694e0e14ce3f99e5e29cc290c480066602542104a72cee0aa07d1",
+    "bps_sha256": "1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2",
+    "source_size": 8388608,
+    "target_size": 9090352,
+    "source_crc32": "3ce60709",
+    "target_crc32": "aacb4011"
+  },
+  "xex": {
+    "sha256": "6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0",
+    "bytes": 17182720,
+    "mapped_pe_sha256": "bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56",
+    "mapped_pe_bytes": 17170432
+  },
+  "regions": {
+    "ctl": {
+      "start": "0x57f8d0",
+      "end_exclusive": "0x597710",
+      "bytes": 97856,
+      "known_bytes": 3348,
+      "source_dependent_bytes": 94508
+    },
+    "tbl_prefix": {
+      "start": "0x597710",
+      "end_exclusive": "0x60c040",
+      "bytes": 477488,
+      "known_bytes": 96,
+      "source_dependent_bytes": 477392
+    },
+    "tbl_candidate_data": {
+      "start": "0x60c040",
+      "end_exclusive": "0x794970",
+      "bytes": 1607984,
+      "known_bytes": 1563468,
+      "source_dependent_bytes": 44516
+    }
+  },
+  "probes": {
+    "16": {
+      "fragment_bytes": 16,
+      "stride_bytes": 2048,
+      "probes": 853,
+      "exact_matches": 0,
+      "first_hits": []
+    },
+    "32": {
+      "fragment_bytes": 32,
+      "stride_bytes": 2048,
+      "probes": 853,
+      "exact_matches": 0,
+      "first_hits": []
+    },
+    "64": {
+      "fragment_bytes": 64,
+      "stride_bytes": 2048,
+      "probes": 800,
+      "exact_matches": 0,
+      "first_hits": []
+    }
+  },
+  "notes": [
+    "Região tbl_candidate_data é exploratória, não fim do TBL validado.",
+    "Não reutilizar bytes do PE como fonte BPS sem equivalência de formato e proveniência comprovada.",
+    "Ausência de matches nos trechos modificados não prova ausência de áudio original do XEX.",
+    "Sem ROM fonte: bytes dependentes permanecem desconhecidos; nenhum banco/voz foi reconstruído."
+  ]
+}
