@@ -470,4 +470,6 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Regiões: CTL 3.348 conhecidos / 94.508 desconhecidos; prefixo TBL 96 conhecidos / 477.392 desconhecidos; região TBL candidata 1.563.468 conhecidos / 44.516 desconhecidos, sem fixar limite real do banco.
 - Varredura byte-exata no PE: 853 probes de 16 bytes, 853 de 32 bytes e 800 de 64 bytes; 0 hits para as três janelas. Probes amostrados; fragmentos conhecidos são do **alvo patchado**, portanto ausência de hits não invalida presença das amostras originais no XEX.
 - Evidências: `docs/PTBR_XEX_AUDIO_AUDIT_2026_10_09.md` e `.json`. Próxima ação: estudar formato/bancos de áudio internos do PE e metadados CTL/ADPCM para confrontar estruturas com provas, não transplantar bytes adivinhados. Alternativa: samples autênticos dos autores.
-- Ainda **nenhum arquivo de voz decodificada**, **nenhum XEX novo**, crawling vertical pendente e base 30 FPS preservada. 
+- Ainda **nenhum arquivo de voz decodificada**, **nenhum XEX novo**, crawling vertical pendente e base 30 FPS preservada.
+
+- Validação GitHub Actions confirmada em 09/10/2026: [Audit BPS-XEX provenance tests — run 37888054012](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37888054012), conclusão **success**; logs registram 4 testes PASS. Isso valida o parser e testes sintéticos, não uma extração de voz ou boot no Xbox.
