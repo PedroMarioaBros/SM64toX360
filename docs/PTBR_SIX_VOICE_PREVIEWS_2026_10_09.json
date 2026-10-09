@@ -60,5 +60,13 @@
     "conclusion": "success",
     "github_actions_run": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37968449638"
   },
-  "limitation": "No-loop diagnostic frame duration is not verified to be exactly gameplay duration. WAV playback has to be evaluated by listening; original ROM CRC remains unverified. No new console XEX."
+  "limitation": "No-loop diagnostic frame duration is not verified to be exactly gameplay duration. WAV playback has to be evaluated by listening; original ROM CRC remains unverified. No new console XEX.",
+  "combined_private_zip": {
+    "path": "/Xbox360 - SM64 PTBR/SM64_PTBR_6_PREVIAS_EXPERIMENTAIS_2026-10-09.zip",
+    "library_file_id": "libfile_986a0b2fe0b88191aa466ed03292d4ec",
+    "sha256": "cfc024aac266f5da8905e38139f6e7ba01762af5b8738735686cd917d7f79a10",
+    "bytes": 459699,
+    "contains_wav_files": 6,
+    "no_audio_content_published_to_public_github": true
+  }
 }
