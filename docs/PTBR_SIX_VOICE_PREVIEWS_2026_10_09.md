@@ -24,6 +24,9 @@ As duas prévias novas usam 100% dos bytes dos samples comprimidos e dos codeboo
 - Manifesto/hashes públicos **sem áudio**: `docs/PTBR_SIX_VOICE_PREVIEWS_2026_10_09.json`.
 - Rastreio das 1.157 lacunas que continuam fora dos bancos recuperados: `docs/PTBR_BPS_AUDIO_GAPS_2026_10_09.md`.
 
+
+- **Pacote consolidado de 6 WAVs**: Biblioteca `/Xbox360 - SM64 PTBR/SM64_PTBR_6_PREVIAS_EXPERIMENTAIS_2026-10-09.zip`; id `libfile_986a0b2fe0b88191aa466ed03292d4ec`; SHA-256 `cfc024aac266f5da8905e38139f6e7ba01762af5b8738735686cd917d7f79a10` (459.699 bytes), ZIP íntegro com 6 WAVs, manifesto e LEIA-ME. Nunca foi publicado no GitHub público.
+
 ## Reprodução sem assets no GitHub
 
 `scripts/multilang/decode_vadpcm_without_loop.py PATCH.zip XEX.zip --export-dir /pasta-privada --report relatorio.json`
