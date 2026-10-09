@@ -41,3 +41,5 @@ Resultado: **extração direta byte-a-byte não demonstrada**; o XEX poderá con
 Investigar a organização das tabelas/samples do port no PE (referências e formato nativo Xbox 360), buscando correspondências **demonstráveis** entre samples originais e o material da fonte BPS. Para as vozes novas, conferir se os grandes blocos conhecidos podem ser delimitados por metadados CTL e livros ADPCM, sem decodificar amostras com coeficientes incompletos ou supostos. Alternativamente, buscar um pacote de amostras fornecido pelos autores.
 
 **Sem dublagem PT-BR extraída/decodificada, sem novo XEX, sem validação de áudio no console.** A mecânica de crawling vertical continua pendente em trilha separada.
+
+- Validação GitHub Actions confirmada em 09/10/2026: [Audit BPS-XEX provenance tests — run 37888054012](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37888054012), conclusão **success**; logs registram 4 testes PASS. Isso valida o parser e testes sintéticos, não uma extração de voz ou boot no Xbox.
