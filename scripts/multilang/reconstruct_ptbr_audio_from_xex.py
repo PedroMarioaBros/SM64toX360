@@ -175,7 +175,7 @@ def collect(target, known, export_dir=None):
                                  name=NAMES[bank][slot],ready=False,reason="audio_or_metadata_incomplete"))
                 continue
             ls,le,lc,pad=struct.unpack_from(">IIiI",target,loopat)
-            if lc!=0 or pad!=0 or not 0<le<=((size//9)*16):
+            if lc!=0 or pad!=0 or not 0<le<=((size//9)*16)+1:
                 ready=False
             if target[bookat:bookat+8] != b"\0\0\0\x02\0\0\0\x02":
                 ready=False
