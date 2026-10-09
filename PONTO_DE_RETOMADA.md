@@ -72,3 +72,9 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Foi concluída a auditoria forense BPS × XEX com o patch PT-BR fornecido e `SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip` recuperado. XEX Basic descriptografado com PE válido de 17.170.432 bytes; comparação amostrada: 853 probes de 16 bytes, 853 de 32 e 800 de 64, **0 hits exatos**.
 - Código testado (4 testes locais PASS), relatórios, hashes e workflow de CI na branch **`feature/multilang-dub-30fps`**: `scripts/multilang/audit_bps_xex_overlap.py`, `scripts/multilang/test_audit_bps_xex_overlap.py`, `docs/PTBR_XEX_AUDIO_AUDIT_2026_10_09.md` e `.json`.
 - **Próximo passo:** investigar layout e metadados dos soundbanks internos do XEX, procurando correspondências estruturalmente verificáveis com CTL/TBL; não preencher lacunas com bytes presumidos. Não há voz extraída ou XEX novo. Base 30 FPS preservada. Ver checkpoint da branch ativa para detalhes.
+
+
+## 09/10/2026 — continuidade VADPCM na branch ativa
+- **NOVA trilha validada:** patch BPS contém quadros VADPCM (62/71 trechos longos com 100% de headers em uma fase de 9 bytes), e PE Xbox 360 contém codebooks VADPCM completos e quadros de áudio compatíveis (452 candidatos de livro). Nenhuma das 43 janelas parciais de coeficientes do patch corresponde exatamente às candidatas Xbox. Não há áudio dublado extraído.
+- Código, testes e evidências estão em `feature/multilang-dub-30fps`: [relatório 09/10](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/PTBR_VADPCM_STRUCTURAL_AUDIT_2026_10_09.md). Workflows de testes: [scanner PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958461771), [XEX PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37958879757).
+- Próxima ação: localizar referências reais e associar samples/codebooks aos IDs das vozes do Mario/Peach; sem XEX especulativo, sem alterar 30 FPS, saves ou tradução canônica.
