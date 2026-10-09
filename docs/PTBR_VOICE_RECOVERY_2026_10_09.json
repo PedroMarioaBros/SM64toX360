@@ -57,8 +57,8 @@
       "sample_rate": 48000,
       "pcm_samples": 37088,
       "decoded_duration_s": 0.772667,
-      "decoded_sample_sha256": "788e367a13dc3453529ec3377cf435caf03f61ae2f51252bbe7212437c8890dd",
-      "wav_sha256": "2993634246fab4bdb0be40560cdb55623a3cf10f6ebaf116d60dc4a2ab8fad2b"
+      "wav_sha256": "2993634246fab4bdb0be40560cdb55623a3cf10f6ebaf116d60dc4a2ab8fad2b",
+      "compressed_sample_sha256": "788e367a13dc3453529ec3377cf435caf03f61ae2f51252bbe7212437c8890dd"
     },
     {
       "bank": "08",
@@ -68,8 +68,8 @@
       "sample_rate": 48000,
       "pcm_samples": 23856,
       "decoded_duration_s": 0.497,
-      "decoded_sample_sha256": "5e1e97adc744a7df18152fa0e9b2fea118295c526b081c3e49c6a9707054109f",
-      "wav_sha256": "88435c4b4f41d1beb5cdaf6cab3b6fd8afeb3cd92b9a27d5fae80f5e27b6f71d"
+      "wav_sha256": "88435c4b4f41d1beb5cdaf6cab3b6fd8afeb3cd92b9a27d5fae80f5e27b6f71d",
+      "compressed_sample_sha256": "5e1e97adc744a7df18152fa0e9b2fea118295c526b081c3e49c6a9707054109f"
     },
     {
       "bank": "0A",
@@ -79,8 +79,8 @@
       "sample_rate": 48000,
       "pcm_samples": 27248,
       "decoded_duration_s": 0.567667,
-      "decoded_sample_sha256": "f04a69f7a9c3e9062593b82d09e966f12905e7665c5ee6e1bbc1174ca8287487",
-      "wav_sha256": "9799d80d8220683482520ddb16c26ee30c23612218ee8194b41b05f4ca379831"
+      "wav_sha256": "9799d80d8220683482520ddb16c26ee30c23612218ee8194b41b05f4ca379831",
+      "compressed_sample_sha256": "f04a69f7a9c3e9062593b82d09e966f12905e7665c5ee6e1bbc1174ca8287487"
     },
     {
       "bank": "0A",
@@ -90,8 +90,8 @@
       "sample_rate": 48000,
       "pcm_samples": 16080,
       "decoded_duration_s": 0.335,
-      "decoded_sample_sha256": "b17a72cd28f3331c31253432cc905e54d543bd8ffd995a5a4eb906e73032c096",
-      "wav_sha256": "2955ae1f4c6efd9dda52c29d951b9d9a9d969a9cdfb7336043cef9ea09815faa"
+      "wav_sha256": "2955ae1f4c6efd9dda52c29d951b9d9a9d969a9cdfb7336043cef9ea09815faa",
+      "compressed_sample_sha256": "b17a72cd28f3331c31253432cc905e54d543bd8ffd995a5a4eb906e73032c096"
     }
   ],
   "validation": {
