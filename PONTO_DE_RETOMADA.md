@@ -71,3 +71,12 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - CTL de 97.856 bytes: 3.348 conhecidos diretamente pelo patch, 94.508 dependem da fonte. Primeiro bloco de 512 bytes inteiramente desconhecido. Ainda sem banco completo ou voz decodificada; nenhum XEX alterado.
 - Código scripts/multilang/map_bps_audio_anchors.py; relatório docs/PTBR_AUDIO_OFFSETS_2026_10_08.md na branch ativa.
 - Pedro não possui ROM. Próxima ação: comparar tabelas e amostras originais do XEX base do projeto com dependências do patch, completando somente bytes com correspondência comprovada; alternativa é pacote de vozes dos autores. Não inventar bytes nem declarar áudio completo usando saída esparsa. Crawling vertical segue pendente.
+
+## 09/10/2026 — auditoria XEX × BPS com binários reais (chat)
+- Recuperados da Biblioteca o ZIP do patch PT-BR e o pacote Xbox 360 `SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip`. Confirmados hashes do ZIP BPS e do BPS já registrados; XEX interno SHA-256 `6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0`.
+- Descriptografado XEX2 Basic para imagem PE válida de 17.170.432 bytes, SHA-256 `bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56`; sem alterar executável ou saves.
+- Foi criado `scripts/multilang/audit_bps_xex_overlap.py` e testes `scripts/multilang/test_audit_bps_xex_overlap.py` (4 testes locais PASS). Git blobs conferidos com os scripts executados; workflow `.github/workflows/test-bps-xex-audit.yml` criado, validação do workflow remoto ainda deve ser consultada antes de declarar PASS no CI.
+- Regiões: CTL 3.348 conhecidos / 94.508 desconhecidos; prefixo TBL 96 conhecidos / 477.392 desconhecidos; região TBL candidata 1.563.468 conhecidos / 44.516 desconhecidos, sem fixar limite real do banco.
+- Varredura byte-exata no PE: 853 probes de 16 bytes, 853 de 32 bytes e 800 de 64 bytes; 0 hits para as três janelas. Probes amostrados; fragmentos conhecidos são do **alvo patchado**, portanto ausência de hits não invalida presença das amostras originais no XEX.
+- Evidências: `docs/PTBR_XEX_AUDIO_AUDIT_2026_10_09.md` e `.json`. Próxima ação: estudar formato/bancos de áudio internos do PE e metadados CTL/ADPCM para confrontar estruturas com provas, não transplantar bytes adivinhados. Alternativa: samples autênticos dos autores.
+- Ainda **nenhum arquivo de voz decodificada**, **nenhum XEX novo**, crawling vertical pendente e base 30 FPS preservada. 
