@@ -1,0 +1,21 @@
+name: XEX VADPCM structural tests
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/audit_bps_xex_overlap.py
+      - scripts/multilang/scan_vadpcm_partial.py
+      - scripts/multilang/inspect_xex_sound_layout.py
+      - scripts/multilang/test_xex_sound_layout.py
+      - .github/workflows/test-xex-sound-layout.yml
+  workflow_dispatch:
+
+jobs:
+  test-audio-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate structural audio signatures without protected assets
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_xex_sound_layout.py' -v
