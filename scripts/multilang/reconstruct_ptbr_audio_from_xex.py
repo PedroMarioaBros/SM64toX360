@@ -19,7 +19,7 @@ from audit_bps_xex_overlap import patch_data, read_varint, read_xex_pe
 SRC_CTL, SRC_TBL = 0x57B720, 0x593560
 DST_CTL, DST_TBL = 0x57F8D0, 0x597710
 PE_CTL, PE_TBL = 0xA27B90, 0xA3F9D0
-CTL_BYTES, TBL_BYTES = 0x17E00, 0x21D2F0
+CTL_BYTES, TBL_BYTES = 0x17E40, 0x21D300
 BANKS = (8, 10)
 EXPECTED_PE_SHA = "bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56"
 EXPECTED_PATCH_SHA = "1a6a0d6acb3f9626d52ed8f6a71866007df059e494461984591887c509bef4a2"
@@ -48,6 +48,12 @@ def read_patch(patch, pe):
         raise ValueError("PE não corresponde ao XEX auditado")
     if pe[PE_CTL:PE_CTL+4] != b"\0\x01\0\x26" or pe[PE_TBL:PE_TBL+4] != b"\0\x02\0\x26":
         raise ValueError("índices CTL/TBL Xbox 360 inválidos")
+    if PE_CTL + CTL_BYTES != PE_TBL:
+        raise ValueError("CTL original não termina na fronteira TBL do PE")
+    if pe[PE_CTL+0x17E00:PE_CTL+CTL_BYTES] != bytes(64):
+        raise ValueError("padding de 64 bytes CTL diferente do observado")
+    if pe[PE_TBL+0x21D2F0:PE_TBL+TBL_BYTES] != bytes(16):
+        raise ValueError("padding de 16 bytes TBL diferente do observado")
     s, pos = read_varint(patch, 4)
     size, pos = read_varint(patch, pos)
     metadata, pos = read_varint(patch, pos)
