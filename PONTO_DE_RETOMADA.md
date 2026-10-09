@@ -67,3 +67,8 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - CTL de 97.856 bytes: 3.348 conhecidos diretamente pelo patch, 94.508 dependem da fonte. Primeiro bloco de 512 bytes inteiramente desconhecido. Ainda sem banco completo ou voz decodificada; nenhum XEX alterado.
 - Código scripts/multilang/map_bps_audio_anchors.py; relatório docs/PTBR_AUDIO_OFFSETS_2026_10_08.md na branch ativa.
 - Pedro não possui ROM. Próxima ação: comparar tabelas e amostras originais do XEX base do projeto com dependências do patch, completando somente bytes com correspondência comprovada; alternativa é pacote de vozes dos autores. Não inventar bytes nem declarar áudio completo usando saída esparsa. Crawling vertical segue pendente.
+
+## 09/10/2026 — ponto de continuidade da dublagem (código na branch ativa)
+- Foi concluída a auditoria forense BPS × XEX com o patch PT-BR fornecido e `SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip` recuperado. XEX Basic descriptografado com PE válido de 17.170.432 bytes; comparação amostrada: 853 probes de 16 bytes, 853 de 32 e 800 de 64, **0 hits exatos**.
+- Código testado (4 testes locais PASS), relatórios, hashes e workflow de CI na branch **`feature/multilang-dub-30fps`**: `scripts/multilang/audit_bps_xex_overlap.py`, `scripts/multilang/test_audit_bps_xex_overlap.py`, `docs/PTBR_XEX_AUDIO_AUDIT_2026_10_09.md` e `.json`.
+- **Próximo passo:** investigar layout e metadados dos soundbanks internos do XEX, procurando correspondências estruturalmente verificáveis com CTL/TBL; não preencher lacunas com bytes presumidos. Não há voz extraída ou XEX novo. Base 30 FPS preservada. Ver checkpoint da branch ativa para detalhes.
