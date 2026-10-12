@@ -1,0 +1,19 @@
+name: Star Return Crash A-B Static Audit
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/audit_star_return_regression.py
+      - scripts/multilang/test_star_return_regression.py
+      - .github/workflows/test-star-return-ab.yml
+  workflow_dispatch:
+
+jobs:
+  verify-hook-isolation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check A-B difference allowlist on synthetic PE
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_star_return_regression.py' -v
