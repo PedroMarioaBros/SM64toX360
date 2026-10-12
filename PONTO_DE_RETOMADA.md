@@ -1,7 +1,7 @@
 # Ponto de retomada — leia primeiro
 Branch ativa feature/multilang-dub-30fps; base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md.
 
-Aprovados Xbox: pulos TEST3/câmera, RENDER90, TEXTO90, CREDITS_MENU_CORRIGIDO com menu/save. Preserve.
+Aprovados anteriormente: controles/pulos TEST3 e câmera; CREDITS_MENU_CORRIGIDO exibiu menu/saves, mas **FALHOU em hardware com Fatal Crash ao retornar de uma estrela para o castelo em 12/10/2026**. NÃO tratar como estável.
 
 TITLE_SELECTOR_TEST1 reprovado: não alterou a tela Press Start e causou travamento após pegar estrela/retornar ao castelo. Não reutilizar 0x820D5F48; candidato retirado.
 
@@ -111,3 +111,15 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - **Seis prévias WAV no total, ainda não aprovadas por escuta.** ZIP privado consolidado, com 6 WAVs/manifesto/LEIA-ME: `/Xbox360 - SM64 PTBR/SM64_PTBR_6_PREVIAS_EXPERIMENTAIS_2026-10-09.zip`, Library id `libfile_986a0b2fe0b88191aa466ed03292d4ec`, SHA-256 `cfc024aac266f5da8905e38139f6e7ba01762af5b8738735686cd917d7f79a10`. Não publicar conteúdo áudio/ROM/XEX no GitHub público.
 - Detalhes e hashes: `docs/PTBR_SIX_VOICE_PREVIEWS_2026_10_09.md` e `.json`.
 - Próximo passo: (1) validar por escuta os seis WAVs; (2) tentar encontrar redundância autêntica para lacunas dos bancos 08/0A, sem supor coeficientes/frames; (3) somente integrar quando houver confiança de origem e reprodução. **Nenhum novo XEX**, base estável 30 FPS, PT-BR própria, saves e canhão preservados. O CRC da ROM original N64 fonte exigida pelo BPS segue não verificado.
+
+
+## 12/10/2026 — CRASH CONFIRMADO após estrela / teste binário de isolamento entregue
+- Pedro testou novamente `SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip`: **letras/texto de menu corretos, mas Fatal Crash ao pegar uma estrela e voltar ao castelo**. RETIRAR a classificação antiga de versão aprovada/estável globalmente: apenas menu corrigido, gameplay regressado. Esta compilação NÃO deve ser sugerida como versão estável.
+- Compilação falha: XEX SHA-256 `6d5d94f681796b66024c2b820908eee3c49f101f08ebdc87c4694c6da67824b0`, PE SHA-256 `bb1a7ecd3c7deb0e10c316a92bf467ca0ea1104dae86bc602af9c6802aab6b56`.
+- Recuperado pacote TEST3 original da Biblioteca. XEX SHA-256 `b90ae1d1be953c1f817e9c64286c67da855778ac7c671098a3cd8495d8b6afd9`, PE SHA-256 `a1bc5c6db7e32d4214c2d1329874f68dee058c91063b67bbacde7ae197a48f6c`.
+- **Comparação exata:** os PEs diferem somente no BL em offset `0xCD128` (TEST3 `4bfc8321` chamada original `level_script_execute` vs créditos `482ef7d9` gate próprio) e no code cave `0x3BC900..0x3BCA08` (264 bytes reservados; 222 não zero no build falho). **226 bytes efetivamente distintos**, 0 diferenças fora destas duas áreas. Reverter estas duas regiões produz PE **idêntico byte a byte ao TEST3**.
+- **Resultado do teste no console do TEST3 para estrela→castelo: AINDA PENDENTE.** A hipótese principal é efeito colateral do hook de créditos, não causa demonstrada ainda. Testes estáticos anteriores apenas simulavam `level_script_execute` e não reproduziam todo o ciclo no hardware.
+- Pacote privado A/B entregue `SM64_30FPS_TESTE_ISOLAMENTO_CRASH_ESTRELA_TEST3.zip`, SHA-256 `02df1f67fba83e9d1cdd5f60ef3924f4fc48c58adb4555b372e69f2270d39893`. Contém o **XEX original intacto TEST3** (sem recompilação/assinatura nova), instruções de testar em pasta separada e JSON de comparação. Biblioteca `/Xbox360 - SM64 PTBR/SM64_30FPS_TESTE_ISOLAMENTO_CRASH_ESTRELA_TEST3.zip`; libfile `libfile_0b550c3cf5b481919d988f4e302fc2c5`.
+- Relatório `docs/STAR_RETURN_CRASH_2026_10_12.md`; script auditável `scripts/multilang/audit_star_return_regression.py`, testes `scripts/multilang/test_star_return_regression.py`. [CI 4 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38205019787) em dados sintéticos (verificados logs); PASS significa isolamento binário, NÃO boot/estrela no Xbox.
+- Próxima ação imediata: **Pedro testa retorno após estrela no pacote TEST3**. Se passar, reprojetar créditos/seletor dentro da intro legítima sem hook global de level_script_execute; se falhar, investigar save/retorno e base TEST3. Não integrar alterações em cadeia sem prova.
+- Áudio PT-BR: seis WAVs experimentais (4 com loop, 2 sem loop) continuam disponíveis em pacote privado; faltam escuta/identidade/integração e demais vozes. Manter frente de áudio separada da regressão. **Nenhum XEX novo com dublagem** e 30 FPS preservado.
