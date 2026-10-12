@@ -1,5 +1,5 @@
 {
-  "status": "CPU/build PASS; hardware pending",
+  "status": "CPU/build PASS; Xbox menu PASS; Xbox star-to-castle FAIL (confirmed 2026-10-12)",
   "cause": "previous probe clears menu alpha every original frame; no runtime menu fade can persist",
   "fix": "save original two alpha bytes on stack before credits and restore each credit frame; original path does not write alpha",
   "cpu_alpha_seed": [
@@ -62,5 +62,13 @@
     "zip": "d21cd5e1223250a529921c0aca78215023527220949118923c1cce4ec124e107"
   },
   "hardware_previous": "opened game and save; menu missing all text, not intentional; partial failure",
-  "scope": "native CPU render with synthetic graphics memory; no GPU validation; selector black screen unresolved"
+  "scope": "native CPU render with synthetic graphics memory; no GPU validation; selector black screen unresolved",
+  "hardware_followup_2026_10_12": {
+    "user_test_repeated": true,
+    "menu_letters_correct": true,
+    "upon_star_exit_to_castle": "FATAL_CRASH",
+    "approved_for_gameplay": false,
+    "static_compare_report": "docs/STAR_RETURN_CRASH_2026_10_12.md",
+    "next_test": "TEST3 original XEX without general level_script_execute credits hook; verify star return"
+  }
 }
