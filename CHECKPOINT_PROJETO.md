@@ -487,3 +487,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Testes reais no GitHub Actions: [rastreio 4 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37967913594) e [decodificador 11 PASS, 5 novos](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/37968449638).
 - ZIP privado consolidado de 6 WAVs, 459.699 bytes: Biblioteca `/Xbox360 - SM64 PTBR/SM64_PTBR_6_PREVIAS_EXPERIMENTAIS_2026-10-09.zip` (libfile `libfile_986a0b2fe0b88191aa466ed03292d4ec`), SHA-256 `cfc024aac266f5da8905e38139f6e7ba01762af5b8738735686cd917d7f79a10`. Não há binário/áudio publicado no GitHub público.
 - Continuação: ouvir/identificar as seis prévias, buscar bytes faltantes por origem comprovável; não fabricar vozes nem alterar base estável de 30 FPS/PT-BR/saves/canhão.
+
+
+## 12/10/2026 — URGENTE: crash reproduzido ao voltar da estrela; versão de créditos NÃO estável
+- Feedback real de Pedro após novo teste no Xbox: `SM64_DIAGNOSTICO_CREDITOS_MENU_CORRIGIDO.zip` exibe letras e menu corretamente, mas **Fatal Crash ao pegar estrela e voltar ao castelo**. Revogada aprovação geral da build; apenas render do menu passou.
+- Análise exata dos XEXs recuperados: o PE falho difere da TEST3 **somente** pelo branch em `0xCD128` (`4bfc8321` → `482ef7d9`) e code cave de créditos `0x3BC900..0x3BCA08`. **226 bytes diferentes; rollback desses dois intervalos gera PE byte-idêntico ao TEST3**.
+- Enviado arquivo A/B `SM64_30FPS_TESTE_ISOLAMENTO_CRASH_ESTRELA_TEST3.zip` que encapsula `default.xex` TEST3 original *sem recompilar*, SHA-256 ZIP `02df1f67fba83e9d1cdd5f60ef3924f4fc48c58adb4555b372e69f2270d39893`, Biblioteca `libfile_0b550c3cf5b481919d988f4e302fc2c5`. OBJETIVO: verificar no Xbox se TEST3 também falha na transição estrela→castelo. **Resultado de console ainda pendente.**
+- Relatório/código ativo: [STAR_RETURN_CRASH_2026_10_12.md](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/STAR_RETURN_CRASH_2026_10_12.md). [GitHub Actions 4 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38205019787), somente validação estática do isolamento, não emulação do ciclo completo.
+- Não criar XEX especulativo. Após A/B, corrigir fluxo do menu/créditos sem hook global persistente; garantir coleta de estrela, retorno ao castelo, menu e save antes de integrar o áudio.
+- Áudio: seis WAVs PT-BR experimentais preservados, ainda sem aprovação por escuta ou XEX com dublagem. Base canônica 30 FPS/PT-BR/controles permanecem.
