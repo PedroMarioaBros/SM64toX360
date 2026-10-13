@@ -54,13 +54,13 @@ class ThreeLanguageCourseTableTests(unittest.TestCase):
         self.assertEqual(report["status"],"COURSE3_STAGED_NO_RUNTIME_HOOK")
         self.assertEqual(changed[:LANG_RVA],image[:LANG_RVA])
         self.assertEqual(changed[LANG_RVA+0x100:LANG_RVA+0x108],b"PTBBLOCK")
-        self.assertEqual(changed[LANG_RVA+0x80:LANG_RVA+0x88],b"COURSE3\0")
+        self.assertEqual(changed[LANG_RVA+0xC0:LANG_RVA+0xC8],b"COURSE3\0")
         self.assertTrue(report["existing_dialogs_and_layout_preserved"])
         self.assertEqual(report["records"]["es_course"]["count"],26)
         self.assertEqual(report["records"]["en_star"]["count"],90)
         for i in range(3):
-            pco=struct.unpack_from(">I",changed,LANG_RVA+0x98+4*i)[0]
-            pso=struct.unpack_from(">I",changed,LANG_RVA+0xA4+4*i)[0]
+            pco=struct.unpack_from(">I",changed,LANG_RVA+0xD8+4*i)[0]
+            pso=struct.unpack_from(">I",changed,LANG_RVA+0xE4+4*i)[0]
             self.assertEqual(len(changed[LANG_RVA+pco:LANG_RVA+pco+26*4]),104)
             self.assertEqual(len(changed[LANG_RVA+pso:LANG_RVA+pso+90*4]),360)
             cake=struct.unpack_from(">I",changed,LANG_RVA+pco+24*4)[0]
@@ -82,7 +82,7 @@ class ThreeLanguageCourseTableTests(unittest.TestCase):
     def test_cannot_overwrite_existing_header_metadata(self):
         image,ptc,pts=synthetic_pe()
         arr=bytearray(image)
-        arr[LANG_RVA+0x80]=1
+        arr[LANG_RVA+0xC0]=1
         en,es=catalogs()
         with patch("install_trilingual_course_tables.check_original_tables",return_value=(ptc,pts)):
             with self.assertRaisesRegex(ValueError,"already occupied"):
