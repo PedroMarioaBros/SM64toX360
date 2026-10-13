@@ -56,3 +56,18 @@ A cópia intacta da TEST3 que Pedro aprovou para o ciclo **fase → pegar estrel
 6. **Vozes/dublagem continuam fora do escopo conforme pedido.**
 
 **Estado exato:** mapeamento de tabelas proveniente de TEST3 real; rotina PPC emulada; catálogo multilíngue **ainda não está instalado/ativo no jogo**, nenhum novo XEX entregue.
+
+
+## Descoberta adicional — a TEST3 já tem os 170 diálogos dos três idiomas fisicamente armazenados
+
+A imagem PE do XEX TEST3 **já contém** a seção RW `.lang` como nona seção PE:
+- VA/RVA `0x01040000`, bytes `0x20000` até `0x01060000`;
+- Magic `SM64LANG`, versão `2`, idiomas `3`, diálogos por idioma `170`;
+- Ponteiros das tabelas: PT `0x100`, ES `0x3B0`, EN `0x660` relativos à seção;
+- Pools originais: PT `0x908`, ES `0x6EC8`, EN `0x107E0`;
+- Fim usado `0x18D4E` (101.710 bytes) — **29.362 bytes livres** a partir desse ponto; os bytes restantes são zero.
+- Também estão fisicamente instalados glifos espanhóis `ñ` (0x42), `Ñ` (0x43), `¡` (0x44) e `¿` (0x45), conferidos por ponteiros reais de textura e tabela de largura do PE.
+- Os três conjuntos de 170 ponteiros apontam para cadeias terminadas por FF dentro do PE. Inspeção dos exemplos de diálogo #0, #15, #33, #34, #46 e #169 confirmou textos distintos PT/ES/EN efetivos na TEST3. **Não significa que um seletor já os ative.**
+- **Importante:** o texto ES armazenado na TEST3 é uma revisão **ANTERIOR** à auditoria editorial atual de 12/10. Por exemplo, o diálogo ES #015 ainda não explica o chute A→X, embora a fonte/errata agora o corrija. Logo, **não basta ativar a tabela ES antiga para cumprir a regra de conteúdo equivalente**. Atualizar os diálogos EN/ES com a preparação corrigida, mantendo byte-idêntico o pool PT-BR.
+- Também já existem glifos/espaços disponíveis suficientes para, em princípio, receber as novas tabelas 26+90 e respectivas strings; cabe confirmar as medidas reais na instalação usando os corpus EN/ES e o cursor livre, com rejeição automática se exceder `0x20000`.
+- A construção inicial da seção `.lang` **não precisa ser refeita para a TEST3**; em vez disso, fazer uma extensão auditada e atualizar somente os textos EN/ES que forem editorialmente corrigidos. Não voltar à antiga base v0.4 nem reconstruir seletor por hook global.
