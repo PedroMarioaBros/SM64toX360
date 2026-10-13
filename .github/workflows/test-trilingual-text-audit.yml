@@ -6,6 +6,7 @@ on:
       - feature/multilang-dub-30fps
     paths:
       - scripts/multilang/es_semantic_errata.py
+      - localization/manifests/controller_mapping.json
       - scripts/multilang/localize_controller_texts.py
       - scripts/multilang/audit_language_parity.py
       - scripts/multilang/test_semantic_equivalence_es.py
