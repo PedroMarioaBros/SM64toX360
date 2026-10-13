@@ -5,14 +5,14 @@ Entrada: PE mapeado já contendo .lang e os course_catalog.json EN/ES gerados
 pela fonte fixa. Fonte PT-BR: tabelas intocadas no próprio TEST3 Xbox 360.
 
 Layout adicional em .lang (Big Endian, revisão COURSE3):
-  0x80 magic "COURSE3\\0"
-  0x88: u32 course_count (26)
-  0x8C: u32 star_count (90)
-  0x90: u32 VA da tabela original de 26 nomes PT
-  0x94: u32 VA da tabela original de 90 estrelas PT
-  0x98..0xA0: offsets relativos .lang das tabelas PT/ES/EN (26 x u32)
-  0xA4..0xAC: offsets relativos .lang das tabelas PT/ES/EN (90 x u32)
-  0xB0: u32 novo fim do payload
+  0xC0 magic "COURSE3\\0"
+  0xC8: u32 course_count (26)
+  0xCC: u32 star_count (90)
+  0xD0: u32 VA da tabela original de 26 nomes PT
+  0xD4: u32 VA da tabela original de 90 estrelas PT
+  0xD8..0xE0: offsets relativos .lang das tabelas PT/ES/EN (26 x u32)
+  0xE4..0xEC: offsets relativos .lang das tabelas PT/ES/EN (90 x u32)
+  0xF0: u32 novo fim do payload
 Nenhuma rotina de execução ou de seleção é modificada nesta fase.
 """
 from __future__ import annotations
@@ -34,8 +34,8 @@ STAR_TABLE=0x9E9620
 COURSE_COUNT=26
 STAR_COUNT=90
 LANG_USED_OFF=0x38
-COURSE_META=0x80
-COURSE_META_END=0xB4
+COURSE_META=0xC0
+COURSE_META_END=0xF4
 
 # Hardware A/B confirmed TEST3: these raw pointer arrays are immutable PT-BR.
 EXPECTED_PT_COURSE_SHA="3b789baca2d6d547c0f8f2985e96da24b4878944c1278d092c614d53934cbc9d"
@@ -160,12 +160,12 @@ def install(mapped_pe:bytes,en,es,encode):
         raise ValueError(".lang exceeded maximum capacity")
     at=LANG_RVA
     result[at+COURSE_META:at+COURSE_META+8]=b"COURSE3\0"
-    struct.pack_into(">IIII",result,at+0x88,COURSE_COUNT,STAR_COUNT,
+    struct.pack_into(">IIII",result,at+0xC8,COURSE_COUNT,STAR_COUNT,
                      IMAGE_BASE+COURSE_TABLE,IMAGE_BASE+STAR_TABLE)
     for i,lang in enumerate(("pt_br","es","en")):
-        struct.pack_into(">I",result,at+0x98+4*i,tables[lang]["course"])
-        struct.pack_into(">I",result,at+0xA4+4*i,tables[lang]["star"])
-    struct.pack_into(">I",result,at+0xB0,cursor)
+        struct.pack_into(">I",result,at+0xD8+4*i,tables[lang]["course"])
+        struct.pack_into(">I",result,at+0xE4+4*i,tables[lang]["star"])
+    struct.pack_into(">I",result,at+0xF0,cursor)
     struct.pack_into(">I",result,at+LANG_USED_OFF,cursor)
 
     # No baseline game bytes, including PT-BR original tables, may be changed.
