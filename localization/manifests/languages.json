@@ -8,7 +8,7 @@
       "display_name": "Português",
       "text_status": "implemented_in_current_game",
       "xbox360_control_localization": "implemented_in_current_game",
-      "voice_status": "pending_integration",
+      "voice_status": "no_new_dubbing_work_current_scope_keep_existing_game_audio",
       "protection": "preserve_existing_canonical_pt_br_exactly; do not replace texts",
       "source_dialogs": 170,
       "runtime_status": "tested_in_TEST3_single_language"
@@ -18,7 +18,7 @@
       "display_name": "Español",
       "text_status": "pending_integration",
       "xbox360_control_localization": "pending_integration",
-      "voice_status": "pending_integration",
+      "voice_status": "no_new_dubbing_work_current_scope_keep_existing_game_audio",
       "source": "Reonu/ultrasm64-spanish@b720e8328c4ead21e3eac5dfceb21edba38ed79b",
       "source_dialogs": 170,
       "stage_catalog": {
@@ -45,7 +45,7 @@
       "display_name": "English",
       "text_status": "use_original_english_with_xbox360_control_localization",
       "xbox360_control_localization": "required",
-      "voice_status": "use_original",
+      "voice_status": "no_new_dubbing_work_current_scope_keep_existing_game_audio",
       "source": "n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af",
       "source_dialogs": 170,
       "stage_catalog": {
@@ -62,7 +62,27 @@
     }
   ],
   "edition_credit": "PeterKleizoon - PMCN Studios",
-  "current_priority": "trilingual_text_and_xbox360_controls_only",
-  "voice_scope": "postponed_by_project_owner_2026-10-12",
-  "validation_scope": "source_text_structure_and_control_actions_only; no Xbox runtime release"
+  "current_priority": "finish_and_hardware_validate_complete_trilingual_text_and_functional_language_selector",
+  "voice_scope": "STRICTLY_OUT_OF_SCOPE_UNTIL_COMPLETE_3_LANGUAGE_TEXT_AND_SELECTOR_HARDWARE_VERIFICATION",
+  "validation_scope": "source_text_structure_and_control_actions_only; no Xbox runtime release",
+  "dubbing_policy": {
+    "status": "blocked_not_in_current_project_scope",
+    "user_directive_date": "2026-10-12",
+    "prerequisite": "complete_and_verify_game_with_Porto_Espanol_English_translation_and_working_language_selector_on_actual_Xbox_360",
+    "no_voice_extraction": true,
+    "no_dubbing_integration": true,
+    "no_dubbing_processing": true,
+    "no_voice_builds": true,
+    "retain_existing_original_game_audio": true,
+    "validation_gates": [
+      "game_starts_and_language_selection_screen_works_with_Portugues_Espanol_English",
+      "full_texts_menus_dialogs_course_and_star_names_correct_in_all_three_languages",
+      "Xbox_360_controller_labels_and_instructions_correct_in_all_three_languages",
+      "content_semantically_equivalent_between_all_three_languages",
+      "save_load_work_in_all_three_languages",
+      "star_collection_exit_and_return_to_castle_without_crash_in_all_three_languages",
+      "real_Xbox_360_hardware_tests_confirm_all_gates"
+    ],
+    "unblock_policy": "do_not_resume_dubbing_automatically; require_new_explicit_user_instruction_after_all_gates_pass"
+  }
 }
