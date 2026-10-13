@@ -74,6 +74,20 @@ class ThreeLanguageCourseTableTests(unittest.TestCase):
         self.assertGreater(report["new_used_bytes"],report["old_used_bytes"])
         self.assertTrue(report["runtime_switch_not_installed"])
 
+    def test_B_Y_controller_state_does_not_overlap_course3_metadata(self):
+        image,ptc,pts=synthetic_pe()
+        data=bytearray(image)
+        data[LANG_RVA+0x80:LANG_RVA+0x88]=b"\x20\x00\x80\x00\x01\x23\x45\x67"
+        en,es=catalogs()
+        with patch("install_trilingual_course_tables.check_original_tables",return_value=(ptc,pts)):
+            out,report=install(bytes(data),en,es,encoder)
+        self.assertEqual(out[LANG_RVA+0x80:LANG_RVA+0x88],
+                         b"\x20\x00\x80\x00\x01\x23\x45\x67")
+        self.assertEqual(out[LANG_RVA+0xC0:LANG_RVA+0xC8],b"COURSE3\x00")
+        self.assertTrue(report["existing_dialogs_and_layout_preserved"])
+        self.assertNotEqual(out[LANG_RVA+0x80:LANG_RVA+0x88],
+                            out[LANG_RVA+0xC0:LANG_RVA+0xC8])
+
     def test_original_ptbr_pointer_guards_fail_closed(self):
         image,_,_=synthetic_pe()
         with self.assertRaisesRegex(ValueError,"differs from hardware-approved TEST3"):
