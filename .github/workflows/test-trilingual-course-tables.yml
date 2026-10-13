@@ -1,0 +1,21 @@
+name: Trilingual Xbox Course Table Staging
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/install_trilingual_course_tables.py
+      - scripts/multilang/test_install_trilingual_course_tables.py
+      - scripts/multilang/import_course_catalog.py
+      - .github/workflows/test-trilingual-course-tables.yml
+  workflow_dispatch:
+
+jobs:
+  verify-binary-table-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate safe table layout and unchanged original game bytes
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_install_trilingual_course_tables.py' -v
