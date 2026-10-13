@@ -56,3 +56,14 @@ Os dois ZIPs originais foram recuperados da Biblioteca e seu `default.xex` descr
 4. Em paralelo, confirmar a qualidade e identidade dos seis WAVs por escuta e continuar auditoria de amostras sem metadados incompletos.
 
 **Estado atual:** código/regressão estática analisados; binário A/B pronto; hipótese ainda não confirmada no console; nenhum novo fix ou dublagem em XEX.
+
+
+## Atualização após teste A/B real no Xbox 360
+
+Pedro confirmou explicitamente que **o teste no pacote TEST3 foi perfeito**, incluindo obter estrela, sair da fase e retornar ao castelo sem crash.
+
+- **TEST3 (sem hook experimental): PASS no Xbox** para a regressão estrela→castelo.
+- **Créditos/menu corrigido (com hook experimental): FAIL no Xbox** na mesma categoria de retorno.
+- Portanto, a introdução do hook/code cave de créditos entre os dois executáveis fica **fortemente associada ao Fatal Crash**. O experimento A/B não determina ainda qual instrução ou estado interno do hook o causa.
+- Próxima integração de idioma **não deve restaurar o hook global em `0x820CD128`**. A tela multilíngue deve ser inserida na rotina de introdução/menu de título com contrato de estado e retorno próprio, preservando a TEST3. Testar estrela e voltar ao castelo em cada XEX candidato.
+- Nenhum XEX de três idiomas passou ainda em hardware; não confundir a validação textual estática com uma build jogável.
