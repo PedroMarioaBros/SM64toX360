@@ -163,16 +163,47 @@ class TitleOnlySelectorTests(unittest.TestCase):
             self.assertEqual(u.reg_read(GPR[30]),0x11223344)
             self.assertEqual(u.reg_read(GPR[31]),0x55667788)
 
+    def test_wrong_menu_patch_is_rejected_even_if_wrapper_would_work(self):
+        from title_only_selector import verify_native_title_dispatch
+        raw=bytearray(0x150000)
+        for addr,val in (
+          (0x82147414,"7c6b0734"),
+          (0x82147434,"4bffff8d"),
+          (0x82147448,"4bfffe31"),
+          (0x8214745C,"4bfffecd"),
+          (0x82147470,"4bfffc01"),
+          (0x820D68BC,"4bfff68d"),
+        ):
+            raw[addr-BASE:addr-BASE+4]=bytes.fromhex(val)
+        self.assertTrue(verify_native_title_dispatch(raw))
+        raw[0xD68BC:0xD68C0]=bytes.fromhex("482e6045")
+        with self.assertRaisesRegex(ValueError,"non-title"):
+            verify_native_title_dispatch(raw)
+        raw[0xD68BC:0xD68C0]=bytes.fromhex("4bfff68d")
+        raw[0x147448:0x14744C]=bytes.fromhex("48000001")
+        with self.assertRaisesRegex(ValueError,"title dispatch mismatched"):
+            verify_native_title_dispatch(raw)
+
     def test_bl_target_is_title_only_intros_original(self):
-        self.assertEqual(ORIGINAL_CALL_BE.hex(),"4bfff68d")
+        self.assertEqual(ORIGINAL_CALL_BE.hex(),"4bfffe31")
         before=bytearray(0x1060000)
         before[CALLSITE-BASE:CALLSITE-BASE+4]=ORIGINAL_CALL_BE
+        # Assert the real title switch; never again patch the TEST4 menu switch.
+        for address,expected in (
+          (0x82147414,"7c6b0734"),
+          (0x82147434,"4bffff8d"),
+          (0x8214745C,"4bfffecd"),
+          (0x82147470,"4bfffc01"),
+          (0x820D68BC,"4bfff68d"),
+        ):
+            before[address-BASE:address-BASE+4]=bytes.fromhex(expected)
         before[0xCD128:0xCD12C]=bytes.fromhex("4bfc8321")
         before[0x1040000:0x1040008]=b"SM64LANG"
         before[0x10400C0:0x10400C8]=b"COURSE3\0"
         after,rep=install(bytes(before))
         self.assertEqual(rep["status"],"CANDIDATE_TITLE_ONLY_LANGUAGE_SELECTOR_NOT_HARDWARE_TESTED")
         self.assertEqual(after[0xCD128:0xCD12C],before[0xCD128:0xCD12C])
+        self.assertEqual(after[0xD68BC:0xD68C0],bytes.fromhex("4bfff68d"))
         self.assertEqual(after[0x1040080:0x1040088],bytes(8))
         self.assertEqual(after[0x1040000:0x1060000],before[0x1040000:0x1060000])
         for i,(old,new) in enumerate(zip(before,after)):
