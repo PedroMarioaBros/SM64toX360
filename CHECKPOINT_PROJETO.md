@@ -557,3 +557,11 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Falha real `EXTRA_TEXT` com chaves convertidas para strings via JSON detectada e corrigida no importador; teste round-trip e [CI PASS 38335811493](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38335811493).
 - ZIP privado recuperável, mas **NÃO JOGÁVEL (é PE, não XEX)**: `/Xbox360 - SM64 PTBR/SM64_TEST3_TRILINGUAL_DATA_STAGING_PRIVADO_2026-10-12.zip`, libfile `libfile_d1affc8caa3c819193c8e2db0f6bb29e`, SHA `dec42ea2228d0b52e16ec900f1314fe8fbc66da241e9ecde723abdf2c5af6c6c`.
 - Evidências técnicas [relatório detalhado](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/TRILINGUAL_REAL_TEST3_STAGING_2026_10_12.md). Próximo: seletor seguro na intro sem hooks anteriores, menus, XEX roundtrip, validação no Xbox nos 3 idiomas com estrela→castelo→save. Dublagem adiada.
+
+## 12/10/2026 — DUBLAGEM FORMALMENTE FORA DO ESCOPO ATUAL (REGRA DO PROPRIETÁRIO)
+- Instrução explícita: **NÃO trabalhar na dublagem** — sem extração, tratamento, integração, novos testes ou builds de vozes — até que a edição única de Super Mario 64 Xbox 360 esteja **plenamente funcional com as traduções Português / Español / English e com a tela de seleção de idioma realmente funcional no Xbox 360**.
+- Cada idioma precisa preservar conteúdo equivalente e comandos Xbox 360 corretos. Validar no hardware boot, seletor, menus, diálogos, placas, fases/estrelas, saves e ciclo estrela→castelo sem crash **nos três idiomas**.
+- Preservar os áudios originais já existentes na TEST3; a proibição se refere a desenvolvimento/alterações de dublagem, não a silenciar sons nativos.
+- Os arquivos WAV anteriormente recuperados continuam arquivados, mas **não integram o escopo nem a sequência de implementação**. Só voltar a considerar dublagem se (1) todos os requisitos acima forem comprovados por testes no Xbox e (2) houver nova autorização expressa do proprietário, jamais automaticamente.
+- Manifesto de política detalhado na branch ativa: `localization/manifests/languages.json` (`dubbing_policy.status = blocked_not_in_current_project_scope`).
+- Último estado: TEST3 real com dados PT/ES/EN preparados em PE intermediário privado, **seletor e XEX trilíngue ainda não funcionais no console**. Prioridade exclusiva: terminar traduções, interface, seleção e validação.
