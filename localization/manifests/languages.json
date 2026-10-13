@@ -11,7 +11,7 @@
       "voice_status": "no_new_dubbing_work_current_scope_keep_existing_game_audio",
       "protection": "preserve_existing_canonical_pt_br_exactly; do not replace texts",
       "source_dialogs": 170,
-      "runtime_status": "tested_in_TEST3_single_language"
+      "runtime_status": "TEST3_passed_console; TEST4_multilang_not_yet_hardware_verified"
     },
     {
       "id": "es",
@@ -38,7 +38,7 @@
         46
       ],
       "editorial_translation_equivalence": "review_pending",
-      "runtime_status": "not_yet_integrated_or_tested_on_console"
+      "runtime_status": "TEST4_candidate_in_xex_data_and_title_selector; console_not_yet_tested; other_menus_not_complete"
     },
     {
       "id": "en",
@@ -58,7 +58,7 @@
       "text_preparation_status": "original_english_with_xbox_buttons_processed_pass",
       "xbox360_controller_dialogs_audited": 34,
       "editorial_translation_equivalence": "original_reference",
-      "runtime_status": "trilingual_selector_not_yet_integrated_or_tested"
+      "runtime_status": "TEST4_candidate_in_xex_data_and_title_selector; console_not_yet_tested; other_menus_not_complete"
     }
   ],
   "edition_credit": "PeterKleizoon - PMCN Studios",
@@ -84,5 +84,22 @@
       "real_Xbox_360_hardware_tests_confirm_all_gates"
     ],
     "unblock_policy": "do_not_resume_dubbing_automatically; require_new_explicit_user_instruction_after_all_gates_pass"
+  },
+  "current_build": {
+    "identifier": "TEST4_TITLE_ONLY_TRILINGUAL_30FPS",
+    "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
+    "xex_sha256": "ae43067a1849d115a591c163df4f942e8f3f7a40e83a69029fac69dadd0920be",
+    "zip_sha256": "3d1bd3ad11a49d88e0a742586e6b55cd202b4e4ad93fcb36719b7ea22b7405f8",
+    "private_library_file_id": "libfile_abecdb8e5ef081919667d1a3127f7ee7",
+    "language_selector": "installed_title_only_intro_callsite_0x820D68BC; PPC_emulation_pass; Xbox_pending",
+    "pt_br_preservation": "170 original dialog strings and course/star pointers unchanged",
+    "spanish": "20 revised dialogs in staged .lang plus 26 areas and 90 star labels",
+    "english": "native English Xbox control-localized dialogs plus 26 areas and 90 star labels",
+    "data_integrity": "XEX rebuilt and AES roundtrip PE byte-identical",
+    "hardware_boot_verified": false,
+    "hardware_language_selection_verified": false,
+    "hardware_star_return_verified": false,
+    "no_new_dubbing": true,
+    "report": "docs/TRILINGUAL_TITLE_TEST4_REAL_XEX_2026_10_12.md"
   }
 }
