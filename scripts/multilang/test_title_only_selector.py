@@ -11,7 +11,8 @@ from title_only_selector import (
     ORIGINAL_INTRO,PRINT,ACTIVATE_DIALOGS,ACTIVATE_COURSES,
     CONTROLLER_PTR,LANG_BASE,
 )
-from language_activation import PT_TABLE,ES_TABLE,EN_TABLE,DEST as DIALOG_DEST
+from language_activation import PT_TABLE,ES_TABLE,EN_TABLE,DEST as DIALOG_DEST,build as build_dialog_activation
+from course_table_activation import build as build_course_activation
 from course_table_activation import (
     COURSE_DEST,STAR_DEST,COURSE_COUNT,STAR_COUNT,COURSE_META,STAR_META,
 )
@@ -38,6 +39,8 @@ def exercise(state,selected,buttons,held=0,force_dummy_original=0):
                 (0x81000000,0x20000),(0x84000000,0x20000)):
         uc.mem_map(b,s)
     uc.mem_write(WRAPPER,build())
+    uc.mem_write(ACTIVATE_DIALOGS,build_dialog_activation())
+    uc.mem_write(ACTIVATE_COURSES,build_course_activation())
     write32(uc,LANG_BASE+0x14,state)
     write32(uc,LANG_BASE+0x18,selected)
     uc.mem_write(LANG_BASE+0xC0,b"COURSE3\0")
@@ -137,6 +140,28 @@ class TitleOnlySelectorTests(unittest.TestCase):
         self.assertEqual(shown,[])
         self.assertEqual(read32(u,LANG_BASE+0x18),2)
         self.assertEqual(bytes(u.mem_read(LANG_BASE+0x80,8)),b"\xA5\xB6\xC7\xD8\xE9\xFA\xAB\xCD")
+
+    def test_A_confirmation_installs_both_language_tables_and_releases_start(self):
+        for idx in (0,1,2):
+            u,calls,shown=exercise(0,idx,0x8000)
+            self.assertEqual(read32(u,LANG_BASE+0x14),1)
+            self.assertEqual(read32(u,LANG_BASE+0x18),idx)
+            self.assertEqual(read16(u,CONTROLLER+0x12),0x8000)
+            self.assertEqual(len(shown),6)
+            self.assertEqual(u.reg_read(GPR[3]),0)
+            self.assertEqual(bytes(u.mem_read(LANG_BASE+0x80,8)),b"\xA5\xB6\xC7\xD8\xE9\xFA\xAB\xCD")
+            for i in range(170):
+                ptr=read32(u,DIALOG_DEST+16*i)
+                self.assertEqual(ptr,0xAB000000|(idx<<20)|i)
+            for section,dest,count in (("course",COURSE_DEST,COURSE_COUNT),
+                                      ("star",STAR_DEST,STAR_COUNT)):
+                for i in range(count):
+                    self.assertEqual(read32(u,dest+4*i),
+                                     0xBC000000|(idx<<20)|(int(section=="star")<<18)|i)
+                self.assertEqual(bytes(u.mem_read(dest-4,4)),b"\x12\x34\x56\x78")
+                self.assertEqual(bytes(u.mem_read(dest+count*4,4)),b"\x89\xAB\xCD\xEF")
+            self.assertEqual(u.reg_read(GPR[30]),0x11223344)
+            self.assertEqual(u.reg_read(GPR[31]),0x55667788)
 
     def test_bl_target_is_title_only_intros_original(self):
         self.assertEqual(ORIGINAL_CALL_BE.hex(),"4bfff68d")
