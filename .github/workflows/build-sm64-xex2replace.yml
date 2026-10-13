@@ -1,4 +1,5 @@
 name: Build SM64 xex2replace
+# Host-side XEX Basic PE replacer, without publishing user's game binaries.
 
 on:
   push:
