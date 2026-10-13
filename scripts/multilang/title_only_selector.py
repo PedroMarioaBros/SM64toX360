@@ -2,8 +2,8 @@
 """Seletor PT/ES/EN isolado na chamada de intro_regular() da tela de título.
 
 NÃO intercepta level_script_execute (crash), nem a entrada intro_regular
-(antigo TEST1 inválido). Substitui SOMENTE a BL em 0x820D68BC, que é executada
-pela ramificação LVL_INTRO_REGULAR em lvl_intro_update, confirmada por binário.
+(antigo TEST1 inválido). Substitui SOMENTE a BL em 0x82147448, que é executada
+pela ramificação LVL_INTRO_REGULAR em lvl_intro_update, confirmada por disassembly PPC do TEST3.
 
 Contrato de hardware (TEST3, ainda precisa de teste):
 - state (.lang + 0x14) = 0: chama intro_regular original, mas temporariamente
@@ -23,9 +23,9 @@ import hashlib, json, struct
 from pregame_gate import Asm
 
 BASE=0x82000000
-CALLSITE=0x820D68BC
-ORIGINAL_CALL_BE=bytes.fromhex("4bfff68d")  # bl 0x820D5F48
-ORIGINAL_INTRO=0x820D5F48
+CALLSITE=0x82147448
+ORIGINAL_CALL_BE=bytes.fromhex("4bfffe31")  # bl intro_regular, 0x82147278
+ORIGINAL_INTRO=0x82147278
 WRAPPER=0x823BC900
 WRAPPER_CAPACITY=0x300
 ACTIVATE_DIALOGS=0x823BC800
