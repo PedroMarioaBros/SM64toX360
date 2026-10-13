@@ -35,7 +35,7 @@ class CourseCatalogTests(unittest.TestCase):
         self.assertIn("ISLA FLOTANTE",es["courses"]["COURSE_WF"]["acts"][3])
 
     def test_duplicate_source_id_is_rejected(self):
-        source=fixture_text().replace("COURSE_ACTS(COURSE_00", "COURSE_ACTS(COURSE_01")
+        source=fixture_text().replace("COURSE_ACTS(COURSE_00", "COURSE_ACTS(COURSE_WF")
         with self.assertRaisesRegex(ValueError,"duplicate course"):
             parse_course_source(source)
 
