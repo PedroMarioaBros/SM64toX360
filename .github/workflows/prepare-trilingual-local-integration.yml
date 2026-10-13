@@ -1,0 +1,55 @@
+name: Prepare Temporary Trilingual Local Integration Assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - .github/workflows/prepare-trilingual-local-integration.yml
+      - scripts/multilang/import_course_catalog.py
+      - scripts/multilang/es_semantic_errata.py
+      - scripts/multilang/localize_controller_texts.py
+      - scripts/multilang/patch_existing_lang_dialogs.py
+      - scripts/multilang/install_trilingual_course_tables.py
+      - scripts/multilang/layout_dialogs.py
+      - scripts/multilang/test_localization_real_test3.py
+
+jobs:
+  stage-texts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download pinned EN/ES source text and charmap only
+        run: |
+          mkdir -p _localization_sources/sm64_upstream/text/us _localization_sources/es_reonu/text/us
+          BASE_EN="https://raw.githubusercontent.com/n64decomp/sm64/9921382a68bb0c865e5e45eb594d9c64db59b1af"
+          BASE_ES="https://raw.githubusercontent.com/Reonu/ultrasm64-spanish/b720e8328c4ead21e3eac5dfceb21edba38ed79b"
+          curl --fail --silent --show-error --retry 3 --location "$BASE_EN/charmap.txt" -o _localization_sources/sm64_upstream/charmap.txt
+          for kind in dialogs courses; do
+            curl --fail --silent --show-error --retry 3 --location "$BASE_EN/text/us/$kind.h" -o "_localization_sources/sm64_upstream/text/us/$kind.h"
+            curl --fail --silent --show-error --retry 3 --location "$BASE_ES/text/us/$kind.h" -o "_localization_sources/es_reonu/text/us/$kind.h"
+          done
+      - name: Process original 170 dialog IDs and all stage labels
+        run: |
+          python3 scripts/multilang/import_text_sources.py
+          python3 scripts/multilang/localize_controller_texts.py en
+          python3 scripts/multilang/localize_controller_texts.py es
+          python3 scripts/multilang/audit_language_parity.py --output _localization_build/controller_audit.json
+          python3 scripts/multilang/import_course_catalog.py --report _localization_build/course_audit.json
+      - name: Save short-lived workpack for private TEST3 PE integration
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm64-trilingual-integration-inputs
+          path: |
+            _localization_build/en/dialogs_xbox360.json
+            _localization_build/es/dialogs_xbox360.json
+            _localization_build/en/course_catalog.json
+            _localization_build/es/course_catalog.json
+            _localization_build/controller_audit.json
+            _localization_build/course_audit.json
+            _localization_sources/sm64_upstream/charmap.txt
+            localization/manifests/glyphs.json
+            scripts/multilang/*.py
+          if-no-files-found: error
+          retention-days: 2
