@@ -155,8 +155,33 @@ def build():
         raise ValueError(f"intro selector code {len(code)} exceeds cave {WRAPPER_CAPACITY}")
     return code
 
+def verify_native_title_dispatch(mapped:bytes):
+    """Fail closed if this is not the actual four-case lvl_intro_update branch.
+
+    TEST4 patched a *different* menu function (0x820D68BC), so its isolated
+    tests passed while the title selector was never reached on console.
+    """
+    original_switch={
+        0x82147414:"7c6b0734", # extsh r11,r3: switch(arg)
+        0x82147434:"4bffff8d", # case 0, greeting
+        0x82147448:"4bfffe31", # case 1, intro_regular
+        0x8214745C:"4bfffecd", # case 2, game over
+        0x82147470:"4bfffc01", # case 3, level select
+    }
+    for va,expected in original_switch.items():
+        found=mapped[va-BASE:va-BASE+4].hex()
+        if found!=expected:
+            raise ValueError(
+              f"native title dispatch mismatched 0x{va:08X}: {found}!={expected}"
+            )
+    old_menu_call=0x820D68BC
+    if mapped[old_menu_call-BASE:old_menu_call-BASE+4]!=bytes.fromhex("4bfff68d"):
+        raise ValueError("TEST4 non-title hook still installed; restore TEST3")
+    return True
+
 def install(mapped:bytes):
     code=build()
+    verify_native_title_dispatch(mapped)
     if mapped[CALLSITE-BASE:CALLSITE-BASE+4]!=ORIGINAL_CALL_BE:
         raise ValueError("TEST3 original title-only call has changed")
     if any(mapped[WRAPPER-BASE:WRAPPER-BASE+WRAPPER_CAPACITY]):
