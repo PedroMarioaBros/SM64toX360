@@ -1,7 +1,7 @@
 # Ponto de retomada — leia primeiro
 Branch ativa feature/multilang-dub-30fps; base30FPS. Leia AGENTS.md e CHECKPOINT_PROJETO.md.
 
-Aprovados antes: pulos TEST3 e câmera. **CREDITS_MENU_CORRIGIDO FALHOU em gameplay (Fatal Crash após estrela ao voltar para o castelo em 12/10/2026); NÃO é versão estável.**
+**TEST3 aprovado novamente em hardware**, inclusive retorno após estrela sem crash, em 12/10/2026. **CREDITS_MENU_CORRIGIDO FALHOU em gameplay (Fatal Crash após estrela); NÃO é versão estável.** Prioridade agora textos equivalentes PT-BR / ES / EN e botões Xbox nos três; dublagem adiada.
 
 TITLE_SELECTOR_TEST1 reprovado: não alterou a tela Press Start e causou travamento após pegar estrela/retornar ao castelo. Não reutilizar 0x820D5F48; candidato retirado.
 
@@ -104,3 +104,12 @@ Direção permanece: créditos universais → verdadeira rotina Press Start pós
 - Relatório/código ativo: [STAR_RETURN_CRASH_2026_10_12.md](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/STAR_RETURN_CRASH_2026_10_12.md). [GitHub Actions 4 testes PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38205019787), somente validação estática do isolamento, não emulação do ciclo completo.
 - Não criar XEX especulativo. Após A/B, corrigir fluxo do menu/créditos sem hook global persistente; garantir coleta de estrela, retorno ao castelo, menu e save antes de integrar o áudio.
 - Áudio: seis WAVs PT-BR experimentais preservados, ainda sem aprovação por escuta ou XEX com dublagem. Base canônica 30 FPS/PT-BR/controles permanecem.
+
+
+## 12/10/2026 — DIREÇÃO NOVA E PROGRESSO TRILÍNGUE (branch feature/multilang-dub-30fps)
+- Pedro confirmou **TEST3 PASS real no Xbox**, inclusive estrela→castelo; versão de créditos/menu posterior tem Fatal Crash após estrela. Não reutilizar hook global de `level_script_execute` / offset `0xCD128`.
+- **Prioridade do proprietário alterada:** PT-BR / Español / English com textos **equivalentes em significado** e controles Xbox 360 nos três. **Dublagem adiada.** PT-BR da PMCN Studios canônico, intocável; EN original com botões Xbox; ES de fonte existente com revisão.
+- Fonte EN `n64decomp/sm64@9921382a` e ES `Reonu/ultrasm64-spanish@b720e832` processadas, **170 diálogos por idioma**. Correções semânticas ES #015, #030, #032, #034, #046; 34 diálogos de controle Xbox cobertos; nenhum token N64 restante nos diálogos. PT-BR não modificado.
+- Novo importador EN/ES para **15 fases/90 missões/10 entradas secretas** mais textos auxiliares; erro ortográfico ES "ISLA FLOANTE" corrigido. Catálogo gerado em `_localization_build`, mas ainda não integrado ao runtime do Xbox. Não confundir processamento de fonte com entrega de XEX.
+- [GitHub Actions trilingual text audit **18 testes PASS** + fontes reais EN/ES e alinhamento de IDs PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38333296556); script `scripts/multilang/audit_language_parity.py`; [relatório completo](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/TRILINGUAL_TEXT_PARITY_2026_10_12.md).
+- **Pendências:** revisão editorial completa das informações, integrar nomes de fase e UI/menus, seletor de idioma na introdução por caminho seguro sem hook de créditos causador do crash, XEX rastreável e validação real incluindo retorno de estrela/save em cada idioma. Nenhum novo executável multilíngue foi entregue.
