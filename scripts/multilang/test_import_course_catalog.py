@@ -1,5 +1,6 @@
 """Testes de alinhamento 15 cursos x 6 missões entre inglês e espanhol."""
 import copy
+import json
 import unittest
 from import_course_catalog import (
     parse_course_source,apply_spanish_course_errata,audit_course_alignment
@@ -33,6 +34,15 @@ class CourseCatalogTests(unittest.TestCase):
         self.assertEqual(report["main_courses"],15)
         self.assertEqual(len(corrections),1)
         self.assertIn("ISLA FLOTANTE",es["courses"]["COURSE_WF"]["acts"][3])
+
+    def test_json_roundtrip_preserves_valid_extra_ids(self):
+        # JSON converts numeric object keys to strings. This MUST remain
+        # compatible with the real private TEST3 staging pipeline.
+        en=json.loads(json.dumps(parse_course_source(fixture_text())))
+        es=json.loads(json.dumps(parse_course_source(fixture_text(es=True))))
+        report=audit_course_alignment(en,es)
+        self.assertEqual(report["status"],"PASS_STAGE_ID_ALIGNMENT")
+        self.assertEqual(report["auxiliary_strings"],7)
 
     def test_duplicate_source_id_is_rejected(self):
         source=fixture_text().replace("COURSE_ACTS(COURSE_00", "COURSE_ACTS(COURSE_WF")
