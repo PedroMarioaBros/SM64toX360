@@ -23,8 +23,11 @@ def main():
     if len(sys.argv) != 2:
         raise SystemExit("Usage: layout_dialogs.py glyphs.pe")
     image = Path(sys.argv[1]).read_bytes()
-    if hashlib.sha256(image).hexdigest() != "5b4ec5d2f79ecc1cbe23b5d01b7657e4b7ac619937584ea09e2ec26443e2cdf1":
-        raise RuntimeError("expected canonical v0.4 image with verified Spanish glyphs")
+    if hashlib.sha256(image).hexdigest() not in {
+        "5b4ec5d2f79ecc1cbe23b5d01b7657e4b7ac619937584ea09e2ec26443e2cdf1",
+        "a1bc5c6db7e32d4214c2d1329874f68dee058c91063b67bbacde7ae197a48f6c",
+    }:
+        raise RuntimeError("expected verified v0.4 glyph image or hardware-tested TEST3 image")
     widths = image[WIDTH_BASE:WIDTH_BASE + 256]
     if len(widths) != 256:
         raise RuntimeError("width table outside image")
