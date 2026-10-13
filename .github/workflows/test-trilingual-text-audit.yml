@@ -1,0 +1,51 @@
+name: Trilingual Text and Xbox Controls Audit
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/es_semantic_errata.py
+      - scripts/multilang/localize_controller_texts.py
+      - scripts/multilang/audit_language_parity.py
+      - scripts/multilang/test_semantic_equivalence_es.py
+      - scripts/multilang/test_audit_language_parity.py
+      - .github/workflows/test-trilingual-text-audit.yml
+  workflow_dispatch:
+
+jobs:
+  source-dialog-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run semantic-guard and controller unit tests
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_semantic_equivalence_es.py' -v
+          python3 -m unittest discover -s scripts/multilang -p 'test_audit_language_parity.py' -v
+      - name: Retrieve only pinned source text files (no ROM, XEX, assets)
+        run: |
+          mkdir -p _localization_sources/sm64_upstream/text/us
+          mkdir -p _localization_sources/es_reonu/text/us
+          BASE_EN="https://raw.githubusercontent.com/n64decomp/sm64/9921382a68bb0c865e5e45eb594d9c64db59b1af"
+          BASE_ES="https://raw.githubusercontent.com/Reonu/ultrasm64-spanish/b720e8328c4ead21e3eac5dfceb21edba38ed79b"
+          curl --fail --silent --show-error --retry 3 --location "$BASE_EN/charmap.txt" -o _localization_sources/sm64_upstream/charmap.txt
+          for kind in dialogs courses; do
+            curl --fail --silent --show-error --retry 3 --location "$BASE_EN/text/us/$kind.h" -o "_localization_sources/sm64_upstream/text/us/$kind.h"
+            curl --fail --silent --show-error --retry 3 --location "$BASE_ES/text/us/$kind.h" -o "_localization_sources/es_reonu/text/us/$kind.h"
+          done
+      - name: Import and localize ALL 170 source dialogs per language
+        run: |
+          python3 scripts/multilang/import_text_sources.py
+          python3 scripts/multilang/localize_controller_texts.py en
+          python3 scripts/multilang/localize_controller_texts.py es
+          python3 scripts/multilang/audit_language_parity.py --output _localization_build/semantic_controller_audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trilingual-controller-audit
+          path: |
+            _localization_build/semantic_controller_audit.json
+            _localization_build/en/controller_localization_report.json
+            _localization_build/es/controller_localization_report.json
+          if-no-files-found: ignore
+          retention-days: 14
