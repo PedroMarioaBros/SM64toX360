@@ -71,3 +71,20 @@ A imagem PE do XEX TEST3 **já contém** a seção RW `.lang` como nona seção 
 - **Importante:** o texto ES armazenado na TEST3 é uma revisão **ANTERIOR** à auditoria editorial atual de 12/10. Por exemplo, o diálogo ES #015 ainda não explica o chute A→X, embora a fonte/errata agora o corrija. Logo, **não basta ativar a tabela ES antiga para cumprir a regra de conteúdo equivalente**. Atualizar os diálogos EN/ES com a preparação corrigida, mantendo byte-idêntico o pool PT-BR.
 - Também já existem glifos/espaços disponíveis suficientes para, em princípio, receber as novas tabelas 26+90 e respectivas strings; cabe confirmar as medidas reais na instalação usando os corpus EN/ES e o cursor livre, com rejeição automática se exceder `0x20000`.
 - A construção inicial da seção `.lang` **não precisa ser refeita para a TEST3**; em vez disso, fazer uma extensão auditada e atualizar somente os textos EN/ES que forem editorialmente corrigidos. Não voltar à antiga base v0.4 nem reconstruir seletor por hook global.
+
+
+## Atualização adicional — atualização diferencial da seção .lang para diálogos revisados
+
+A inspeção do PE real TEST3 mostrou que o corpus `es` já embarcado na seção `.lang` ainda tem texto obsoleto em alguns diálogos da auditoria (especialmente o #015, que omitia a instrução de chute A+X). Portanto, apenas ligar a seleção aos pools antigos não atenderia ao requisito de equivalência do proprietário.
+
+Foi implementado `scripts/multilang/patch_existing_lang_dialogs.py`:
+- Recebe o PE TEST3 já contendo `.lang`, a versão revisada/formatada de `_localization_build/{es,en}/dialogs_layout.json` e a charmap canônica;
+- Confere **170 IDs por idioma** e as assinaturas SHA-256 físicas da tabela de 170 ponteiros PT-BR (`b612518417970dcf93904dc023aededcba046f9b1d0f823cf1beb799ee6c5a97`) e do pool PT-BR existente (`614f3e4aa7eca2f657757a4ff8ef790c7deb5bf7426837f0e1ce94be673b69a8`);
+- Compara byte a byte o conteúdo codificado de cada diálogo EN/ES revisado com o que já está na .lang. Se for idêntico, mantém o ponteiro original. **Apenas se houver diferença**, acrescenta a nova string ao final da seção e altera o ponteiro específico daquele ID e idioma;
+- Confere que a seção `.lang` original não contenha lixo após o cursor e que o novo conteúdo caiba dentro do limite de `0x20000`. Recusa índices faltando, endereços inválidos, strings sem terminador ou qualquer mudança no PT-BR;
+- Preserva todos os bytes do jogo fora de `.lang` e preserva o header COURSE3 quando presente; não injeta hook, não gera XEX;
+- Relata IDs alterados e espaço restante, **sem publicar texto traduzido completo ou bytes de jogo**.
+
+[CI — Xbox Trilingual Dialog Delta Regression 38334793668](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/38334793668): **6 testes PASS**, confirmado por logs. Duas tentativas anteriores falharam devido ao fixture sintético colocar dados na região protegida do PT-BR; esse fixture foi corrigido, sem relaxar as proteções de código. Ainda não foi aplicada aos diálogos reais de TEST3 por falta dos `dialogs_layout.json` revisados no ambiente privado local.
+
+**Sequência de instalação segura, quando houver os textos revisados no ambiente de build:** primeiro `install_trilingual_course_tables.py`, depois `patch_existing_lang_dialogs.py`. Cada etapa lê o cursor e anexa dados; ambas devem passar pela checagem de espaço disponível e exigir que o pool PT-BR permaneça idêntico. O seletor no menu é uma etapa posterior.
