@@ -95,7 +95,7 @@ def install(mapped_pe:bytes,en,es,encode):
     if len(mapped_pe)!=LANG_RVA+LANG_SIZE:
         raise ValueError("expected exact mapped .lang PE image size")
     if mapped_pe[LANG_RVA:LANG_RVA+8]!=b"SM64LANG":
-        raise ValueError("expected .lang section; do not patch TEST3 directly")
+        raise ValueError("expected pre-existing .lang data inside TEST3 mapped PE; no runtime hook written")
     old_cursor=struct.unpack_from(">I",mapped_pe,LANG_RVA+LANG_USED_OFF)[0]
     if not 0x100<=old_cursor<LANG_SIZE:
         raise ValueError("invalid .lang used-byte counter")
