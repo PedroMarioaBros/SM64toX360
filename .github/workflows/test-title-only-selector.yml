@@ -1,0 +1,23 @@
+name: Test Title-Only Xbox Language Selector
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/title_only_selector.py
+      - scripts/multilang/test_title_only_selector.py
+      - .github/workflows/test-title-only-selector.yml
+  workflow_dispatch:
+
+jobs:
+  validate-title-only-hook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned CPU emulator
+        run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Emulate title selector and check code/inputs
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_title_only_selector.py' -v
+          python3 scripts/multilang/title_only_selector.py
