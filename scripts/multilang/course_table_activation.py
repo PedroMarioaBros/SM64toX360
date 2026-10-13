@@ -5,8 +5,8 @@ Recebe r3=0 PT-BR, 1 ES, 2 EN. Não instala hook, não modifica XEX:
 apenas produz os bytes PPC da rotina que um seletor seguro poderá chamar.
 
 Usa metadados de curso preparados em install_trilingual_course_tables.py:
-  0x83040098 + 4*idioma -> offset da tabela de 26 ponteiros
-  0x830400A4 + 4*idioma -> offset da tabela de 90 ponteiros
+  0x830400D8 + 4*idioma -> offset da tabela de 26 ponteiros
+  0x830400E4 + 4*idioma -> offset da tabela de 90 ponteiros
   cada offset relativo a 0x83040000, armazena VA BE de nome N64.
   Destinos reais: 0x829E8C70, 0x829E9620.
 Registros voláteis: r4..r10, CTR, CR0. r3 preservado caso entrada válida.
@@ -19,8 +19,8 @@ import struct
 
 ROUTINE_VA=0x823BCC00
 LANG_BASE=0x83040000
-COURSE_META=LANG_BASE+0x98
-STAR_META=LANG_BASE+0xA4
+COURSE_META=LANG_BASE+0xD8
+STAR_META=LANG_BASE+0xE4
 COURSE_DEST=0x829E8C70
 STAR_DEST=0x829E9620
 COURSE_COUNT=26
