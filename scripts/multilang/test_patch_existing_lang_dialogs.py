@@ -16,7 +16,7 @@ def fixture():
     img=bytearray(LANG_RVA+LANG_SIZE)
     img[LANG_RVA:LANG_RVA+8]=b"SM64LANG"
     struct.pack_into(">III",img,LANG_RVA+8,2,3,170)
-    struct.pack_into(">I",img,LANG_RVA+0x38,0x2000)
+    struct.pack_into(">I",img,LANG_RVA+0x38,0x12000)
     old_at=0x1500
     img[LANG_RVA+old_at:LANG_RVA+old_at+4]=b"OLD\xff"
     for lang,offset in TABLE_OFFSETS.items():
