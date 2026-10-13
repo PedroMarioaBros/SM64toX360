@@ -92,8 +92,10 @@ def audit_course_alignment(en,es):
             raise ValueError(f"{tag}: English/Spanish IDs or order diverge")
     if any(len(row["acts"])!=6 for lang in (en,es) for row in lang["courses"].values()):
         raise ValueError("inconsistent act counts")
-    extra_ids=list(en["extra_text"])
-    if extra_ids!=list(range(7)):
+    # JSON object keys roundtrip as strings: accept 0..6 both before and after
+    # serialization, but reject aliases, missing IDs and mixed/unsorted order.
+    extra_ids=[str(x) for x in en["extra_text"]]
+    if extra_ids!=[str(i) for i in range(7)]:
         raise ValueError("extra labels are not aligned")
     return {
         "status":"PASS_STAGE_ID_ALIGNMENT",
