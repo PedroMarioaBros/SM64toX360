@@ -9,6 +9,8 @@ on:
       - localization/manifests/controller_mapping.json
       - scripts/multilang/localize_controller_texts.py
       - scripts/multilang/audit_language_parity.py
+      - scripts/multilang/import_course_catalog.py
+      - scripts/multilang/test_import_course_catalog.py
       - scripts/multilang/test_semantic_equivalence_es.py
       - scripts/multilang/test_audit_language_parity.py
       - .github/workflows/test-trilingual-text-audit.yml
@@ -23,6 +25,7 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/multilang -p 'test_semantic_equivalence_es.py' -v
           python3 -m unittest discover -s scripts/multilang -p 'test_audit_language_parity.py' -v
+          python3 -m unittest discover -s scripts/multilang -p 'test_import_course_catalog.py' -v
       - name: Retrieve only pinned source text files (no ROM, XEX, assets)
         run: |
           mkdir -p _localization_sources/sm64_upstream/text/us
@@ -40,12 +43,14 @@ jobs:
           python3 scripts/multilang/localize_controller_texts.py en
           python3 scripts/multilang/localize_controller_texts.py es
           python3 scripts/multilang/audit_language_parity.py --output _localization_build/semantic_controller_audit.json
+          python3 scripts/multilang/import_course_catalog.py --report _localization_build/course_alignment_audit.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: trilingual-controller-audit
           path: |
             _localization_build/semantic_controller_audit.json
+            _localization_build/course_alignment_audit.json
             _localization_build/en/controller_localization_report.json
             _localization_build/es/controller_localization_report.json
           if-no-files-found: ignore
