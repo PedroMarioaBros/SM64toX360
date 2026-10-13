@@ -86,6 +86,23 @@
     "unblock_policy": "do_not_resume_dubbing_automatically; require_new_explicit_user_instruction_after_all_gates_pass"
   },
   "current_build": {
+    "identifier": "TEST5_CORRECTED_REAL_TITLE_INTRO_30FPS",
+    "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
+    "file_name": "SM64_TEST5_SELETOR_TRILINGUE_TELA_INICIAL_30FPS.zip",
+    "xex_sha256": "386a1516ee9a1da3475ac008dd3ddda4bf13fd92c779e38f6cafc038217ab7b6",
+    "zip_sha256": "4e28d292b8e50066e0e903c0ea310b053b2b5843fdb549068c197b8f70d3d8fc",
+    "private_library_file_id": "libfile_7af70f58d3ec819189934e882f1fc729",
+    "language_selector": "hook corrected to 0x82147448 lvl_intro_update->intro_regular, static native dispatch guard and Unicorn unit tests PASS, Xbox still PENDING",
+    "correction_against_test4": "14 effective bytes, old wrong menu call restored, target correct hook installed",
+    "pe_sha256": "a6c0a1c451f6dd114f73bd324cb297d42f3ed6f6c027c8237d3244284e622672",
+    "xex_roundtrip_exact": true,
+    "hardware_boot_verified": false,
+    "hardware_language_selection_verified": false,
+    "hardware_star_return_verified": false,
+    "dubbing_out_of_scope": true,
+    "report": "docs/TEST4_SELECTOR_MISSING_TEST5_CORRECTED_2026_10_13.md"
+  },
+  "previous_build": {
     "identifier": "TEST4_TITLE_ONLY_TRILINGUAL_30FPS",
     "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
     "xex_sha256": "ae43067a1849d115a591c163df4f942e8f3f7a40e83a69029fac69dadd0920be",
@@ -96,10 +113,11 @@
     "spanish": "20 revised dialogs in staged .lang plus 26 areas and 90 star labels",
     "english": "native English Xbox control-localized dialogs plus 26 areas and 90 star labels",
     "data_integrity": "XEX rebuilt and AES roundtrip PE byte-identical",
-    "hardware_boot_verified": false,
+    "hardware_boot_verified": true,
     "hardware_language_selection_verified": false,
     "hardware_star_return_verified": false,
     "no_new_dubbing": true,
-    "report": "docs/TRILINGUAL_TITLE_TEST4_REAL_XEX_2026_10_12.md"
+    "report": "docs/TRILINGUAL_TITLE_TEST4_REAL_XEX_2026_10_12.md",
+    "user_test_2026_10_13": "TEST4 boot, credits, Press Start, save menu and PTBR gameplay work but LANGUAGE SELECTOR NOT SHOWN"
   }
 }
