@@ -11,8 +11,6 @@ mudar, a preparação da build FALHA ao invés de alterar texto não verificado.
 """
 from __future__ import annotations
 
-from collections import Counter
-
 ERRATA = {
     15: [
         # Missing from ES: Press A then B to Kick.
@@ -26,7 +24,7 @@ ERRATA = {
         # Missing US instruction: put the Wing Cap on before triple jumping.
         ("Solo\ntienes que dar un triple\nsalto, es decir, saltar\ntres veces seguidas,\npara despegar.",
          "Ponte la gorra y da un\ntriple salto: salta tres\nveces seguidas para\ndespegar."),
-        ("para mirad a tu alrededor", "para mirar a tu alrededor"),
+        ("mirad a tu alrededor", "mirar a tu alrededor"),
     ],
     34: [
         # US dialog explains resuming play, changing cameras and that signs
