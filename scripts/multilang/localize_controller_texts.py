@@ -108,6 +108,8 @@ def main():
     lang = sys.argv[1]
     path = BUILD / lang / "dialogs.json"
     rows = json.loads(path.read_text(encoding="utf-8"))
+    if [row.get("id") for row in rows] != list(range(170)):
+        raise RuntimeError(f"{lang}: expected exactly 170 dialogs with IDs 0..169")
 
     changed = []
     unexpected = []
