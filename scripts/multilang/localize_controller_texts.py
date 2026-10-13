@@ -16,6 +16,8 @@ import json
 import re
 import sys
 
+from es_semantic_errata import apply_errata
+
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = ROOT / "_localization_build"
 MAP = json.loads(
@@ -68,6 +70,8 @@ PHRASES = {
         "Palanca de Control": "stick izquierdo",
         "palanca de control": "stick izquierdo",
         "Control Stick": "stick izquierdo",
+        "stick de control": "stick izquierdo",
+        "stick analógico": "stick izquierdo",
         "los botones [C]": "los controles del stick derecho",
         "cuatro botones de\ncámara, también llamados\nbotones [C]":
             "controles de cámara del\nstick derecho",
@@ -91,6 +95,11 @@ def convert(text, lang):
         text = text.replace(old, new)
     for token in TOKENS:
         text = text.replace(token, BUTTON_LABEL[lang][token])
+    if lang == "es":
+        # Sem indicação de lado, "stick" do roteiro N64 significa movimento:
+        # esquerda; preservar explicitamente "stick derecho" para câmera.
+        text = re.sub(r"\bstick\b(?!\s+(?:derecho|izquierdo)\b)",
+                      "stick izquierdo", text)
     return text
 
 def main():
@@ -101,14 +110,19 @@ def main():
     rows = json.loads(path.read_text(encoding="utf-8"))
 
     changed = []
+    unexpected = []
     for row in rows:
-        if row["id"] not in AFFECTED:
-            continue
         old = row["text"]
         new = convert(old, lang)
         row["text"] = new
         if old != new:
             changed.append(row["id"])
+            if row["id"] not in AFFECTED:
+                unexpected.append(row["id"])
+
+    if unexpected:
+        raise RuntimeError(f"Control instructions outside audited dialogs: {unexpected}")
+    semantic_errata = apply_errata(rows) if lang == "es" else None
 
     leftovers = [
         {"id": row["id"], "tokens": LEGACY_RE.findall(row["text"])}
@@ -129,6 +143,9 @@ def main():
         "controller_dialogs_expected": len(AFFECTED),
         "dialogs_changed": changed,
         "legacy_tokens_remaining": 0,
+        "semantic_errata": semantic_errata,
+        "source_dialog_coverage": 170,
+        "missing_affected_ids": sorted(AFFECTED - set(changed) - set((semantic_errata or {}).get("errata_dialog_ids", []))),
     }
     (BUILD / lang / "controller_localization_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n",
