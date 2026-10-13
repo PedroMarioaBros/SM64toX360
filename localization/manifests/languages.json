@@ -8,22 +8,61 @@
       "display_name": "Português",
       "text_status": "implemented_in_current_game",
       "xbox360_control_localization": "implemented_in_current_game",
-      "voice_status": "pending_integration"
+      "voice_status": "pending_integration",
+      "protection": "preserve_existing_canonical_pt_br_exactly; do not replace texts",
+      "source_dialogs": 170,
+      "runtime_status": "tested_in_TEST3_single_language"
     },
     {
       "id": "es",
       "display_name": "Español",
       "text_status": "pending_integration",
       "xbox360_control_localization": "pending_integration",
-      "voice_status": "pending_integration"
+      "voice_status": "pending_integration",
+      "source": "Reonu/ultrasm64-spanish@b720e8328c4ead21e3eac5dfceb21edba38ed79b",
+      "source_dialogs": 170,
+      "stage_catalog": {
+        "main_courses": 15,
+        "acts": 90,
+        "secret_stages": 10,
+        "castle_secret_heading": 1,
+        "extra_strings": 7
+      },
+      "text_preparation_status": "processed_170_dialogs_and_course_catalog_pass",
+      "xbox360_controller_dialogs_audited": 34,
+      "semantic_errata_dialog_ids": [
+        15,
+        30,
+        32,
+        34,
+        46
+      ],
+      "editorial_translation_equivalence": "review_pending",
+      "runtime_status": "not_yet_integrated_or_tested_on_console"
     },
     {
       "id": "en",
       "display_name": "English",
       "text_status": "use_original_english_with_xbox360_control_localization",
       "xbox360_control_localization": "required",
-      "voice_status": "use_original"
+      "voice_status": "use_original",
+      "source": "n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af",
+      "source_dialogs": 170,
+      "stage_catalog": {
+        "main_courses": 15,
+        "acts": 90,
+        "secret_stages": 10,
+        "castle_secret_heading": 1,
+        "extra_strings": 7
+      },
+      "text_preparation_status": "original_english_with_xbox_buttons_processed_pass",
+      "xbox360_controller_dialogs_audited": 34,
+      "editorial_translation_equivalence": "original_reference",
+      "runtime_status": "trilingual_selector_not_yet_integrated_or_tested"
     }
   ],
-  "edition_credit": "PeterKleizoon - PMCN Studios"
+  "edition_credit": "PeterKleizoon - PMCN Studios",
+  "current_priority": "trilingual_text_and_xbox360_controls_only",
+  "voice_scope": "postponed_by_project_owner_2026-10-12",
+  "validation_scope": "source_text_structure_and_control_actions_only; no Xbox runtime release"
 }
