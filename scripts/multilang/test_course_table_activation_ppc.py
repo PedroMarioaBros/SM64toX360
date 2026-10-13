@@ -22,8 +22,8 @@ def run(lang:int):
     code=build()
     uc.mem_write(ROUTINE_VA,code)
     for class_id,(section,count,dest,meta) in enumerate((
-        ("course",COURSE_COUNT,COURSE_DEST,0x98),
-        ("star",STAR_COUNT,STAR_DEST,0xA4)
+        ("course",COURSE_COUNT,COURSE_DEST,0xD8),
+        ("star",STAR_COUNT,STAR_DEST,0xE4)
     )):
         for idx,off in enumerate(TABLES[section]):
             val=[0x90000000|(idx<<20)|(class_id<<18)|j for j in range(count)]
@@ -40,8 +40,8 @@ def run(lang:int):
     uc.emu_start(ROUTINE_VA,stop+4,count=5000)
     selected=lang if lang in (0,1,2) else 0
     for class_id,(section,count,dest,_) in enumerate((
-        ("course",COURSE_COUNT,COURSE_DEST,0x98),
-        ("star",STAR_COUNT,STAR_DEST,0xA4)
+        ("course",COURSE_COUNT,COURSE_DEST,0xD8),
+        ("star",STAR_COUNT,STAR_DEST,0xE4)
     )):
         seen=list(struct.unpack(">"+str(count)+"I",uc.mem_read(dest,count*4)))
         desired=[0x90000000|(selected<<20)|(class_id<<18)|j for j in range(count)]
