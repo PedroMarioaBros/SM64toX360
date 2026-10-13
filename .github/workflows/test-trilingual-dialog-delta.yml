@@ -1,0 +1,19 @@
+name: Xbox Trilingual Dialog Delta Regression
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/patch_existing_lang_dialogs.py
+      - scripts/multilang/test_patch_existing_lang_dialogs.py
+      - .github/workflows/test-trilingual-dialog-delta.yml
+  workflow_dispatch:
+
+jobs:
+  test-safe-delta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run selective ES-EN updates without changing PT-BR
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_patch_existing_lang_dialogs.py' -v
