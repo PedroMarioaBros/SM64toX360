@@ -24,7 +24,7 @@ def fixture():
             struct.pack_into(">I",img,LANG_RVA+offset+i*4,
                              BASE+LANG_RVA+old_at)
     # Store a sentinel of the already-staged COURSE3 header.
-    img[LANG_RVA+0x80:LANG_RVA+0x88]=b"COURSE3\0"
+    img[LANG_RVA+0xC0:LANG_RVA+0xC8]=b"COURSE3\0"
     rows={k:[{"id":i,"text":"OLD"} for i in range(170)] for k in ("es","en")}
     return bytes(img),rows
 
@@ -45,7 +45,7 @@ class LangDeltaTests(unittest.TestCase):
         rows["en"][33]["text"]="LEFT STICK"
         result,report=self.patched(img,rows)
         self.assertEqual(result[:LANG_RVA],img[:LANG_RVA])
-        self.assertEqual(result[LANG_RVA+0x80:LANG_RVA+0x88],b"COURSE3\0")
+        self.assertEqual(result[LANG_RVA+0xC0:LANG_RVA+0xC8],b"COURSE3\0")
         self.assertEqual(report["lang_changed_dialog_ids"],{"es":[15],"en":[33]})
         self.assertEqual(report["unchanged_dialog_count"],{"es":169,"en":169})
         self.assertTrue(report["pt_br_bytes_unchanged"])
