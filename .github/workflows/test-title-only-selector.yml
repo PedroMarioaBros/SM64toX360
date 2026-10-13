@@ -21,3 +21,24 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts/multilang -p 'test_title_only_selector.py' -v
           python3 scripts/multilang/title_only_selector.py
+      - name: Export validated PPC code for private TEST3 build
+        run: |
+          mkdir -p ppc-selector-candidate
+          python3 - <<'PY'
+          from pathlib import Path
+          import sys
+          sys.path.insert(0,"scripts/multilang")
+          from title_only_selector import build as selector
+          from language_activation import build as dialogs
+          from course_table_activation import build as courses
+          d=Path("ppc-selector-candidate")
+          for name,build in (("title_selector.bin",selector),("dialog_activation.bin",dialogs),("course_activation.bin",courses)):
+              (d/name).write_bytes(build())
+          PY
+          sha256sum ppc-selector-candidate/*.bin | tee ppc-selector-candidate/checksums.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-title-only-trilingual-code
+          path: ppc-selector-candidate/
+          if-no-files-found: error
+          retention-days: 7
