@@ -1,0 +1,35 @@
+name: Xbox Trilingual Course Activation PPC
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/course_table_activation.py
+      - scripts/multilang/test_course_table_activation_ppc.py
+      - .github/workflows/test-trilingual-course-activation.yml
+  workflow_dispatch:
+
+jobs:
+  emulate-course-selector:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned PowerPC emulator
+        run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Execute actual PowerPC routine for PT, ES and EN
+        working-directory: scripts/multilang
+        run: |
+          python3 test_course_table_activation_ppc.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from course_table_activation import build
+          Path("../../course_table_activation.bin").write_bytes(build())
+          PY
+          sha256sum ../../course_table_activation.bin
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sm64-course-table-activation-static
+          path: course_table_activation.bin
+          if-no-files-found: error
+          retention-days: 7
