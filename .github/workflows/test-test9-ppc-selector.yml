@@ -1,0 +1,18 @@
+name: TEST9 Real PowerPC Language Menu Emulation
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test_test9_ppc_runtime.py
+      - .github/workflows/test-test9-ppc-selector.yml
+  workflow_dispatch:
+jobs:
+  emulate-real-selector-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned PowerPC Unicorn runtime
+        run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Execute exact 384-byte selector against controller, native UI and tables
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test9_ppc_runtime.py' -v
