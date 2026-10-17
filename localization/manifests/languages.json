@@ -86,21 +86,33 @@
     "unblock_policy": "do_not_resume_dubbing_automatically; require_new_explicit_user_instruction_after_all_gates_pass"
   },
   "current_build": {
-    "identifier": "TEST5_CORRECTED_REAL_TITLE_INTRO_30FPS",
+    "identifier": "TEST9_SELETOR_INTERATIVO_30FPS_CANDIDATE",
     "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
-    "file_name": "SM64_TEST5_SELETOR_TRILINGUE_TELA_INICIAL_30FPS.zip",
-    "xex_sha256": "386a1516ee9a1da3475ac008dd3ddda4bf13fd92c779e38f6cafc038217ab7b6",
-    "zip_sha256": "4e28d292b8e50066e0e903c0ea310b053b2b5843fdb549068c197b8f70d3d8fc",
-    "private_library_file_id": "libfile_7af70f58d3ec819189934e882f1fc729",
-    "language_selector": "hook corrected to 0x82147448 lvl_intro_update->intro_regular, static native dispatch guard and Unicorn unit tests PASS, Xbox still PENDING",
-    "correction_against_test4": "14 effective bytes, old wrong menu call restored, target correct hook installed",
-    "pe_sha256": "a6c0a1c451f6dd114f73bd324cb297d42f3ed6f6c027c8237d3244284e622672",
+    "file_name": "SM64_TEST9_SELETOR_FUNCIONAL_CANDIDATO_30FPS.zip",
+    "xex_sha256": "1b29d111f234df0515c0a21e964bf9866061c4688d4f0b2a74e741a61c320f07",
+    "zip_sha256": "01ef0d3de8eead10960665268daccf5d7b944bd10e741c7facdaf6d7ee98abbc",
+    "mapped_pe_sha256": "a405ba6e97c933298a1e24361423b7230f75957a4ee0c0ecfced21d957b2e641",
+    "private_library_file_id": "libfile_91fb0786f8188191ab908711b38534a9",
+    "intro_callback": "verified hardware TEST8 native print at 0x821472D4",
+    "native_color_title_renderer": "0x8212B498",
+    "language_selector": "PPC input DPad UP/DOWN and A, Start blocked before A, tables 170 dialogs+26 courses+90 stars copied",
+    "current_screen_labels": [
+      "IDIOMAS",
+      "PORTUGUES",
+      "ESPANOL",
+      "ENGLISH",
+      "A CONFIRMAR"
+    ],
+    "accents_in_native_title": "PENDING",
     "xex_roundtrip_exact": true,
-    "hardware_boot_verified": false,
-    "hardware_language_selection_verified": false,
-    "hardware_star_return_verified": false,
+    "cpu_simulated_tests_passed": 8,
+    "ci_run": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39010452532",
+    "xbox_boot_verified": false,
+    "xbox_inputs_verified": false,
+    "xbox_language_activation_verified": false,
+    "xbox_star_return_verified": false,
     "dubbing_out_of_scope": true,
-    "report": "docs/TEST4_SELECTOR_MISSING_TEST5_CORRECTED_2026_10_13.md"
+    "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md"
   },
   "previous_build": {
     "identifier": "TEST4_TITLE_ONLY_TRILINGUAL_30FPS",
@@ -121,32 +133,44 @@
     "user_test_2026_10_13": "TEST4 boot, credits, Press Start, save menu and PTBR gameplay work but LANGUAGE SELECTOR NOT SHOWN"
   },
   "latest_hardware_test": {
-    "build": "TEST7_DIAGNOSTICO_ABERTURA_NORMAL_30FPS",
-    "outcome": "A: Mario head visible, TESTE7 START absent",
-    "conclusion": "intro_regular call to print_intro_text participates in real Xbox title rendering; does not confirm old language selector running",
+    "build": "TEST8_VISUAL_IDIOMAS_30FPS",
+    "outcome": "PASS_VISUAL_ONLY: two Xbox photos show IDIOMAS TESTE8, PORTUGUES, ESPANOL, ENGLISH; one shows TESTE8 START",
+    "observed_issues": [
+      "native colorful font oversized",
+      "title/options overlap Mario face and cap",
+      "no navigation or language activation in TEST8"
+    ],
     "confirmed_by_user": true,
     "confirmed_date": "2026-10-17"
   },
   "current_visual_probe": {
-    "build": "TEST8_NATIVE_TITLE_4_ASCII_OPTIONS",
-    "type": "VISUAL_DIAGNOSTIC_NOT_FUNCTIONAL_SELECTOR",
-    "test_package": "SM64_TEST8_VISUAL_IDIOMAS_30FPS.zip",
-    "zip_sha256": "5fbd56533f6c211d6ef87785cf83eb047dcb77d2a669805e7a5c1158e4d7e4a7",
-    "xex_sha256": "006b662635b41f8a0e2996a8fbba43ab354acdca11ed21c184e6bf669daa1ccb",
-    "private_library_file_id": "libfile_9e708b07a3248191bfda3be2e3c6a211",
-    "expected_labels": [
-      "IDIOMAS TESTE8",
+    "identifier": "TEST9_SELETOR_INTERATIVO_30FPS_CANDIDATE",
+    "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
+    "file_name": "SM64_TEST9_SELETOR_FUNCIONAL_CANDIDATO_30FPS.zip",
+    "xex_sha256": "1b29d111f234df0515c0a21e964bf9866061c4688d4f0b2a74e741a61c320f07",
+    "zip_sha256": "01ef0d3de8eead10960665268daccf5d7b944bd10e741c7facdaf6d7ee98abbc",
+    "mapped_pe_sha256": "a405ba6e97c933298a1e24361423b7230f75957a4ee0c0ecfced21d957b2e641",
+    "private_library_file_id": "libfile_91fb0786f8188191ab908711b38534a9",
+    "intro_callback": "verified hardware TEST8 native print at 0x821472D4",
+    "native_color_title_renderer": "0x8212B498",
+    "language_selector": "PPC input DPad UP/DOWN and A, Start blocked before A, tables 170 dialogs+26 courses+90 stars copied",
+    "current_screen_labels": [
+      "IDIOMAS",
       "PORTUGUES",
       "ESPANOL",
-      "ENGLISH"
+      "ENGLISH",
+      "A CONFIRMAR"
     ],
-    "known_limits": [
-      "unaccented uppercase strings are provisional",
-      "does not process controller inputs",
-      "does not select any language"
-    ],
-    "hardware_result": "PENDING",
-    "report": "docs/TEST7_A_CONFIRMADO_TEST8_VISUAL_2026_10_17.md"
+    "accents_in_native_title": "PENDING",
+    "xex_roundtrip_exact": true,
+    "cpu_simulated_tests_passed": 8,
+    "ci_run": "https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39010452532",
+    "xbox_boot_verified": false,
+    "xbox_inputs_verified": false,
+    "xbox_language_activation_verified": false,
+    "xbox_star_return_verified": false,
+    "dubbing_out_of_scope": true,
+    "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md"
   },
-  "current_build_status": "TEST5_FAIL_HARDWARE_SELECTOR; TEST8_DIAGNOSTIC_PENDING_HARDWARE"
+  "current_build_status": "TEST8_PASSED_VISUAL_HARDWARE; TEST9_INTERACTIVE_CANDIDATE_PENDING_HARDWARE"
 }
