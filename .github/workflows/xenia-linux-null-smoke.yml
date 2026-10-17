@@ -1,0 +1,53 @@
+name: Xenia Canary Linux No-Game Smoke
+
+on:
+  push:
+    branches: [feature/multilang-dub-30fps]
+    paths:
+      - scripts/xenia/smoke_linux.py
+      - .github/workflows/xenia-linux-null-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe-canary-on-free-ubuntu:
+    name: Linux AppImage + GPU null (NO XEX game)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install a virtual display and Mesa Vulkan software driver
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libvulkan1 mesa-vulkan-drivers vulkan-tools libgtk-3-0 libsdl2-2.0-0 liblz4-1 libfuse2t64
+      - name: Download OFFICIAL pinned Xenia Canary Linux AppImage
+        run: |
+          set -eu
+          mkdir -p "$RUNNER_TEMP/xenia"
+          curl --fail --show-error --location --retry 3 --connect-timeout 12 --max-time 120 \
+            'https://github.com/xenia-canary/xenia-canary/releases/download/dac2794/xenia_canary_linux.AppImage' \
+            -o "$RUNNER_TEMP/xenia/xenia_canary_linux.AppImage"
+          test "$(stat -c %s "$RUNNER_TEMP/xenia/xenia_canary_linux.AppImage")" -ge 10000000
+          sha256sum "$RUNNER_TEMP/xenia/xenia_canary_linux.AppImage"
+          chmod +x "$RUNNER_TEMP/xenia/xenia_canary_linux.AppImage"
+      - name: Extract portable AppImage (no FUSE or GPU hardware required for unpacking)
+        run: |
+          cd "$RUNNER_TEMP/xenia"
+          ./xenia_canary_linux.AppImage --appimage-extract > extract.txt 2>&1
+          test -x squashfs-root/AppRun
+          file squashfs-root/AppRun
+      - name: Probe renderer-null startup with NO game or controller inputs
+        run: |
+          python3 scripts/xenia/smoke_linux.py \
+            --binary "$RUNNER_TEMP/xenia/squashfs-root/AppRun" \
+            --output "$RUNNER_TEMP/xenia-smoke-output"
+      - name: Store environment logs and explicit status (NOT Xbox PASS)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenia-canary-null-environment-smoke
+          path: ${{ runner.temp }}/xenia-smoke-output/
+          retention-days: 7
+          if-no-files-found: warn
