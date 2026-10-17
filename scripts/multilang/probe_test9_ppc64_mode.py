@@ -9,7 +9,7 @@ import json
 import traceback
 from unittest.mock import patch
 
-from unicorn import Uc, UcError, UC_ARCH_PPC, UC_MODE_BIG_ENDIAN, UC_MODE_64
+from unicorn import Uc, UcError, UC_ARCH_PPC, UC_MODE_BIG_ENDIAN, UC_MODE_64, UC_HOOK_CODE
 from test_test9_ppc_runtime import cpu, LANG, PAD, rd32, rd16
 
 def main():
@@ -23,8 +23,11 @@ def main():
         info["errno"]=getattr(error,"errno",None)
         print(json.dumps(info,indent=2))
         return
+    executed=[]
     def make_ppc64(*_args,**_kwargs):
-        return Uc(UC_ARCH_PPC, UC_MODE_64|UC_MODE_BIG_ENDIAN)
+        emu=Uc(UC_ARCH_PPC, UC_MODE_64|UC_MODE_BIG_ENDIAN)
+        emu.hook_add(UC_HOOK_CODE, lambda u,a,size,data: executed.append((a, size)))
+        return emu
     import test_test9_ppc_runtime as tests
     try:
         with patch.object(tests,"Uc",side_effect=make_ppc64):
@@ -38,6 +41,8 @@ def main():
         info["detail"]=repr(error)
         info["errno"]=getattr(error,"errno",None)
         info["traceback"]=traceback.format_exc(limit=8)
+        info["last_instructions"]=[hex(x[0]) for x in executed[-30:]]
+        info["executed_count"]=len(executed)
     print(json.dumps(info,indent=2))
     # The outcome informs diagnosis; do not claim Xbox validation.
 if __name__=="__main__":
