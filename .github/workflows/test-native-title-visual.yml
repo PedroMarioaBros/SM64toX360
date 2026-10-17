@@ -1,0 +1,17 @@
+name: TEST8 Native Intro Visual Audit
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test8_native_title_visual.py
+      - scripts/multilang/test_test8_native_title_visual.py
+      - .github/workflows/test-native-title-visual.yml
+  workflow_dispatch:
+jobs:
+  regressions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit native title visual routine without private XEX
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test8_native_title_visual.py' -v
