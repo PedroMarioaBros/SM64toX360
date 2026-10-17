@@ -1,0 +1,35 @@
+name: Xenia Local Software Vulkan Driver Bundle
+
+on:
+  push:
+    branches: [feature/multilang-dub-30fps]
+    paths:
+      - .github/workflows/xenia-linux-local-vulkan-runtime.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-debian13-lavapipe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Download Debian 13 software Vulkan driver package in container
+        run: |
+          set -eu
+          mkdir -p "$RUNNER_TEMP/mesa-public"
+          docker run --rm -v "$RUNNER_TEMP/mesa-public:/out" debian:trixie-slim sh -ec '
+            apt-get update -qq
+            apt-get download mesa-vulkan-drivers
+            cp -v ./mesa-vulkan-drivers_*.deb /out/
+          '
+          ls -lh "$RUNNER_TEMP/mesa-public"
+          for x in "$RUNNER_TEMP"/mesa-public/*; do sha256sum "$x"; done
+      - name: Publish public open-source Mesa package ONLY (no games)
+        uses: actions/upload-artifact@v4
+        with:
+          name: debian13-mesa-vulkan-software-driver
+          path: ${{ runner.temp }}/mesa-public/*.deb
+          retention-days: 3
+          if-no-files-found: error
