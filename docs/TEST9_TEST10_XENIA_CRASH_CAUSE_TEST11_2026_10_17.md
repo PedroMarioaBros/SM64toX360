@@ -86,3 +86,16 @@ Xenia dac2794, XEX TEST11 real, entradas do emulador já verificadas nos logs:
 5. Ampliar regressão Xenia: entrar em fase, diálogos, obter estrela, retornar ao castelo e persistência de saves. Testar os três idiomas. Não prometer aprovação dessas fases antes de observação.
 6. Somente então pedir validação pontual opcional no Xbox real. **No primeiro crash físico interromper; não insistir**.
 7. **Dublagem 100% fora do escopo**, até aprovação de todo o jogo multilíngue e nova autorização explícita.
+
+
+## Arquivo privado com imagens e logs de prova
+
+Foi também criado e guardado em Biblioteca privada o ZIP **`SM64_TEST11_XENIA_PROVAS_PRIVADAS_2026_10_17.zip`**, **3.296.752 bytes**, SHA-256 **`599aa61f6d7dcb71293da0d5051ec03b40c4d4be759f771d1cf082a8e32a05b6`**, ID `libfile_aeba11abe7688191a7dc9549fdac72f9`. Contém capturas do Xenia mostrando o marcador alternativo no PT/ES/EN, a transição para `APERTE START`, o menu de saves ainda em PT-BR após ES e o início da cena Peach, além dos trechos de crash dump com PC e endereço da violação. **Não contém PE/XEX do jogo nem credenciais**. Não subir essas imagens/diagnósticos privados ao repositório público sem autorização.
+
+### Auditoria adicional do fluxo emulada e regressões
+
+- TEST9 **original** (sem pressionar nada): reproduziu **o mesmo crash dump** `PC: 0x8215F1A4`, `read at 0x0000000100000000` que a TEST10 original ao apertar A ou D-pad UP.
+- TEST10 alterada **somente X→A** (1 byte) + D-pad UP: o marcador A foi visível ao lado de `PORTUGUES`, sem crash dump.
+- TEST9 alterada **somente X→O** (1 byte) + D-pad DOWN: marcador O visível ao lado de `ESPANOL`; repetindo DOWN duas vezes, O aparece ao lado de `ENGLISH`.
+- START antes de A não abre saves. A confirma. START depois de A abre `ABRIR JOGO`; A sobre `MARIO A` inicia cena Peach.
+- O curso/esfera/estrela→castelo **não foi testado** no Xenia, de modo que ainda há verificação de gameplay pendente.
