@@ -1,0 +1,62 @@
+name: Xenia Canary Linux Keyboard Input Harness
+
+on:
+  push:
+    branches: [feature/multilang-dub-30fps]
+    paths:
+      - scripts/xenia/replay_buttons.py
+      - .github/workflows/xenia-linux-keyboard-harness.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-keyboard-to-xenia-window:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install virtual X11 and CPU Vulkan rendering
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xdotool libvulkan1 mesa-vulkan-drivers libgtk-3-0 libsdl2-2.0-0 liblz4-1 libfuse2t64
+      - name: Download and extract pinned Xenia Canary Linux AppImage
+        run: |
+          set -eu
+          mkdir -p "$RUNNER_TEMP/xenia"
+          curl -fsSL --retry 3 --connect-timeout 12 --max-time 120 \
+            'https://github.com/xenia-canary/xenia-canary/releases/download/dac2794/xenia_canary_linux.AppImage' \
+            -o "$RUNNER_TEMP/xenia/xenia.AppImage"
+          test "$(stat -c %s "$RUNNER_TEMP/xenia/xenia.AppImage")" -ge 10000000
+          chmod +x "$RUNNER_TEMP/xenia/xenia.AppImage"
+          ( cd "$RUNNER_TEMP/xenia" && ./xenia.AppImage --appimage-extract > /dev/null )
+          test -x "$RUNNER_TEMP/xenia/squashfs-root/AppRun"
+      - name: Send X11 key events to running Xenia without a game
+        run: |
+          xvfb-run -a -s '-screen 0 1280x720x24' \
+            python3 scripts/xenia/replay_buttons.py \
+              --binary "$RUNNER_TEMP/xenia/squashfs-root/AppRun" \
+              --output "$RUNNER_TEMP/xenia-input-smoke"
+      - name: Verify explicit host-input outcome; do not claim game success
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          p=pathlib.Path(os.environ["RUNNER_TEMP"])/"xenia-input-smoke"/"report.json"
+          r=json.loads(p.read_text())
+          print("Host status:",r["status"])
+          print("Keyboard trials:",r["trials"])
+          print("Guest SM64/real XEX executed:",r["private_game_xex_supplied"])
+          assert not r["private_game_xex_supplied"]
+          assert not r["guest_buttons_proven"]
+          # If no X11 window is found this must fail conspicuously, not pass.
+          assert r["status"]=="HOST_KEYS_SENT_GUEST_NOT_PROVEN",r["status"]
+          PY
+      - name: Preserve public smoke logs (never private XEX)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenia-keyboard-host-only-logs
+          path: ${{ runner.temp }}/xenia-input-smoke/
+          retention-days: 7
+          if-no-files-found: warn
