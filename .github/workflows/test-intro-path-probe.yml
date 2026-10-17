@@ -1,0 +1,19 @@
+name: TEST7 Title Intro Reachability Probe
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test7_intro_path_probe.py
+      - scripts/multilang/test_test7_intro_path_probe.py
+      - .github/workflows/test-intro-path-probe.yml
+  workflow_dispatch:
+
+jobs:
+  byte-guard-diagnostics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test narrowed native title-branch probe (no private Xbox binary)
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test7_intro_path_probe.py' -v
