@@ -24,7 +24,7 @@ import re
 import subprocess
 import time
 
-KEYS={"dpad_up":"F5","dpad_down":"F6","a":"F7","start":"F8"}
+KEYS={"dpad_up":"R","dpad_down":"T","a":"J","start":"G"}
 
 def cmd(args:list[str],seconds:float=8):
     return subprocess.run(args,capture_output=True,text=True,timeout=seconds,
@@ -56,12 +56,12 @@ def replay(binary:Path,outdir:Path,xex:Path|None,wait_before_seconds:float):
         game=outdir/"invalid_header_for_host_input_smoke.xex"
         game.write_bytes(b"NOT_A_REAL_XEX2"+bytes(2048))
         game_sha=None
-    # Launch window and initialize keyboard HID. F5-F8 map to Xbox buttons.
+    # Launch window and initialize keyboard HID. R/T/J/G map to Xbox buttons; function keys F5-F8 were rejected or hijacked by Xenia UI.
     flags=[
         "--gpu=null","--apu=nop","--hid=keyboard",
         "--keyboard_mode=1","--keyboard_user_index=0",
-        "--keybind_dpad_up=F5","--keybind_dpad_down=F6",
-        "--keybind_a=F7","--keybind_start=F8",
+        "--keybind_dpad_up=R","--keybind_dpad_down=T",
+        "--keybind_a=J","--keybind_start=G",
         f"--storage_root={outdir/'xenia_storage'}",
         "--log_file=stdout",
         str(game)
@@ -140,6 +140,16 @@ def replay(binary:Path,outdir:Path,xex:Path|None,wait_before_seconds:float):
                 except subprocess.TimeoutExpired:proc.kill();proc.wait(timeout=5)
             report["emulator_return_code"]=proc.returncode
     text=log.read_text(encoding="utf8",errors="replace")
+    expected_bindings=("controller input DPAD_UP","controller input DPAD_DOWN",
+                       "controller input A.","controller input START.")
+    # Header logging in current Canary uses "... controller input A." for A;
+    # do not confuse an X11 successful key event with a recognized Xenia HID map.
+    report["xenia_rejected_keybindings"]="failed to parse binding" in text.lower()
+    report["xenia_required_bindings_present"]={
+        item: item in text for item in expected_bindings
+    }
+    if report["xenia_rejected_keybindings"] or not all(report["xenia_required_bindings_present"].values()):
+        report["status"]="BLOCKED_XENIA_HID_BINDINGS_UNVERIFIED"
     report["log_bytes"]=len(text.encode("utf8"))
     report["log_sha256"]=hashlib.sha256(text.encode("utf8")).hexdigest()
     report["log_lines_relevant"]=[
