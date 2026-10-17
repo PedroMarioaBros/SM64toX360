@@ -49,6 +49,8 @@ jobs:
           print("Guest SM64/real XEX executed:",r["private_game_xex_supplied"])
           assert not r["private_game_xex_supplied"]
           assert not r["guest_buttons_proven"]
+          assert not r["xenia_rejected_keybindings"], "Xenia rejected a configured key"
+          assert all(r["xenia_required_bindings_present"].values()), "Xenia did not confirm required HID bindings"
           # If no X11 window is found this must fail conspicuously, not pass.
           assert r["status"]=="HOST_KEYS_SENT_GUEST_NOT_PROVEN",r["status"]
           PY
