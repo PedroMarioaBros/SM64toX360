@@ -5,6 +5,8 @@ on:
       - feature/multilang-dub-30fps
     paths:
       - scripts/multilang/test_test9_ppc_runtime.py
+      - scripts/multilang/test9_selector_native.py
+      - scripts/multilang/test_test9_source_build.py
       - .github/workflows/test-test9-ppc-selector.yml
   workflow_dispatch:
 jobs:
@@ -15,4 +17,6 @@ jobs:
       - name: Install pinned PowerPC Unicorn runtime
         run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
       - name: Execute exact 384-byte selector against controller, native UI and tables
-        run: python3 -m unittest discover -s scripts/multilang -p 'test_test9_ppc_runtime.py' -v
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_test9_ppc_runtime.py' -v
+          python3 -m unittest discover -s scripts/multilang -p 'test_test9_source_build.py' -v
