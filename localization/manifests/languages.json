@@ -87,7 +87,7 @@
   },
   "current_build": {
     "identifier": "TEST9_SELETOR_INTERATIVO_30FPS_CANDIDATE",
-    "release_class": "EXPERIMENTAL_XBOX_HARDWARE_UNTESTED",
+    "release_class": "FAILED_HARDWARE_FATAL_CRASH_DO_NOT_RUN",
     "file_name": "SM64_TEST9_SELETOR_FUNCIONAL_CANDIDATO_30FPS.zip",
     "xex_sha256": "1b29d111f234df0515c0a21e964bf9866061c4688d4f0b2a74e741a61c320f07",
     "zip_sha256": "01ef0d3de8eead10960665268daccf5d7b944bd10e741c7facdaf6d7ee98abbc",
@@ -112,7 +112,9 @@
     "xbox_language_activation_verified": false,
     "xbox_star_return_verified": false,
     "dubbing_out_of_scope": true,
-    "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md"
+    "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md",
+    "hardware_crash_confirmed": true,
+    "reason": "Fatal Crash when title selector should appear; do not claim success from CPU32 emulation"
   },
   "previous_build": {
     "identifier": "TEST4_TITLE_ONLY_TRILINGUAL_30FPS",
@@ -133,15 +135,15 @@
     "user_test_2026_10_13": "TEST4 boot, credits, Press Start, save menu and PTBR gameplay work but LANGUAGE SELECTOR NOT SHOWN"
   },
   "latest_hardware_test": {
-    "build": "TEST8_VISUAL_IDIOMAS_30FPS",
-    "outcome": "PASS_VISUAL_ONLY: two Xbox photos show IDIOMAS TESTE8, PORTUGUES, ESPANOL, ENGLISH; one shows TESTE8 START",
-    "observed_issues": [
-      "native colorful font oversized",
-      "title/options overlap Mario face and cap",
-      "no navigation or language activation in TEST8"
-    ],
-    "confirmed_by_user": true,
-    "confirmed_date": "2026-10-17"
+    "build": "TEST9_SELETOR_FUNCIONAL_CANDIDATO_30FPS",
+    "result": "FAIL_FATAL_CRASH_ON_TRANSITION_TO_TITLE_LANGUAGE_SELECTOR",
+    "observed": "Credits play, then fatal crash entering screen where interactive language selector should display",
+    "languages_selected": 0,
+    "user_confirmation": true,
+    "date": "2026-10-17",
+    "star_return_not_tested": true,
+    "test9_do_not_retest": true,
+    "root_cause": "NOT_YET_ISOLATED"
   },
   "current_visual_probe": {
     "identifier": "TEST9_SELETOR_INTERATIVO_30FPS_CANDIDATE",
@@ -172,5 +174,7 @@
     "dubbing_out_of_scope": true,
     "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md"
   },
-  "current_build_status": "TEST8_PASSED_VISUAL_HARDWARE; TEST9_INTERACTIVE_CANDIDATE_PENDING_HARDWARE"
+  "current_build_status": "TEST9_FAIL_FATAL_CRASH_XBOX; TEST8_VISUAL_PASS_LAST_SAFE_TITLE_REFERENCE; TEST3_STAR_RETURN_PASS",
+  "ppc64_emulation_note": "Unicorn 2.1.4 UC_MODE_64 aborts BEFORE first instruction with UC_ERR_EXCEPTION errno21; INCONCLUSIVE capability test, not reproduced Xbox crash",
+  "next_step": "Isolate TEST9 controller-global buttonPressed mutation before another Xbox candidate; keep baseline TEST8 and never touch level_script_execute; voice work prohibited"
 }
