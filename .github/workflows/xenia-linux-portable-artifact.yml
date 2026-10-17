@@ -1,0 +1,35 @@
+name: Xenia Linux Emulator Portable Transfer
+
+on:
+  push:
+    branches: [feature/multilang-dub-30fps]
+    paths:
+      - .github/workflows/xenia-linux-portable-artifact.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-public-emulator-artifact:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Download pinned public Xenia Canary Linux AppImage
+        run: |
+          set -eux
+          mkdir -p "$RUNNER_TEMP/xenia-public"
+          curl --fail --location --show-error --retry 3 --connect-timeout 12 --max-time 120 \
+            'https://github.com/xenia-canary/xenia-canary/releases/download/dac2794/xenia_canary_linux.AppImage' \
+            -o "$RUNNER_TEMP/xenia-public/xenia_canary_linux.AppImage"
+          test "$(stat -c %s "$RUNNER_TEMP/xenia-public/xenia_canary_linux.AppImage")" -gt 10000000
+          sha256sum "$RUNNER_TEMP/xenia-public/xenia_canary_linux.AppImage"
+          echo 'Public open-source emulator ONLY. No SM64 XEX file in this artifact.'
+      - name: Upload portable binary (no game assets)
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenia-official-linux-AppImage-dac2794
+          path: ${{ runner.temp }}/xenia-public/xenia_canary_linux.AppImage
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
