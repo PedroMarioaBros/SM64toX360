@@ -41,3 +41,12 @@ A suspeita prioritária é a **alteração prematura e direta de `buttonPressed`
 6. Não modificar a tradução portuguesa ou trabalho de vozes. **Dublagem totalmente fora do escopo até três idiomas e seletor funcionando e aprovados no Xbox**.
 
 O diagnóstico exato do Fatal Crash **continua aberto**. Não inventar explicação conclusiva nem percentuais de conclusão.
+
+
+## Verificação adicional PPC64 — importante não interpretar falsamente
+
+Para compreender o limite dos cinco testes CPU32 PASS, foi criado `scripts/multilang/probe_test9_ppc64_mode.py` (workflow `test9-ppc64-abi-probe.yml`). A tentativa de emular o primeiro quadro da TEST9 sob `UC_MODE_64 | UC_MODE_BIG_ENDIAN` em Unicorn 2.1.4 levantou `UC_ERR_EXCEPTION`, errno 21, **antes da execução de qualquer instrução** (`executed_count=0`, `last_instructions=[]`). Resultado classificado como **INCONCLUSIVE_UNICORN_PPC64_ABORTED_BEFORE_FIRST_INSTRUCTION** (backend indisponível/inadequado nessa configuração), **NÃO como reprodução do Fatal Crash no Xbox**.
+
+- [CI de diagnóstico de capacidade PPC64, run 39011849760](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39011849760) — probe completado; PPC64 não executou instruções.
+- O suporte de TEST9 continua limitado aos 5 testes sintéticos PPC32 e validação estática/XEX. Nenhum teste de CPU64 com execução real pode ser reivindicado.
+- Ponto exato e causa do Fatal Crash em hardware permanecem **não identificados**. A próxima investigação deve comparar variantes mínimas (controller read / START mutation / render) com segurança, preferir não escrever no buffer global de botão, e preservar TEST8 aprovada visualmente.
