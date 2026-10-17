@@ -1,0 +1,19 @@
+name: Title Display TEST6 Marker Audit
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test6_title_marker.py
+      - scripts/multilang/test_test6_title_marker.py
+      - .github/workflows/test-title-marker-probe.yml
+  workflow_dispatch:
+
+jobs:
+  verify-diagnostic-marker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify marker changes title strings only
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test6_title_marker.py' -v
