@@ -1,0 +1,19 @@
+name: TEST11 Safe Title Glyph Regression
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test11_safe_title_cursor.py
+      - scripts/multilang/test_test11_safe_title_cursor.py
+      - .github/workflows/test11-safe-title-cursor.yml
+  workflow_dispatch:
+jobs:
+  guard-one-byte:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify fail-closed glyph repair and one-byte code integrity
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_test11_safe_title_cursor.py' -v
+          python3 -m py_compile scripts/multilang/test11_safe_title_cursor.py
