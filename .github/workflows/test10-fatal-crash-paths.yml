@@ -1,0 +1,16 @@
+name: TEST10 Fatal Crash Button-Path Audit
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test_test10_postmortem_paths.py
+      - .github/workflows/test10-fatal-crash-paths.yml
+  workflow_dispatch:
+jobs:
+  inspect-real-test10-ppc-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm exact PPC wrapper and conditional X render without Xbox PE
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test10_postmortem_paths.py' -v
