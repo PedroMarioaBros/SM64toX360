@@ -87,7 +87,7 @@
   },
   "current_build": {
     "identifier": "TEST10_READ_ONLY_CONTROLLER_DIAGNOSTIC",
-    "status": "EXPERIMENTAL_DIAGNOSTIC_NOT_FUNCTIONAL_SELECTOR",
+    "status": "FAILED_HARDWARE_FATAL_CRASH_DO_NOT_RUN",
     "purpose": "isolate reading buttonDown in real title path without writing controller global, gating Start or activating languages",
     "file_name": "SM64_TEST10_DIAGNOSTICO_LEITURA_CONTROLES_30FPS.zip",
     "zip_sha256": "51e6ca289a2e58d30d9e3cc7bf0648ab7f96798332f040d97c0757771bc10347",
@@ -105,10 +105,13 @@
     "controller_global_writes": false,
     "language_activation": false,
     "start_gate": false,
-    "xbox_hardware_test": "PENDING",
+    "xbox_hardware_test": "FAIL_FATAL_CRASH_UP_DOWN_A_3_TRIALS",
     "game_stability_not_proven": true,
     "dubbing_out_of_scope": true,
-    "report": "docs/TEST9_CRASH_TEST10_CONTROLLER_READONLY_2026_10_17.md"
+    "report": "docs/TEST9_CRASH_TEST10_CONTROLLER_READONLY_2026_10_17.md",
+    "release_class": "FAILED_HARDWARE_FATAL_CRASH",
+    "root_cause": "UNDETERMINED",
+    "do_not_retest": true
   },
   "previous_build": {
     "identifier": "TEST4_TITLE_ONLY_TRILINGUAL_30FPS",
@@ -129,15 +132,25 @@
     "user_test_2026_10_13": "TEST4 boot, credits, Press Start, save menu and PTBR gameplay work but LANGUAGE SELECTOR NOT SHOWN"
   },
   "latest_hardware_test": {
-    "build": "TEST9_SELETOR_FUNCIONAL_CANDIDATO_30FPS",
-    "result": "FAIL_FATAL_CRASH_ON_TRANSITION_TO_TITLE_LANGUAGE_SELECTOR",
-    "observed": "Credits play, then fatal crash entering screen where interactive language selector should display",
-    "languages_selected": 0,
-    "user_confirmation": true,
-    "date": "2026-10-17",
-    "star_return_not_tested": true,
-    "test9_do_not_retest": true,
-    "root_cause": "NOT_YET_ISOLATED"
+    "build": "TEST10_READ_ONLY_CONTROLLER_DIAGNOSTIC",
+    "outcome": "FAIL_FATAL_CRASH_ON_ALL_THREE_RECOGNIZED_INPUTS",
+    "user_report_date": "2026-10-17",
+    "observed": [
+      "credits and language label screen display successfully",
+      "right stick produces no observable effect, expected/no right-stick input",
+      "D-pad UP -> Fatal Crash",
+      "D-pad DOWN -> Fatal Crash after reboot",
+      "Xbox A -> Fatal Crash after second reboot"
+    ],
+    "attempt_count": 3,
+    "hardware_confirmed": true,
+    "do_not_retest": true,
+    "no_language_selection_completed": true,
+    "save_and_star_return_unchecked": true,
+    "probable_shared_path": "Fifth print_text_centered('X') invocation after UP/DOWN/A conditions; exact fault unknown",
+    "controller_global_modified": false,
+    "root_cause": "UNDETERMINED",
+    "reference": "docs/TEST10_FATAL_CRASH_BUTTONS_2026_10_17.md"
   },
   "current_visual_probe": {
     "identifier": "TEST9_SELETOR_INTERATIVO_30FPS_CANDIDATE",
@@ -168,7 +181,7 @@
     "dubbing_out_of_scope": true,
     "report": "docs/TEST8_VISUAL_PASS_TEST9_INTERATIVO_2026_10_17.md"
   },
-  "current_build_status": "TEST9_FATAL_CRASH_CONFIRMED; TEST10_DIAGNOSTIC_PREPARED_AWAITING_HARDWARE; TEST8_VISUAL_PASS; TEST3_STAR_RETURN_PASS",
+  "current_build_status": "TEST10_FAIL_FATAL_CRASH_INPUT_HARDWARE; TEST9_FAIL_FATAL_CRASH_TITLE_HARDWARE; TEST8_VISUAL_PASS; TEST3_STAR_RETURN_PASS",
   "ppc64_emulation_note": "Unicorn 2.1.4 UC_MODE_64 aborts BEFORE first instruction with UC_ERR_EXCEPTION errno21; INCONCLUSIVE capability test, not reproduced Xbox crash",
-  "next_step": "Isolate TEST9 controller-global buttonPressed mutation before another Xbox candidate; keep baseline TEST8 and never touch level_script_execute; voice work prohibited"
+  "next_step": "Do not generate TEST11 yet: analyze native print_text_centered fifth conditional call versus input and PPC64 ABI; design minimal same-four-print-calls input probe, no write to controller or translations, then carefully validate before hardware."
 }
