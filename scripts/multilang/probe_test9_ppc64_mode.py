@@ -43,6 +43,9 @@ def main():
         info["traceback"]=traceback.format_exc(limit=8)
         info["last_instructions"]=[hex(x[0]) for x in executed[-30:]]
         info["executed_count"]=len(executed)
+        if not executed and info["result"]=="PPC64_FIRST_FRAME_SIMULATION_FAIL":
+            info["result"]="INCONCLUSIVE_UNICORN_PPC64_ABORTED_BEFORE_FIRST_INSTRUCTION"
+            info["interpretation"]="Unicorn backend did not execute a PPC64 instruction; this is NOT evidence of the Xbox crash root cause."
     print(json.dumps(info,indent=2))
     # The outcome informs diagnosis; do not claim Xbox validation.
 if __name__=="__main__":
