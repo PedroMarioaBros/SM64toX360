@@ -1,0 +1,20 @@
+name: TEST10 Read-Only Controller Diagnostic
+on:
+  push:
+    branches: [feature/multilang-dub-30fps]
+    paths:
+      - scripts/multilang/test10_controller_read_probe.py
+      - scripts/multilang/test_test10_readonly.py
+      - .github/workflows/test10-controller-readonly.yml
+  workflow_dispatch:
+jobs:
+  test-input-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned PPC interpreter
+        run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Execute exact diagnostic PPC 32-bit and verify memory safety
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_test10_readonly.py' -v
+          python3 -m py_compile scripts/multilang/test10_controller_read_probe.py
