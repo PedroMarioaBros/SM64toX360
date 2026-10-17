@@ -119,5 +119,34 @@
     "no_new_dubbing": true,
     "report": "docs/TRILINGUAL_TITLE_TEST4_REAL_XEX_2026_10_12.md",
     "user_test_2026_10_13": "TEST4 boot, credits, Press Start, save menu and PTBR gameplay work but LANGUAGE SELECTOR NOT SHOWN"
-  }
+  },
+  "latest_hardware_test": {
+    "build": "TEST7_DIAGNOSTICO_ABERTURA_NORMAL_30FPS",
+    "outcome": "A: Mario head visible, TESTE7 START absent",
+    "conclusion": "intro_regular call to print_intro_text participates in real Xbox title rendering; does not confirm old language selector running",
+    "confirmed_by_user": true,
+    "confirmed_date": "2026-10-17"
+  },
+  "current_visual_probe": {
+    "build": "TEST8_NATIVE_TITLE_4_ASCII_OPTIONS",
+    "type": "VISUAL_DIAGNOSTIC_NOT_FUNCTIONAL_SELECTOR",
+    "test_package": "SM64_TEST8_VISUAL_IDIOMAS_30FPS.zip",
+    "zip_sha256": "5fbd56533f6c211d6ef87785cf83eb047dcb77d2a669805e7a5c1158e4d7e4a7",
+    "xex_sha256": "006b662635b41f8a0e2996a8fbba43ab354acdca11ed21c184e6bf669daa1ccb",
+    "private_library_file_id": "libfile_9e708b07a3248191bfda3be2e3c6a211",
+    "expected_labels": [
+      "IDIOMAS TESTE8",
+      "PORTUGUES",
+      "ESPANOL",
+      "ENGLISH"
+    ],
+    "known_limits": [
+      "unaccented uppercase strings are provisional",
+      "does not process controller inputs",
+      "does not select any language"
+    ],
+    "hardware_result": "PENDING",
+    "report": "docs/TEST7_A_CONFIRMADO_TEST8_VISUAL_2026_10_17.md"
+  },
+  "current_build_status": "TEST5_FAIL_HARDWARE_SELECTOR; TEST8_DIAGNOSTIC_PENDING_HARDWARE"
 }
