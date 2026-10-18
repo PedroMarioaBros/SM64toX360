@@ -287,3 +287,22 @@ Nova prioridade confirmada em 12/10: **textos equivalentes PT-BR / ES / EN e con
 - Evidências Xenia privadas em Library `/Xbox360 - SM64 PTBR/SM64_TEST11_XENIA_PROVAS_PRIVADAS_2026_10_17.zip`, ID `libfile_aeba11abe7688191a7dc9549fdac72f9`, SHA `599aa61f6d7dcb71293da0d5051ec03b40c4d4be759f771d1cf082a8e32a05b6` (somente capturas e trechos logs; nenhum XEX).
 - **Próximo trabalho:** continuar regressões no Xenia com gameplay real até pegar estrela e voltar ao castelo, corrigir o file-select menu para PT/ES/EN e glifos/acento/layout, antes de dizer que jogo multilíngue está pronto; validacao física opcional e pontual posteriormente.
 - **DUBLAGEM TOTALMENTE FORA DO ESCOPO** até PT/ES/EN e gameplay estáveis Xbox confirmados e nova ordem explícita.
+
+## Retomada operacional — 18/10/2026
+
+### Último resultado confirmado no Xenia (não confundir com aprovação em Xbox)
+- TEST9/TEST10 originais reproduzem no Xenia Linux o crash de renderização no caminho do cursor X; TEST11 substitui somente o byte do cursor por O e passa os fluxos do título em PT/ES/EN no emulador.
+- A automação de entrada válida é scripts/xenia/replay_buttons.py com R=D-pad UP, T=D-pad DOWN, J=A, G=Start. O antigo binding F5–F8 era inválido e seus resultados não são evidência de entrada no guest.
+- TEST11 continua candidata, não aprovada em hardware. ZIP privado não deve ser publicado no GitHub.
+- Pendência reproduzida no emulador: após selecionar Español, o menu de saves ainda exibe rótulos em português (ABRIR JOGO, PTS., COP., APAGA, ESTEREO). Ainda não se validaram diálogos de fases, persistência de saves e ciclo coletar estrela → retornar ao castelo nesta candidata. TEST3 continua referência física para o último fluxo; TEST8 para visualização da tela de idiomas.
+- Testes anteriores do Xenia que usavam F5/F6/F7/F8 estão invalidados. Ver docs/TEST9_TEST10_XENIA_CRASH_CAUSE_TEST11_2026_10_17.md e workflow xenia-linux-keyboard-harness.yml.
+
+### Próxima execução (não produzir outra build Xbox ainda)
+1. Preservar o XEX TEST11 e suas capturas como baseline.
+2. Auditar a origem dos rótulos do menu de saves no PE/strings e verificar se o código de seleção de idioma é consultado nesse caminho; não presumir que a tabela .lang de diálogos/cursos já inclua a UI de save.
+3. Escrever testes estáticos e uma matriz de reprodução Xenia com inputs verificados R/T/J/G. Testar primeiro PT, depois ES e EN até menu de saves; recolher log e capturas em cada transição.
+4. Investigar diálogos, salvar e coletar estrela/retornar ao castelo em Xenia, sem mexer no hook de gameplay estável.
+5. Só criar nova candidata quando a origem da UI de saves e o plano de regressão estiverem definidos. Não pedir novos testes físicos até haver build justificada.
+6. Não iniciar dublagem: continua expressamente fora de escopo até PT/ES/EN e gameplay estarem estáveis e o usuário autorizar novamente.
+
+Status de confiança: a correção de cursor O foi observada em Xenia; não declarar TEST11 como aprovada em Xbox nem como localização multilíngue completa.
