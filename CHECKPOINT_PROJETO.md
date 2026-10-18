@@ -632,3 +632,22 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 - Referência `src/game/print.c` upstream indica `sTextLabels[52]` e `print_text_centered` aloca no pool de efeitos; não assumir limite de quatro/cinco rótulos sem evidência real do port Xbox.
 - **NÃO criar TEST11 às cegas.** Próxima análise: separar o reconhecimento do botão da quinta chamada gráfica. Um futuro teste mais seguro poderá manter **exatamente quatro chamadas de desenho por quadro**, escolhendo texto para um dos slots existentes conforme os botões; sem escrita em controller, sem bloquear Start, sem seleção ativada até esse caminho ser aprovado. Inspecionar a ABI PPC64 e o contexto gráfico do jogo. Nenhuma dublagem; tradução/seleção PT/ES/EN permanecem prioridade.
 - [Relatório TEST10 hardware](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/TEST10_FATAL_CRASH_BUTTONS_2026_10_17.md). Estado **TEST10 FAIL HARDWARE** agora substitui "PENDING" em todos os resumos.
+
+## Retomada operacional — 18/10/2026
+
+### Último resultado confirmado no Xenia (não confundir com aprovação em Xbox)
+- TEST9/TEST10 originais reproduzem no Xenia Linux o crash de renderização no caminho do cursor X; TEST11 substitui somente o byte do cursor por O e passa os fluxos do título em PT/ES/EN no emulador.
+- A automação de entrada válida é scripts/xenia/replay_buttons.py com R=D-pad UP, T=D-pad DOWN, J=A, G=Start. O antigo binding F5–F8 era inválido e seus resultados não são evidência de entrada no guest.
+- TEST11 continua candidata, não aprovada em hardware. ZIP privado não deve ser publicado no GitHub.
+- Pendência reproduzida no emulador: após selecionar Español, o menu de saves ainda exibe rótulos em português (ABRIR JOGO, PTS., COP., APAGA, ESTEREO). Ainda não se validaram diálogos de fases, persistência de saves e ciclo coletar estrela → retornar ao castelo nesta candidata. TEST3 continua referência física para o último fluxo; TEST8 para visualização da tela de idiomas.
+- Testes anteriores do Xenia que usavam F5/F6/F7/F8 estão invalidados. Ver docs/TEST9_TEST10_XENIA_CRASH_CAUSE_TEST11_2026_10_17.md e workflow xenia-linux-keyboard-harness.yml.
+
+### Próxima execução (não produzir outra build Xbox ainda)
+1. Preservar o XEX TEST11 e suas capturas como baseline.
+2. Auditar a origem dos rótulos do menu de saves no PE/strings e verificar se o código de seleção de idioma é consultado nesse caminho; não presumir que a tabela .lang de diálogos/cursos já inclua a UI de save.
+3. Escrever testes estáticos e uma matriz de reprodução Xenia com inputs verificados R/T/J/G. Testar primeiro PT, depois ES e EN até menu de saves; recolher log e capturas em cada transição.
+4. Investigar diálogos, salvar e coletar estrela/retornar ao castelo em Xenia, sem mexer no hook de gameplay estável.
+5. Só criar nova candidata quando a origem da UI de saves e o plano de regressão estiverem definidos. Não pedir novos testes físicos até haver build justificada.
+6. Não iniciar dublagem: continua expressamente fora de escopo até PT/ES/EN e gameplay estarem estáveis e o usuário autorizar novamente.
+
+Status de confiança: a correção de cursor O foi observada em Xenia; não declarar TEST11 como aprovada em Xbox nem como localização multilíngue completa.
