@@ -822,3 +822,15 @@ Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs 
 - Xenia 16-second trial: process ran until external timeout exit 124, no guest Access Violation nor KeBugCheck during that interval, but Vulkan initialization failed `ErrorIncompatibleDriver` and PM4 backend draws failed. Result: crash-screen preflight only; **not** a successful visual Xenia pass. Must not claim the text is visible until Xbox hardware observation.
 - TEST13D is an interim validation candidate, not a release. It does not implement the final arrow + US/Spain/Brazil flags. Accentless strings (`Ingles/Espanol/Portugues`) are temporary.
 - If the physical test finds no strings or a crash, rollback to TEST12 and record exact point. Do not mix Native60 or dubbing.
+
+## Atualização após teste físico TEST13D — 20/10/2026
+
+**Confirmado pelo proprietário no Xbox 360:** o seletor mostra título, três opções e instrução de confirmação; navegação e seleção funcionam. Os slots vazios exibem NOVO / NUEVO / NEW conforme o idioma. Não repetir esses testes sem uma nova build que exija regressão.
+
+**Pendências prioritárias antes de avançar a outros ajustes de idioma:**
+- Centralizar horizontalmente todos os textos do seletor (título, nomes das três opções e instrução A).
+- Eliminar letras cinzas; o proprietário exige que nenhuma letra apareça cinza. Investigar fonte/mapeamento de glifos e renderização real antes de alterar o código.
+- Impedir que a tela do seletor avance sozinha para cutscenes quando fica ociosa, independentemente do idioma destacado.
+- Corrigir o prompt “APERTE START” nas cutscenes e demais estados: deve acompanhar o idioma selecionado inclusive após confirmar Español ou English; mapear todos os caminhos de renderização, não apenas o caminho de título coberto até agora.
+
+A versão TEST13D não é final. TEST12 permanece como rollback. Base 30 FPS; Native60 e dublagem continuam fora do escopo desta etapa. Próximo passo técnico: inspecionar as coordenadas usadas por PRINT_CENTER, o mapeamento de caracteres/fonte que produz glifos cinza, o contador/ramo que dispara cutscenes por inatividade e as rotinas alternativas que imprimem o prompt Start. Criar testes estáticos/runtime para cada correção e só então gerar outra candidata com hashes e roteiro de teste específico.
