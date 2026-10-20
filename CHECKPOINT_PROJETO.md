@@ -875,3 +875,14 @@ Prioridade visual: não repetir mudança de caixa. Investigar a rotina/fonte/pal
 O callsite `0x821472D4` (`intro_regular`) **já chama o wrapper do seletor** em TEST14: `48275a2d` representa o branch para `0x823BCD00`. Não ficou intacto, então não se deve instalar um segundo hook ali. A tentativa de hook duplicado foi retirada antes de produzir nova XEX. O hook em `0x82147368` também não resolveu o prompt observado na cutscene. O caminho do attract/demo continua sem identificação conclusiva; mapear outros chamadores de `print_intro_text` (VA `0x82098D18`) e confirmar o estado do idioma no demo.
 
 CI depois da remoção da hipótese duplicada: [TEST12 UI tests — run 39427028860 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Esse PASS é estático/CPU, não visual nem hardware. Os G/U cinza seguem sem correção comprovada; a troca para maiúsculas foi refutada pelo teste físico.
+
+
+## Retomada após retorno físico TEST14 — 20/10/2026
+
+- **Observação adicional agora registrada:** o proprietário confirmou que os textos do seletor ficaram centralizados do jeito desejado. Marcar alinhamento horizontal como **PASS físico**; preservar X=160 e não voltar a tratá-lo como pendência.
+- TEST14 no Xbox: seletor ocioso >1 minuto sem demo = PASS; rótulos dos slots NEW/NUEVO/NOVO = PASS; centralização do seletor = PASS.
+- Bloqueios físicos: G/U continuam cinza apesar de maiúsculas; depois de confirmar English/Español, a cutscene/attract demo mostra APERTE START em português. Não repetir a hipótese de caixa nem declarar solução.
+- Diagnóstico de prompt: os callsites `0x821472D4` e `0x82147368` já estão cobertos no TEST14, mas não explicam a ocorrência física no demo. Próxima tarefa: usar os bytes PE mapeados da TEST14 para enumerar referências/callers a `print_intro_text` em VA `0x82098D18`, validar destinos PowerPC e rastrear o idioma ativo no fluxo de demo. Não adicionar hooks sem identificar o chamador e o contrato de retorno/ABI.
+- Próxima tarefa dos glifos: localizar o caminho real de renderização da prévia e comparar codificação/índice/paleta dos caracteres G/U com letras vizinhas. A tentativa uppercase falhou no console. Não mudar renderer ou encoding sem evidência.
+- Nenhum binário novo produzido; nenhum teste visual/emulador novo executado. Não entregar outro XEX até haver correção específica, CI estático/PPC PASS e hashes/auditoria completos.
+- Restrições mantidas: branch feature/multilang-dub-30fps, base 30 FPS, preservar PT-BR, não misturar Native60, dublagem fora de escopo até seletor/textos concluídos.
