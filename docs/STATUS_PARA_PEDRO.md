@@ -124,3 +124,12 @@ Foi criado `scripts/multilang/test12_live_ui.py` como patcher específico para a
 A implementação foi refinada após comparar a ordem com o relato físico: no renderizador da tela, a coordenada maior corresponde à linha superior. Agora as linhas visuais são **English (topo) → Español (meio) → Português (baixo)**; o cursor começa em English (ID interno 2), DOWN percorre English → Español → Português e UP percorre o sentido inverso. As strings do seletor agora usam o renderizador nativo com mapa de glifos, incluindo os acentos solicitados. A workflow [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39377225771) passou com 9 testes (4 estáticos + 5 PPC).
 
 A PE candidata local mais recente tem SHA-256 `a71a6409b42de7e03db856654ba44540b462d3d71c5b650c6eb01c939ec6226b`. Ainda é PE mapeada, não XEX. O próximo passo é empacotar a XEX, fazer smoke test em Xenia e só então entregar para teste físico. Não pedir ao proprietário para testar um arquivo que ainda não foi gerado/validado.
+
+
+## TEST12 — XEX empacotada e roundtrip verificado, 20/10/2026
+
+O mapa de strings foi ampliado de 21 para **30 strings** de menu, pontuação e estado. A PE candidata atual tem SHA-256 `1a5ff2fad66879b207445ca0ab8bb480295eb8e52634756547506a58c4b9d4f8`. A XEX TEST12 foi empacotada com `xex2replace`, SHA-256 `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`; a decriptação do payload e um segundo roundtrip reproduzem a PE exatamente.
+
+A workflow [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39378188850) passou em 9 testes (4 estáticos + 5 PPC). Um smoke test local do Xenia Canary Linux com renderizador nulo manteve TEST11 e TEST12 executando por 8 segundos sem fatal/exception. O renderizador nulo gera mensagens de falha de desenho e não valida a aparência visual; portanto, **ainda não é confirmação visual no Xenia**. O Xbox físico também ainda não foi testado com esta XEX.
+
+Próxima etapa: empacotar o ZIP candidato para teste físico, com aviso claro de que a aparência do seletor, dos acentos e do menu de saves ainda precisa de confirmação visual. Preservar a TEST11 como rollback e não misturar 60 FPS.
