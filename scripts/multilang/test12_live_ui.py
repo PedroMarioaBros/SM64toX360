@@ -8,9 +8,10 @@ SOURCE_SHA='a52da425c9cf294e9005fc4cce95b0c02b015f9ea2b0f88ea17df268c52b9ecd'
 WRAPPER_SHA='7198267b6f0e7699f5226637cd5db7e5f9470d5b5f3b9aac69e8d6e2ac0db6b1'
 MENU_HELPER=0x823BCB00
 MENU_HELPER_CAP=0x100
-# Keep the tested TEST12 label-call path until a safe icon/sprite path is proven.
-# Retargeting these labels to PRINT_CENTER caused a reproducible Xenia guest crash.
-PREVIEW_DRAW_CALL=0x82143110
+# The selector labels are now ASCII/NUL (not glyph-map/0xFF). Use the title
+# renderer verified by TEST8/TEST9; the earlier crash used the incompatible
+# 0xFF-terminated data, so do not regress the string format.
+PREVIEW_DRAW_CALL=PRINT_CENTER
 # Redirect the exact five-byte NOVO string pointer; NUEVO needs six bytes.
 NOVO_CALLSITE=0x823BC600
 NOVO_ORIGINAL=bytes.fromhex('3cc0829e60c67170')
@@ -20,8 +21,9 @@ NOVO_HELPER_OFFSET=0x248
 NOVO_HELPER=WRAPPER+NOVO_HELPER_OFFSET
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
-# The established color-font routine uses NUL-terminated strings. Its visual output is
-# still pending hardware confirmation; the desired final selector uses icons/flags.
+# Native print_text_centered (0x8212B498) consumes ASCII/NUL strings and has
+# an observed title-screen baseline in TEST8/TEST9. Textless arrow + flags remains
+# the final UI target; this interim ASCII list is only a safer visual regression fix.
 PREVIEW={
   # Temporary ASCII labels for PRINT_GENERIC_STRING_FADE; final visual goal is arrow + flags.
   # Visible order is top-to-bottom: English, Spanish, Portuguese.
@@ -264,4 +266,4 @@ def patch_test11(pe:bytes,strict=True):
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'color font with ASCII/NUL preview strings; icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native print_text_centered with ASCII/NUL strings; icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
