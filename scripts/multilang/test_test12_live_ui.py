@@ -5,7 +5,7 @@ import unittest
 import test9_selector_native as old
 from test12_live_ui import (
     BASE, CAVE, LANG_RVA, LANG_CAPACITY, MENU_HELPER, MENU_HELPER_CAP,
-    SOURCE_SHA, WRAPPER_SHA, MENU_ITEMS, enc_menu, build_wrapper,
+    SOURCE_SHA, WRAPPER_SHA, MENU_ITEMS, PREVIEW, enc_menu, enc_preview, build_wrapper,
     build_menu_helper, build_novo_pointer_helper, NOVO_HELPER, NOVO_CALLSITE,
     NOVO_STATUS_PTRS_OFF, PREVIEW_DRAW_CALL, patch_test11,
 )
@@ -36,6 +36,14 @@ class Test12LiveUI(unittest.TestCase):
         self.assertEqual(len(novo_helper),96)
         self.assertEqual(NOVO_HELPER,0x823BCF48)
         self.assertLessEqual(len(wrapper)+len(novo_helper),CAVE)
+
+    def test_preview_labels_use_color_font_ascii_and_nul_terminator(self):
+        for texts in PREVIEW.values():
+            for label in texts[:5]:
+                raw=enc_preview(label)
+                self.assertTrue(raw.endswith(b'\\0'))
+                self.assertNotIn(0xFF,raw)
+                self.assertEqual(raw[:-1].decode('ascii'),label)
 
     def test_all_menu_translations_fit_original_string_buffers(self):
         for off,capacity,pt,es,en in MENU_ITEMS:
