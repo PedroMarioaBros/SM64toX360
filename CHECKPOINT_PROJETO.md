@@ -763,3 +763,11 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - CPU tests passaram: [workflow TEST12](https://github.com/PedroMarioaBros/SM64toX360/actions/workflows/test-test12-live-ui.yml). Testes cobrem prévia dinâmica, navegação, prompt Start, strings de saves e preservação B/Y.
 - **Limite em aberto:** a prévia da fonte colorida ainda usa transliterações sem acentos; suporte seguro aos acentos precisa ser resolvido. Nenhum XEX novo foi empacotado ou validado em Xenia/hardware.
 - Ver [relatório TEST12](docs/TEST12_STATIC_PATCH_REPORT_2026_10_20.md). Não considerar interface final até resolver acentos e testar XEX.
+
+
+## 20/10/2026 — correção da ordem visual e glifos no TEST12
+- A ordem visual foi corrigida para topo→baixo: English, Español, Português. O ID interno permanece 2=English, 1=Español, 0=Português. English fica selecionado ao abrir; DOWN move English→Español→Português e UP percorre o sentido inverso.
+- A prévia usa o renderizador nativo de glifos e codifica os acentos necessários. A CPU test verifica os textos codificados, mas a renderização real ainda requer Xenia/hardware.
+- Hash da PE candidata mapeada mais recente: `a71a6409b42de7e03db856654ba44540b462d3d71c5b650c6eb01c939ec6226b`. Continua não sendo XEX.
+- Workflow TEST12 passou: [9 testes estáticos/PPC](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39377225771).
+- Próximo passo: empacotar XEX, validar em Xenia e conferir que o prompt Start e o file-select estão corretos antes de pedir teste físico. Manter 30 FPS, saves e scratch B/Y.
