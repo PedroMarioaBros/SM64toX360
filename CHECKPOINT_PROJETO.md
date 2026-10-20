@@ -738,3 +738,11 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - **Português:** `Idiomas`; opções `Inglês / Espanhol / Português`; confirmação `Pressione A para confirmar`.
 - A tela inteira — título, nomes de todas as opções e instrução — deve trocar imediatamente ao mover o seletor, antes de A. Os rótulos não ficam fixos em inglês/espanhol.
 - Requisito documentado, ainda não implementado/testado. Não gerar nova XEX antes da análise técnica e dos testes seguros.
+
+
+## 20/10/2026 — teste físico confirmou os três idiomas; pendências de interface
+- **Teste físico confirmado pelo proprietário:** depois de selecionar e confirmar, os textos internos aparecem em português, espanhol e inglês conforme o idioma escolhido. A ativação para os textos internos funciona nos três idiomas no teste relatado.
+- **Não pedir repetição** dos testes dos três idiomas.
+- Pendências: (1) English como idioma padrão ao abrir; (2) ordem fixa English → Español → Português; (3) ao mover o cursor, antes de A, traduzir toda a tela do seletor, inclusive o título, os nomes de todas as opções e a instrução; (4) após A, localizar o prompt “APERTE START”/Press Start; (5) localizar o menu de seleção de saves/file-select e todos os seus textos.
+- Rótulos esperados conforme idioma destacado: English — “Languages / English / Spanish / Portuguese / Press A to confirm”; Español — “Idiomas / Inglés / Español / Portugués / Pulsa A para confirmar”; Português — “Idiomas / Inglês / Espanhol / Português / Pressione A para confirmar”.
+- Não confundir sucesso da tradução dos textos internos com conclusão de todos os menus. Nenhuma nova XEX foi gerada. Próxima etapa: mapear com segurança strings e rotinas no PE Xbox 360, criar verificações estáticas fail-closed e só então implementar/testar, sem transplantar endereços N64/MIPS. Dublagem continua fora do escopo.
