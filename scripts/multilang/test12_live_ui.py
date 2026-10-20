@@ -8,6 +8,9 @@ SOURCE_SHA='a52da425c9cf294e9005fc4cce95b0c02b015f9ea2b0f88ea17df268c52b9ecd'
 WRAPPER_SHA='7198267b6f0e7699f5226637cd5db7e5f9470d5b5f3b9aac69e8d6e2ac0db6b1'
 MENU_HELPER=0x823BCB00
 MENU_HELPER_CAP=0x100
+# Keep the tested TEST12 label-call path until a safe icon/sprite path is proven.
+# Retargeting these labels to PRINT_CENTER caused a reproducible Xenia guest crash.
+PREVIEW_DRAW_CALL=0x82143110
 # Redirect the exact five-byte NOVO string pointer; NUEVO needs six bytes.
 NOVO_CALLSITE=0x823BC600
 NOVO_ORIGINAL=bytes.fromhex('3cc0829e60c67170')
@@ -17,8 +20,8 @@ NOVO_HELPER_OFFSET=0x248
 NOVO_HELPER=WRAPPER+NOVO_HELPER_OFFSET
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
-# Use the native glyph-map renderer for selector labels so accents are supported.
-# The cursor and Start prompt retain the safe ASCII color-font renderer.
+# Preview labels remain on the original TEST12 call path (currently blank on hardware).
+# Do not switch them to PRINT_CENTER until the graphics path is understood.
 PREVIEW={
   # Visible order is top-to-bottom: English, Spanish, Portuguese.
   0:['Idiomas','Inglês','Espanhol','Português','Pressione A para confirmar','APERTE','START'],
@@ -119,7 +122,7 @@ def build_wrapper():
     for i,slot in enumerate(PREVIEW_SLOTS):
         p.lwz(10,i*4,11);p.stw(10,slot,12)
     for x,y,slot in ((76,195,0x58),(118,145,0x5C),(118,115,0x60),(118,85,0x64),(104,30,0x68)):
-        p.lis(12,LANG_BASE>>16);p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(PRINT_CENTER)
+        p.lis(12,LANG_BASE>>16);p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(PREVIEW_DRAW_CALL)
     p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,145);p.branch('marker')
     p.label('marker_pt');p.li(4,85);p.branch('marker');p.label('marker_es');p.li(4,115)
     p.label('marker');p.li(3,14);p.lis(5,0x8305);p.ori(5,5,0xCA30);p.call(PRINT_CENTER);p.branch('epilogue')
@@ -254,4 +257,4 @@ def patch_test11(pe:bytes,strict=True):
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native glyph-map with accents','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'TEST12 preview call retained; safe icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
