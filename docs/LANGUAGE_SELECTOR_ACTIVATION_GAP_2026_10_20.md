@@ -26,3 +26,16 @@ Fazer varredura do PE privado TEST11/base v0.4 para localizar os textos nativos 
 - Nenhum novo teste de Xenia ou de hardware foi executado nesta etapa.
 - TEST11 continua referência de navegação no Xbox físico, não uma edição trilíngue concluída.
 - Dublagem continua fora do escopo.
+
+
+## Atualização após teste físico dos três idiomas — 20/10/2026
+
+O relato posterior do proprietário corrige a conclusão limitada deste diagnóstico: em Xbox 360 físico, confirmou que, após selecionar e pressionar A, os textos internos do jogo aparecem corretamente nos três idiomas (Português, Español e English). Portanto, a ativação do idioma para os textos internos não está globalmente quebrada.
+
+O que continua pendente é a cobertura completa da interface:
+- a própria tela do seletor precisa atualizar título, nomes de todas as opções e instrução em tempo real conforme o idioma destacado, antes de pressionar A;
+- ordem fixa English → Español → Português e English selecionado por padrão ao abrir;
+- prompt “APERTE START”/Press Start deve corresponder ao idioma confirmado;
+- menu de seleção de saves/file-select e os seus textos também devem corresponder ao idioma confirmado.
+
+Esta atualização é baseada no relato do teste físico; não significa que esses ajustes de interface já foram implementados. Nenhum novo PE/XEX foi modificado ou gerado. A investigação estática continua necessária para identificar as rotinas/strings reais no PE Xbox 360, com verificações seguras antes de qualquer patch. Não transferir endereços da versão N64/MIPS.
