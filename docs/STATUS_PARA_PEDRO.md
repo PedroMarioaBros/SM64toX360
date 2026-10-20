@@ -90,3 +90,16 @@ O proprietário esclareceu que **os nomes das três opções também devem ser t
 - **Português destacado:** título “Idiomas”; opções “Inglês”, “Espanhol”, “Português”; instrução “Pressione A para confirmar”.
 
 Toda a tela deve atualizar imediatamente ao mover o cursor, antes de pressionar A. Ao iniciar, English fica destacado por padrão. Este é um esclarecimento da especificação, não uma implementação concluída; não foi gerado novo XEX nesta atualização.
+
+
+## Confirmação física do espanhol e escopo da próxima correção — 20/10/2026
+
+O proprietário confirmou no Xbox 360 físico que os textos internos acompanham corretamente os três idiomas após selecionar e confirmar: Português → jogo em português; Español → jogo em espanhol; English → jogo em inglês. Portanto, a ativação do idioma para os textos internos está funcionando nos três idiomas segundo o teste relatado. Não pedir que repita esses testes.
+
+Permanecem requisitos pendentes para a próxima versão:
+1. Ordem visual fixa no seletor: English → Español → Português, com English selecionado por padrão ao abrir.
+2. Prévia dinâmica antes de pressionar A: título, nomes das três opções e instrução de confirmação devem ser traduzidos para o idioma atualmente destacado. Exemplos: English = “Languages / English / Spanish / Portuguese / Press A to confirm”; Español = “Idiomas / Inglés / Español / Portugués / Pulsa A para confirmar”; Português = “Idiomas / Inglês / Espanhol / Português / Pressione A para confirmar”.
+3. Após confirmar com A, o prompt/tela de “Press Start” precisa acompanhar o idioma selecionado, em vez de permanecer em “APERTE START”.
+4. O menu de seleção de arquivos de save (file-select), incluindo os rótulos e instruções visíveis, também deve acompanhar o idioma selecionado.
+
+Status técnico honesto: a tradução dos textos internos para os três idiomas foi confirmada pelo proprietário; o seletor dinâmico, o prompt Start e o file-select ainda não estão corrigidos/validados. Nenhum novo XEX foi gerado nesta atualização. Antes de editar o XEX, mapear as strings/rotinas reais no PE Xbox 360 e criar verificações estáticas seguras; não importar endereços N64/MIPS.
