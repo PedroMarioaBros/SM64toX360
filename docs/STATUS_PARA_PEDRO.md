@@ -19,7 +19,7 @@
 4. **Teste físico pendente:** testar em pasta isolada; escolher English e verificar `PRESS START` quando entrar na attract/demo; reiniciar e repetir para Español com `PULSA START`. Preservar TEST14 e saves como rollback. O README dentro do pacote contém a sequência de teste.
 5. **Regressões que devem permanecer PASS:** seletor centralizado em X=160, seletor ocioso sem cutscene antes do A, slots `NOVO/NUEVO/NEW`, base 30 FPS. Não declarar a correção da attract/demo até o teste físico.
 
-Relatório técnico: [TEST15 — investigação do prompt da attract/demo](TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). O código do patcher e os testes sintéticos foram adicionados ao branch; o workflow de CI foi criado e precisa ter seu resultado remoto conferido.
+Relatório técnico: [TEST15 — investigação do prompt da attract/demo](TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). O código do patcher e os testes sintéticos foram adicionados ao branch; [o workflow de CI passou (5/5 testes)](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460).
 
 Base preservada em 30 FPS; PT-BR mantido; Native60 e dublagem continuam fora de escopo nesta etapa.
 
