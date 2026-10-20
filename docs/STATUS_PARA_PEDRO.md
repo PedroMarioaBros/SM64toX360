@@ -133,3 +133,8 @@ O mapa de strings foi ampliado de 21 para **30 strings** de menu, pontuação e 
 A workflow [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39378188850) passou em 9 testes (4 estáticos + 5 PPC). Um smoke test local do Xenia Canary Linux com renderizador nulo manteve TEST11 e TEST12 executando por 8 segundos sem fatal/exception. O renderizador nulo gera mensagens de falha de desenho e não valida a aparência visual; portanto, **ainda não é confirmação visual no Xenia**. O Xbox físico também ainda não foi testado com esta XEX.
 
 Próxima etapa: empacotar o ZIP candidato para teste físico, com aviso claro de que a aparência do seletor, dos acentos e do menu de saves ainda precisa de confirmação visual. Preservar a TEST11 como rollback e não misturar 60 FPS.
+
+
+## Pacote de teste TEST12 preparado, 20/10/2026
+
+O pacote local de teste foi montado em `/mnt/data/SM64_TEST12_UI_TRILINGUE_CANDIDATA.zip` (SHA-256 `7eb04f6d65921bd002ae753ac3becbb08a3d8e97f72b5aed7f5c5fff6aade044`). Contém `default.xex`, instruções de teste, auditoria JSON e checksums. O XEX incluído tem SHA-256 `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`. O pacote está rotulado como candidata, não versão final, pois o Xenia executado foi com renderizador nulo e não confirmou a aparência visual; falta a conferência no Xbox 360 físico.
