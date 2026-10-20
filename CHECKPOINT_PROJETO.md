@@ -857,3 +857,15 @@ A candidata TEST14 foi empacotada localmente partindo da PE mapeada TEST13D fisi
 **Limite obrigatório:** TEST14 ainda não foi testada no Xbox físico. Esses testes não garantem alinhamento visual, cor de glifos, bloqueio de demos nem texto de Start em cutscenes. A próxima ação é teste físico específico desta candidata. Preservar TEST12 e TEST13D como rollback; manter base 30 FPS e dublagem/Native60 fora do escopo.
 
 Artefato entregue no chat: SM64_TEST14_CENTER_SELECTOR_IDLE_DEMO_START_PROMPT_30FPS.zip. Roteiro/hashes em docs/TEST14_CENTRAL_SELECTOR_IDLE_DEMO_START_PROMPT_2026_10_20.md e docs/STATUS_PARA_PEDRO.md.
+
+## Resultado físico TEST14 — 20/10/2026 e correção de escopo
+
+TEST14 foi testada no Xbox:
+- **PASS:** seletor ficou aberto por mais de 1 minuto sem cutscene.
+- **PASS:** slots vazios continuam NEW / NUEVO / NOVO.
+- **FAIL:** letras G e U seguem cinza mesmo em maiúsculas; hipótese de correção via uppercase refutada.
+- **FAIL:** após selecionar English/Español, prompt na tela inicial é localizado, mas no attract/cutscene volta para APERTE START em português.
+
+Diagnóstico: TEST14 só havia hookado `intro_game_over` (VA `0x82147368`). O callsite `intro_regular` (VA `0x821472D4`, instrução original `4bf51a45`) continuava intacto. O patcher `scripts/multilang/test12_live_ui.py` agora também redireciona essa chamada regular ao wrapper trilíngue; o teste `scripts/multilang/test_test12_live_ui.py` verifica a alteração nos dois callsites. Isso é uma correção de código em andamento, ainda não é uma nova build validada.
+
+Prioridade visual: não repetir mudança de caixa. Investigar a rotina/fonte/paleta e o mapeamento dos glifos G/U; nenhuma correção é considerada concluída até teste físico. Depois de CI verde, preparar nova candidata focada no prompt regular e no diagnóstico dos glifos, mantendo TEST12/TEST13D/TEST14 como rollbacks e a base em 30 FPS.
