@@ -754,3 +754,12 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Mapeados o prompt dividido em `APERTE`/`START` e os offsets das strings do menu de saves. Ver `docs/TEST11_UI_TEXT_MAP_2026_10_20.md`.
 - A variante alternativa `pregame_gate.py` tem testes de CPU aprovados para English padrão e ponteiros de prévia, mas não é o wrapper usado na TEST11 física. Não confundir com build de console.
 - Próximo passo: construir patcher específico para a PE TEST11, localizar strings da prévia por idioma, prompt Start e menu saves; preservar `.lang+0x80–0x87` do scratch B/Y; executar testes CPU e Xenia antes de entregar nova XEX. Nenhuma nova XEX gerada nesta etapa.
+
+
+## 20/10/2026 — TEST12: patcher específico da PE TEST11
+- Criado `scripts/multilang/test12_live_ui.py`, com entrada estritamente fixada ao hash TEST11 e validações fail-closed.
+- Execução local sobre a PE recuperada gerou candidata PE SHA-256 `50fd4a1f07dcfccd232debfa48e656ac3618b2a3d6a676ca570c12888224ec30` (não é XEX ainda).
+- Wrapper PPC: 564/768 bytes; helper de localização de saves: 108/256 bytes; 21 strings de menu verificadas contra os limites dos buffers.
+- CPU tests passaram: [workflow TEST12](https://github.com/PedroMarioaBros/SM64toX360/actions/workflows/test-test12-live-ui.yml). Testes cobrem prévia dinâmica, navegação, prompt Start, strings de saves e preservação B/Y.
+- **Limite em aberto:** a prévia da fonte colorida ainda usa transliterações sem acentos; suporte seguro aos acentos precisa ser resolvido. Nenhum XEX novo foi empacotado ou validado em Xenia/hardware.
+- Ver [relatório TEST12](docs/TEST12_STATIC_PATCH_REPORT_2026_10_20.md). Não considerar interface final até resolver acentos e testar XEX.
