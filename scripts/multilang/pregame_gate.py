@@ -163,13 +163,13 @@ def build() -> bytes:
     a.branch("preview_pt", "beq")
     a.cmpwi(10, 1)
     a.branch("preview_es", "beq")
-    a.addi(11, 30, 0x98)
+    a.lwz(11, 0x78, 30)  # pointer to EN row
     a.branch("preview_load")
     a.label("preview_pt")
-    a.addi(11, 30, 0x70)
+    a.lwz(11, 0x70, 30)  # pointer to PT row
     a.branch("preview_load")
     a.label("preview_es")
-    a.addi(11, 30, 0x84)
+    a.lwz(11, 0x74, 30)  # pointer to ES row
     a.label("preview_load")
     for i in range(5):
         a.lwz(10, i * 4, 11)
