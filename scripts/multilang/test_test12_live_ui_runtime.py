@@ -56,7 +56,7 @@ def cpu(selected=2,button=0,state=0):
         ptrs=[]
         for i,text in enumerate(texts):
             ptr=LANG+0x2000+lang_id*0x200+i*0x40
-            raw=ui.enc_selector_title(text) if i<5 else text.encode("ascii")+b"\0"
+            raw=ui.enc_preview(text) if i<5 else text.encode("ascii")+b"\0"
             u.mem_write(ptr,raw)
             ptrs.append(ptr)
         for i,ptr in enumerate(ptrs):w32(u,row+i*4,ptr)
