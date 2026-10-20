@@ -181,3 +181,17 @@ Novos problemas observados no console:
 4. **Prompt localizado nas cutscenes:** ao entrar em cutscenes por inatividade e também depois de confirmar Español ou English, o prompt “APERTE START” aparece em português. Mapear todos os caminhos de renderização do prompt e fazer o idioma selecionado persistir também nessas telas.
 
 Escopo seguinte: corrigir alinhamento, eliminar os glifos cinza, impedir a transição automática enquanto o seletor está ativo e localizar o prompt Start em todos os estados/cutscenes. Manter a base em 30 FPS, preservar TEST12 como rollback e não avançar para outros ajustes pontuais de idioma até esses comportamentos serem corrigidos e testados. TEST13D já confirma a visibilidade do seletor e os rótulos dos slots; não precisa pedir ao proprietário para repetir esses testes.
+
+## TEST14 empacotada — 20/10/2026 (console ainda pendente)
+
+Depois do relato físico da TEST13D, foi preparada a candidata TEST14 com centralização horizontal (X=160), rótulos do seletor em ASCII maiúsculo, reset do temporizador de demo enquanto o seletor aguarda A e redirecionamento da chamada alternativa de prompt em intro_game_over para o wrapper trilíngue. O helper de status dos slots foi deslocado para 0x823BCB70 sem sobrepor o helper de menu. A candidata conserva a base de 30 FPS.
+
+**Integridade do pacote:** PE TEST14 SHA-256 6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742; XEX SHA-256 a8f4aac287cafb7ddd68a2563284cc5583c9f318c4645704cab6d5cd6ccddbcb; ZIP SHA-256 706603e38aa12ae34868eab327b6073cb6881628179507e444f2fafa0fafc858. ZIP verificado e roundtrip XEX→PE reproduziu bytes idênticos.
+
+Os workflows do código passaram:
+- [TEST12 Trilingual UI Static and CPU Tests — run 39423432009](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39423432009)
+- [Multilang Static Check — run 39423432106](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39423432106)
+
+**Não marcar como corrigido ainda:** centralização, ausência de glifos cinza, manutenção do seletor sem cutscene até A e prompt localizado em demos/cutscenes exigem confirmação física em TEST14. Não foi reivindicado PASS visual/Xbox desta candidata.
+
+Pacote de teste: `SM64_TEST14_CENTER_SELECTOR_IDLE_DEMO_START_PROMPT_30FPS.zip`, disponibilizado nesta conversa. Roteiro completo e hashes: [relatório TEST14](TEST14_CENTRAL_SELECTOR_IDLE_DEMO_START_PROMPT_2026_10_20.md).
