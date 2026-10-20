@@ -10,12 +10,12 @@ MENU_HELPER=0x823BCB00
 MENU_HELPER_CAP=0x100
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
-# The colored title font is ASCII-based. Accented glyph support in this font
-# remains a separate visual task; the save-menu font uses the native glyph map.
+# Use the native glyph-map renderer for selector labels so accents are supported.
+# The cursor and Start prompt retain the safe ASCII color-font renderer.
 PREVIEW={
-  0:['IDIOMAS','PORTUGUES','ESPANHOL','INGLES','PRESSIONE A PARA CONFIRMAR','APERTE','START'],
-  1:['IDIOMAS','PORTUGUES','ESPANOL','INGLES','PULSA A PARA CONFIRMAR','PULSA','START'],
-  2:['LANGUAGES','PORTUGUESE','SPANISH','ENGLISH','PRESS A TO CONFIRM','PRESS','START'],
+  0:['Idiomas','Português','Espanhol','Inglês','Pressione A para confirmar','APERTE','START'],
+  1:['Idiomas','Portugués','Español','Inglés','Pulsa A para confirmar','PULSA','START'],
+  2:['Languages','Portuguese','Spanish','English','Press A to confirm','PRESS','START'],
 }
 # Offset, capacity in bytes including 0xFF terminator, PT-BR, Spanish, English.
 MENU_ITEMS=[
@@ -54,6 +54,19 @@ def enc_menu(s:str)->bytes:
         else:raise ValueError(f'unsupported menu glyph {ch!r} in {s!r}')
     return bytes(out+[0xFF])
 
+def enc_selector_title(s:str)->bytes:
+    special={'ê':0x65,'é':0x64,'ñ':0x42,'Ê':0x41,'É':0x40,'Ñ':0x43,
+             'á':0x60,'í':0x66,'ó':0x67,'ú':0x6A,'Á':0x6D,'Í':0x66,
+             'Ó':0x75,'Ú':0x78}
+    out=[]
+    for ch in s:
+        if 'A'<=ch<='Z':out.append(ord(ch)-ord('A')+0x0A)
+        elif 'a'<=ch<='z':out.append(ord(ch)-ord('a')+0x24)
+        elif ch==' ':out.append(0x9E)
+        elif ch in special:out.append(special[ch])
+        else:raise ValueError(f'unsupported title glyph {ch!r} in {s!r}')
+    return bytes(out+[0xFF])
+
 def append_blob(out,cursor,blob):
     cursor=(cursor+3)&~3
     if cursor+len(blob)>LANG_CAPACITY:raise ValueError('.lang overflow')
@@ -88,10 +101,10 @@ def build_wrapper():
     p.label('preview_load')
     for i,slot in enumerate(PREVIEW_SLOTS):
         p.lwz(10,i*4,11);p.stw(10,slot,12)
-    for x,y,slot in ((72,203,0x58),(70,164,0x5C),(70,134,0x60),(70,104,0x64),(65,43,0x68)):
-        p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(PRINT_CENTER)
-    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,104);p.branch('marker')
-    p.label('marker_pt');p.li(4,164);p.branch('marker');p.label('marker_es');p.li(4,134)
+    for x,y,slot in ((76,195,0x58),(118,145,0x5C),(118,115,0x60),(118,85,0x64),(104,30,0x68)):
+        p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(0x82143110)
+    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,85);p.branch('marker')
+    p.label('marker_pt');p.li(4,145);p.branch('marker');p.label('marker_es');p.li(4,115)
     p.label('marker');p.li(3,14);p.lis(5,0x8305);p.ori(5,5,0xCA30);p.call(PRINT_CENTER);p.branch('epilogue')
     p.label('pass_original')
     # Preserve native no-controller behavior; ES/EN use localized prompt strings.
@@ -141,7 +154,7 @@ def patch_test11(pe:bytes,strict=True):
     for lang_id,texts in PREVIEW.items():
         ptrs=[]
         for text in texts:
-            va,cursor=append_blob(out,cursor,text.encode('ascii')+b'\0');ptrs.append(va)
+            va,cursor=append_blob(out,cursor,enc_selector_title(text));ptrs.append(va)
         cursor=(cursor+3)&~3
         if cursor+len(ptrs)*4>LANG_CAPACITY:raise ValueError('.lang overflow in preview table')
         table_off=LANG_RVA+cursor
@@ -172,4 +185,4 @@ def patch_test11(pe:bytes,strict=True):
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'hardware_validated':False}
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native glyph-map with accents','hardware_validated':False}
