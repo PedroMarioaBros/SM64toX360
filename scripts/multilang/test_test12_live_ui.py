@@ -28,7 +28,7 @@ class Test12LiveUI(unittest.TestCase):
         self.assertLessEqual(len(wrapper),CAVE)
         self.assertEqual(len(helper),108)
         self.assertEqual(hashlib.sha256(helper).hexdigest(),
-                         "9ce174dfc2ad3b7e04bd4a3a7247d0bfad9886900358d7c7ee5542b3434e046f")
+                         "1d86b3c85607d3b5a8ca011e66a667699b5155c4bb2f9aae3b2bba9375172d7f")
         self.assertLessEqual(len(helper),MENU_HELPER_CAP)
 
     def test_all_menu_translations_fit_original_string_buffers(self):
