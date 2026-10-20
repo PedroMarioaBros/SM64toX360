@@ -781,3 +781,10 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Workflow de CPU passou (4 testes estáticos + 5 PPC): [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39378188850).
 - Smoke Xenia Canary Linux com renderizador nulo: TEST11 e TEST12 ficaram executando por 8s sem fatal/exception, mas houve falhas de desenho esperadas do backend nulo; **não é validação visual**. Sem teste físico ainda.
 - Próximo passo: disponibilizar ZIP candidato e solicitar conferência visual/funcional no Xbox, mantendo TEST11 para rollback. 30 FPS e scratch B/Y preservados.
+
+
+## Pacote TEST12 de teste
+- Pacote ZIP preparado localmente: `SM64_TEST12_UI_TRILINGUE_CANDIDATA.zip`, SHA-256 `7eb04f6d65921bd002ae753ac3becbb08a3d8e97f72b5aed7f5c5fff6aade044`.
+- Inclui `default.xex`, `LEIA-ME_TEST12.txt`, `AUDITORIA_TEST12.json` e `SHA256SUMS.txt`.
+- XEX incluído SHA-256: `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`.
+- Candidata para conferência visual no Xbox; não final. O Xenia testado foi null-renderer, portanto não verificou visualmente o layout/acentos.
