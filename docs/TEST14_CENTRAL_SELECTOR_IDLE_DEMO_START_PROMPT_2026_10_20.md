@@ -68,3 +68,18 @@ Uma verificação adicional do patcher esclareceu que `0x821472D4` **já está r
 O hook adicional de TEST14 em `0x82147368` também não resolveu o prompt físico. Conclusão atual: o prompt visto durante a cutscene/attract demo vem de outro caminho de renderização ou estado que ainda não foi isolado. A próxima etapa é mapear os demais chamadores da função nativa `print_intro_text` (VA `0x82098D18`) e verificar o estado do idioma no caminho de demo, sem sobrescrever o hook de seleção.
 
 O teste de regressão voltou a ficar verde após remover a hipótese duplicada: [TEST12 Trilingual UI Static and CPU Tests — PASS, run 39427028860](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Isso valida o patcher e os testes de CPU, não resolve o prompt no hardware.
+
+
+## Complemento do proprietário — centralização confirmada e próxima investigação (20/10/2026)
+
+O proprietário acrescentou uma observação que não havia sido registrada no retorno anterior: **os textos da tela de seleção ficaram centralizados exatamente como ele queria**. Registrar como **PASS visual no Xbox físico** para o alinhamento horizontal dos textos do seletor. Não reabrir a centralização como pendência nem alterá-la na próxima candidata, salvo se outra mudança comprovadamente a afetar.
+
+### Próxima etapa técnica iniciada: diagnóstico, sem novo binário
+
+O retorno físico separa quatro fatos: (1) centralização correta; (2) seletor permanece aberto por mais de um minuto; (3) slots NEW/NUEVO/NOVO corretos; (4) G/U ainda cinza e prompt de demo em português após escolher English/Español. A mudança para maiúsculas já foi refutada no hardware e não deve ser repetida.
+
+Sobre o prompt: o wrapper TEST14 só substitui os caminhos conhecidos nos callsites `0x821472D4` e `0x82147368`, mas o segundo não resolveu o texto durante attract/demo e o primeiro já estava redirecionado na candidata. A próxima investigação é enumerar, a partir de bytes da PE mapeada correspondente à TEST14, os demais chamadores do destino nativo `print_intro_text` (`0x82098D18`) e rastrear como o estado/índice de idioma é lido durante demo. O mapeamento estático dos callsites ainda não foi concluído nesta etapa; não afirmar que o chamador alternativo já foi encontrado.
+
+Sobre G/U: a hipótese de caixa foi falsificada pelo teste físico. Não há ainda evidência suficiente para atribuir o cinza à paleta, ao atlas ou ao mapeamento de glifos. A investigação deve identificar a rotina efetiva usada pelos textos de prévia e comparar o tratamento de G/U com letras vizinhas, sem trocar o renderizador às cegas. A experiência anterior com `PRINT_CENTER` + formato de string incompatível não deve ser usada como prova contra o caminho ASCII/NUL de TEST13D/TEST14.
+
+**Nenhum XEX novo foi produzido nesta etapa.** A próxima build só deve ser montada após hipótese específica e verificável, testes estáticos/PPC verdes e auditoria dos hashes; base 30 FPS, PT-BR preservado, Native60 e dublagem fora do escopo.
