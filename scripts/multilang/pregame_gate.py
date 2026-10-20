@@ -151,7 +151,8 @@ def build() -> bytes:
     a.stw(10, 0x14, 30)
     a.li(10, 2)  # English is the default selection on every fresh boot.
     a.stw(10, 0x18, 30)
-    a.stw(0, 0x1C, 30)
+    a.li(10, 0)
+    a.stw(10, 0x1C, 30)
     a.branch("finish_frame")
 
     a.label("language")
