@@ -20,12 +20,13 @@ NOVO_HELPER_OFFSET=0x248
 NOVO_HELPER=WRAPPER+NOVO_HELPER_OFFSET
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
-# Preview labels remain on the original TEST12 call path (currently blank on hardware).
-# Do not switch them to PRINT_CENTER until the graphics path is understood.
+# The established color-font routine uses NUL-terminated strings. Its visual output is
+# still pending hardware confirmation; the desired final selector uses icons/flags.
 PREVIEW={
+  # Temporary ASCII labels for PRINT_GENERIC_STRING_FADE; final visual goal is arrow + flags.
   # Visible order is top-to-bottom: English, Spanish, Portuguese.
-  0:['Idiomas','Inglês','Espanhol','Português','Pressione A para confirmar','APERTE','START'],
-  1:['Idiomas','Inglés','Español','Portugués','Pulsa A para confirmar','PULSA','START'],
+  0:['Idiomas','Ingles','Espanhol','Portugues','Pressione A para confirmar','APERTE','START'],
+  1:['Idiomas','Ingles','Espanol','Portugues','Pulsa A para confirmar','PULSA','START'],
   2:['Languages','English','Spanish','Portuguese','Press A to confirm','PRESS','START'],
 }
 # Offset, capacity in bytes including 0xFF terminator, PT-BR, Spanish, English.
@@ -73,6 +74,13 @@ def enc_menu(s:str)->bytes:
         elif ch in ACC:out.append(ACC[ch])
         else:raise ValueError(f'unsupported menu glyph {ch!r} in {s!r}')
     return bytes(out+[0xFF])
+
+def enc_preview(s:str)->bytes:
+    """ASCII/NUL input for PRINT_GENERIC_STRING_FADE at 0x82143110."""
+    try:
+        return s.encode('ascii')+b'\\0'
+    except UnicodeEncodeError as exc:
+        raise ValueError(f'preview label must be ASCII: {s!r}') from exc
 
 def enc_selector_title(s:str)->bytes:
     special={'ê':0x65,'é':0x64,'ñ':0x42,'Ê':0x41,'É':0x40,'Ñ':0x43,
@@ -210,9 +218,8 @@ def patch_test11(pe:bytes,strict=True):
     for lang_id,texts in PREVIEW.items():
         ptrs=[]
         for i,text in enumerate(texts):
-            # First five are native glyph-map strings (0xFF terminator);
-            # final two are ASCII for the title color-font Start prompt (NUL).
-            raw=enc_selector_title(text) if i<5 else text.encode('ascii')+b'\0'
+            # All selector strings use the color font's NUL-terminated ASCII format.
+            raw=enc_preview(text) if i<5 else text.encode('ascii')+b'\0'
             va,cursor=append_blob(out,cursor,raw);ptrs.append(va)
         cursor=(cursor+3)&~3
         if cursor+len(ptrs)*4>LANG_CAPACITY:raise ValueError('.lang overflow in preview table')
@@ -257,4 +264,4 @@ def patch_test11(pe:bytes,strict=True):
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'TEST12 preview call retained; safe icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'color font with ASCII/NUL preview strings; icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
