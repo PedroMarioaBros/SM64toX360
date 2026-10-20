@@ -41,7 +41,7 @@ class Test12LiveUI(unittest.TestCase):
         for texts in PREVIEW.values():
             for label in texts[:5]:
                 raw=enc_preview(label)
-                self.assertTrue(raw.endswith(b'\\0'))
+                self.assertTrue(raw.endswith(b'\0'))
                 self.assertNotIn(0xFF,raw)
                 self.assertEqual(raw[:-1].decode('ascii'),label)
 
