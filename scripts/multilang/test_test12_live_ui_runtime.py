@@ -74,6 +74,10 @@ def cpu(selected=2,button=0,state=0):
             # Initialize each target with the PT-BR bytes so a translation is observable.
             u.mem_write(0x82000000+off,ui.enc_menu(pt))
         w32(u,LANG+0xA0+lang_id*4,row)
+    for lang_id,label in ((0,"NOVO"),(1,"NUEVO"),(2,"NEW")):
+        ptr=LANG+0x15000+lang_id*0x100
+        u.mem_write(ptr,ui.enc_menu(label))
+        w32(u,LANG+ui.NOVO_STATUS_PTRS_OFF+lang_id*4,ptr)
     w32(u,PAD_GLOBAL,PAD)
     w16(u,PAD+0x12,button)
     u.reg_write(REG[1],0x84018000)
@@ -129,6 +133,22 @@ class Test12LiveUIRuntime(unittest.TestCase):
             self.assertEqual(bytes(u.mem_read(LANG+0x80,8)),b"BY-STATE")
             self.assertEqual(u.reg_read(REG[30]),0x12345678)
             self.assertEqual(u.reg_read(REG[31]),0x87654321)
+
+    def test_empty_save_slot_status_pointer_tracks_each_language(self):
+        for lang_id,label in ((0,"NOVO"),(1,"NUEVO"),(2,"NEW")):
+            u,printed,original=cpu(lang_id,0,0)
+            ptr=LANG+0x15000+lang_id*0x100
+            u.mem_write(ui.NOVO_HELPER,ui.build_novo_pointer_helper())
+            u.reg_write(REG[0],0xCAFEBABE)
+            u.reg_write(REG[10],0x10203040)
+            u.reg_write(REG[11],0x87654321)
+            u.reg_write(cp.UC_PPC_REG_LR,STOP)
+            u.emu_start(ui.NOVO_HELPER,STOP+4,count=2000)
+            self.assertEqual(u.reg_read(REG[6]),ptr)
+            self.assertEqual(bytes(u.mem_read(ptr,len(ui.enc_menu(label)))),ui.enc_menu(label))
+            self.assertEqual(u.reg_read(REG[0]),0xCAFEBABE)
+            self.assertEqual(u.reg_read(REG[10]),0x10203040)
+            self.assertEqual(u.reg_read(REG[11]),0x87654321)
 
     def test_A_in_Portuguese_preserves_native_prompt_and_localizes_menu(self):
         u,printed,original=cpu(0,0x8000|0x1000,0)
