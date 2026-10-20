@@ -243,3 +243,8 @@ Os testes automatizados voltaram a passar após remover a hipótese duplicada: [
 ## Complemento do retorno físico TEST14 — 20/10/2026
 
 **Centralização confirmada pelo proprietário:** os textos do seletor ficaram centralizados exatamente como desejado. Marcar como PASS no Xbox; não é mais pendência. Também estão confirmados o bloqueio de cutscene enquanto o seletor fica aberto por mais de um minuto e os slots NEW/NUEVO/NOVO. G/U permanecem cinza mesmo em maiúsculas; e o attract/demo mostra APERTE START depois de selecionar English/Español. Próximo diagnóstico: enumerar, a partir da PE mapeada TEST14, outros chamadores de `print_intro_text` (VA `0x82098D18`) e rastrear o estado de idioma no demo; investigar a rotina/índice de glifos para G/U. Ainda não foi encontrada a causa final nem gerado XEX novo. Não declarar correção até teste físico.
+
+
+## Ferramenta técnica preparada nesta retomada (20/10/2026)
+
+Foi adicionado um scanner somente leitura para procurar candidatos de chamadas PPC a print_intro_text na PE mapeada, com testes sintéticos. CI dos testes do scanner e validação de fontes passaram: [scanner-tests](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369587) e [validate-sources](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369450). **Ainda não foi executado na PE real TEST14**, pois o pacote ZIP contém somente default.xex, README e auditoria; nenhum chamador novo foi identificado e nenhuma XEX nova foi gerada.
