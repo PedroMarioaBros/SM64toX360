@@ -809,3 +809,16 @@ Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs 
 - Variante local exploratória (não final): mapped PE SHA-256 `60ca28a136aa33ae3c93182786493949a1b9fa40766c77b218de3a27abc8e8ae`; XEX SHA-256 `bf6f51fd27cb302ef477f59244b04d634a029116d0c379cc3080b13f81eab16b`; roundtrip PE idêntico, Xenia null backend 14 s sem crash dump, sem validação visual/hardware.
 - Direção visual aprovada pelo proprietário: seletor sem texto com seta à esquerda e ícones/bandeiras EUA, Espanha e Brasil; ordem inglês → espanhol → português; default English. Não entregar essa direção até o caminho gráfico/sprite ser demonstrado com segurança.
 - Próximas ações: auditar o pipeline de frame atual (`INIT_RCP`, `RENDER_GAME`, `CREATE_DL_ORTHO`, `PRINT_GENERIC_STRING_FADE`, `END_MASTER_DISPLAY_LIST`, `ALLOC_DISPLAY_LIST`), provar desenho com limite de memória e retorno de alpha/display-list, adicionar testes PPC e só então empacotar. Não misturar Native60 nem dublagem.
+
+
+## Checkpoint — TEST13D, renderizador de título + ASCII/NUL (20/10/2026)
+
+- Source HEAD before this checkpoint: `983aeeb4931fcc63593b3f5a0c4eb1424da3349d`; branch `feature/multilang-dub-30fps`.
+- Source change: preview calls now target `PRINT_CENTER=0x8212B498`, the native centered title text routine proven on TEST8/TEST9. The 5 selector strings use ASCII + NUL, not the N64 glyph-map + `0xFF`. The earlier PRINT_CENTER experiment that crashed Xenia used the wrong FF-terminated strings, so that failure no longer demonstrates the corrected path is unsafe.
+- CI verified source/runtime: [TEST12 Trilingual UI Static and CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009924) PASS; [Multilang Static Check](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009889) PASS.
+- Experimental XEX packaged from the user-hardware-validated TEST12 PE with localized slot pointer fix and ASCII/NUL preview strings. ZIP `SM64_TEST13D_SELETOR_ASCII_SLOTS_TRILINGUE_CANDIDATA_30FPS.zip`, SHA-256 `19948048bcddaf985a90d739822278a71f9964518e966317ebca4e6c17f0c3bb`.
+- XEX SHA-256 `8f66a77718c033b409d85548fd456f48ec70999a824afa046555c4fc51d47524`; mapped PE SHA-256 `0063a6dedb10b780c4e558f77af148bbf61bef0ae780f72647c112c2f44def9e`; payload decrypt/PE compare exact PASS; ZIP CRC PASS.
+- TEST13D retained TEST12 navigation / activation / translated menu path and implemented the empty-save-slot status pointer as PT `NOVO`, ES `NUEVO`, EN `NEW`. Static precheck confirmed all first-five preview strings ASCII/NUL in each language row and no changes to `.lang+0x80..0x87` B/Y scratch or global hook `0xCD128`.
+- Xenia 16-second trial: process ran until external timeout exit 124, no guest Access Violation nor KeBugCheck during that interval, but Vulkan initialization failed `ErrorIncompatibleDriver` and PM4 backend draws failed. Result: crash-screen preflight only; **not** a successful visual Xenia pass. Must not claim the text is visible until Xbox hardware observation.
+- TEST13D is an interim validation candidate, not a release. It does not implement the final arrow + US/Spain/Brazil flags. Accentless strings (`Ingles/Espanol/Portugues`) are temporary.
+- If the physical test finds no strings or a crash, rollback to TEST12 and record exact point. Do not mix Native60 or dubbing.
