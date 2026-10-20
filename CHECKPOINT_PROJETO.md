@@ -951,6 +951,6 @@ Este bloco é o ponto de retomada mais recente; complementa os checkpoints hist�
 2. Verificar que centralização X=160, espera antes de A e slots NOVO/NUEVO/NEW continuam funcionando.
 3. Se aparecer tela preta/crash, parar e voltar a TEST14.
 4. G/U cinzentas seguem pendentes; não afirmar que foram corrigidas.
-5. Consultar o workflow CI `TEST15 prompt patch static tests`; testes são sintéticos e não substituem o Xbox físico.
+5. Workflow CI `TEST15 prompt patch static tests`: **PASS (5/5 testes sintéticos)** — https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460. Esses testes não substituem o Xbox físico.
 
 Relatório: [docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md](docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). Estado resumido: [docs/STATUS_PARA_PEDRO.md](docs/STATUS_PARA_PEDRO.md).
