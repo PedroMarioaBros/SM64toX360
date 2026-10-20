@@ -213,3 +213,8 @@ Não declarar os problemas concluídos: o bloqueio de idle e os slots estão con
 A auditoria do patcher mostrou que o callsite `0x821472D4` de `intro_regular` já está redirecionado ao wrapper do seletor na TEST14 (`48275a2d` → `0x823BCD00)); portanto, não ficou intacto e não deve receber um segundo hook. A tentativa de duplicar esse hook foi removida antes de qualquer nova XEX. O hook adicional em `0x82147368` não resolveu o prompt observado no attract/cutscene. O caminho real ainda precisa ser isolado entre os demais chamadores de `print_intro_text` (VA `0x82098D18`) e o estado usado no demo.
 
 Os testes automatizados voltaram a passar após remover a hipótese duplicada: [TEST12 UI tests — run 39427028860 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Isso não é confirmação física nem correção do prompt.
+
+
+## Complemento do retorno físico TEST14 — 20/10/2026
+
+**Centralização confirmada pelo proprietário:** os textos do seletor ficaram centralizados exatamente como desejado. Marcar como PASS no Xbox; não é mais pendência. Também estão confirmados o bloqueio de cutscene enquanto o seletor fica aberto por mais de um minuto e os slots NEW/NUEVO/NOVO. G/U permanecem cinza mesmo em maiúsculas; e o attract/demo mostra APERTE START depois de selecionar English/Español. Próximo diagnóstico: enumerar, a partir da PE mapeada TEST14, outros chamadores de `print_intro_text` (VA `0x82098D18`) e rastrear o estado de idioma no demo; investigar a rotina/índice de glifos para G/U. Ainda não foi encontrada a causa final nem gerado XEX novo. Não declarar correção até teste físico.
