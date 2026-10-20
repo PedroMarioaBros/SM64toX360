@@ -86,7 +86,7 @@ def cpu(selected=2,button=0,state=0):
             if addr in (PRINT,PRINT_TITLE):
                 x,y,p=(emu.reg_read(REG[k]) for k in (3,4,5))
                 raw=bytes(emu.mem_read(p,128))
-                ff=raw.find(b"\\xff");nul=raw.find(b"\\0")
+                ff=raw.find(bytes([255]));nul=raw.find(bytes([0]))
                 text=decode_selector(emu,p) if ff>=0 and (nul<0 or ff<nul) else cstr(emu,p)
                 printed.append((text,x,y))
             elif addr==ORIGINAL:original.append(True)
