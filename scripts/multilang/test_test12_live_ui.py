@@ -26,7 +26,7 @@ class Test12LiveUI(unittest.TestCase):
         novo_helper=build_novo_pointer_helper()
         self.assertEqual(len(wrapper),596)
         self.assertEqual(wrapper.count(bytes.fromhex("386000a0")),5)  # all five lines centered at x=160
-        self.assertIn(bytes.fromhex("3d6082e539400000b15b2fe8"),wrapper)  # suppress idle demo timer
+        self.assertIn(bytes.fromhex("3d6082e539400000b14b2fe8"),wrapper)  # suppress idle demo timer
         self.assertEqual(PREVIEW_DRAW_CALL,0x8212B498)
         self.assertLessEqual(len(wrapper),CAVE)
         self.assertEqual(len(helper),108)
