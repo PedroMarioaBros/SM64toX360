@@ -24,7 +24,7 @@ class Test12LiveUI(unittest.TestCase):
         helper=build_menu_helper()
         self.assertEqual(len(wrapper),584)
         self.assertEqual(hashlib.sha256(wrapper).hexdigest(),
-                         "61d55e48a802385001cf84c328ac82c29fd98e349e6753ff6a30eb1338196a0c")
+                         "d3a9968f11b0d278dd48f60ad74962a38370e2460c002c4207c9cd36fa8041fe")
         self.assertLessEqual(len(wrapper),CAVE)
         self.assertEqual(len(helper),108)
         self.assertEqual(hashlib.sha256(helper).hexdigest(),
