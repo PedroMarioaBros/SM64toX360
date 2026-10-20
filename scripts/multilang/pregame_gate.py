@@ -149,12 +149,30 @@ def build() -> bytes:
     a.label("to_language")
     a.li(10, 1)
     a.stw(10, 0x14, 30)
-    a.li(10, 0)
+    a.li(10, 2)  # English is the default selection on every fresh boot.
     a.stw(10, 0x18, 30)
-    a.stw(10, 0x1C, 30)
+    a.stw(0, 0x1C, 30)
     a.branch("finish_frame")
 
     a.label("language")
+    # Refresh all five selector text pointers from the language highlighted now.
+    # Table .lang+0x70 rows: title, Portuguese, Spanish, English, confirm.
+    a.lwz(10, 0x18, 30)
+    a.cmpwi(10, 0)
+    a.branch("preview_pt", "beq")
+    a.cmpwi(10, 1)
+    a.branch("preview_es", "beq")
+    a.addi(11, 30, 0x98)
+    a.branch("preview_load")
+    a.label("preview_pt")
+    a.addi(11, 30, 0x70)
+    a.branch("preview_load")
+    a.label("preview_es")
+    a.addi(11, 30, 0x84)
+    a.label("preview_load")
+    for i in range(5):
+        a.lwz(10, i * 4, 11)
+        a.stw(10, 0x58 + i * 4, 30)
     for x, y, off in (
         (76, 195, 0x58),
         (118, 145, 0x5C),
