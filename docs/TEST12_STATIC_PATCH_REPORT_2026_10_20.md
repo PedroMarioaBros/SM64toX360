@@ -51,3 +51,15 @@ Foi empacotada uma variante local de investigação com apenas a correção do r
 
 ### Próximo passo seguro
 Manter as correções de ponteiro para `NOVO/NUEVO/NEW`; não trocar o caminho de desenho de rótulos por `PRINT_CENTER` sem isolar o crash. Continuar investigando o pipeline gráfico para a seletora sem texto — seta e bandeiras EUA/Espanha/Brasil — usando os pontos de entrada de frame/render já documentados, com limites claros de alteração e testes antes de empacotar uma nova XEX. A baseline é 30 FPS; dublagem e Native60 continuam fora desta fase.
+
+
+## Correção de interpretação após o teste de string ASCII/NUL — 20/10/2026
+
+O experimento anterior que retargetou as cinco chamadas de seletor para `PRINT_CENTER=0x8212B498` falhou enquanto as strings ainda usavam o terminador de diálogo N64 `0xFF`. Não se deve tratar aquele crash como prova de que o renderizador nativo é inviável. O ponto de entrada de texto centralizado é o mesmo já observado no título TEST8/TEST9, e seu formato é ASCII terminado em NUL. A combinação coerente (renderizador de título + strings ASCII/NUL) agora está implementada no patcher e protegida por teste de fingerprint, com o wrapper de 584 bytes esperado SHA-256 `fc08f1baafa5e8949a56f25483a0feb9f2d972e01fc727a56f28a4bc9a0b0b20`.
+
+### Evidência da revisão atual
+- [TEST12 Trilingual UI Static and CPU Tests — run 39386009924](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009924): PASS no commit `983aeeb4931fcc63593b3f5a0c4eb1424da3349d`.
+- [Multilang Static Check — run 39386009889](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009889): PASS no mesmo commit.
+- TEST13D XEX foi empacotada a partir de TEST12 depois de acrescentar rótulos ASCII/NUL e os ponteiros `NOVO/NUEVO/NEW`. A descriptografia completa do payload XEX2 produziu uma PE byte-idêntica (hash `0063a6dedb10b780c4e558f77af148bbf61bef0ae780f72647c112c2f44def9e`); hash XEX `8f66a77718c033b409d85548fd456f48ec70999a824afa046555c4fc51d47524`; ZIP CRC PASS.
+- Xenia Canary Linux permaneceu ativo por 16 s até o timeout externo, sem Access Violation ou KeBugCheck no período. Porém, o driver Vulkan falhou com `ErrorIncompatibleDriver` e muitos draws tiveram falha do backend PM4. Portanto, essa execução não dá PASS gráfico nem comprova que os rótulos aparecem.
+- A correção do terminador é uma hipótese tecnicamente testável. Somente hardware ou um ambiente Xenia com driver de renderização compatível poderá confirmar a imagem final. A direção visual de seta + bandeiras segue pendente.
