@@ -195,3 +195,15 @@ Os workflows do código passaram:
 **Não marcar como corrigido ainda:** centralização, ausência de glifos cinza, manutenção do seletor sem cutscene até A e prompt localizado em demos/cutscenes exigem confirmação física em TEST14. Não foi reivindicado PASS visual/Xbox desta candidata.
 
 Pacote de teste: `SM64_TEST14_CENTER_SELECTOR_IDLE_DEMO_START_PROMPT_30FPS.zip`, disponibilizado nesta conversa. Roteiro completo e hashes: [relatório TEST14](TEST14_CENTRAL_SELECTOR_IDLE_DEMO_START_PROMPT_2026_10_20.md).
+
+## Retorno físico TEST14 e correção de escopo do prompt — 20/10/2026
+
+O proprietário confirmou no Xbox:
+- Seletor ocioso por mais de 1 minuto sem cutscene: **PASS**.
+- Slots vazios NEW / NUEVO / NOVO: **PASS**.
+- Letras G e U ainda cinza mesmo em maiúsculas: **FAIL**; a hipótese de que bastava trocar caixa foi refutada.
+- Depois de escolher English/Español, a tela inicial mostra o prompt no idioma certo, mas o attract/cutscene volta a mostrar APERTE START: **FAIL**.
+
+Diagnóstico com base no registro TEST7: a TEST14 só redirecionava `intro_game_over` em `0x82147368`; o caminho `intro_regular` em `0x821472D4` continuava intacto e é um candidato forte para o prompt que aparece durante o attract/demo. O patcher agora inclui hook para o callsite regular além do hook de Game Over. Os testes automatizados precisam confirmar essa mudança antes de produzir outro XEX.
+
+Não declarar os problemas concluídos: o bloqueio de idle e os slots estão confirmados; G/U cinza e prompt em cutscenes permanecem pendentes. O próximo trabalho é validar o hook de `intro_regular` e investigar a fonte/paleta/mapeamento dos glifos em vez de repetir apenas a troca para maiúsculas. TEST12 e TEST13D preservadas como rollback; 30 FPS, sem Native60 nem dublagem.
