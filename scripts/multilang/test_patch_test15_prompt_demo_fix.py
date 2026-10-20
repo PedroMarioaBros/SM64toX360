@@ -53,7 +53,7 @@ class Test15PromptPatch(unittest.TestCase):
         self.assertEqual(len(final), PE_LEN)
         self.assertEqual(branch_dest(CALLSITE, get_word(final, CALLSITE_RVA)), PROMPT_WRAPPER)
         self.assertEqual(get_word(final, MAIN_WRAPPER_NULL_BRANCH_RVA), NOP)
-        self.assertEqual(final[PROMPT_CAVE_START:PROMPT_CAVE_START+124], build_prompt_wrapper())
+        self.assertEqual(final[PROMPT_WRAPPER_RVA:PROMPT_WRAPPER_RVA+124], build_prompt_wrapper())
         self.assertEqual(final[0x1040100:0x10406F0], source[0x1040100:0x10406F0])
         self.assertEqual(final[0x1040080:0x1040088], source[0x1040080:0x1040088])
         self.assertEqual(final[0xCD128:0xCD12C], source[0xCD128:0xCD12C])
