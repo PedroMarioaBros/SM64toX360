@@ -834,3 +834,26 @@ Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs 
 - Corrigir o prompt “APERTE START” nas cutscenes e demais estados: deve acompanhar o idioma selecionado inclusive após confirmar Español ou English; mapear todos os caminhos de renderização, não apenas o caminho de título coberto até agora.
 
 A versão TEST13D não é final. TEST12 permanece como rollback. Base 30 FPS; Native60 e dublagem continuam fora do escopo desta etapa. Próximo passo técnico: inspecionar as coordenadas usadas por PRINT_CENTER, o mapeamento de caracteres/fonte que produz glifos cinza, o contador/ramo que dispara cutscenes por inatividade e as rotinas alternativas que imprimem o prompt Start. Criar testes estáticos/runtime para cada correção e só então gerar outra candidata com hashes e roteiro de teste específico.
+
+## Checkpoint TEST14 — 20/10/2026
+
+### O que foi preparado
+A candidata TEST14 foi empacotada localmente partindo da PE mapeada TEST13D fisicamente testada e relatada pelo proprietário. Corrige, em código:
+- X=160 nos cinco textos do seletor para centralização horizontal;
+- rótulos e instruções da prévia em ASCII maiúsculo para evitar os glifos minúsculos cinza (sem promessa de confirmação visual até hardware);
+- reset do contador de attract/demo 0x82E52FE8 apenas enquanto o seletor permanece no estado 0, evitando a transição de idle antes de A;
+- chamada de prompt alternativa em 0x82147368 (intro_game_over) redirecionada ao wrapper trilíngue de 0x823BCD00;
+- helper NOVO/NUEVO/NEW realocado para 0x823BCB70, depois do helper de menu de 108 bytes, preservando ambos os auxiliares.
+
+### Hashes e verificação
+- Input TEST13D PE: 0063a6dedb10b780c4e558f77af148bbf61bef0ae780f72647c112c2f44def9e
+- Output TEST14 PE: 6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742
+- TEST14 XEX: a8f4aac287cafb7ddd68a2563284cc5583c9f318c4645704cab6d5cd6ccddbcb
+- TEST14 ZIP: 706603e38aa12ae34868eab327b6073cb6881628179507e444f2fafa0fafc858
+- ZIP CRC e extração XEX2 Basic → PE byte a byte: PASS.
+- TEST12 Trilingual UI Static and CPU Tests: [run 39423432009 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39423432009).
+- Multilang Static Check: [run 39423432106 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39423432106).
+
+**Limite obrigatório:** TEST14 ainda não foi testada no Xbox físico. Esses testes não garantem alinhamento visual, cor de glifos, bloqueio de demos nem texto de Start em cutscenes. A próxima ação é teste físico específico desta candidata. Preservar TEST12 e TEST13D como rollback; manter base 30 FPS e dublagem/Native60 fora do escopo.
+
+Artefato entregue no chat: SM64_TEST14_CENTER_SELECTOR_IDLE_DEMO_START_PROMPT_30FPS.zip. Roteiro/hashes em docs/TEST14_CENTRAL_SELECTOR_IDLE_DEMO_START_PROMPT_2026_10_20.md e docs/STATUS_PARA_PEDRO.md.
