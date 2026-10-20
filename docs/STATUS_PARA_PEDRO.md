@@ -117,3 +117,10 @@ Os testes automatizados da variante `pregame_gate.py` passaram após implementar
 Foi criado `scripts/multilang/test12_live_ui.py` como patcher específico para a PE mapeada da TEST11, com hash de entrada fixado. Ele gera uma PE candidata de auditoria (hash `50fd4a1f07dcfccd232debfa48e656ac3618b2a3d6a676ca570c12888224ec30`), com wrapper de 564 bytes, auxiliar de menu de 108 bytes, English como padrão, prévia dinâmica, prompt Start localizado e 21 strings do menu de saves. A workflow de CPU [TEST12 Trilingual UI Static and CPU Tests](https://github.com/PedroMarioaBros/SM64toX360/actions/workflows/test-test12-live-ui.yml) passou, incluindo execução das instruções PPC do wrapper e auxiliar.
 
 **Ainda não é uma build para o Xbox:** a PE candidata ainda não foi empacotada em XEX nem testada em Xenia/hardware. A prévia da fonte colorida usa transliterações sem acentos (INGLES/ESPANOL/PORTUGUES); a compatibilidade segura dos glifos acentuados ainda precisa ser resolvida antes de considerar a interface concluída. O scratch B/Y e o hook global foram verificados como preservados. Relatório: [TEST12 patch estático](TEST12_STATIC_PATCH_REPORT_2026_10_20.md).
+
+
+## Correção TEST12 — ordem visual e acentos, 20/10/2026
+
+A implementação foi refinada após comparar a ordem com o relato físico: no renderizador da tela, a coordenada maior corresponde à linha superior. Agora as linhas visuais são **English (topo) → Español (meio) → Português (baixo)**; o cursor começa em English (ID interno 2), DOWN percorre English → Español → Português e UP percorre o sentido inverso. As strings do seletor agora usam o renderizador nativo com mapa de glifos, incluindo os acentos solicitados. A workflow [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39377225771) passou com 9 testes (4 estáticos + 5 PPC).
+
+A PE candidata local mais recente tem SHA-256 `a71a6409b42de7e03db856654ba44540b462d3d71c5b650c6eb01c939ec6226b`. Ainda é PE mapeada, não XEX. O próximo passo é empacotar a XEX, fazer smoke test em Xenia e só então entregar para teste físico. Não pedir ao proprietário para testar um arquivo que ainda não foi gerado/validado.
