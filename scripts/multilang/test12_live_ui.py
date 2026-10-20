@@ -78,7 +78,7 @@ def enc_menu(s:str)->bytes:
 def enc_preview(s:str)->bytes:
     """ASCII/NUL input for PRINT_GENERIC_STRING_FADE at 0x82143110."""
     try:
-        return s.encode('ascii')+b'\\0'
+        return s.encode('ascii')+b'\0'
     except UnicodeEncodeError as exc:
         raise ValueError(f'preview label must be ASCII: {s!r}') from exc
 
