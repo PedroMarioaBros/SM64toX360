@@ -103,3 +103,10 @@ Permanecem requisitos pendentes para a próxima versão:
 4. O menu de seleção de arquivos de save (file-select), incluindo os rótulos e instruções visíveis, também deve acompanhar o idioma selecionado.
 
 Status técnico honesto: a tradução dos textos internos para os três idiomas foi confirmada pelo proprietário; o seletor dinâmico, o prompt Start e o file-select ainda não estão corrigidos/validados. Nenhum novo XEX foi gerado nesta atualização. Antes de editar o XEX, mapear as strings/rotinas reais no PE Xbox 360 e criar verificações estáticas seguras; não importar endereços N64/MIPS.
+
+
+## Progresso técnico — mapeamento da PE TEST11, 20/10/2026
+
+A PE mapeada da TEST11 foi recuperada do pacote da biblioteca e validada pelo SHA-256 registrado na auditoria: `a52da425c9cf294e9005fc4cce95b0c02b015f9ea2b0f88ea17df268c52b9ecd`. O wrapper real do seletor está em `0x823BCD00` (384 bytes; hash conhecido), e foi confirmado um cave auxiliar zerado em `0x823BCB00–0x823BCBFF`. Também foram mapeadas as strings reais do prompt Start e do menu de saves. Relatório: [mapa estático TEST11](TEST11_UI_TEXT_MAP_2026_10_20.md).
+
+Os testes automatizados da variante `pregame_gate.py` passaram após implementar o padrão English e a troca de ponteiros da prévia dinâmica. **Limite importante:** essa é uma variante alternativa, não o wrapper físico TEST11; não contar isso como nova build nem como correção já visível no console. A próxima implementação deve ser aplicada ao wrapper TEST11 `0x823BCD00`, mantendo `.lang+0x80–0x87` intocado (scratch B/Y), e precisa testar a seleção dinâmica, prompt Start e strings do file-select. Nenhum novo XEX foi gerado.
