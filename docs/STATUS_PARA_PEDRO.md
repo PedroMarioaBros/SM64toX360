@@ -57,3 +57,11 @@ O problema do seletor é independente: retomar a rotina Press Start correta conf
 > Leia o HEAD de `feature/multilang-dub-30fps`, `AGENTS.md`, `PONTO_DE_RETOMADA.md` e `CHECKPOINT_PROJETO.md`. Preserve a base 30 FPS, PT-BR original, saves e versões aprovadas no Xbox. Continue da próxima evidência técnica pendente, registre resultados e commits no GitHub. Não invente XEX, vozes extraídas ou validação física.
 
 **Pronto para seu Xbox somente quando:** pacote de teste real existir, com SHA-256 e roteiro claro; após teste físico, registrar boot, idioma, áudio, saves e regressões.
+
+## Diagnóstico técnico mais recente — 20/10/2026
+
+A leitura estática dos scripts identificou uma lacuna específica: o gate recebe a seleção e chama a rotina que troca os 170 ponteiros de diálogo, mas essa rotina não traduz por si só o prompt “APERTE START” nem os rótulos do menu de saves. Os testes de ativação existentes cobrem os ponteiros de diálogo, não esses textos da interface. Isso é coerente com o teste físico, mas ainda não é prova de falha na troca dos 170 diálogos.
+
+Relatório técnico: [LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md](LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md).
+
+**Trabalho desta etapa:** análise de código e documentação; nenhum PE/XEX foi modificado/gerado e nenhum teste novo de Xenia/hardware foi executado. Próximo passo é mapear os textos e rotinas reais no PE Xbox 360 usando bytes recuperados, antes de montar outra candidata.
