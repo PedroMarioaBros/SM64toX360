@@ -886,3 +886,13 @@ CI depois da remoção da hipótese duplicada: [TEST12 UI tests — run 39427028
 - Próxima tarefa dos glifos: localizar o caminho real de renderização da prévia e comparar codificação/índice/paleta dos caracteres G/U com letras vizinhas. A tentativa uppercase falhou no console. Não mudar renderer ou encoding sem evidência.
 - Nenhum binário novo produzido; nenhum teste visual/emulador novo executado. Não entregar outro XEX até haver correção específica, CI estático/PPC PASS e hashes/auditoria completos.
 - Restrições mantidas: branch feature/multilang-dub-30fps, base 30 FPS, preservar PT-BR, não misturar Native60, dublagem fora de escopo até seletor/textos concluídos.
+
+
+## Continuidade — investigação TEST14 retomada (20/10/2026)
+
+- Registro físico de centralização publicado em `docs/TEST14_CENTRAL_SELECTOR_IDLE_DEMO_START_PROMPT_2026_10_20.md`, `docs/STATUS_PARA_PEDRO.md` e neste checkpoint. Commit do relatório: `0c9f075dd68bb0c01a0348893a87ababd821e557`; status: `70007b3e71aec20d1443be782bcadd073c80ec30`; checkpoint anterior: `7095d8e0a21da49f1812c39f13ba8446d077450e`.
+- Ajuste de documentação do código para refletir o resultado físico: `scripts/multilang/test12_live_ui.py` agora explicita que ASCII maiúsculo é provisório e não corrigiu G/U; a docstring também aponta para o renderer centrado `0x8212B498`, não para o renderer antigo. Commit `967caed4f6d17b89617a24294631d0177dba1ba1`.
+- Teste renomeado/mensagem ajustada para que a asserção de maiúsculas não seja confundida com prova de correção dos glifos. Commit `54905b81f2bb13617cee45707129a1cf97f5c482`.
+- Estes dois commits de código são apenas correções de comentários/clareza de teste; **não mudam instruções PPC nem geram XEX**. Nenhuma causa nova foi provada ainda. Não contar isso como correção funcional dos dois bloqueios.
+- Próximo trabalho técnico: recuperar/obter a PE mapeada exata da TEST14 (17.170.432 bytes; SHA-256 `6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742`) em ambiente de análise; varrer instruções PPC para referências a `0x82098D18`, validando cada branch/link e possível indireção, e mapear o caminho de demo. Em paralelo, rastrear o renderer/atlas e a fonte do texto centrado para explicar G/U cinza. Não declarar a varredura feita enquanto a PE exata não estiver carregada e analisada.
+- Status desta retomada: documentação remota atualizada; correções de descrição/teste publicadas; **nenhuma nova validação CI foi consultada após esses dois commits**, nenhum binário novo e nenhum teste físico adicional. Centralização, idle bloqueado e slots seguem PASS físicos; G/U e prompt demo seguem FAIL.
