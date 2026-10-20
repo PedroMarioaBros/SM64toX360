@@ -1,4 +1,4 @@
-name: TEST12 Trilingual UI Static Patch Tests
+name: TEST12 Trilingual UI Static and CPU Tests
 on:
   push:
     branches:
@@ -6,6 +6,7 @@ on:
     paths:
       - scripts/multilang/test12_live_ui.py
       - scripts/multilang/test_test12_live_ui.py
+      - scripts/multilang/test_test12_live_ui_runtime.py
       - scripts/multilang/test9_selector_native.py
       - .github/workflows/test-test12-live-ui.yml
   workflow_dispatch:
@@ -14,5 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run deterministic UI patcher tests
-        run: python3 -m unittest discover -s scripts/multilang -p 'test_test12_live_ui.py' -v
+      - name: Install pinned PowerPC Unicorn runtime
+        run: python3 -m pip install --disable-pip-version-check unicorn==2.1.4
+      - name: Run patcher, bounds and real PPC instruction tests
+        run: |
+          python3 -m unittest discover -s scripts/multilang -p 'test_test12_live_ui.py' -v
+          python3 -m unittest discover -s scripts/multilang -p 'test_test12_live_ui_runtime.py' -v
