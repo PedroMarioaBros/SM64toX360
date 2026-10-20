@@ -60,3 +60,11 @@ A candidata TEST14 redirecionou somente `intro_game_over` em VA `0x82147368`. O 
 ### Próxima correção visual
 
 Não considerar “ASCII maiúsculo” solução para o G/U cinza. Identificar a rotina que efetivamente desenha a prévia e verificar se ela usa uma fonte/paleta ou índice de glifo em que G/U estão mapeados para a cor cinza. Só depois preparar uma mudança específica e testável. Nenhuma afirmação de correção visual até confirmação no Xbox.
+
+## Correção do diagnóstico de callsite — 20/10/2026
+
+Uma verificação adicional do patcher esclareceu que `0x821472D4` **já está redirecionado para o wrapper do seletor** na TEST14: a instrução `48275a2d` é exatamente o branch-and-link de `intro_regular` para `0x823BCD00`. Portanto, não é correto afirmar que o callsite regular ficou intacto nem instalar um segundo hook nele. A tentativa de adicionar um hook duplicado foi removida antes de gerar qualquer nova XEX; o fixture de teste exige que o branch do seletor original continue preservado.
+
+O hook adicional de TEST14 em `0x82147368` também não resolveu o prompt físico. Conclusão atual: o prompt visto durante a cutscene/attract demo vem de outro caminho de renderização ou estado que ainda não foi isolado. A próxima etapa é mapear os demais chamadores da função nativa `print_intro_text` (VA `0x82098D18`) e verificar o estado do idioma no caminho de demo, sem sobrescrever o hook de seleção.
+
+O teste de regressão voltou a ficar verde após remover a hipótese duplicada: [TEST12 Trilingual UI Static and CPU Tests — PASS, run 39427028860](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Isso valida o patcher e os testes de CPU, não resolve o prompt no hardware.
