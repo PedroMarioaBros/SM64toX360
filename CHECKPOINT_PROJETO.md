@@ -713,3 +713,10 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Relatório publicado: [docs/LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md](docs/LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md), commit do relatório `1b5111523bc16f14cae879940e939d81fb600b92`.
 - Nenhum PE/XEX foi alterado ou gerado, e nenhum novo teste de emulação/hardware foi executado nesta etapa.
 - Próxima ação: obter bytes reais da base/TEST11 e mapear por varredura estática os textos nativos e suas rotinas de renderização no PE Xbox 360. Só depois projetar patch para Press Start e file-select com testes fail-closed. Não transferir endereços da versão N64/MIPS. Manter TEST11 como referência física e não pedir novo teste ao proprietário ainda.
+
+
+## 20/10/2026 — confirmação adicional de idioma English em hardware
+- Relato direto do proprietário: escolheu English no seletor da TEST11 e confirmou com A. O prompt pós-seleção continuou “APERTE START”, mas **os textos dentro do jogo apareceram em inglês**.
+- Esta evidência mostra que o idioma selecionado chega a pelo menos parte do sistema de textos; o diagnóstico não deve dizer que a ativação está totalmente quebrada. O problema confirmado é a inconsistência do prompt de título, que permanece PT-BR. Ainda não se sabe se todos os menus/textos acompanham o idioma.
+- Status atualizado em docs/STATUS_PARA_PEDRO.md (commit 3e1096bd4b928188e90249dcdc8b1ce4c0db6aec).
+- Aguardando o resultado do teste espanhol que o proprietário já está fazendo. Não pedir repetição do teste English e não gerar nova XEX antes de mapear com segurança as strings/rotinas do título.
