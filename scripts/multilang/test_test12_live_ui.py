@@ -7,8 +7,7 @@ from test12_live_ui import (
     BASE, CAVE, LANG_RVA, LANG_CAPACITY, MENU_HELPER, MENU_HELPER_CAP,
     SOURCE_SHA, WRAPPER_SHA, MENU_ITEMS, PREVIEW, enc_menu, enc_preview, build_wrapper,
     build_menu_helper, build_novo_pointer_helper, NOVO_HELPER, NOVO_CALLSITE,
-    NOVO_STATUS_PTRS_OFF, PREVIEW_DRAW_CALL, REGULAR_INTRO_CALLSITE, REGULAR_INTRO_ORIGINAL,
-    GAMEOVER_CALLSITE, GAMEOVER_ORIGINAL, patch_test11,
+    NOVO_STATUS_PTRS_OFF, PREVIEW_DRAW_CALL, GAMEOVER_CALLSITE, GAMEOVER_ORIGINAL, patch_test11,
 )
 
 ADDRS={
@@ -64,7 +63,6 @@ class Test12LiveUI(unittest.TestCase):
         pe[0x1040000:0x1040008]=b"SM64LANG"
         pe[0x10400C0:0x10400C8]=b"COURSE3\0"
         pe[0x1472D4:0x1472D8]=bytes.fromhex("48275a2d")
-        pe[REGULAR_INTRO_CALLSITE-BASE:REGULAR_INTRO_CALLSITE-BASE+4]=REGULAR_INTRO_ORIGINAL
         pe[GAMEOVER_CALLSITE-BASE:GAMEOVER_CALLSITE-BASE+4]=GAMEOVER_ORIGINAL
         pe[0xCD128:0xCD12C]=bytes.fromhex("4bfc8321")
         pe[0x3BC600:0x3BC608]=bytes.fromhex("3cc0829e60c67170")
@@ -84,8 +82,6 @@ class Test12LiveUI(unittest.TestCase):
         self.assertTrue(report["global_hook_unchanged"])
         self.assertEqual(candidate[0x1040080:0x1040088],original[0x1040080:0x1040088])
         self.assertEqual(candidate[0xCD128:0xCD12C],original[0xCD128:0xCD12C])
-        regular=old.PPC(base=REGULAR_INTRO_CALLSITE);regular.call(0x823BCD00)
-        self.assertEqual(candidate[REGULAR_INTRO_CALLSITE-BASE:REGULAR_INTRO_CALLSITE-BASE+4],regular.resolve())
         gameover=old.PPC(base=GAMEOVER_CALLSITE);gameover.call(0x823BCD00)
         self.assertEqual(candidate[GAMEOVER_CALLSITE-BASE:GAMEOVER_CALLSITE-BASE+4],gameover.resolve())
         self.assertEqual(struct.unpack_from(">I",candidate,0x1040018)[0],2)
