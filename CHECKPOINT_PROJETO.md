@@ -729,3 +729,12 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - A deve confirmar a escolha e manter esse idioma nos textos internos do jogo.
 - Isso é requisito solicitado, ainda não implementado nem testado. Não confundir especificação com progresso concluído.
 - O proprietário iniciou um teste físico de Español na TEST11; aguardar o relato sem pedir que repita o teste de English.
+
+
+## 20/10/2026 — rótulos do seletor traduzidos pelo idioma destacado
+- Ordem lógica fixa: inglês → espanhol → português; English fica selecionado por padrão ao abrir.
+- **English:** `Languages`; opções `English / Spanish / Portuguese`; confirmação `Press A to confirm`.
+- **Español:** `Idiomas`; opções `Inglés / Español / Portugués`; confirmação `Pulsa A para confirmar`.
+- **Português:** `Idiomas`; opções `Inglês / Espanhol / Português`; confirmação `Pressione A para confirmar`.
+- A tela inteira — título, nomes de todas as opções e instrução — deve trocar imediatamente ao mover o seletor, antes de A. Os rótulos não ficam fixos em inglês/espanhol.
+- Requisito documentado, ainda não implementado/testado. Não gerar nova XEX antes da análise técnica e dos testes seguros.
