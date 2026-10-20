@@ -51,3 +51,12 @@ jobs:
           path: ${{ runner.temp }}/xenia-smoke-output/
           retention-days: 7
           if-no-files-found: warn
+
+      - name: Keep official AppImage available for local game-specific smoke tests
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenia-canary-linux-appimage
+          path: ${{ runner.temp }}/xenia/xenia_canary_linux.AppImage
+          retention-days: 1
+          if-no-files-found: error
