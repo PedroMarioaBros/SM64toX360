@@ -22,9 +22,9 @@ class Test12LiveUI(unittest.TestCase):
     def test_generated_code_fits_verified_caves(self):
         wrapper=build_wrapper()
         helper=build_menu_helper()
-        self.assertEqual(len(wrapper),564)
+        self.assertEqual(len(wrapper),584)
         self.assertEqual(hashlib.sha256(wrapper).hexdigest(),
-                         "b7509d2b545ac0606bc3bec5d588a0c6839643f00b89793c0b589c5a68f8bb3f")
+                         "d9088e30f95fd54db1a34ce65d1e751d6b85ca8e9c1a80b920636b4992295e4e")
         self.assertLessEqual(len(wrapper),CAVE)
         self.assertEqual(len(helper),108)
         self.assertEqual(hashlib.sha256(helper).hexdigest(),
