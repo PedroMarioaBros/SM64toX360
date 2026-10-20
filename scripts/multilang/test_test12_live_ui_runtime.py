@@ -102,10 +102,17 @@ class Test12LiveUIRuntime(unittest.TestCase):
             self.assertFalse(original)
             self.assertEqual(bytes(u.mem_read(LANG+0x80,8)),b"BY-STATE")
 
-    def test_down_from_English_wraps_to_Portuguese_and_updates_labels(self):
-        u,printed,original=cpu(2,0x0400,0)
-        self.assertEqual(r32(u,LANG+0x18),0)
-        self.assertEqual([x[0] for x in printed[:5]],ui.PREVIEW[0][:5])
+    def test_down_moves_through_English_Spanish_Portuguese(self):
+        for selected,expected in ((2,1),(1,0),(0,2)):
+            u,printed,original=cpu(selected,0x0400,0)
+            self.assertEqual(r32(u,LANG+0x18),expected)
+            self.assertEqual([x[0] for x in printed[:5]],ui.PREVIEW[expected][:5])
+
+    def test_up_moves_through_Portuguese_Spanish_English(self):
+        for selected,expected in ((0,1),(1,2),(2,0)):
+            u,printed,original=cpu(selected,0x0800,0)
+            self.assertEqual(r32(u,LANG+0x18),expected)
+            self.assertEqual([x[0] for x in printed[:5]],ui.PREVIEW[expected][:5])
 
     def test_A_localizes_save_menu_and_start_prompt(self):
         for lang_id in (1,2):
