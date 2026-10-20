@@ -126,7 +126,7 @@ class Test12LiveUIRuntime(unittest.TestCase):
     def test_selector_resets_idle_demo_timer_only_while_open(self):
         u,printed,original=cpu(2,2,0)
         self.assertEqual(r16(u,0x82E52FE8),0)
-        u,printed,original=cpu(1,2,0)
+        u,printed,original=cpu(2,0,1)
         self.assertEqual(r16(u,0x82E52FE8),799)
 
     def test_A_localizes_save_menu_and_start_prompt(self):
