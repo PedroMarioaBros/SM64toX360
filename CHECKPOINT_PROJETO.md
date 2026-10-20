@@ -771,3 +771,13 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Hash da PE candidata mapeada mais recente: `a71a6409b42de7e03db856654ba44540b462d3d71c5b650c6eb01c939ec6226b`. Continua não sendo XEX.
 - Workflow TEST12 passou: [9 testes estáticos/PPC](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39377225771).
 - Próximo passo: empacotar XEX, validar em Xenia e conferir que o prompt Start e o file-select estão corretos antes de pedir teste físico. Manter 30 FPS, saves e scratch B/Y.
+
+
+## 20/10/2026 — TEST12 XEX gerada e roundtrip confirmado
+- Expandido o conjunto de strings localizadas para 30 entradas de menu/estado/pontuação, além do prompt Start.
+- PE mapeada candidata SHA-256: `1a5ff2fad66879b207445ca0ab8bb480295eb8e52634756547506a58c4b9d4f8`.
+- XEX candidata SHA-256: `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`.
+- Roundtrip de empacotamento e decriptação: payload da XEX reproduz byte a byte a PE candidata; segundo empacotamento também reproduz o mesmo SHA.
+- Workflow de CPU passou (4 testes estáticos + 5 PPC): [TEST12 CPU](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39378188850).
+- Smoke Xenia Canary Linux com renderizador nulo: TEST11 e TEST12 ficaram executando por 8s sem fatal/exception, mas houve falhas de desenho esperadas do backend nulo; **não é validação visual**. Sem teste físico ainda.
+- Próximo passo: disponibilizar ZIP candidato e solicitar conferência visual/funcional no Xbox, mantendo TEST11 para rollback. 30 FPS e scratch B/Y preservados.
