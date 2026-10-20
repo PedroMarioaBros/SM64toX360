@@ -165,6 +165,7 @@ def main() -> None:
         1: ["Idiomas", "Portugués", "Español", "Inglés", "Pulsa A para confirmar"],
         2: ["Languages", "Portuguese", "Spanish", "English", "Press A to confirm"],
     }
+    preview_ptrs = {}
     for language_id, texts in preview_sets.items():
         values = []
         for text in texts:
@@ -175,8 +176,17 @@ def main() -> None:
             payload[cursor:cursor + len(raw)] = raw
             values.append(IMAGE_BASE + LANG_RVA + cursor)
             cursor += len(raw)
+        preview_ptrs[language_id] = values
+
+    # Do not use .lang+0x80..0x87: those bytes are reserved for the live B/Y
+    # controller mapper. Header slots 0x70, 0x74 and 0x78 point to the rows.
+    for language_id, values in preview_ptrs.items():
+        cursor = align(cursor, 4)
+        table_va = IMAGE_BASE + LANG_RVA + cursor
         for i, va in enumerate(values):
-            struct.pack_into(">I", payload, 0x70 + language_id * 20 + i * 4, va)
+            struct.pack_into(">I", payload, cursor + i * 4, va)
+        struct.pack_into(">I", payload, 0x70 + language_id * 4, table_va)
+        cursor += len(values) * 4
 
     struct.pack_into(">I", payload, 0x38, cursor)
 
