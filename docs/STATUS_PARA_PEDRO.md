@@ -169,3 +169,15 @@ A investigação isolou uma provável incompatibilidade de terminador: a rotina 
 - XEX `default.xex` SHA-256 `8f66a77718c033b409d85548fd456f48ec70999a824afa046555c4fc51d47524`; PE mapeada SHA-256 `0063a6dedb10b780c4e558f77af148bbf61bef0ae780f72647c112c2f44def9e`; AES decrypt roundtrip do payload da XEX reproduziu a PE byte a byte. ZIP CRC PASS.
 - Xenia Canary Linux foi executado 16 s com TEST13D; processo terminou apenas pelo timeout solicitado (código 124), sem Access Violation nem KeBugCheck no intervalo. Entretanto, Xenia não inicializou Vulkan (`ErrorIncompatibleDriver`) e reportou falhas do backend PM4; então a etapa gráfica do preteste ficou **inconclusiva**, não PASS visual.
 - A TEST13D está preparada somente para validar se as linhas passam a aparecer e se os slots vazios ficam `NEW/NUEVO/NOVO`. Os acentos dos rótulos estão provisoriamente sem acento por causa da fonte ASCII. A direção final aprovada segue sendo seta + bandeiras EUA/Espanha/Brasil; ela ainda não está implementada.
+
+## Retorno físico TEST13D — seletor visível e slots trilíngues; refinamentos pendentes (20/10/2026)
+
+O proprietário confirmou que, na TEST13D, o seletor aparece com título, três opções e instrução de confirmação na língua correspondente; navegação e seleção estão funcionando. Também confirmou que os slots vazios agora mostram **NOVO** em português, **NUEVO** em espanhol e **NEW** em inglês. Esses pontos passam a ser considerados confirmados em hardware, com base no relato recebido.
+
+Novos problemas observados no console:
+1. **Alinhamento:** todos os textos do seletor estão deslocados para a esquerda. Centralizar horizontalmente o título, os três nomes de idioma e a instrução de confirmação.
+2. **Glifos cinza:** algumas letras (exemplos relatados: U e G) aparecem em cinza. Nenhuma letra do seletor pode ficar cinza; investigar o mapeamento/fonte e a rotina de renderização antes de escolher uma correção. Não presumir que trocar coordenadas resolve cor.
+3. **Avanço automático para cutscenes:** se o seletor ficar ocioso, o jogo entra em cutscenes independentemente do idioma destacado. Evitar essa transição enquanto o seletor estiver aberto, sem quebrar navegação/seleção.
+4. **Prompt localizado nas cutscenes:** ao entrar em cutscenes por inatividade e também depois de confirmar Español ou English, o prompt “APERTE START” aparece em português. Mapear todos os caminhos de renderização do prompt e fazer o idioma selecionado persistir também nessas telas.
+
+Escopo seguinte: corrigir alinhamento, eliminar os glifos cinza, impedir a transição automática enquanto o seletor está ativo e localizar o prompt Start em todos os estados/cutscenes. Manter a base em 30 FPS, preservar TEST12 como rollback e não avançar para outros ajustes pontuais de idioma até esses comportamentos serem corrigidos e testados. TEST13D já confirma a visibilidade do seletor e os rótulos dos slots; não precisa pedir ao proprietário para repetir esses testes.
