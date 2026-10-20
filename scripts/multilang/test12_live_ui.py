@@ -41,10 +41,19 @@ MENU_ITEMS=[
  (0x3CD16C,9,'SEM VAGA','SIN ESP.','NO SPACE'),
  (0x3CD175,7,'ARQ.','FICH','FILE'),
  (0x3CD17C,4,'NÃO','NO','NO'),
+ (0x9E71F0,9,'PARABÉNS','¡BIEN!','CONGRATS'),
+ (0x9E7250,9,'MEUS PTS','MIS PTS','MY PTS'),
+ (0x9E7260,9,'MEUS PTS','MIS PTS','MY PTS'),
+ (0x9E7270,8,'APAGAR','BORRAR','ERASE'),
+ (0x9E7278,16,'HÁ DADOS SALVOS','HAY DATOS','SAVE DATA'),
+ (0x9E7288,17,'SEM DADOS SALVOS','SIN DATOS','NO SAVE DATA'),
+ (0x9E72A0,6,'CERTO','LISTO','READY'),
+ (0x9E72A6,12,'AJUSTAR SOM','SONIDO','SOUND'),
+ (0x9E72B8,7,'PONTOS','PUNTOS','POINTS'),
 ]
 ACC={'Á':0x6D,'Ã':0x71,'Â':0x70,'Ç':0x7A,'É':0x72,'Ê':0x73,'Í':0x74,
      'Ó':0x75,'Ô':0x76,'Õ':0x77,'Ú':0x78,'Ü':0x79,'Ñ':0x43,
-     '.':0x3F,'?':0xF4,'!':0xF2,'-':0x9F}
+     '¡':0x44,'¿':0x45,'.':0x3F,'?':0xF4,'!':0xF2,'-':0x9F}
 
 def enc_menu(s:str)->bytes:
     out=[]
