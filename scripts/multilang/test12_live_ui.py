@@ -102,7 +102,7 @@ def build_wrapper():
     for i,slot in enumerate(PREVIEW_SLOTS):
         p.lwz(10,i*4,11);p.stw(10,slot,12)
     for x,y,slot in ((76,195,0x58),(118,145,0x5C),(118,115,0x60),(118,85,0x64),(104,30,0x68)):
-        p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(0x82143110)
+        p.lis(12,LANG_BASE>>16);p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(0x82143110)
     p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,85);p.branch('marker')
     p.label('marker_pt');p.li(4,145);p.branch('marker');p.label('marker_es');p.li(4,115)
     p.label('marker');p.li(3,14);p.lis(5,0x8305);p.ori(5,5,0xCA30);p.call(PRINT_CENTER);p.branch('epilogue')
