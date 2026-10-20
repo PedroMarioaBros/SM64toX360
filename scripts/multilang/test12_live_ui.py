@@ -153,8 +153,11 @@ def patch_test11(pe:bytes,strict=True):
     out=bytearray(pe);cursor=cur;rows={}
     for lang_id,texts in PREVIEW.items():
         ptrs=[]
-        for text in texts:
-            va,cursor=append_blob(out,cursor,enc_selector_title(text));ptrs.append(va)
+        for i,text in enumerate(texts):
+            # First five are native glyph-map strings (0xFF terminator);
+            # final two are ASCII for the title color-font Start prompt (NUL).
+            raw=enc_selector_title(text) if i<5 else text.encode('ascii')+b'\0'
+            va,cursor=append_blob(out,cursor,raw);ptrs.append(va)
         cursor=(cursor+3)&~3
         if cursor+len(ptrs)*4>LANG_CAPACITY:raise ValueError('.lang overflow in preview table')
         table_off=LANG_RVA+cursor
