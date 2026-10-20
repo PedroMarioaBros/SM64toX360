@@ -869,3 +869,9 @@ TEST14 foi testada no Xbox:
 Diagnóstico: TEST14 só havia hookado `intro_game_over` (VA `0x82147368`). O callsite `intro_regular` (VA `0x821472D4`, instrução original `4bf51a45`) continuava intacto. O patcher `scripts/multilang/test12_live_ui.py` agora também redireciona essa chamada regular ao wrapper trilíngue; o teste `scripts/multilang/test_test12_live_ui.py` verifica a alteração nos dois callsites. Isso é uma correção de código em andamento, ainda não é uma nova build validada.
 
 Prioridade visual: não repetir mudança de caixa. Investigar a rotina/fonte/paleta e o mapeamento dos glifos G/U; nenhuma correção é considerada concluída até teste físico. Depois de CI verde, preparar nova candidata focada no prompt regular e no diagnóstico dos glifos, mantendo TEST12/TEST13D/TEST14 como rollbacks e a base em 30 FPS.
+
+### Retificação após análise dos callsites
+
+O callsite `0x821472D4` (`intro_regular`) **já chama o wrapper do seletor** em TEST14: `48275a2d` representa o branch para `0x823BCD00`. Não ficou intacto, então não se deve instalar um segundo hook ali. A tentativa de hook duplicado foi retirada antes de produzir nova XEX. O hook em `0x82147368` também não resolveu o prompt observado na cutscene. O caminho do attract/demo continua sem identificação conclusiva; mapear outros chamadores de `print_intro_text` (VA `0x82098D18`) e confirmar o estado do idioma no demo.
+
+CI depois da remoção da hipótese duplicada: [TEST12 UI tests — run 39427028860 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Esse PASS é estático/CPU, não visual nem hardware. Os G/U cinza seguem sem correção comprovada; a troca para maiúsculas foi refutada pelo teste físico.
