@@ -207,3 +207,9 @@ O proprietário confirmou no Xbox:
 Diagnóstico com base no registro TEST7: a TEST14 só redirecionava `intro_game_over` em `0x82147368`; o caminho `intro_regular` em `0x821472D4` continuava intacto e é um candidato forte para o prompt que aparece durante o attract/demo. O patcher agora inclui hook para o callsite regular além do hook de Game Over. Os testes automatizados precisam confirmar essa mudança antes de produzir outro XEX.
 
 Não declarar os problemas concluídos: o bloqueio de idle e os slots estão confirmados; G/U cinza e prompt em cutscenes permanecem pendentes. O próximo trabalho é validar o hook de `intro_regular` e investigar a fonte/paleta/mapeamento dos glifos em vez de repetir apenas a troca para maiúsculas. TEST12 e TEST13D preservadas como rollback; 30 FPS, sem Native60 nem dublagem.
+
+### Retificação técnica importante — caminho da cutscene
+
+A auditoria do patcher mostrou que o callsite `0x821472D4` de `intro_regular` já está redirecionado ao wrapper do seletor na TEST14 (`48275a2d` → `0x823BCD00)); portanto, não ficou intacto e não deve receber um segundo hook. A tentativa de duplicar esse hook foi removida antes de qualquer nova XEX. O hook adicional em `0x82147368` não resolveu o prompt observado no attract/cutscene. O caminho real ainda precisa ser isolado entre os demais chamadores de `print_intro_text` (VA `0x82098D18`) e o estado usado no demo.
+
+Os testes automatizados voltaram a passar após remover a hipótese duplicada: [TEST12 UI tests — run 39427028860 PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39427028860). Isso não é confirmação física nem correção do prompt.
