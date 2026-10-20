@@ -1,0 +1,18 @@
+name: TEST12 Trilingual UI Static Patch Tests
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/test12_live_ui.py
+      - scripts/multilang/test_test12_live_ui.py
+      - scripts/multilang/test9_selector_native.py
+      - .github/workflows/test-test12-live-ui.yml
+  workflow_dispatch:
+jobs:
+  test-live-ui-patcher:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run deterministic UI patcher tests
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_test12_live_ui.py' -v
