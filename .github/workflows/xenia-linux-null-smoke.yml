@@ -38,6 +38,15 @@ jobs:
           ./xenia_canary_linux.AppImage --appimage-extract > extract.txt 2>&1
           test -x squashfs-root/AppRun
           file squashfs-root/AppRun
+
+      - name: Keep official AppImage available for local game-specific smoke tests
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenia-canary-linux-appimage
+          path: ${{ runner.temp }}/xenia/xenia_canary_linux.AppImage
+          retention-days: 1
+          if-no-files-found: error
       - name: Probe renderer-null startup with NO game or controller inputs
         run: |
           python3 scripts/xenia/smoke_linux.py \
@@ -52,11 +61,3 @@ jobs:
           retention-days: 7
           if-no-files-found: warn
 
-      - name: Keep official AppImage available for local game-specific smoke tests
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: xenia-canary-linux-appimage
-          path: ${{ runner.temp }}/xenia/xenia_canary_linux.AppImage
-          retention-days: 1
-          if-no-files-found: error
