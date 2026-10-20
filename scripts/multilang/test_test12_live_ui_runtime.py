@@ -13,7 +13,7 @@ STOP=0x84001000
 DIALOG=ui.ACTIVATE_DIALOGS
 COURSE=ui.ACTIVATE_COURSES
 PRINT=ui.PRINT_CENTER
-PRINT_TITLE=0x82143110
+PRINT_TITLE=ui.PRINT_CENTER
 ORIGINAL=ui.ORIGINAL_PRINT
 REG=[getattr(cp,f"UC_PPC_REG_{i}") for i in range(32)]
 
@@ -85,7 +85,9 @@ def cpu(selected=2,button=0,state=0):
         elif addr in (DIALOG,COURSE,PRINT,PRINT_TITLE,ORIGINAL):
             if addr in (PRINT,PRINT_TITLE):
                 x,y,p=(emu.reg_read(REG[k]) for k in (3,4,5))
-                text=decode_selector(emu,p) if addr==PRINT_TITLE else cstr(emu,p)
+                raw=bytes(emu.mem_read(p,128))
+                ff=raw.find(b"\\xff");nul=raw.find(b"\\0")
+                text=decode_selector(emu,p) if ff>=0 and (nul<0 or ff<nul) else cstr(emu,p)
                 printed.append((text,x,y))
             elif addr==ORIGINAL:original.append(True)
             emu.reg_write(cp.UC_PPC_REG_PC,emu.reg_read(cp.UC_PPC_REG_LR))
