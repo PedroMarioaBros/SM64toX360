@@ -704,3 +704,12 @@ PASSTHROUGH2 abriu, confirmado pelo Pedro. Boot básico concluído; próximo foc
 6. Não iniciar dublagem: continua expressamente fora de escopo até PT/ES/EN e gameplay estarem estáveis e o usuário autorizar novamente.
 
 Status de confiança: a correção de cursor O foi observada em Xenia; não declarar TEST11 como aprovada em Xbox nem como localização multilíngue completa.
+
+
+## 20/10/2026 — diagnóstico da lacuna de ativação multilíngue após TEST11
+- O proprietário confirmou no Xbox físico que TEST11 inicia, percorre Português/Español/English e confirma com A, mas o prompt seguinte continua “APERTE START”.
+- Análise estática dos scripts versionados: `pregame_gate.py` envia o idioma selecionado à rotina `ACTIVATE_LANGUAGE` (0x823BC800); `language_activation.py` só troca os 170 ponteiros dos registros de diálogo canônicos. `build_lang_section.py` não cria strings traduzidas para Press Start nem para os rótulos do menu de saves.
+- Isso demonstra que os testes atuais de ativação não cobrem a UI de título/file-select; não demonstra que a troca dos 170 diálogos falhe. A tela Press Start e o menu de saves seguem caminhos de texto separados no código de referência.
+- Relatório publicado: [docs/LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md](docs/LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md), commit do relatório `1b5111523bc16f14cae879940e939d81fb600b92`.
+- Nenhum PE/XEX foi alterado ou gerado, e nenhum novo teste de emulação/hardware foi executado nesta etapa.
+- Próxima ação: obter bytes reais da base/TEST11 e mapear por varredura estática os textos nativos e suas rotinas de renderização no PE Xbox 360. Só depois projetar patch para Press Start e file-select com testes fail-closed. Não transferir endereços da versão N64/MIPS. Manter TEST11 como referência física e não pedir novo teste ao proprietário ainda.
