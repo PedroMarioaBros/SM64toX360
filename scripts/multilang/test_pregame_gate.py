@@ -56,10 +56,12 @@ def run(state, selection=0, timer=0, buttons=0):
     preview_expected = {}
     for language_id in range(3):
         values = []
+        row_va = LANG_BASE + 0x18000 + language_id * 0x100
         for i in range(5):
             ptr = LANG_BASE + 0x19000 + language_id * 0x100 + i * 0x20
-            put32(uc,LANG_BASE+0x70+language_id*20+i*4,ptr)
+            put32(uc,row_va+i*4,ptr)
             values.append(ptr)
+        put32(uc,LANG_BASE+0x70+language_id*4,row_va)
         preview_expected[language_id] = values
 
     put32(uc,PLAYER1_CONTROLLER_PTR,CTRL)
