@@ -147,3 +147,14 @@ O proprietário testou a XEX TEST12 no Xbox 360. A tela de créditos passa e o s
 Diagnóstico novo: o wrapper TEST12 chama `0x82143110` para desenhar os textos do seletor, enquanto o renderizador nativo já identificado e usado pelo código anterior é `PRINT_CENTER=0x8212B498`. Foi corrigida a chamada no código e atualizados os testes de runtime para exercitar o renderizador conhecido. Essa correção ainda precisa passar no CI e ser empacotada/testada; não existe nova XEX validada a partir dela neste momento.
 
 Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs seta para a direita + bandeira de cada idioma (EUA, Espanha, Brasil). A proposta é boa e mais limpa; contudo, bandeiras exigem um caminho gráfico/sprite que ainda não foi provado no patcher. Próximo passo seguro: validar primeiro a correção do renderizador, investigar o texto `NOVO` nos slots e, em paralelo, auditar um método seguro para desenhar ícones/flags. Não presumir que o suporte a glifos de texto já permite desenhar bandeiras.
+
+
+## Atualização técnica confirmada — 20/10/2026
+
+O rótulo `NOVO` dos slots vazios foi localizado em um buffer de cinco bytes, sem espaço seguro para escrever `NUEVO`. A implementação agora redireciona o ponteiro para strings novas por idioma (`NOVO/NUEVO/NEW`) e usa uma pequena função PPC de 96 bytes em área de código livre. Os testes estáticos e os seis cenários PPC passaram no workflow [TEST12 Trilingual UI Static and CPU Tests](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39384550984); o [Multilang Static Check](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39384551048) também passou.
+
+A tentativa de desenhar os cinco rótulos do seletor com `PRINT_CENTER=0x8212B498` foi revertida. Em um teste A/B no Xenia, esse caminho gerou crash guest em `0x8215F1A4`; a baseline TEST12 não mostrou o mesmo dump no ensaio de 14 segundos. Como o Xenia estava sem backend Vulkan funcional, isso não comprova a causa final nem valida o Xbox, mas a regressão é motivo suficiente para não entregar essa mudança. O seletor segue **sem rótulos visíveis**, como no teste físico TEST12.
+
+Foi empacotada localmente uma variante exploratória que mantém o caminho antigo do seletor e corrige só `NOVO/NUEVO/NEW`. O roundtrip XEX→PE mapeada reproduziu exatamente a imagem, e o ensaio Xenia de 14 s não gerou dump de crash, mas o backend gráfico estava indisponível. Essa variante não é considerada build final nem foi validada visualmente no console.
+
+Próxima etapa: auditar a pipeline gráfica para a seta e as bandeiras EUA/Espanha/Brasil, antes de gerar a próxima XEX física. Manter baseline de 30 FPS; Native60 e dublagem seguem fora do escopo.
