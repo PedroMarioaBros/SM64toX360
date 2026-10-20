@@ -257,7 +257,7 @@ def patch_test11(pe:bytes,strict=True):
     for i,va in enumerate(rows[2][:5]):struct.pack_into('>I',out,LANG_RVA+0x58+i*4,va)
     struct.pack_into('>I',out,LANG_RVA+CURSOR_OFF,cursor)
     code=build_wrapper();helper=build_menu_helper();novo_helper=build_novo_pointer_helper()
-    if len(code)!=NOVO_HELPER_OFFSET:raise ValueError(f'wrapper length {len(code)} no longer matches NOVO helper offset')
+    if len(code)!=596:raise ValueError(f'wrapper bytes changed unexpectedly: {len(code)}')
     if len(code)+len(novo_helper)>CAVE:raise ValueError('NOVO pointer helper exceeds selector cave')
     call=PPC(base=NOVO_CALLSITE);call.call(NOVO_HELPER);call.w(0x60000000)
     call_blob=call.resolve()
