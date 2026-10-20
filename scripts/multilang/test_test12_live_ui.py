@@ -38,14 +38,14 @@ class Test12LiveUI(unittest.TestCase):
         self.assertLessEqual(len(helper),NOVO_HELPER-MENU_HELPER)
         self.assertLessEqual(len(novo_helper),MENU_HELPER_CAP-(NOVO_HELPER-MENU_HELPER))
 
-    def test_preview_labels_use_color_font_ascii_and_nul_terminator(self):
+    def test_preview_labels_are_ascii_nul_and_uppercase_without_claiming_glyph_fix(self):
         for texts in PREVIEW.values():
             for label in texts[:5]:
                 raw=enc_preview(label)
                 self.assertTrue(raw.endswith(b'\0'))
                 self.assertNotIn(0xFF,raw)
                 self.assertEqual(raw[:-1].decode('ascii'),label)
-                self.assertEqual(label, label.upper(), "selector must avoid lowercase glyphs that render gray")
+                self.assertEqual(label, label.upper(), "uppercase is an interim style only; TEST14 proved it does not fix gray G/U")
 
     def test_all_menu_translations_fit_original_string_buffers(self):
         for off,capacity,pt,es,en in MENU_ITEMS:
