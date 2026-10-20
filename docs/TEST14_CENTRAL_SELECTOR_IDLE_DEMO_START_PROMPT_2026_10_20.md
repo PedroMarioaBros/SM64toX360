@@ -53,9 +53,15 @@ O proprietário testou a candidata no Xbox 360 e informou:
 - Letras **G e U continuam cinza**, mesmo com os textos em maiúsculas: **FAIL**. A alteração de caixa não resolveu o problema; não repetir essa hipótese como solução. É necessário investigar o caminho/fonte de renderização e a cor/atlas dos glifos.
 - Depois de confirmar English ou Español com A, o título mostra PRESS START / prompt esperado, mas quando entra na cutscene/attract demo, a tela volta a mostrar **APERTE START** em português: **FAIL**.
 
-### Causa provável do prompt ainda em português
+### Diagnóstico do prompt após o teste físico — corrigido em 20/10/2026
 
-A candidata TEST14 redirecionou somente `intro_game_over` em VA `0x82147368`. O caminho `intro_regular`, que o diagnóstico TEST7 identifica como chamada regular de `print_intro_text()` e também pode desenhar o prompt do attract/demo, permaneceu intacto em `0x821472D4` (instrução original `4bf51a45`). Portanto, o teste físico mostra que o hook de Game Over isolado não cobre o caminho observado. O patcher foi atualizado para redirecionar **ambos** os callsites ao wrapper trilíngue; isso ainda requer build e testes automatizados antes de gerar nova XEX.
+O texto antigo desta seção dizia incorretamente que o callsite `0x821472D4` permanecia intacto. Isso foi corrigido: a instrução em `0x821472D4` já é redirecionada para o wrapper TEST14, e a chamada em `0x82147368` também foi redirecionada. Mesmo assim, o proprietário observou `APERTE START` em português quando começou a cutscene/attract demo após selecionar English ou Español.
+
+A evidência histórica do diagnóstico TEST7 também importa: ao substituir a chamada de `intro_regular` em `0x821472D4` por NOP, o texto de título esperado não apareceu no Xbox. Isso comprovou que esse caminho participa da exibição normal do título, mas não prova que seja o único caminho usado pela demo. Portanto, não instalar um segundo hook nesse endereço nem assumir que o problema é apenas a chamada `intro_regular` ou `intro_game_over`.
+
+**Hipótese operacional atual:** existe um caminho adicional ou uma condição de estado que faz a demo desenhar o prompt português. Precisamos localizar outros callsites/referências de `print_intro_text` (`0x82098D18`) na imagem mapeada exata da TEST14 e verificar o fluxo de estado/idioma nesse caminho.
+
+**Limitação concreta desta retomada:** o pacote TEST14 disponível contém `default.xex`, README e auditoria; não contém a PE mapeada separada. A PE exata esperada tem SHA-256 `6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742`. Ainda não consegui reconstruir/recuperar essa PE a partir do XEX neste ambiente, portanto a varredura de callsites não foi executada. Não afirmar que outro chamador foi encontrado nem gerar um patch especulativo.
 
 ### Próxima correção visual
 
