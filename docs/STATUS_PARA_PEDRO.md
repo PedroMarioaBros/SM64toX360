@@ -1,3 +1,28 @@
+# SM64 Xbox 360 — situação atual (20/10/2026, após teste físico TEST14)
+
+**Este resumo substitui o cabeçalho histórico abaixo como estado atual.** O teste mais recente relatado pelo proprietário é TEST14, não TEST11.
+
+| Item | Resultado físico no Xbox 360 |
+|---|---|
+| Seletor e navegação/confirmar A | PASS |
+| Textos do seletor centralizados conforme desejado | PASS — preservar alinhamento X=160 |
+| Seletor permanece aberto por mais de 1 minuto, sem cutscene antes da confirmação | PASS |
+| Slots vazios por idioma | PASS — NEW / NUEVO / NOVO |
+| G/U sem cinza | FAIL — maiúsculas não resolveram |
+| Prompt da attract/demo em English/Español | FAIL — a cutscene volta a mostrar APERTE START |
+
+## Próxima etapa em andamento
+
+1. **Prompt da demo:** TEST14 já redireciona os callsites 0x821472D4 e 0x82147368; não duplicar o hook em 0x821472D4. O diagnóstico TEST7 comprovou que o caminho regular participa da exibição normal do título, mas não explica sozinho o prompt português durante a demo. Próxima ação: recuperar a PE mapeada exata da TEST14 e varrer referências PowerPC a print_intro_text em VA 0x82098D18, depois validar os candidatos e o estado do idioma. O pacote TEST14 disponível contém default.xex, README e auditoria, mas não a PE mapeada separada; a varredura ainda não foi executada.
+2. **G/U cinza:** a hipótese de maiúsculas foi refutada no hardware. Investigar o renderizador/fonte/índice real antes de mudar codificação, atlas ou paleta.
+3. Não produzir outra XEX até haver hipótese verificável, testes estáticos/PPC verdes e auditoria binária completa. Não declarar correção sem teste físico.
+
+**Centralização:** o proprietário confirmou que os textos estão centralizados exatamente como desejava. Não tratar isso como pendência nem alterá-la por conveniência.
+
+Base preservada em 30 FPS; PT-BR mantido; Native60 e dublagem continuam fora de escopo nesta etapa.
+
+---
+
 # SM64 Xbox 360 — situação para o proprietário
 
 **Atualização confirmada em 20/10/2026 — teste físico da TEST11 informado pelo proprietário.**
