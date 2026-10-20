@@ -79,3 +79,14 @@ Não pedir novo teste de inglês. Aguardando apenas o resultado do teste espanho
 O proprietário esclareceu o comportamento desejado para a tela do rosto do Mario: a ordem fixa deve ser **English → Español → Português**, com **English selecionado por padrão sempre que o jogo abrir**. A mudança de cursor deve atualizar imediatamente, antes de pressionar A, todos os textos do próprio seletor conforme o idioma destacado: título/etiqueta de idiomas, os nomes das três opções e a instrução de confirmação. Portanto, ao destacar English, todos esses textos ficam em inglês; ao destacar Español, ficam em espanhol; ao destacar Português, ficam em português. A confirmação com A seleciona o idioma para o jogo e seus textos internos. Não basta localizar somente a opção selecionada ou trocar textos depois da confirmação.
 
 O proprietário está atualmente testando Español na TEST11; resultado ainda pendente. Este requisito é especificação nova, não implementação concluída. Nenhum novo XEX foi gerado nesta atualização.
+
+
+## Esclarecimento da localização dos nomes das opções — 20/10/2026
+
+O proprietário esclareceu que **os nomes das três opções também devem ser traduzidos conforme o idioma atualmente destacado**; não podem permanecer sempre como “English / Español / Português”. A ordem lógica continua fixa (primeiro inglês, depois espanhol, depois português), mas os rótulos visíveis mudam com o idioma ativo na prévia:
+
+- **English destacado:** título “Languages”; opções “English”, “Spanish”, “Portuguese”; instrução “Press A to confirm”.
+- **Español destacado:** título “Idiomas”; opções “Inglés”, “Español”, “Portugués”; instrução “Pulsa A para confirmar”.
+- **Português destacado:** título “Idiomas”; opções “Inglês”, “Espanhol”, “Português”; instrução “Pressione A para confirmar”.
+
+Toda a tela deve atualizar imediatamente ao mover o cursor, antes de pressionar A. Ao iniciar, English fica destacado por padrão. Este é um esclarecimento da especificação, não uma implementação concluída; não foi gerado novo XEX nesta atualização.
