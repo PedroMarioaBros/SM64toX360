@@ -44,3 +44,19 @@ Use pasta isolada, mantenha TEST12/TEST13D e os saves intactos:
 5. Se houver tela preta, crash ou fluxo inesperado, parar e retornar à versão de rollback. Registre a última tela vista e o idioma selecionado.
 
 Não publicar PE/XEX do jogo no repositório GitHub.
+
+## Resultado físico TEST14 — retorno do proprietário (20/10/2026)
+
+O proprietário testou a candidata no Xbox 360 e informou:
+- Seletor parado por mais de um minuto sem iniciar cutscene: **PASS** para a supressão de demo enquanto a seleção está aberta.
+- Slots vazios continuam corretos: **NEW / NUEVO / NOVO**: PASS.
+- Letras **G e U continuam cinza**, mesmo com os textos em maiúsculas: **FAIL**. A alteração de caixa não resolveu o problema; não repetir essa hipótese como solução. É necessário investigar o caminho/fonte de renderização e a cor/atlas dos glifos.
+- Depois de confirmar English ou Español com A, o título mostra PRESS START / prompt esperado, mas quando entra na cutscene/attract demo, a tela volta a mostrar **APERTE START** em português: **FAIL**.
+
+### Causa provável do prompt ainda em português
+
+A candidata TEST14 redirecionou somente `intro_game_over` em VA `0x82147368`. O caminho `intro_regular`, que o diagnóstico TEST7 identifica como chamada regular de `print_intro_text()` e também pode desenhar o prompt do attract/demo, permaneceu intacto em `0x821472D4` (instrução original `4bf51a45`). Portanto, o teste físico mostra que o hook de Game Over isolado não cobre o caminho observado. O patcher foi atualizado para redirecionar **ambos** os callsites ao wrapper trilíngue; isso ainda requer build e testes automatizados antes de gerar nova XEX.
+
+### Próxima correção visual
+
+Não considerar “ASCII maiúsculo” solução para o G/U cinza. Identificar a rotina que efetivamente desenha a prévia e verificar se ela usa uma fonte/paleta ou índice de glifo em que G/U estão mapeados para a cor cinza. Só depois preparar uma mudança específica e testável. Nenhuma afirmação de correção visual até confirmação no Xbox.
