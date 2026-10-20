@@ -34,3 +34,20 @@ O proprietário testou a XEX TEST12 no Xbox 360. A tela de créditos passa e o s
 Diagnóstico novo: o wrapper TEST12 chama `0x82143110` para desenhar os textos do seletor, enquanto o renderizador nativo já identificado e usado pelo código anterior é `PRINT_CENTER=0x8212B498`. Foi corrigida a chamada no código e atualizados os testes de runtime para exercitar o renderizador conhecido. Essa correção ainda precisa passar no CI e ser empacotada/testada; não existe nova XEX validada a partir dela neste momento.
 
 Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs seta para a direita + bandeira de cada idioma (EUA, Espanha, Brasil). A proposta é boa e mais limpa; contudo, bandeiras exigem um caminho gráfico/sprite que ainda não foi provado no patcher. Próximo passo seguro: validar primeiro a correção do renderizador, investigar o texto `NOVO` nos slots e, em paralelo, auditar um método seguro para desenhar ícones/flags. Não presumir que o suporte a glifos de texto já permite desenhar bandeiras.
+
+
+## Complemento de diagnóstico — 20/10/2026 (após a revisão TEST13)
+
+### Corrigido com segurança: rótulo dos slots vazios
+A string original `NOVO` está no VA `0x829E7170`, em um buffer de exatamente cinco bytes: `17 18 1F 18 FF`. O próximo texto começa imediatamente no byte seguinte; portanto, substituir o conteúdo diretamente por `NUEVO` causaria sobreposição. A correção preparada redireciona o ponteiro no callsite `0x823BC600` para uma função PPC de 96 bytes no espaço livre `0x823BCF48`. Essa função escolhe o ponteiro em `.lang+0xAC/+0xB0/+0xB4` segundo o idioma e preserva r0, r10, r11 e CR. Os textos são `NOVO`, `NUEVO` e `NEW`, nessa ordem interna dos IDs PT-BR, espanhol e inglês.
+
+Os testes automatizados verificam o tamanho da função, o callsite original, os ponteiros, os textos e a preservação dos espaços B/Y e do hook de nível. O workflow **TEST12 Trilingual UI Static and CPU Tests** passou no commit `9058ee7b7386a8099fbc6c76e421109c724751a4`; a verificação estática multilang também passou. Isso valida patcher e instruções PPC em emulação de CPU, não a aparência no Xbox.
+
+### Experimento de renderização revertido
+A troca das cinco chamadas do seletor para `PRINT_CENTER=0x8212B498` foi testada e **não será mantida**. Em variantes Xenia com esse caminho, apareceu um crash guest em `PC 0x8215F1A4`, leitura em `0x0000000100000000`; o TEST12 original não apresentou esse dump no mesmo ensaio de 14 s. A execução usava o backend `--gpu=null`, que informou falha ao inicializar Vulkan e erros de backend gráfico, então o ensaio não prova comportamento em hardware físico. Mesmo assim, há regressão correlacionada suficiente para bloquear essa troca. O código voltou ao caminho de chamada de TEST12 (`0x82143110`), que mantém o seletor sem os rótulos visíveis observados pelo proprietário. Não tratar a correção do texto do seletor como concluída.
+
+### Estado da build local exploratória
+Foi empacotada uma variante local de investigação com apenas a correção do rótulo dos slots, sem trocar o renderizador do seletor. A extração criptográfica de retorno reproduziu exatamente a PE mapeada, SHA-256 `60ca28a136aa33ae3c93182786493949a1b9fa40766c77b218de3a27abc8e8ae`; a XEX de teste tem SHA-256 `bf6f51fd27cb302ef477f59244b04d634a029116d0c379cc3080b13f81eab16b`. No Xenia Canary Linux com backend nulo, ela rodou 14 s sem dump de crash, mas o backend gráfico estava indisponível; isso não é validação visual nem motivo para considerá-la versão final. Ela não foi enviada ao proprietário como build final.
+
+### Próximo passo seguro
+Manter as correções de ponteiro para `NOVO/NUEVO/NEW`; não trocar o caminho de desenho de rótulos por `PRINT_CENTER` sem isolar o crash. Continuar investigando o pipeline gráfico para a seletora sem texto — seta e bandeiras EUA/Espanha/Brasil — usando os pontos de entrada de frame/render já documentados, com limites claros de alteração e testes antes de empacotar uma nova XEX. A baseline é 30 FPS; dublagem e Native60 continuam fora desta fase.
