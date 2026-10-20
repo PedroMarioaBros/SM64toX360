@@ -10,7 +10,7 @@ Execução local sobre a PE TEST11 recuperada:
 - PE candidata gerada: SHA-256 `a71a6409b42de7e03db856654ba44540b462d3d71c5b650c6eb01c939ec6226b`.
 - Wrapper: 584 bytes, dentro do cave de 768 bytes.
 - Auxiliar de tradução do menu de saves: 108 bytes, dentro do cave livre de 256 bytes em `0x823BCB00`.
-- 21 rótulos/strings de menu preparados para PT-BR, Español e English, com verificação de que cada texto cabe no buffer existente.
+- 30 rótulos/strings de menu e estado/score preparados para PT-BR, Español e English, com verificação de que cada texto cabe no buffer existente.
 - `.lang+0x80–0x87` (scratch B/Y) preservado byte a byte.
 - Hook global de `level_script` preservado byte a byte.
 - Estado inicial configurado para English (`index=2`).
@@ -21,7 +21,7 @@ A workflow [TEST12 Trilingual UI Static and CPU Tests](https://github.com/PedroM
 
 ## Limitações e status real
 
-- Os testes acima validam o patcher e a lógica PPC em CPU; não validam Xenia nem o Xbox 360 físico.
-- A prévia do seletor foi ajustada para usar o renderizador nativo de glifos do jogo, com codificação de acentos (`Inglês`, `Español`, `Portugués`, `Português`). A ordem visual é agora English → Español → Português; os IDs internos continuam 2=English, 1=Español, 0=Português. A validação visual desses acentos ainda depende de Xenia/hardware.
-- A PE candidata foi gerada localmente para auditoria, mas ainda não foi empacotada em XEX nem testada em Xenia/hardware.
+- Smoke test específico no Xenia Canary Linux com renderizador nulo: TEST11 e TEST12 ficaram executando por 8 segundos sem mensagens de fatal/exception; o backend nulo registrou falhas de desenho esperadas e **não fornece validação visual**. Xbox físico ainda não testado.
+- A prévia do seletor usa o renderizador nativo de glifos, com acentos codificados; a ordem visual é English → Español → Português e os IDs internos são 2=English, 1=Español, 0=Português. A aparência final dos glifos ainda precisa de validação visual.
+- XEX candidata empacotada com `xex2replace`: SHA-256 `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`. A extração/decriptação do payload e um segundo roundtrip reproduzem exatamente a PE candidata (`1a5ff2...`).
 - Não foi alterado o sistema de dublagem; permanece fora do escopo.
