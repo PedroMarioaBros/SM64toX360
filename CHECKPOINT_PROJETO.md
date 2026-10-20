@@ -914,3 +914,43 @@ CI depois da remoção da hipótese duplicada: [TEST12 UI tests — run 39427028
 - CI executado em 20/10: scanner-tests **PASS** e validate-sources **PASS** no commit `457bf8ad3f676161194b602e11db56851b6dbf43`. Run scanner: https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369587 ; validação de fontes: https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369450.
 - **Limite importante:** testes são sintéticos; scanner ainda não foi executado contra a PE real da TEST14 porque o ZIP TEST14 contém somente XEX, README e auditoria. Portanto nenhum chamador adicional foi descoberto nesta etapa e nenhuma hipótese foi confirmada. O próximo passo continua sendo recuperar a PE mapeada exata (SHA-256 `6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742`) e rodar o scanner nela.
 - Não gerada nova XEX. Os resultados físicos seguem: centralização X=160, seletor ocioso e slots NEW/NUEVO/NOVO = PASS; G/U cinza e prompt português durante demo = FAIL.
+
+
+---
+
+## Checkpoint de continuidade — TEST15 (20/10/2026)
+
+Este bloco é o ponto de retomada mais recente; complementa os checkpoints históricos anteriores.
+
+### Base física já confirmada em TEST14
+- Seletor abre, aceita D-pad/A e fica parado por mais de um minuto sem demo antes da confirmação.
+- Textos do seletor centralizados em X=160: PASS. Preservar exatamente.
+- Slots vazios: NOVO / NUEVO / NEW: PASS.
+- Letras G/U ainda cinzentas: FAIL, não corrigido por maiúsculas. Não repetir essa hipótese.
+- Após selecionar English/Español, prompt normal muda, mas attract/demo ainda mostra APERTE START: FAIL físico TEST14.
+- Base é 30 FPS; PT-BR preservado; Native60 e dublagem continuam fora de escopo.
+
+### Diagnóstico binário TEST14
+- PE mapeada recuperada do XEX TEST14 e validada: 17.170.432 bytes, SHA-256 `6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742`.
+- Scanner de branches PPC diretos para `print_intro_text` (VA `0x82098D18`) encontrou o call interno ao wrapper principal em `0x823BCF40` e o call ainda nativo `0x820DBEF8`.
+- `0x820DBEF8` está em seção executável, na função iniciada em `0x820DBED8`; a função também lê estado/entrada do controle. O vínculo preciso com a attract/demo é hipótese a confirmar no Xbox.
+- Não reinstalar hook em `0x821472D4`: já é redirecionado pelo seletor. `0x82147368` também foi redirecionado em TEST14 e não resolveu por si só.
+
+### Candidata TEST15 criada; NÃO validada no console
+- Novo callsite `0x820DBEF8` redirecionado para wrapper específico `0x823BCF60` (124 bytes), com ramo para renderização nativa antes de confirmar e para PT-BR; para ES/EN desenha as duas linhas via tabelas existentes.
+- Instrução de fallback de controle nulo em `0x823BCEF4` substituída por NOP para não retornar automaticamente ao texto nativo no prompt localizado.
+- Foram alterados 106 bytes efetivos, restritos a RVA `0xDBEF8..0xDBEFC`, `0x3BCEF4..0x3BCEF8` e o wrapper na área zero `0x3BCF60..0x3BCFDC`.
+- TEST15 PE SHA-256: `d1657528056df5f8c1257f3197a2674f69a46ff14dd090b682bea47f4be4a8b4`.
+- TEST15 XEX SHA-256: `fcf76cbe7a5e8247341dd4215254eb8a759f989ab42700ccd305eaca09680cc1`.
+- ZIP de teste SHA-256: `89a2f45e778afcb031d642f2f5820246a67b2584dfbc95874f4883f69454f121`.
+- Round-trip: PE descriptografada da XEX confere byte a byte com a PE da candidata; inspeção `llvm-objdump` confirmou os alvos dos branches/calls; testes sintéticos locais 5/5 PASS. Isso não comprova funcionamento no Xbox.
+- Pacote contém somente `default.xex`, README, auditoria e SHA256SUMS; a PE mapeada não foi incluída.
+
+### Entrega e próximos passos
+1. Testar TEST15 em pasta isolada e manter TEST14 + saves como rollback. No inglês: confirmar `PRESS START`, esperar attract/demo e conferir `PRESS START` nela. Reiniciar para Espanhol e conferir `PULSA START`.
+2. Verificar que centralização X=160, espera antes de A e slots NOVO/NUEVO/NEW continuam funcionando.
+3. Se aparecer tela preta/crash, parar e voltar a TEST14.
+4. G/U cinzentas seguem pendentes; não afirmar que foram corrigidas.
+5. Consultar o workflow CI `TEST15 prompt patch static tests`; testes são sintéticos e não substituem o Xbox físico.
+
+Relatório: [docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md](docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). Estado resumido: [docs/STATUS_PARA_PEDRO.md](docs/STATUS_PARA_PEDRO.md).
