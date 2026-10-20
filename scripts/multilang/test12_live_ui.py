@@ -265,8 +265,9 @@ def patch_test11(pe:bytes,strict=True):
     if len(code)!=596:raise ValueError(f'wrapper bytes changed unexpectedly: {len(code)}')
     if len(helper)>0x70 or len(novo_helper)>0x90:raise ValueError('menu helper/status helper overflow their shared cave')
     out[WRAPPER-BASE:WRAPPER-BASE+CAVE]=code+b'\0'*(CAVE-len(code))
-    out[NOVO_HELPER-BASE:NOVO_HELPER-BASE+len(novo_helper)]=novo_helper
+    # Fill the shared helper cave first; then install the status helper beyond the menu helper.
     out[MENU_HELPER-BASE:MENU_HELPER-BASE+MENU_HELPER_CAP]=helper+b'\0'*(MENU_HELPER_CAP-len(helper))
+    out[NOVO_HELPER-BASE:NOVO_HELPER-BASE+len(novo_helper)]=novo_helper
     out[NOVO_CALLSITE-BASE:NOVO_CALLSITE-BASE+8]=call_blob
     out[GAMEOVER_CALLSITE-BASE:GAMEOVER_CALLSITE-BASE+4]=gameover_blob
     image=bytes(out);changed=[i for i,(a,b) in enumerate(zip(pe,image)) if a!=b]
