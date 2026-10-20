@@ -1,6 +1,26 @@
 # SM64 Xbox 360 — situação para o proprietário
 
-**Fotografia de 09/10/2026.** Leia este arquivo para entender o progresso em 2 minutos; para trabalhar tecnicamente, comece por [PONTO_DE_RETOMADA.md](../PONTO_DE_RETOMADA.md), [AGENTS.md](../AGENTS.md) e [CHECKPOINT_PROJETO.md](../CHECKPOINT_PROJETO.md) **nesta branch**. Documento explicativo, não substitui os checkpoints.
+**Atualização confirmada em 20/10/2026 — teste físico da TEST11 informado pelo proprietário.**
+
+## Resultado do último teste no Xbox 360
+
+O proprietário testou o pacote `SM64_TEST11_SELETOR_TRILINGUE_GLIFO_SEGURO_CANDIDATA_30FPS.zip` e relatou:
+
+- O jogo abre normalmente e passa pela tela de créditos inicial.
+- Chega à tela “APERTE START” com o seletor de idiomas.
+- O direcional para cima/baixo percorre Português, Español e English.
+- O botão A confirma a opção e avança para a etapa “APERTE START”, sem Fatal Crash relatado.
+- **A seleção ainda não altera o idioma do jogo:** o texto continua “APERTE START” em português e não foi observada mudança para espanhol ou inglês.
+
+**Conclusão:** a TEST11 está validada no hardware real para inicialização e navegação/confirmação do seletor, conforme relato do proprietário. A aplicação persistente do idioma continua sem funcionar/sem estar implementada de ponta a ponta. Não classificar como versão trilíngue concluída. O próximo trabalho deve rastrear o estado selecionado e ligá-lo às telas/textos posteriores (começando pelo “APERTE START” e, depois, menus de save), preservando a correção do cursor e a base 30 FPS.
+
+**Pacote TEST11:** [ZIP candidato para teste](https://github.com/PedroMarioaBros/SM64toX360/blob/feature/multilang-dub-30fps/docs/TEST9_TEST10_XENIA_CRASH_CAUSE_TEST11_2026_10_17.md). ZIP privado de 17.185.804 bytes; SHA-256 `175f8ab3dbb510827cde7d4156acd7f2f72c6beb482344a84ed2e813622d74d1`. O pacote não deve ser tratado como release final.
+
+---
+
+# SM64 Xbox 360 — situação para o proprietário
+
+**Histórico anterior de 09/10/2026** (mantido abaixo como referência). Leia este arquivo para entender o progresso em 2 minutos; para trabalhar tecnicamente, comece por [PONTO_DE_RETOMADA.md](../PONTO_DE_RETOMADA.md), [AGENTS.md](../AGENTS.md) e [CHECKPOINT_PROJETO.md](../CHECKPOINT_PROJETO.md) **nesta branch**. Documento explicativo, não substitui os checkpoints.
 
 [⬅ Painel central Xbox 360](https://github.com/PedroMarioaBros/OpenXeChain-X360-Builder/blob/main/docs/PAINEL_PMCN_XBOX360.md) · [Histórico e código](https://github.com/PedroMarioaBros/SM64toX360) · [GitHub Actions](https://github.com/PedroMarioaBros/SM64toX360/actions)
 
@@ -14,7 +34,7 @@
 | Base do jogo | Port Xbox 360 com base 30 FPS; PT-BR v0.4 é referência preservada. |
 | Regressões conhecidas | `SELECTOR_TEST1` deu tela preta; `TITLE_SELECTOR_TEST1` causou regressão após estrela/retorno ao castelo. Não reutilizar patch rejeitado. |
 | Progresso válido em hardware | RENDER90/TEXTO90 e versões de menu/saves em testes documentados; NOHOOK e PASSTHROUGH2 abriram, mas não validam seletor. |
-| Selector de idioma | Não aprovado no console; não há candidato final funcional. |
+| Seletor de idioma — TEST11 | **TESTADA NO XBOX FÍSICO em 20/10/2026 pelo proprietário:** jogo abre, passa pelos créditos, chega à tela de Start; direcional percorre Português/Español/English e A confirma sem crash relatado. **O idioma ainda não é aplicado ao restante da interface**: a tela continua “APERTE START” e não muda para espanhol/inglês. Candidata funcional para navegação, não release final. |
 | Dublagem PT-BR | Patch BPS encontrado; VADPCM no patch e XEX analisados; falta associar vozes a amostras, codebooks e metadados reais. Nenhuma voz pronta foi extraída. |
 | Dublagem ES | Pendente; não há integração validada. |
 | Inglês original | Objetivo manter texto/vozes originais com comandos do Xbox; não confundir plano com entrega final. |
