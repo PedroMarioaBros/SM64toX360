@@ -1,0 +1,19 @@
+name: TEST14 Read-only PPC intro caller scanner
+
+on:
+  push:
+    branches:
+      - feature/multilang-dub-30fps
+    paths:
+      - scripts/multilang/scan_intro_text_callers.py
+      - scripts/multilang/test_scan_intro_text_callers.py
+      - .github/workflows/test-intro-caller-scanner.yml
+  workflow_dispatch:
+
+jobs:
+  scanner-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test read-only candidate scanner on synthetic mapped image
+        run: python3 -m unittest discover -s scripts/multilang -p 'test_scan_intro_text_callers.py' -v
