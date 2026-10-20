@@ -13,9 +13,10 @@ PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 # Use the native glyph-map renderer for selector labels so accents are supported.
 # The cursor and Start prompt retain the safe ASCII color-font renderer.
 PREVIEW={
-  0:['Idiomas','Português','Espanhol','Inglês','Pressione A para confirmar','APERTE','START'],
-  1:['Idiomas','Portugués','Español','Inglés','Pulsa A para confirmar','PULSA','START'],
-  2:['Languages','Portuguese','Spanish','English','Press A to confirm','PRESS','START'],
+  # Visible order is top-to-bottom: English, Spanish, Portuguese.
+  0:['Idiomas','Inglês','Espanhol','Português','Pressione A para confirmar','APERTE','START'],
+  1:['Idiomas','Inglés','Español','Portugués','Pulsa A para confirmar','PULSA','START'],
+  2:['Languages','English','Spanish','Portuguese','Press A to confirm','PRESS','START'],
 }
 # Offset, capacity in bytes including 0xFF terminator, PT-BR, Spanish, English.
 MENU_ITEMS=[
@@ -81,11 +82,11 @@ def build_wrapper():
     p.lis(11,(CONTROLLER_GLOBAL+0x8000)>>16);p.lwz(11,CONTROLLER_GLOBAL&0xffff,11);p.cmpwi(11,0);p.branch('draw','beq')
     p.lhz(9,0x12,11);p.andi(8,9,~0x1000&0xffff);p.sth(8,0x12,11)
     p.andi(8,9,0x0800);p.cmpwi(8,0);p.branch('down','beq')
-    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('decrement','bne');p.li(10,2);p.branch('write_index')
-    p.label('decrement');p.addi(10,10,-1);p.branch('write_index')
+    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,2);p.branch('up_increment','bne');p.li(10,0);p.branch('write_index')
+    p.label('up_increment');p.addi(10,10,1);p.branch('write_index')
     p.label('down');p.andi(8,9,0x0400);p.cmpwi(8,0);p.branch('check_A','beq')
-    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,2);p.branch('increment','bne');p.li(10,0);p.branch('write_index')
-    p.label('increment');p.addi(10,10,1)
+    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('down_decrement','bne');p.li(10,2);p.branch('write_index')
+    p.label('down_decrement');p.addi(10,10,-1)
     p.label('write_index');p.stw(10,INDEX_OFF,11);p.branch('draw')
     p.label('check_A');p.andi(8,9,0x8000);p.cmpwi(8,0);p.branch('draw','beq')
     p.lis(11,LANG_BASE>>16);p.lwz(3,INDEX_OFF,11);p.call(ACTIVATE_DIALOGS)
@@ -103,8 +104,8 @@ def build_wrapper():
         p.lwz(10,i*4,11);p.stw(10,slot,12)
     for x,y,slot in ((76,195,0x58),(118,145,0x5C),(118,115,0x60),(118,85,0x64),(104,30,0x68)):
         p.lis(12,LANG_BASE>>16);p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(0x82143110)
-    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,85);p.branch('marker')
-    p.label('marker_pt');p.li(4,145);p.branch('marker');p.label('marker_es');p.li(4,115)
+    p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,145);p.branch('marker')
+    p.label('marker_pt');p.li(4,85);p.branch('marker');p.label('marker_es');p.li(4,115)
     p.label('marker');p.li(3,14);p.lis(5,0x8305);p.ori(5,5,0xCA30);p.call(PRINT_CENTER);p.branch('epilogue')
     p.label('pass_original')
     # Preserve native no-controller behavior; ES/EN use localized prompt strings.
