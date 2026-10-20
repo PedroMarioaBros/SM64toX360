@@ -7,7 +7,7 @@ from test12_live_ui import (
     BASE, CAVE, LANG_RVA, LANG_CAPACITY, MENU_HELPER, MENU_HELPER_CAP,
     SOURCE_SHA, WRAPPER_SHA, MENU_ITEMS, enc_menu, build_wrapper,
     build_menu_helper, build_novo_pointer_helper, NOVO_HELPER, NOVO_CALLSITE,
-    NOVO_STATUS_PTRS_OFF, patch_test11,
+    NOVO_STATUS_PTRS_OFF, PREVIEW_DRAW_CALL, patch_test11,
 )
 
 ADDRS={
@@ -26,7 +26,8 @@ class Test12LiveUI(unittest.TestCase):
         novo_helper=build_novo_pointer_helper()
         self.assertEqual(len(wrapper),584)
         self.assertEqual(hashlib.sha256(wrapper).hexdigest(),
-                         "fc08f1baafa5e8949a56f25483a0feb9f2d972e01fc727a56f28a4bc9a0b0b20")
+                         "d3a9968f11b0d278dd48f60ad74962a38370e2460c002c4207c9cd36fa8041fe")
+        self.assertEqual(PREVIEW_DRAW_CALL,0x82143110)
         self.assertLessEqual(len(wrapper),CAVE)
         self.assertEqual(len(helper),108)
         self.assertEqual(hashlib.sha256(helper).hexdigest(),
