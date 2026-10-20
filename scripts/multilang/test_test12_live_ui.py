@@ -1,0 +1,66 @@
+import hashlib
+import struct
+import unittest
+
+import test9_selector_native as old
+from test12_live_ui import (
+    BASE, CAVE, LANG_RVA, LANG_CAPACITY, MENU_HELPER, MENU_HELPER_CAP,
+    SOURCE_SHA, WRAPPER_SHA, MENU_ITEMS, enc_menu, build_wrapper,
+    build_menu_helper, patch_test11,
+)
+
+ADDRS={
+    "IDIOMAS":0x8305CA1C,
+    "PORTUGUES":0x8305CA00,
+    "ESPANOL":0x8305CA0C,
+    "ENGLISH":0x8305CA14,
+    "A CONFIRMAR":0x8305CA24,
+    "X":0x8305CA30,
+}
+
+class Test12LiveUI(unittest.TestCase):
+    def test_generated_code_fits_verified_caves(self):
+        wrapper=build_wrapper()
+        helper=build_menu_helper()
+        self.assertEqual(len(wrapper),564)
+        self.assertEqual(hashlib.sha256(wrapper).hexdigest(),
+                         "ff69022f2ca7eed69780464c969f6714cd921f316865d5ec47e08526d8f00e94")
+        self.assertLessEqual(len(wrapper),CAVE)
+        self.assertEqual(len(helper),108)
+        self.assertEqual(hashlib.sha256(helper).hexdigest(),
+                         "9ce174dfc2ad3b7e04bd4a3a7247d0bfad9886900358d7c7ee5542b3434e046f")
+        self.assertLessEqual(len(helper),MENU_HELPER_CAP)
+
+    def test_all_menu_translations_fit_original_string_buffers(self):
+        for off,capacity,pt,es,en in MENU_ITEMS:
+            for text in (pt,es,en):
+                self.assertLessEqual(len(enc_menu(text)),capacity,
+                                     f"{text!r} overflows original buffer {off:#x}")
+
+    def test_exact_TEST11_hash_is_required_by_default(self):
+        with self.assertRaisesRegex(ValueError,"exact TEST11 mapped PE"):
+            patch_test11(bytes(100),strict=True)
+
+    def test_fixture_patch_is_scoped_and_keeps_BY_scratch(self):
+        pe=bytearray(17_170_432)
+        pe[:2]=b"MZ"
+        pe[0x1040000:0x1040008]=b"SM64LANG"
+        pe[0x10400C0:0x10400C8]=b"COURSE3\0"
+        pe[0x1472D4:0x1472D8]=bytes.fromhex("48275a2d")
+        pe[0xCD128:0xCD12C]=bytes.fromhex("4bfc8321")
+        struct.pack_into(">I",pe,0x1040038,0x1CA32)
+        pe[0x1040000+0x1CA30:0x1040000+0x1CA32]=b"O\0"
+        pe[0x823BCD00-BASE:0x823BCD00-BASE+384]=old.build(ADDRS)
+        original=bytes(pe)
+        candidate,report=patch_test11(original,strict=False)
+        self.assertEqual(report["wrapper_bytes"],564)
+        self.assertEqual(report["helper_bytes"],108)
+        self.assertEqual(report["menu_records"],len(MENU_ITEMS))
+        self.assertTrue(report["b_y_scratch_unchanged"])
+        self.assertTrue(report["global_hook_unchanged"])
+        self.assertEqual(candidate[0x1040080:0x1040088],original[0x1040080:0x1040088])
+        self.assertEqual(candidate[0xCD128:0xCD12C],original[0xCD128:0xCD12C])
+        self.assertEqual(struct.unpack_from(">I",candidate,0x1040018)[0],2)
+
+if __name__=="__main__":
+    unittest.main()
