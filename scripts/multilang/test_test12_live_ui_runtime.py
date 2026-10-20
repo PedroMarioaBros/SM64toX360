@@ -50,6 +50,7 @@ def cpu(selected=2,button=0,state=0):
     u.mem_write(ui.MENU_HELPER,ui.build_menu_helper())
     u.mem_write(LANG+0x80,b"BY-STATE")
     w32(u,LANG+0x14,state);w32(u,LANG+0x18,selected)
+    w16(u,0x82E52FE8,799)  # native idle-demo timer; selector must hold it at zero
     labels={}
     for lang_id,texts in ui.PREVIEW.items():
         row=LANG+0x1000+lang_id*0x100
@@ -104,6 +105,7 @@ class Test12LiveUIRuntime(unittest.TestCase):
         for lang_id,expected in ui.PREVIEW.items():
             u,printed,original=cpu(lang_id,0,0)
             self.assertEqual([x[0] for x in printed[:5]],expected[:5])
+            self.assertEqual([x[1] for x in printed[:5]],[160]*5)
             self.assertEqual(r32(u,LANG+0x18),lang_id)
             self.assertFalse(original)
             self.assertEqual(bytes(u.mem_read(LANG+0x80,8)),b"BY-STATE")
@@ -113,12 +115,19 @@ class Test12LiveUIRuntime(unittest.TestCase):
             u,printed,original=cpu(selected,0x0400,0)
             self.assertEqual(r32(u,LANG+0x18),expected)
             self.assertEqual([x[0] for x in printed[:5]],ui.PREVIEW[expected][:5])
+            self.assertEqual([x[1] for x in printed[:5]],[160]*5)
 
     def test_up_moves_through_Portuguese_Spanish_English(self):
         for selected,expected in ((0,1),(1,2),(2,0)):
             u,printed,original=cpu(selected,0x0800,0)
             self.assertEqual(r32(u,LANG+0x18),expected)
             self.assertEqual([x[0] for x in printed[:5]],ui.PREVIEW[expected][:5])
+
+    def test_selector_resets_idle_demo_timer_only_while_open(self):
+        u,printed,original=cpu(2,2,0)
+        self.assertEqual(r16(u,0x82E52FE8),0)
+        u,printed,original=cpu(1,2,0)
+        self.assertEqual(r16(u,0x82E52FE8),799)
 
     def test_A_localizes_save_menu_and_start_prompt(self):
         for lang_id in (1,2):
