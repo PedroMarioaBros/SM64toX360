@@ -89,3 +89,12 @@ Sobre o prompt: o wrapper TEST14 só substitui os caminhos conhecidos nos callsi
 Sobre G/U: a hipótese de caixa foi falsificada pelo teste físico. Não há ainda evidência suficiente para atribuir o cinza à paleta, ao atlas ou ao mapeamento de glifos. A investigação deve identificar a rotina efetiva usada pelos textos de prévia e comparar o tratamento de G/U com letras vizinhas, sem trocar o renderizador às cegas. A experiência anterior com `PRINT_CENTER` + formato de string incompatível não deve ser usada como prova contra o caminho ASCII/NUL de TEST13D/TEST14.
 
 **Nenhum XEX novo foi produzido nesta etapa.** A próxima build só deve ser montada após hipótese específica e verificável, testes estáticos/PPC verdes e auditoria dos hashes; base 30 FPS, PT-BR preservado, Native60 e dublagem fora do escopo.
+
+
+## Complemento posterior — recuperação da PE e candidata TEST15 (20/10/2026)
+
+A limitação de recuperação descrita acima foi superada depois desse registro: a PE mapeada TEST14 foi extraída do XEX e validada por SHA-256 `6266c97deec43d4f43fe3c89bce2ebfb019ab220409702a35fccbd17b0878742` (17.170.432 bytes). A varredura validada em código executável localizou a chamada nativa direta restante em `0x820DBEF8` dentro da função `0x820DBED8`; essa ligação com a attract/demo segue hipótese a confirmar no console.
+
+A candidata TEST15 foi empacotada com XEX→PE round-trip byte a byte confirmado. PE SHA-256 `d1657528056df5f8c1257f3197a2674f69a46ff14dd090b682bea47f4be4a8b4`; XEX SHA-256 `fcf76cbe7a5e8247341dd4215254eb8a759f989ab42700ccd305eaca09680cc1`; ZIP SHA-256 `89a2f45e778afcb031d642f2f5820246a67b2584dfbc95874f4883f69454f121`. O wrapper PPC de 124 bytes foi conferido com disassembly. A CI [TEST15 prompt patch static tests — PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460) passou com cinco testes de fixture sintética.
+
+**TEST15 ainda não foi testada no Xbox físico.** A centralização X=160 e o bloqueio de demo anteriores permanecem preservados; G/U cinzentas continuam sem correção. O teste físico de inglês/espanhol na attract/demo é o próximo checkpoint.
