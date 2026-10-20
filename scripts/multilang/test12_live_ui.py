@@ -8,6 +8,13 @@ SOURCE_SHA='a52da425c9cf294e9005fc4cce95b0c02b015f9ea2b0f88ea17df268c52b9ecd'
 WRAPPER_SHA='7198267b6f0e7699f5226637cd5db7e5f9470d5b5f3b9aac69e8d6e2ac0db6b1'
 MENU_HELPER=0x823BCB00
 MENU_HELPER_CAP=0x100
+# Redirect the exact five-byte NOVO string pointer; NUEVO needs six bytes.
+NOVO_CALLSITE=0x823BC600
+NOVO_ORIGINAL=bytes.fromhex('3cc0829e60c67170')
+NOVO_PRINT_CALL=bytes.fromhex('4bd86d44')
+NOVO_STATUS_PTRS_OFF=0xAC
+NOVO_HELPER_OFFSET=0x248
+NOVO_HELPER=WRAPPER+NOVO_HELPER_OFFSET
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
 # Use the native glyph-map renderer for selector labels so accents are supported.
@@ -148,12 +155,48 @@ def build_menu_helper():
     if len(code)>MENU_HELPER_CAP:raise ValueError(f'menu helper {len(code)} > {MENU_HELPER_CAP}')
     return code
 
+def build_novo_pointer_helper():
+    """Return the language-specific empty-slot label pointer in r6.
+
+    The original two instructions at NOVO_CALLSITE set only r6. Preserve
+    r0/r10/r11 and CR, and return to the original second instruction's slot.
+    """
+    p=PPC(base=NOVO_HELPER)
+    p.w(0x9421ffe0)  # stwu r1,-0x20(r1)
+    p.stw(0,0x1C,1)
+    p.stw(10,0x14,1)
+    p.stw(11,0x18,1)
+    p.w(0x7c000026)  # mfcr r0
+    p.stw(0,0x10,1)
+    p.lis(11,LANG_BASE>>16)
+    p.lwz(10,INDEX_OFF,11)
+    p.cmpwi(10,0);p.branch('novo_pt','beq')
+    p.cmpwi(10,1);p.branch('novo_es','beq')
+    p.lwz(6,NOVO_STATUS_PTRS_OFF+8,11)
+    p.branch('novo_restore')
+    p.label('novo_pt')
+    p.lwz(6,NOVO_STATUS_PTRS_OFF,11)
+    p.branch('novo_restore')
+    p.label('novo_es')
+    p.lwz(6,NOVO_STATUS_PTRS_OFF+4,11)
+    p.label('novo_restore')
+    p.lwz(0,0x10,1)
+    p.w(0x7c0ff120)  # mtcrf 0xFF,r0
+    p.lwz(10,0x14,1)
+    p.lwz(11,0x18,1)
+    p.lwz(0,0x1C,1)
+    p.w(0x38210020)  # addi r1,r1,0x20
+    p.w(0x4e800020)  # blr
+    return p.resolve()
+
 def patch_test11(pe:bytes,strict=True):
     if len(pe)!=PE_LEN or (strict and hashlib.sha256(pe).hexdigest()!=SOURCE_SHA):raise ValueError('requires exact TEST11 mapped PE')
     def chk(off,expected):
         if pe[off:off+len(expected)]!=expected:raise ValueError(f'unexpected bytes at {off:#x}: {pe[off:off+len(expected)].hex()}')
     chk(0x1040000,b'SM64LANG');chk(0x1472D4,bytes.fromhex('48275a2d'));chk(0xCD128,bytes.fromhex('4bfc8321'))
+    chk(NOVO_CALLSITE-BASE,NOVO_ORIGINAL);chk(NOVO_CALLSITE-BASE+8,NOVO_PRINT_CALL)
     chk(0x1040014,bytes(8));chk(0x1040070,bytes(12));chk(0x1040080,bytes(8));chk(0x10400A0,bytes(12))
+    chk(LANG_RVA+NOVO_STATUS_PTRS_OFF,bytes(12))
     if hashlib.sha256(pe[WRAPPER-BASE:WRAPPER-BASE+384]).hexdigest()!=WRAPPER_SHA:raise ValueError('TEST11 wrapper fingerprint mismatch')
     if any(pe[WRAPPER-BASE+384:WRAPPER-BASE+CAVE]):raise ValueError('wrapper cave tail is not free')
     if any(pe[MENU_HELPER-BASE:MENU_HELPER-BASE+MENU_HELPER_CAP]):raise ValueError('menu helper cave is not free')
@@ -187,15 +230,28 @@ def patch_test11(pe:bytes,strict=True):
         for i,(dst,src,cap) in enumerate(records):struct.pack_into('>III',out,row_off+i*12,dst,src,cap)
         row_va=BASE+row_off;cursor+=len(records)*12
         struct.pack_into('>I',out,LANG_RVA+0xA0+lang_id*4,row_va);menu_rows[lang_id]=row_va
+    # Store per-language empty-slot labels; never overwrite adjacent native text.
+    novo_ptrs={}
+    for lang_id,label in ((0,'NOVO'),(1,'NUEVO'),(2,'NEW')):
+        va,cursor=append_blob(out,cursor,enc_menu(label))
+        novo_ptrs[lang_id]=va
+    for lang_id,va in novo_ptrs.items():
+        struct.pack_into('>I',out,LANG_RVA+NOVO_STATUS_PTRS_OFF+lang_id*4,va)
     struct.pack_into('>III',out,LANG_RVA+0x14,0,2,0)
     for i,va in enumerate(rows[2][:5]):struct.pack_into('>I',out,LANG_RVA+0x58+i*4,va)
     struct.pack_into('>I',out,LANG_RVA+CURSOR_OFF,cursor)
-    code=build_wrapper();helper=build_menu_helper()
+    code=build_wrapper();helper=build_menu_helper();novo_helper=build_novo_pointer_helper()
+    if len(code)!=NOVO_HELPER_OFFSET:raise ValueError(f'wrapper length {len(code)} no longer matches NOVO helper offset')
+    if len(code)+len(novo_helper)>CAVE:raise ValueError('NOVO pointer helper exceeds selector cave')
+    call=PPC(base=NOVO_CALLSITE);call.call(NOVO_HELPER);call.w(0x60000000)
+    call_blob=call.resolve()
     out[WRAPPER-BASE:WRAPPER-BASE+CAVE]=code+b'\0'*(CAVE-len(code))
+    out[NOVO_HELPER-BASE:NOVO_HELPER-BASE+len(novo_helper)]=novo_helper
     out[MENU_HELPER-BASE:MENU_HELPER-BASE+MENU_HELPER_CAP]=helper+b'\0'*(MENU_HELPER_CAP-len(helper))
+    out[NOVO_CALLSITE-BASE:NOVO_CALLSITE-BASE+8]=call_blob
     image=bytes(out);changed=[i for i,(a,b) in enumerate(zip(pe,image)) if a!=b]
-    allowed=[(LANG_RVA+0x14,LANG_RVA+0x1c),(LANG_RVA+0x38,LANG_RVA+0x3c),(LANG_RVA+0x58,LANG_RVA+0x7c),(LANG_RVA+0xA0,LANG_RVA+0xAC),(LANG_RVA+cur,LANG_RVA+cursor),(WRAPPER-BASE,WRAPPER-BASE+CAVE),(MENU_HELPER-BASE,MENU_HELPER-BASE+MENU_HELPER_CAP)]
+    allowed=[(LANG_RVA+0x14,LANG_RVA+0x1c),(LANG_RVA+0x38,LANG_RVA+0x3c),(LANG_RVA+0x58,LANG_RVA+0x7c),(LANG_RVA+0xA0,LANG_RVA+0xAC),(LANG_RVA+NOVO_STATUS_PTRS_OFF,LANG_RVA+NOVO_STATUS_PTRS_OFF+12),(LANG_RVA+cur,LANG_RVA+cursor),(WRAPPER-BASE,WRAPPER-BASE+CAVE),(MENU_HELPER-BASE,MENU_HELPER-BASE+MENU_HELPER_CAP),(NOVO_CALLSITE-BASE,NOVO_CALLSITE-BASE+8)]
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native glyph-map with accents','hardware_validated':False}
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native glyph-map with accents','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
