@@ -26,7 +26,7 @@ PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 # an observed title-screen baseline in TEST8/TEST9. Textless arrow + flags remains
 # the final UI target; this interim ASCII list is only a safer visual regression fix.
 PREVIEW={
-  # Uppercase ASCII only: avoids the gray lowercase glyphs observed on the physical Xbox.
+  # Interim uppercase ASCII is retained, but TEST14 physical testing showed it does NOT fix gray G/U glyphs.
   # Visible order remains English -> Spanish -> Portuguese; language ID 0=PT, 1=ES, 2=EN.
   0:['IDIOMAS','INGLES','ESPANHOL','PORTUGUES','PRESSIONE A PARA CONFIRMAR','APERTE','START'],
   1:['IDIOMAS','INGLES','ESPANOL','PORTUGUES','PULSA A PARA CONFIRMAR','PULSA','START'],
@@ -79,7 +79,7 @@ def enc_menu(s:str)->bytes:
     return bytes(out+[0xFF])
 
 def enc_preview(s:str)->bytes:
-    """ASCII/NUL input for PRINT_GENERIC_STRING_FADE at 0x82143110."""
+    """ASCII/NUL input for the native centered title renderer at 0x8212B498."""
     try:
         return s.encode('ascii')+b'\0'
     except UnicodeEncodeError as exc:
