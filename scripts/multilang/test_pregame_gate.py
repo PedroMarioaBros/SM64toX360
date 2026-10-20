@@ -53,6 +53,14 @@ def run(state, selection=0, timer=0, buttons=0):
     put32(uc,LANG_BASE+0x1c,timer)
     for i in range(12):
         put32(uc,LANG_BASE+0x40+i*4,LANG_BASE+0x18000+i*0x20)
+    preview_expected = {}
+    for language_id in range(3):
+        values = []
+        for i in range(5):
+            ptr = LANG_BASE + 0x19000 + language_id * 0x100 + i * 0x20
+            put32(uc,LANG_BASE+0x70+language_id*20+i*4,ptr)
+            values.append(ptr)
+        preview_expected[language_id] = values
 
     put32(uc,PLAYER1_CONTROLLER_PTR,CTRL)
     put16(uc,CTRL+0x12,buttons)
@@ -95,6 +103,8 @@ def run(state, selection=0, timer=0, buttons=0):
         "r3":uc.reg_read(R3)&0xffffffff,
         "calls":calls,
         "activation":activation,
+        "selector_pointers":[get32(uc,LANG_BASE+0x58+i*4) for i in range(5)],
+        "preview_expected":preview_expected,
     }
 
 def main():
@@ -103,10 +113,10 @@ def main():
     assert c["calls"].count("print")==6 and "original" not in c["calls"]
 
     c=run(0,0,44,0)
-    assert (c["state"],c["selection"],c["timer"])==(1,0,0)
+    assert (c["state"],c["selection"],c["timer"])==(1,2,0)
 
     c=run(0,0,0,0x8000)
-    assert c["state"]==1
+    assert c["state"]==1 and c["selection"]==2
 
     c=run(1,0,0,0x0800)
     assert c["selection"]==2
@@ -117,6 +127,7 @@ def main():
         c=run(1,selection,0,0x8000)
         assert c["state"]==2 and c["activation"]==[selection] and "original" not in c["calls"]
         assert c["r3"]==LEVEL_PTR
+        assert c["selector_pointers"]==c["preview_expected"][selection]
 
     c=run(2,2,0,0)
     assert c["calls"]==["original"] and c["r3"]==0xDEADBEEF
