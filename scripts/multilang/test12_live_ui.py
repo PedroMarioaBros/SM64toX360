@@ -144,7 +144,7 @@ def patch_test11(pe:bytes,strict=True):
     def chk(off,expected):
         if pe[off:off+len(expected)]!=expected:raise ValueError(f'unexpected bytes at {off:#x}: {pe[off:off+len(expected)].hex()}')
     chk(0x1040000,b'SM64LANG');chk(0x1472D4,bytes.fromhex('48275a2d'));chk(0xCD128,bytes.fromhex('4bfc8321'))
-    chk(0x1040014,bytes(8));chk(0x1040080,bytes(8))
+    chk(0x1040014,bytes(8));chk(0x1040070,bytes(12));chk(0x1040080,bytes(8));chk(0x10400A0,bytes(12))
     if hashlib.sha256(pe[WRAPPER-BASE:WRAPPER-BASE+384]).hexdigest()!=WRAPPER_SHA:raise ValueError('TEST11 wrapper fingerprint mismatch')
     if any(pe[WRAPPER-BASE+384:WRAPPER-BASE+CAVE]):raise ValueError('wrapper cave tail is not free')
     if any(pe[MENU_HELPER-BASE:MENU_HELPER-BASE+MENU_HELPER_CAP]):raise ValueError('menu helper cave is not free')
