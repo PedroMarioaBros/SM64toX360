@@ -746,3 +746,11 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Pendências: (1) English como idioma padrão ao abrir; (2) ordem fixa English → Español → Português; (3) ao mover o cursor, antes de A, traduzir toda a tela do seletor, inclusive o título, os nomes de todas as opções e a instrução; (4) após A, localizar o prompt “APERTE START”/Press Start; (5) localizar o menu de seleção de saves/file-select e todos os seus textos.
 - Rótulos esperados conforme idioma destacado: English — “Languages / English / Spanish / Portuguese / Press A to confirm”; Español — “Idiomas / Inglés / Español / Portugués / Pulsa A para confirmar”; Português — “Idiomas / Inglês / Espanhol / Português / Pressione A para confirmar”.
 - Não confundir sucesso da tradução dos textos internos com conclusão de todos os menus. Nenhuma nova XEX foi gerada. Próxima etapa: mapear com segurança strings e rotinas no PE Xbox 360, criar verificações estáticas fail-closed e só então implementar/testar, sem transplantar endereços N64/MIPS. Dublagem continua fora do escopo.
+
+
+## 20/10/2026 — checkpoint de engenharia com PE TEST11 recuperada
+- PE mapeada da TEST11 recuperada do pacote de teste e hash conferido com a auditoria: `a52da425c9cf294e9005fc4cce95b0c02b015f9ea2b0f88ea17df268c52b9ecd` (17.170.432 bytes).
+- Wrapper físico do seletor: `0x823BCD00`, 384 bytes, hash `7198267b6f0e7699f5226637cd5db7e5f9470d5b5f3b9aac69e8d6e2ac0db6b1`. Cave auxiliar `0x823BCB00–0x823BCBFF` está zerado na PE de referência.
+- Mapeados o prompt dividido em `APERTE`/`START` e os offsets das strings do menu de saves. Ver `docs/TEST11_UI_TEXT_MAP_2026_10_20.md`.
+- A variante alternativa `pregame_gate.py` tem testes de CPU aprovados para English padrão e ponteiros de prévia, mas não é o wrapper usado na TEST11 física. Não confundir com build de console.
+- Próximo passo: construir patcher específico para a PE TEST11, localizar strings da prévia por idioma, prompt Start e menu saves; preservar `.lang+0x80–0x87` do scratch B/Y; executar testes CPU e Xenia antes de entregar nova XEX. Nenhuma nova XEX gerada nesta etapa.
