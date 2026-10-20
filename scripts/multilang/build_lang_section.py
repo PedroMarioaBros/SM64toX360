@@ -112,7 +112,7 @@ def main() -> None:
     # Pregame strings use only the stock US charmap plus glyph slots already
     # installed and validated by this project (ê=0x65, ñ=0x42).
     special = {" ": 0x9E, "-": 0x9F, "/": 0xD0, ":": 0xE6, ">": 0x53,
-               "ê": 0x65, "ñ": 0x42}
+               "ê": 0x65, "é": 0x64, "ñ": 0x42}
     def enc_selector(text: str) -> bytes:
         out = bytearray()
         for ch in text:
@@ -129,6 +129,8 @@ def main() -> None:
         out.append(0xFF)
         return bytes(out)
 
+    # Six credit strings stay fixed; the five selector pointer slots are refreshed
+    # every frame from the selected-language preview table at .lang+0x70.
     selector_texts = [
         "SUPER MARIO 64",
         "NINTENDO 1996",
@@ -136,11 +138,11 @@ def main() -> None:
         "LOCALIZACAO PT-BR",
         "EDICAO MULTILINGUE",
         "PeterKleizoon - PMCN Studios",
-        "IDIOMA / LANGUAGE",
+        "Idiomas",
         "Português",
-        "Español",
-        "English",
-        "A - OK",
+        "Espanhol",
+        "Inglês",
+        "Pressione A para confirmar",
         ">",
     ]
     selector_ptrs = []
@@ -155,6 +157,27 @@ def main() -> None:
 
     for i, va in enumerate(selector_ptrs):
         struct.pack_into(">I", payload, 0x40 + i * 4, va)
+
+    # Pointer row order: title, Portuguese (bottom), Spanish (middle), English (top), confirm.
+    # Keep the existing language ABI: 0=PT-BR, 1=ES, 2=EN.
+    preview_sets = {
+        0: ["Idiomas", "Português", "Espanhol", "Inglês", "Pressione A para confirmar"],
+        1: ["Idiomas", "Portugués", "Español", "Inglés", "Pulsa A para confirmar"],
+        2: ["Languages", "Portuguese", "Spanish", "English", "Press A to confirm"],
+    }
+    for language_id, texts in preview_sets.items():
+        values = []
+        for text in texts:
+            cursor = align(cursor, 4)
+            raw = enc_selector(text)
+            if cursor + len(raw) > LANG_SIZE:
+                raise RuntimeError(".lang overflow while adding live-preview strings")
+            payload[cursor:cursor + len(raw)] = raw
+            values.append(IMAGE_BASE + LANG_RVA + cursor)
+            cursor += len(raw)
+        for i, va in enumerate(values):
+            struct.pack_into(">I", payload, 0x70 + language_id * 20 + i * 4, va)
+
     struct.pack_into(">I", payload, 0x38, cursor)
 
     # .lang lives beyond the canonical v0.4 image, outside its existing
@@ -202,7 +225,10 @@ def main() -> None:
             "selection_offset": "0x18",
             "timer_offset": "0x1c",
             "text_pointer_base": "0x40",
-            "text_count": 12,
+            "text_count": 27,
+            "live_preview_table_offset": "0x70",
+            "live_preview_languages": 3,
+            "live_preview_strings_per_language": 5,
         },
     }
     if args.report:
