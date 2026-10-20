@@ -138,3 +138,12 @@ Próxima etapa: empacotar o ZIP candidato para teste físico, com aviso claro de
 ## Pacote de teste TEST12 preparado, 20/10/2026
 
 O pacote local de teste foi montado em `/mnt/data/SM64_TEST12_UI_TRILINGUE_CANDIDATA.zip` (SHA-256 `7eb04f6d65921bd002ae753ac3becbb08a3d8e97f72b5aed7f5c5fff6aade044`). Contém `default.xex`, instruções de teste, auditoria JSON e checksums. O XEX incluído tem SHA-256 `d4a15796f13e9239aeba02cc446b0a0224ae9579b3af8e5564469454e2427d06`. O pacote está rotulado como candidata, não versão final, pois o Xenia executado foi com renderizador nulo e não confirmou a aparência visual; falta a conferência no Xbox 360 físico.
+
+
+## Resultado físico TEST12 — relato de 20/10/2026
+
+O proprietário testou a XEX TEST12 no Xbox 360. A tela de créditos passa e o seletor chega à face do Mario; a ordem/estado das opções funciona (English, Español, Português), mas **nenhum texto do seletor é renderizado** — só aparece o marcador circular. Após confirmar, o prompt Start muda corretamente para o idioma escolhido; no menu de saves, o título e os demais rótulos parecem traduzidos, porém os quatro slots vazios continuam mostrando `NOVO` em PT-BR mesmo em English/Español.
+
+Diagnóstico novo: o wrapper TEST12 chama `0x82143110` para desenhar os textos do seletor, enquanto o renderizador nativo já identificado e usado pelo código anterior é `PRINT_CENTER=0x8212B498`. Foi corrigida a chamada no código e atualizados os testes de runtime para exercitar o renderizador conhecido. Essa correção ainda precisa passar no CI e ser empacotada/testada; não existe nova XEX validada a partir dela neste momento.
+
+Direção de UX sugerida: o proprietário gostou do seletor sem texto e propôs seta para a direita + bandeira de cada idioma (EUA, Espanha, Brasil). A proposta é boa e mais limpa; contudo, bandeiras exigem um caminho gráfico/sprite que ainda não foi provado no patcher. Próximo passo seguro: validar primeiro a correção do renderizador, investigar o texto `NOVO` nos slots e, em paralelo, auditar um método seguro para desenhar ícones/flags. Não presumir que o suporte a glifos de texto já permite desenhar bandeiras.
