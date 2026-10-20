@@ -720,3 +720,12 @@ Status de confiança: a correção de cursor O foi observada em Xenia; não decl
 - Esta evidência mostra que o idioma selecionado chega a pelo menos parte do sistema de textos; o diagnóstico não deve dizer que a ativação está totalmente quebrada. O problema confirmado é a inconsistência do prompt de título, que permanece PT-BR. Ainda não se sabe se todos os menus/textos acompanham o idioma.
 - Status atualizado em docs/STATUS_PARA_PEDRO.md (commit 3e1096bd4b928188e90249dcdc8b1ce4c0db6aec).
 - Aguardando o resultado do teste espanhol que o proprietário já está fazendo. Não pedir repetição do teste English e não gerar nova XEX antes de mapear com segurança as strings/rotinas do título.
+
+
+## 20/10/2026 — especificação do comportamento dinâmico do seletor
+- Ordem fixa: **English → Español → Português**.
+- Ao abrir o jogo, English deve estar destacado por padrão.
+- Ao mover o cursor para qualquer idioma, antes de apertar A, a tela do seletor deve atualizar todos os textos para o idioma destacado: título/etiqueta de idiomas, nomes de todas as opções e instrução de confirmação.
+- A deve confirmar a escolha e manter esse idioma nos textos internos do jogo.
+- Isso é requisito solicitado, ainda não implementado nem testado. Não confundir especificação com progresso concluído.
+- O proprietário iniciou um teste físico de Español na TEST11; aguardar o relato sem pedir que repita o teste de English.
