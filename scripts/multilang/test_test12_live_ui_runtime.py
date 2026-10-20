@@ -13,6 +13,7 @@ STOP=0x84001000
 DIALOG=ui.ACTIVATE_DIALOGS
 COURSE=ui.ACTIVATE_COURSES
 PRINT=ui.PRINT_CENTER
+PRINT_TITLE=0x82143110
 ORIGINAL=ui.ORIGINAL_PRINT
 REG=[getattr(cp,f"UC_PPC_REG_{i}") for i in range(32)]
 
@@ -28,6 +29,19 @@ def cstr(u,a):
         out.append(b)
     return out.decode("ascii")
 
+def decode_selector(u,a):
+    reverse={i+0x0A:chr(65+i) for i in range(26)}
+    reverse.update({i+0x24:chr(97+i) for i in range(26)})
+    reverse.update({0x9E:' ',0x65:'ê',0x64:'é',0x42:'ñ',0x41:'Ê',0x40:'É',0x43:'Ñ',
+                     0x60:'á',0x66:'í',0x67:'ó',0x6A:'ú',0x6D:'Á',0x71:'Ã',0x70:'Â',
+                     0x7A:'Ç',0x72:'É',0x73:'Ê',0x74:'Í',0x75:'Ó',0x76:'Ô',0x77:'Õ',0x78:'Ú',0x79:'Ü'})
+    out=[]
+    for i in range(128):
+        b=bytes(u.mem_read(a+i,1))[0]
+        if b==0xFF:break
+        out.append(reverse.get(b,'?'))
+    return ''.join(out)
+
 def cpu(selected=2,button=0,state=0):
     u=Uc(UC_ARCH_PPC,UC_MODE_32|UC_MODE_BIG_ENDIAN)
     for base,size in ((0x82000000,0x1000000),(LANG,0x20000),(0x84000000,0x20000)):
@@ -42,7 +56,8 @@ def cpu(selected=2,button=0,state=0):
         ptrs=[]
         for i,text in enumerate(texts):
             ptr=LANG+0x2000+lang_id*0x200+i*0x40
-            u.mem_write(ptr,text.encode("ascii")+b"\0")
+            raw=ui.enc_selector_title(text) if i<5 else text.encode("ascii")+b"\0"
+            u.mem_write(ptr,raw)
             ptrs.append(ptr)
         for i,ptr in enumerate(ptrs):w32(u,row+i*4,ptr)
         w32(u,LANG+0x70+lang_id*4,row)
@@ -67,10 +82,11 @@ def cpu(selected=2,button=0,state=0):
     printed=[];original=[]
     def hook(emu,addr,size,_):
         if addr==STOP:emu.emu_stop()
-        elif addr in (DIALOG,COURSE,PRINT,ORIGINAL):
-            if addr==PRINT:
+        elif addr in (DIALOG,COURSE,PRINT,PRINT_TITLE,ORIGINAL):
+            if addr in (PRINT,PRINT_TITLE):
                 x,y,p=(emu.reg_read(REG[k]) for k in (3,4,5))
-                printed.append((cstr(emu,p),x,y))
+                text=decode_selector(emu,p) if addr==PRINT_TITLE else cstr(emu,p)
+                printed.append((text,x,y))
             elif addr==ORIGINAL:original.append(True)
             emu.reg_write(cp.UC_PPC_REG_PC,emu.reg_read(cp.UC_PPC_REG_LR))
     u.hook_add(UC_HOOK_CODE,hook)
