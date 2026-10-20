@@ -13,23 +13,24 @@ MENU_HELPER_CAP=0x100
 # 0xFF-terminated data, so do not regress the string format.
 PREVIEW_DRAW_CALL=PRINT_CENTER
 # Redirect the exact five-byte NOVO string pointer; NUEVO needs six bytes.
+GAMEOVER_CALLSITE=0x82147368
+GAMEOVER_ORIGINAL=bytes.fromhex('4bf519b1')
 NOVO_CALLSITE=0x823BC600
 NOVO_ORIGINAL=bytes.fromhex('3cc0829e60c67170')
 NOVO_PRINT_CALL=bytes.fromhex('4bd86d44')
 NOVO_STATUS_PTRS_OFF=0xAC
-NOVO_HELPER_OFFSET=0x248
-NOVO_HELPER=WRAPPER+NOVO_HELPER_OFFSET
+NOVO_HELPER=0x823BCB70  # relocate into the menu cave after the 108-byte menu helper
 PREVIEW_SLOTS=(0x58,0x5C,0x60,0x64,0x68)
 
 # Native print_text_centered (0x8212B498) consumes ASCII/NUL strings and has
 # an observed title-screen baseline in TEST8/TEST9. Textless arrow + flags remains
 # the final UI target; this interim ASCII list is only a safer visual regression fix.
 PREVIEW={
-  # Temporary ASCII labels for PRINT_GENERIC_STRING_FADE; final visual goal is arrow + flags.
-  # Visible order is top-to-bottom: English, Spanish, Portuguese.
-  0:['Idiomas','Ingles','Espanhol','Portugues','Pressione A para confirmar','APERTE','START'],
-  1:['Idiomas','Ingles','Espanol','Portugues','Pulsa A para confirmar','PULSA','START'],
-  2:['Languages','English','Spanish','Portuguese','Press A to confirm','PRESS','START'],
+  # Uppercase ASCII only: avoids the gray lowercase glyphs observed on the physical Xbox.
+  # Visible order remains English -> Spanish -> Portuguese; language ID 0=PT, 1=ES, 2=EN.
+  0:['IDIOMAS','INGLES','ESPANHOL','PORTUGUES','PRESSIONE A PARA CONFIRMAR','APERTE','START'],
+  1:['IDIOMAS','INGLES','ESPANOL','PORTUGUES','PULSA A PARA CONFIRMAR','PULSA','START'],
+  2:['LANGUAGES','ENGLISH','SPANISH','PORTUGUESE','PRESS A TO CONFIRM','PRESS','START'],
 }
 # Offset, capacity in bytes including 0xFF terminator, PT-BR, Spanish, English.
 MENU_ITEMS=[
@@ -108,6 +109,9 @@ def build_wrapper():
     p=PPC()
     p.w(0x7c0802a6);p.w(0x9421ff80);p.stw(0,0x78,1)
     p.lis(11,LANG_BASE>>16);p.lwz(10,STATE_OFF,11);p.cmpwi(10,0);p.branch('pass_original','bne')
+    # Reset the native idle-demo timer while the selector is active; intro_regular's
+    # shared helper otherwise advances it to 800 frames and launches cutscenes.
+    p.lis(11,0x82E5);p.li(10,0);p.sth(10,0x2FE8,11)
     p.lis(11,(CONTROLLER_GLOBAL+0x8000)>>16);p.lwz(11,CONTROLLER_GLOBAL&0xffff,11);p.cmpwi(11,0);p.branch('draw','beq')
     p.lhz(9,0x12,11);p.andi(8,9,~0x1000&0xffff);p.sth(8,0x12,11)
     p.andi(8,9,0x0800);p.cmpwi(8,0);p.branch('down','beq')
@@ -131,7 +135,7 @@ def build_wrapper():
     p.label('preview_load')
     for i,slot in enumerate(PREVIEW_SLOTS):
         p.lwz(10,i*4,11);p.stw(10,slot,12)
-    for x,y,slot in ((76,195,0x58),(118,145,0x5C),(118,115,0x60),(118,85,0x64),(104,30,0x68)):
+    for x,y,slot in ((160,195,0x58),(160,145,0x5C),(160,115,0x60),(160,85,0x64),(160,30,0x68)):
         p.lis(12,LANG_BASE>>16);p.li(3,x);p.li(4,y);p.lwz(5,slot,12);p.call(PREVIEW_DRAW_CALL)
     p.lis(11,LANG_BASE>>16);p.lwz(10,INDEX_OFF,11);p.cmpwi(10,0);p.branch('marker_pt','beq');p.cmpwi(10,1);p.branch('marker_es','beq');p.li(4,145);p.branch('marker')
     p.label('marker_pt');p.li(4,85);p.branch('marker');p.label('marker_es');p.li(4,115)
@@ -206,7 +210,7 @@ def patch_test11(pe:bytes,strict=True):
     if len(pe)!=PE_LEN or (strict and hashlib.sha256(pe).hexdigest()!=SOURCE_SHA):raise ValueError('requires exact TEST11 mapped PE')
     def chk(off,expected):
         if pe[off:off+len(expected)]!=expected:raise ValueError(f'unexpected bytes at {off:#x}: {pe[off:off+len(expected)].hex()}')
-    chk(0x1040000,b'SM64LANG');chk(0x1472D4,bytes.fromhex('48275a2d'));chk(0xCD128,bytes.fromhex('4bfc8321'))
+    chk(0x1040000,b'SM64LANG');chk(0x1472D4,bytes.fromhex('48275a2d'));chk(GAMEOVER_CALLSITE-BASE,GAMEOVER_ORIGINAL);chk(0xCD128,bytes.fromhex('4bfc8321'))
     chk(NOVO_CALLSITE-BASE,NOVO_ORIGINAL);chk(NOVO_CALLSITE-BASE+8,NOVO_PRINT_CALL)
     chk(0x1040014,bytes(8));chk(0x1040070,bytes(12));chk(0x1040080,bytes(8));chk(0x10400A0,bytes(12))
     chk(LANG_RVA+NOVO_STATUS_PTRS_OFF,bytes(12))
@@ -257,13 +261,18 @@ def patch_test11(pe:bytes,strict=True):
     if len(code)+len(novo_helper)>CAVE:raise ValueError('NOVO pointer helper exceeds selector cave')
     call=PPC(base=NOVO_CALLSITE);call.call(NOVO_HELPER);call.w(0x60000000)
     call_blob=call.resolve()
+    gameover=PPC(base=GAMEOVER_CALLSITE);gameover.call(WRAPPER);gameover_blob=gameover.resolve()
+    if len(code)!=596:raise ValueError(f'wrapper bytes changed unexpectedly: {len(code)}')
+    if len(helper)>0x70 or len(novo_helper)>0x90:raise ValueError('menu helper/status helper overflow their shared cave')
     out[WRAPPER-BASE:WRAPPER-BASE+CAVE]=code+b'\0'*(CAVE-len(code))
     out[NOVO_HELPER-BASE:NOVO_HELPER-BASE+len(novo_helper)]=novo_helper
     out[MENU_HELPER-BASE:MENU_HELPER-BASE+MENU_HELPER_CAP]=helper+b'\0'*(MENU_HELPER_CAP-len(helper))
     out[NOVO_CALLSITE-BASE:NOVO_CALLSITE-BASE+8]=call_blob
+    out[GAMEOVER_CALLSITE-BASE:GAMEOVER_CALLSITE-BASE+4]=gameover_blob
     image=bytes(out);changed=[i for i,(a,b) in enumerate(zip(pe,image)) if a!=b]
-    allowed=[(LANG_RVA+0x14,LANG_RVA+0x1c),(LANG_RVA+0x38,LANG_RVA+0x3c),(LANG_RVA+0x58,LANG_RVA+0x7c),(LANG_RVA+0xA0,LANG_RVA+0xAC),(LANG_RVA+NOVO_STATUS_PTRS_OFF,LANG_RVA+NOVO_STATUS_PTRS_OFF+12),(LANG_RVA+cur,LANG_RVA+cursor),(WRAPPER-BASE,WRAPPER-BASE+CAVE),(MENU_HELPER-BASE,MENU_HELPER-BASE+MENU_HELPER_CAP),(NOVO_CALLSITE-BASE,NOVO_CALLSITE-BASE+8)]
+    allowed=[(LANG_RVA+0x14,LANG_RVA+0x1c),(LANG_RVA+0x38,LANG_RVA+0x3c),(LANG_RVA+0x58,LANG_RVA+0x7c),(LANG_RVA+0xA0,LANG_RVA+0xAC),(LANG_RVA+NOVO_STATUS_PTRS_OFF,LANG_RVA+NOVO_STATUS_PTRS_OFF+12),(LANG_RVA+cur,LANG_RVA+cursor),(WRAPPER-BASE,WRAPPER-BASE+CAVE),(MENU_HELPER-BASE,MENU_HELPER-BASE+MENU_HELPER_CAP),(NOVO_CALLSITE-BASE,NOVO_CALLSITE-BASE+8),(GAMEOVER_CALLSITE-BASE,GAMEOVER_CALLSITE-BASE+4)]
     if any(not any(a<=i<b for a,b in allowed) for i in changed):raise ValueError('unrelated PE bytes changed')
     if image[LANG_RVA+0x80:LANG_RVA+0x88]!=pe[LANG_RVA+0x80:LANG_RVA+0x88]:raise ValueError('B/Y scratch changed')
     if image[0xCD128:0xCD12C]!=pe[0xCD128:0xCD12C]:raise ValueError('global level script hook changed')
-    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'native print_text_centered with ASCII/NUL strings; icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_callsite_patched':True,'hardware_validated':False}
+    if image[GAMEOVER_CALLSITE-BASE:GAMEOVER_CALLSITE-BASE+4]!=gameover_blob:raise ValueError('game-over prompt hook not installed')
+    return image,{'source_sha256':hashlib.sha256(pe).hexdigest(),'candidate_sha256':hashlib.sha256(image).hexdigest(),'wrapper_bytes':len(code),'helper_bytes':len(helper),'old_cursor':cur,'new_cursor':cursor,'changed_bytes':len(changed),'b_y_scratch_unchanged':True,'global_hook_unchanged':True,'selector_rows':{k:[hex(x) for x in v] for k,v in rows.items()},'menu_records':len(MENU_ITEMS),'selector_renderer':'centered native print_text_centered with uppercase ASCII/NUL strings; icon path pending','novo_status_entries':{k:hex(v) for k,v in novo_ptrs.items()},'novo_pointer_helper_bytes':len(novo_helper),'novo_pointer_helper_va':hex(NOVO_HELPER),'novo_callsite_patched':True,'gameover_prompt_hooked':True,'idle_demo_timer_reset':hex(0x82E52FE8),'hardware_validated':False}
