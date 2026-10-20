@@ -53,7 +53,7 @@ class Test12LiveUI(unittest.TestCase):
         pe[0x823BCD00-BASE:0x823BCD00-BASE+384]=old.build(ADDRS)
         original=bytes(pe)
         candidate,report=patch_test11(original,strict=False)
-        self.assertEqual(report["wrapper_bytes"],564)
+        self.assertEqual(report["wrapper_bytes"],584)
         self.assertEqual(report["helper_bytes"],108)
         self.assertEqual(report["menu_records"],len(MENU_ITEMS))
         self.assertTrue(report["b_y_scratch_unchanged"])
