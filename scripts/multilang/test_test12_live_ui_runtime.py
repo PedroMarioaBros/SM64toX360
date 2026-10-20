@@ -86,8 +86,8 @@ def cpu(selected=2,button=0,state=0):
     printed=[];original=[]
     def hook(emu,addr,size,_):
         if addr==STOP:emu.emu_stop()
-        elif addr in (DIALOG,COURSE,PRINT,PRINT_TITLE,ORIGINAL):
-            if addr in (PRINT,PRINT_TITLE):
+        elif addr in (DIALOG,COURSE,PRINT,PRINT_TITLE,ui.PREVIEW_DRAW_CALL,ORIGINAL):
+            if addr in (PRINT,PRINT_TITLE,ui.PREVIEW_DRAW_CALL):
                 x,y,p=(emu.reg_read(REG[k]) for k in (3,4,5))
                 raw=bytes(emu.mem_read(p,128))
                 ff=raw.find(bytes([255]));nul=raw.find(bytes([0]))
