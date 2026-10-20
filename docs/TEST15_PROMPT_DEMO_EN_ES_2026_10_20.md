@@ -31,7 +31,7 @@ O wrapper foi disassemblado: os desvios de estado/Português chegam à chamada n
 - XEX TEST15: SHA-256 `fcf76cbe7a5e8247341dd4215254eb8a759f989ab42700ccd305eaca09680cc1`.
 - ZIP de teste: SHA-256 `89a2f45e778afcb031d642f2f5820246a67b2584dfbc95874f4883f69454f121`.
 - Round-trip verificado: payload da XEX TEST15 descriptografado tem 17.170.432 bytes e coincide byte a byte com a PE TEST15 (hash igual).
-- Testes locais de patch PPC/fixture sintético: **5/5 PASS**. O workflow CI para esses testes foi adicionado ao branch; o status remoto ainda deve ser consultado separadamente.
+- Testes locais de patch PPC/fixture sintético: **5/5 PASS**. O workflow remoto [TEST15 prompt patch static tests — PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460) também passou com cinco testes de fixture sintética; nenhum binário do jogo foi enviado ao GitHub.
 
 Os testes sintéticos/disassembly e a validação de round-trip não comprovam o comportamento no Xbox.
 
