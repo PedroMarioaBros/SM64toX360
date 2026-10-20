@@ -72,3 +72,10 @@ Relatório técnico: [LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md](LANGUAGE_S
 O proprietário acrescentou um resultado decisivo após testar a opção **English** na TEST11: selecionou English e confirmou com A; o prompt seguinte continuou “APERTE START” em português, mas **os textos dentro do jogo apareceram em inglês**. Isso demonstra que a escolha do idioma chega a pelo menos uma parte real do sistema de textos. O diagnóstico anterior deve ser refinado: não se pode concluir que a ativação dos idiomas falha por completo; a lacuna observada é que o prompt Press Start (e possivelmente outros elementos de título/file-select) não acompanha a escolha. Teste espanhol ainda pendente.
 
 Não pedir novo teste de inglês. Aguardando apenas o resultado do teste espanhol que o proprietário já iniciou. Nenhum novo XEX foi gerado nesta atualização.
+
+
+## Requisito confirmado para a próxima versão do seletor — 20/10/2026
+
+O proprietário esclareceu o comportamento desejado para a tela do rosto do Mario: a ordem fixa deve ser **English → Español → Português**, com **English selecionado por padrão sempre que o jogo abrir**. A mudança de cursor deve atualizar imediatamente, antes de pressionar A, todos os textos do próprio seletor conforme o idioma destacado: título/etiqueta de idiomas, os nomes das três opções e a instrução de confirmação. Portanto, ao destacar English, todos esses textos ficam em inglês; ao destacar Español, ficam em espanhol; ao destacar Português, ficam em português. A confirmação com A seleciona o idioma para o jogo e seus textos internos. Não basta localizar somente a opção selecionada ou trocar textos depois da confirmação.
+
+O proprietário está atualmente testando Español na TEST11; resultado ainda pendente. Este requisito é especificação nova, não implementação concluída. Nenhum novo XEX foi gerado nesta atualização.
