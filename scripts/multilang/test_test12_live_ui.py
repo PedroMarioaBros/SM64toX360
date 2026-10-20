@@ -76,6 +76,7 @@ class Test12LiveUI(unittest.TestCase):
         self.assertEqual(report["helper_bytes"],108)
         self.assertEqual(report["menu_records"],len(MENU_ITEMS))
         self.assertEqual(report["novo_pointer_helper_bytes"],96)
+        self.assertEqual(candidate[NOVO_HELPER-BASE:NOVO_HELPER-BASE+96],build_novo_pointer_helper())
         self.assertTrue(report["novo_callsite_patched"])
         self.assertTrue(report["b_y_scratch_unchanged"])
         self.assertTrue(report["global_hook_unchanged"])
