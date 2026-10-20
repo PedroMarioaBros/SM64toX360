@@ -65,3 +65,10 @@ A leitura estática dos scripts identificou uma lacuna específica: o gate receb
 Relatório técnico: [LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md](LANGUAGE_SELECTOR_ACTIVATION_GAP_2026_10_20.md).
 
 **Trabalho desta etapa:** análise de código e documentação; nenhum PE/XEX foi modificado/gerado e nenhum teste novo de Xenia/hardware foi executado. Próximo passo é mapear os textos e rotinas reais no PE Xbox 360 usando bytes recuperados, antes de montar outra candidata.
+
+
+## Complemento de teste físico — 20/10/2026 (relato do proprietário)
+
+O proprietário acrescentou um resultado decisivo após testar a opção **English** na TEST11: selecionou English e confirmou com A; o prompt seguinte continuou “APERTE START” em português, mas **os textos dentro do jogo apareceram em inglês**. Isso demonstra que a escolha do idioma chega a pelo menos uma parte real do sistema de textos. O diagnóstico anterior deve ser refinado: não se pode concluir que a ativação dos idiomas falha por completo; a lacuna observada é que o prompt Press Start (e possivelmente outros elementos de título/file-select) não acompanha a escolha. Teste espanhol ainda pendente.
+
+Não pedir novo teste de inglês. Aguardando apenas o resultado do teste espanhol que o proprietário já iniciou. Nenhum novo XEX foi gerado nesta atualização.
