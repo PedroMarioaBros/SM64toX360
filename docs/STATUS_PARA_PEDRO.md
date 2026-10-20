@@ -158,3 +158,14 @@ A tentativa de desenhar os cinco rótulos do seletor com `PRINT_CENTER=0x8212B49
 Foi empacotada localmente uma variante exploratória que mantém o caminho antigo do seletor e corrige só `NOVO/NUEVO/NEW`. O roundtrip XEX→PE mapeada reproduziu exatamente a imagem, e o ensaio Xenia de 14 s não gerou dump de crash, mas o backend gráfico estava indisponível. Essa variante não é considerada build final nem foi validada visualmente no console.
 
 Próxima etapa: auditar a pipeline gráfica para a seta e as bandeiras EUA/Espanha/Brasil, antes de gerar a próxima XEX física. Manter baseline de 30 FPS; Native60 e dublagem seguem fora do escopo.
+
+
+## Atualização adicional — TEST13D (20/10/2026)
+
+A investigação isolou uma provável incompatibilidade de terminador: a rotina de texto usada pelas cinco linhas do seletor é a função nativa de título `PRINT_CENTER=0x8212B498`, já comprovada nas TEST8/TEST9, e recebe strings ASCII terminadas por byte NUL. Os textos do seletor na TEST12 estavam codificados pelo mapa de glifos N64 e terminados em `0xFF`. A versão anterior que trocou o renderizador mantendo esse formato crashou no Xenia. Agora o código fonte mudou em conjunto: renderizador nativo de título + strings ASCII/NUL. Isso é uma hipótese técnica melhor fundamentada, não uma confirmação visual ainda.
+
+- Última revisão em CI: commit `983aeeb4931fcc63593b3f5a0c4eb1424da3349d`; [TEST12 PPC runtime/static PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009924) e [Multilang Static Check PASS](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39386009889).
+- Empacotada uma **candidata experimental TEST13D** a partir da PE mapeada de TEST12 já testada no Xbox, corrigindo os strings do seletor para ASCII/NUL, retargetando apenas as cinco chamadas de desenho, e adicionando o ponteiro seguro `NOVO/NUEVO/NEW`.
+- XEX `default.xex` SHA-256 `8f66a77718c033b409d85548fd456f48ec70999a824afa046555c4fc51d47524`; PE mapeada SHA-256 `0063a6dedb10b780c4e558f77af148bbf61bef0ae780f72647c112c2f44def9e`; AES decrypt roundtrip do payload da XEX reproduziu a PE byte a byte. ZIP CRC PASS.
+- Xenia Canary Linux foi executado 16 s com TEST13D; processo terminou apenas pelo timeout solicitado (código 124), sem Access Violation nem KeBugCheck no intervalo. Entretanto, Xenia não inicializou Vulkan (`ErrorIncompatibleDriver`) e reportou falhas do backend PM4; então a etapa gráfica do preteste ficou **inconclusiva**, não PASS visual.
+- A TEST13D está preparada somente para validar se as linhas passam a aparecer e se os slots vazios ficam `NEW/NUEVO/NOVO`. Os acentos dos rótulos estão provisoriamente sem acento por causa da fonte ASCII. A direção final aprovada segue sendo seta + bandeiras EUA/Espanha/Brasil; ela ainda não está implementada.
