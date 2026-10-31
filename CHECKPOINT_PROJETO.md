@@ -970,3 +970,14 @@ Relatório: [docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md](docs/TEST15_PROMPT_DEM
 - Relatório criado: `docs/TEST16_REFINEMENTS_INVESTIGATION_2026_10_31.md`. Status do proprietário atualizado em `docs/STATUS_PARA_PEDRO.md`.
 - **Nenhuma PE/XEX nova foi gerada nesta etapa.** TEST15 é a referência aprovada e rollback. Não misturar Native60 nem dublagem.
 - Próxima ação: recuperar PE TEST15 exata; mapear G/U, strings/rotina de pausa e estrutura de eixos do controle; só então implementar, testar em CI e preparar pacote de teste.
+
+
+## Auditoria de recuperação dos binários TEST14/TEST15 — 31/10/2026
+
+- Foi feita busca direta na árvore Git da branch, Releases, Actions artifacts das execuções TEST15/CI, Library do ChatGPT e diretório de trabalho.
+- Não há PE/XEX/ZIP TEST14 ou TEST15 na árvore do repo; Releases está vazio; execução TEST15 `39437813460` retorna zero artifacts. As execuções `39438223602` e `39438169429` também não têm artifacts.
+- A Library tem um `default.xex` de 692.224 bytes (SHA-256 `80d2bbd304fe48618b27c9d4ca38f7df8d06f04f1e6761bf9f4123e8524e37ba`), incompatível com o XEX TEST14 registrado de 17.182.720 bytes; descartado como outro binário.
+- Relatório: `docs/TEST15_ARTIFACT_RECOVERY_AUDIT_2026_10_31.md`.
+- CI do commit `86d698efd4653e686048aa98412c77628153d523` (relatório de auditoria) PASS: run `41211921289`. CI do commit `eeeed93e8c3e34c8f53584d4c9510586175489ec` (status atualizado) PASS: run `41211932172`. São verificações estáticas do repositório; não recuperam nem validam o binário.
+- Resultado: os hashes e o patcher TEST15 estão versionados, mas os bytes proprietários não foram localizados. Não é possível reconstruir um PE a partir de SHA-256. Nenhuma versão foi gerada e nenhum binário estranho foi usado.
+- Próximo passo permanece: localizar uma cópia preservada do XEX/ZIP TEST14 ou TEST15 fora das fontes consultadas; verificar hash; extrair/reconstruir a PE; só então fazer análise binária de G/U, menu de pausa e eixos analógicos.
