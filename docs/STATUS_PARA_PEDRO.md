@@ -255,3 +255,14 @@ Os testes automatizados voltaram a passar após remover a hipótese duplicada: [
 ## Ferramenta técnica preparada nesta retomada (20/10/2026)
 
 Foi adicionado um scanner somente leitura para procurar candidatos de chamadas PPC a print_intro_text na PE mapeada, com testes sintéticos. CI dos testes do scanner e validação de fontes passaram: [scanner-tests](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369587) e [validate-sources](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39430369450). **Ainda não foi executado na PE real TEST14**, pois o pacote ZIP contém somente default.xex, README e auditoria; nenhum chamador novo foi identificado e nenhuma XEX nova foi gerada.
+
+
+## Auditoria de recuperação TEST15 — 31/10/2026
+
+A busca de recuperação foi executada antes de solicitar qualquer arquivo ao proprietário. Foram consultados: árvore completa da branch, GitHub Releases, artifacts das execuções TEST15 e das verificações CI, Library disponível e pasta de trabalho. Resultado: os binários TEST14/TEST15 não estão nessas fontes. A execução TEST15 `39437813460` e as execuções CI verificadas retornam zero artifacts; o repositório não tem releases nem binários na árvore.
+
+Foi encontrado um `default.xex` na Library, mas possui 692.224 bytes e SHA-256 `80d2bbd304fe48618b27c9d4ca38f7df8d06f04f1e6761bf9f4123e8524e37ba`, incompatível com a TEST14 (17.182.720 bytes) e com os hashes esperados. Foi descartado e não será usado.
+
+Relatório completo: [auditoria de recuperação TEST15](TEST15_ARTIFACT_RECOVERY_AUDIT_2026_10_31.md).
+
+**Resultado:** ainda não há bytes de origem disponíveis para cross-reference ou reconstrução exata. Os hashes e patchers estão preservados, mas hash não reconstrói o binário. Nenhuma PE/XEX foi gerada ou modificada. TEST15 continua sendo a versão aprovada fisicamente e o rollback.
