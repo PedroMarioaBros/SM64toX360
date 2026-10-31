@@ -1,27 +1,32 @@
-# SM64 Xbox 360 — situação atual (20/10/2026, após teste físico TEST14)
+# SM64 Xbox 360 — situação atual (31/10/2026, após teste físico TEST15)
 
-**Este resumo substitui o cabeçalho histórico abaixo como estado atual.** O teste mais recente relatado pelo proprietário é TEST14, não TEST11.
+**Última versão testada pelo proprietário: TEST15.** Resultado confirmado no Xbox 360 real:
 
-| Item | Resultado físico no Xbox 360 |
+| Item | Resultado físico |
 |---|---|
-| Seletor e navegação/confirmar A | PASS |
-| Textos do seletor centralizados conforme desejado | PASS — preservar alinhamento X=160 |
-| Seletor permanece aberto por mais de 1 minuto, sem cutscene antes da confirmação | PASS |
-| Slots vazios por idioma | PASS — NEW / NUEVO / NOVO |
-| G/U sem cinza | FAIL — maiúsculas não resolveram |
-| Prompt da attract/demo em English/Español | FAIL — a cutscene volta a mostrar APERTE START |
+| Seletor e confirmação A | PASS |
+| Jogo inicia e permanece estável, sem tela preta/travamento | PASS |
+| Prompt da attract/demo em English | PASS — PRESS START |
+| Prompt da attract/demo em Español | PASS — PULSA START |
+| Prompt da attract/demo em Português | PASS — APERTE START |
+| Centralização do seletor X=160 | PASS — preservar |
+| Seletor aguarda confirmação antes da demo | PASS — preservar |
+| Slots vazios | PASS — NEW / NUEVO / NOVO |
+| Letras G e U | FAIL — continuam cinzas |
+| Menu de pausa | FAIL — aparece PAUSA em todos os idiomas |
+| Navegação pelo analógico esquerdo | PENDENTE — atualmente D-pad |
 
-## Próxima etapa — candidata TEST15 preparada (ainda não testada no console)
+## Próxima etapa — refinamentos TEST16 (sem gerar versão ainda)
 
-1. **Prompt da attract/demo:** a PE mapeada exata da TEST14 foi recuperada e validada por SHA-256. A análise estática localizou uma chamada direta ainda nativa em `0x820DBEF8`, dentro de código executável. A TEST15 candidata redireciona essa chamada a um wrapper específico de prompt e remove o fallback para texto nativo que ocorria quando o ponteiro do controle era nulo. A hipótese faz sentido no fluxo analisado, mas só o teste no Xbox confirma se essa era a origem do prompt português.
-2. **Candidata TEST15:** PE SHA-256 `d1657528056df5f8c1257f3197a2674f69a46ff14dd090b682bea47f4be4a8b4`; XEX SHA-256 `fcf76cbe7a5e8247341dd4215254eb8a759f989ab42700ccd305eaca09680cc1`; pacote ZIP SHA-256 `89a2f45e778afcb031d642f2f5820246a67b2584dfbc95874f4883f69454f121`. Round-trip XEX→PE conferido byte a byte; disassembly do wrapper revisada; testes sintéticos locais 5/5 PASS. Isso não equivale a validação no Xbox.
-3. **G/U cinza:** segue FAIL/pêndencia. Não foi alterado o caminho de renderização do seletor, porque não há ainda uma causa confirmada. Maiúsculas já foram refutadas no teste físico.
-4. **Teste físico pendente:** testar em pasta isolada; escolher English e verificar `PRESS START` quando entrar na attract/demo; reiniciar e repetir para Español com `PULSA START`. Preservar TEST14 e saves como rollback. O README dentro do pacote contém a sequência de teste.
-5. **Regressões que devem permanecer PASS:** seletor centralizado em X=160, seletor ocioso sem cutscene antes do A, slots `NOVO/NUEVO/NEW`, base 30 FPS. Não declarar a correção da attract/demo até o teste físico.
+1. **Glifos G/U:** investigar lookup/fonte/atributos reais. ASCII maiúsculo já foi testado e não resolveu; não repetir a hipótese nem trocar renderer às cegas.
+2. **Pausa:** mapear strings e rotina no PE TEST15. Textos solicitados: English = PAUSE; Español = PAUSA; Português = PAUSE. Identificar também as demais opções do menu antes de patch.
+3. **Analógico esquerdo:** o wrapper atual lê D-pad UP/DOWN (bits 0x0800/0x0400) e A; rastrear o layout real do estado do controle antes de ler eixos. Implementar deadzone/repetição controlada, manter D-pad como alternativa e não interferir na câmera/controles de gameplay.
 
-Relatório técnico: [TEST15 — investigação do prompt da attract/demo](TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). O código do patcher e os testes sintéticos foram adicionados ao branch; [o workflow de CI passou (5/5 testes)](https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460).
+Relatório de investigação e especificação: [TEST16 — refinamentos após validação física TEST15](TEST16_REFINEMENTS_INVESTIGATION_2026_10_31.md).
 
-Base preservada em 30 FPS; PT-BR mantido; Native60 e dublagem continuam fora de escopo nesta etapa.
+**Bloqueio técnico concreto:** PE/XEX proprietária não é armazenada no repositório público. Para localizar referências binárias e construir patches exatos, é necessário recuperar a PE mapeada TEST15 do pacote privado/artefato local e conferir SHA-256. Hashes registrados não substituem os bytes.
+
+**Nenhuma PE/XEX nova foi gerada.** TEST15 permanece a referência estável e rollback. Base 30 FPS; Native60 e dublagem fora de escopo.
 
 ---
 
