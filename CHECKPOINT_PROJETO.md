@@ -954,3 +954,19 @@ Este bloco é o ponto de retomada mais recente; complementa os checkpoints hist�
 5. Workflow CI `TEST15 prompt patch static tests`: **PASS (5/5 testes sintéticos)** — https://github.com/PedroMarioaBros/SM64toX360/actions/runs/39437813460. Esses testes não substituem o Xbox físico.
 
 Relatório: [docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md](docs/TEST15_PROMPT_DEMO_EN_ES_2026_10_20.md). Estado resumido: [docs/STATUS_PARA_PEDRO.md](docs/STATUS_PARA_PEDRO.md).
+
+
+## Estado mais recente — 31/10/2026, TEST15 aprovada fisicamente e refinamentos TEST16 abertos
+
+- Retorno do proprietário após teste no Xbox 360 real: TEST15 passou em Português, Español e English. O prompt da attract/demo acompanha o idioma selecionado: APERTE START / PULSA START / PRESS START. Seletor funcional; jogo inicia e permanece estável, sem tela preta ou travamento.
+- Regressões que permanecem PASS e devem ser preservadas: seletor centralizado em X=160; espera de confirmação antes de demo; slots vazios NEW/NUEVO/NOVO; base 30 FPS.
+- Pendências novas/confirmadas para TEST16:
+  1. G/U seguem cinzas. Maiúsculas já foram refutadas no teste físico; investigar lookup/fonte/atributos antes de patch.
+  2. Menu de pausa mostra PAUSA nos três idiomas. Especificação pedida: English PAUSE; Español PAUSA; Português PAUSE.
+  3. Navegação do seletor deve aceitar analógico esquerdo. Wrapper atual documentado lê D-pad UP/DOWN (0x0800/0x0400) e A; layout real do eixo no estado do controle ainda precisa ser rastreado. Manter D-pad como alternativa, aplicar deadzone/repetição controlada e não interferir no gameplay/câmera.
+- Inspeção de código nesta retomada: `scripts/multilang/test12_live_ui.py` contém tabela de textos de save, não uma tabela comprovada de pause; `docs/TEST11_UI_TEXT_MAP_2026_10_20.md` também mapeia saves, não pause. Portanto não copiar/renomear strings de save como se fossem o menu de pausa.
+- O caminho de preview do seletor usa ASCII/NUL e renderer centralizado `PRINT_CENTER=0x8212B498`; isso não basta para concluir por que G/U aparecem cinzas. Não trocar renderer ou alterar fonte sem cross-reference.
+- Bloqueio: o repositório público não contém PE/XEX proprietário. Para fazer cross-reference real e patches fail-closed, recuperar a PE mapeada TEST15 do pacote privado/artefato local e validar SHA-256 esperado. Não inventar offsets nem gerar patch sem bytes.
+- Relatório criado: `docs/TEST16_REFINEMENTS_INVESTIGATION_2026_10_31.md`. Status do proprietário atualizado em `docs/STATUS_PARA_PEDRO.md`.
+- **Nenhuma PE/XEX nova foi gerada nesta etapa.** TEST15 é a referência aprovada e rollback. Não misturar Native60 nem dublagem.
+- Próxima ação: recuperar PE TEST15 exata; mapear G/U, strings/rotina de pausa e estrutura de eixos do controle; só então implementar, testar em CI e preparar pacote de teste.
