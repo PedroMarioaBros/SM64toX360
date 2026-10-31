@@ -42,3 +42,10 @@ A recuperação precisa vir de um artefato binário preservado fora da árvore G
 - Nenhuma mudança funcional foi aplicada.
 - TEST15 permanece a referência física aprovada pelo proprietário.
 - Base 30 FPS preservada; Native60 e dublagem fora do escopo.
+
+
+## Causa operacional confirmada — workflow TEST15
+
+O arquivo `.github/workflows/test-test15-prompt-fix.yml` foi inspecionado. Ele executa apenas `actions/checkout@v4` e `python3 -m unittest discover ...`; não executa o patcher sobre um binário real e não contém etapa `actions/upload-artifact`. Portanto, o run TEST15 não foi um build que gerou/arquivou o XEX ou ZIP. O binário foi produzido anteriormente fora desse workflow e seus bytes não foram preservados no GitHub Actions.
+
+Isso é diferente de um artifact que expirou: a execução consultada foi criada em 20/10/2026, e o padrão documentado de retenção do GitHub Actions é 90 dias; além disso, a API informa zero artifacts para o run. A ausência decorre de não ter havido upload no workflow, não de expiração comprovada.
